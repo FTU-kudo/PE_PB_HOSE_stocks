@@ -1,0 +1,95 @@
+name: 📊 Daily P/E & P/B Update
+
+on:
+  schedule:
+    # 09:05 UTC = 16:05 ICT (Mon–Fri)
+    # HOSE closes 14:30 ICT; prices confirmed by ~15:00 ICT
+    - cron: '5 9 * * 1-5'
+  workflow_dispatch:       # manual trigger for testing
+    inputs:
+      force_run:
+        description: 'Force run even outside market days'
+        required: false
+        default: 'false'
+
+jobs:
+  daily-update:
+    name: Fetch close prices & compute PE/PB
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write      # needed to git-push results back to the repo
+
+    steps:
+      # ── 1. Checkout ────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Use PAT if you need to push and trigger downstream workflows,
+          # otherwise GITHUB_TOKEN is sufficient for same-repo pushes.
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0   # full history so git log works in scripts
+
+      # ── 2. Python env ──────────────────────────────────────────────────────
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: pip install --upgrade pip && pip install -r requirements.txt
+
+      # ── 3. Guard: abort if fundamentals cache is missing ───────────────────
+      - name: Check fundamentals cache exists
+        run: |
+          if [ ! -f data/fundamentals.parquet ]; then
+            echo "::error::data/fundamentals.parquet not found."
+            echo "::error::Run the 'Weekly Fundamentals Refresh' workflow first."
+            exit 1
+          fi
+          echo "Fundamentals cache OK."
+
+      # ── 4. Fetch close prices & compute PE/PB ─────────────────────────────
+      - name: Run daily compute pipeline
+        env:
+          VNSTOCK_API_KEY: ${{ secrets.VNSTOCK_API_KEY }}
+        run: python scripts/daily_compute.py
+
+      # ── 5. Build GitHub Pages dashboard ───────────────────────────────────
+      - name: Build HTML dashboard
+        run: python scripts/build_dashboard.py
+
+      # ── 6. Commit & push results ───────────────────────────────────────────
+      - name: Commit and push data + dashboard
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name  "github-actions[bot]"
+
+          git add data/ docs/
+
+          # Only commit if there are actual changes (idempotency guard)
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            DATE=$(date -u '+%Y-%m-%d')
+            git commit -m "📊 P/E P/B daily update ${DATE} [skip ci]"
+            git push
+          fi
+
+      # ── 7. Summary ────────────────────────────────────────────────────────
+      - name: Write job summary
+        if: always()
+        run: |
+          DATE=$(date -u '+%Y-%m-%d')
+          echo "### 📊 Daily P/E & P/B — ${DATE}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f data/daily/pe_pb_${DATE}.csv ]; then
+            ROWS=$(wc -l < data/daily/pe_pb_${DATE}.csv)
+            echo "✅ Snapshot saved: \`data/daily/pe_pb_${DATE}.csv\` (${ROWS} rows)" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ No snapshot found for today." >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🌐 Dashboard: https://\${{ github.repository_owner }}.github.io/\${{ github.event.repository.name }}/" >> $GITHUB_STEP_SUMMARY

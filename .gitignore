@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-wheel-metadata/
+*.whl
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# Secrets
+.env
+*.env
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Large temp files — keep data/ committed (parquet + CSV are small)
+# but ignore any accidental local dumps
+*.log
+/tmp/
+
+# The daily CSV snapshots accumulate; git-track them (small ~30KB each)
+# but if repo grows too large you can uncomment the next line:
+# /data/daily/

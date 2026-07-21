@@ -3,63 +3,44 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>VN-HOSE P/E & P/B Dashboard</title>
+<title>VN-HOSE P/E & P/B Dashboard — Loading…</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-  body { background:#0f172a; color:#e2e8f0;
-         font-family:ui-sans-serif,system-ui,sans-serif; }
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-  .pulse { animation: pulse 2s ease-in-out infinite; }
+  body{background:#0f172a;color:#e2e8f0;font-family:ui-sans-serif,system-ui,sans-serif}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .spin{animation:spin 1.2s linear infinite;display:inline-block}
 </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-8">
   <div class="text-center max-w-lg">
     <div class="text-6xl mb-6">🇻🇳</div>
     <h1 class="text-3xl font-bold mb-3">VN-HOSE P/E &amp; P/B Dashboard</h1>
-    <p class="text-slate-400 mb-8 text-sm leading-relaxed">
-      Dashboard auto-populates after the first pipeline run.<br/>
-      Trigger the two workflows below in order.
+    <p class="text-slate-400 mb-8 text-sm">
+      Dashboard auto-populates after the first pipeline run.
     </p>
-    <div class="bg-slate-800 border border-slate-700 rounded-xl p-6
-                text-left text-sm space-y-4">
+    <div class="bg-slate-800 border border-slate-700 rounded-xl p-6 text-left text-sm space-y-4">
       <div class="flex items-start gap-3">
-        <span class="pulse text-xl">1️⃣</span>
+        <span class="spin text-xl">⏳</span>
         <div>
-          <p class="font-semibold text-sky-300">Weekly Fundamentals Refresh</p>
-          <p class="text-slate-400 text-xs mt-1">
-            Fetches EPS &amp; BVPS for ~400 HOSE tickers via
-            <code>Finance.ratio(period='year')</code> and saves
-            <code>data/fundamentals.parquet</code>.
-            Runtime ~10 min.
-          </p>
+          <p class="font-semibold text-sky-300">Step 1 — Weekly Fundamentals Refresh</p>
+          <p class="text-slate-400 text-xs mt-1">Actions → weekly_fundamentals.yml → Run workflow (~10 min)</p>
         </div>
       </div>
       <div class="flex items-start gap-3">
-        <span class="pulse text-xl">2️⃣</span>
+        <span class="spin text-xl">⏳</span>
         <div>
-          <p class="font-semibold text-sky-300">Daily P/E &amp; P/B Update</p>
-          <p class="text-slate-400 text-xs mt-1">
-            Fetches today's close prices via KBS
-            <code>price_board</code>, computes PE &amp; PB, aggregates
-            by sector, and rebuilds this dashboard.
-            Runtime ~3 min.
-          </p>
+          <p class="font-semibold text-sky-300">Step 2 — Daily P/E &amp; P/B Update</p>
+          <p class="text-slate-400 text-xs mt-1">Actions → daily_pe_pb.yml → Run workflow (~3 min)</p>
         </div>
       </div>
       <div class="flex items-start gap-3">
         <span class="text-green-400 text-xl">✅</span>
         <div>
-          <p class="font-semibold text-green-300">Dashboard loads automatically</p>
-          <p class="text-slate-400 text-xs mt-1">
-            This placeholder is replaced by
-            <code>scripts/build_dashboard.py</code> after step 2.
-          </p>
+          <p class="font-semibold text-green-300">Dashboard appears here automatically after step 2.</p>
         </div>
       </div>
     </div>
-    <p class="text-slate-600 text-xs mt-8">
-      vnstock (KBS) · GitHub Actions · Chart.js · DataTables
-    </p>
+    <p class="text-slate-600 text-xs mt-8">vnstock (KBS) · GitHub Actions · Chart.js</p>
   </div>
 </body>
 </html>

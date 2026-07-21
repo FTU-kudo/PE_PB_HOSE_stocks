@@ -50,6 +50,7 @@ which is complex and error-prone in a fully-automated pipeline.
 Using the **last audited annual EPS** is safer for market-level P/E analysis.
 
 > TTM mode can be added later by wiring in the quarterly IS pipeline
+> from `vn-quant-master` (with proper VAS deaccumulation).
 
 ---
 
@@ -220,7 +221,7 @@ open docs/index.html
 
 | Goal | How |
 |------|-----|
-| **TTM EPS** | Wire quarterly IS pipeline with VAS deaccumulation; replace `eps_annual` in `daily_compute.py` |
+| **TTM EPS** | Wire quarterly IS pipeline from `vn-quant-master` with VAS deaccumulation; replace `eps_annual` in `daily_compute.py` |
 | **Market-cap weighted PE/PB** | Fetch `shares_outstanding` weekly; add weighted columns to sector aggregation |
 | **Telegram alert** | Add a post-build step in `daily_pe_pb.yml` that sends the sector summary table via the existing bot |
 | **Google Sheets export** | Add `gspread` to requirements; write `data_latest.json` into a named sheet after dashboard build |
