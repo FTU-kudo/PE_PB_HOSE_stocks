@@ -4,7 +4,7 @@ Automated daily pipeline tracking **Price-to-Earnings (P/E)** and **Price-to-Boo
 for ~400 stocks on the Ho Chi Minh Stock Exchange (HOSE), published as a self-contained
 **GitHub Pages** dashboard — no server, no local setup.
 
-**Live dashboard →** `https://<your-username>.github.io/<repo-name>/`
+**→ [View live dashboard here](https://ftu-kudo.github.io/PE_PB_HOSE_stocks**
 
 ---
 
