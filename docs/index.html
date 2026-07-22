@@ -411,7 +411,7 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
     <div class="status-item">
       <span class="status-icon">🔄</span>
       <span class="status-label">Dữ liệu cập nhật:</span>
-      <strong class="status-val" id="banner-updated">03:48:00, Ngày 23/07/2026 (UTC+7)</strong>
+      <strong class="status-val" id="banner-updated">03:56:09, Ngày 23/07/2026 (UTC+7)</strong>
     </div>
     <div class="status-divider"></div>
     <div class="status-item">
@@ -435,24 +435,24 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
   <!-- ── Market summary ─────────────────────────────────────────────────── -->
   <div class="grid-6 mb-8">
     <div class="card card-hose card-pe">
-      <div class="lbl">HOSE Median P/E</div>
-      <div class="big" id="mkt-pe">—</div>
-      <div class="sub">Unweighted Median</div>
-    </div>
-    <div class="card card-hose card-pe">
       <div class="lbl">HOSE Weighted P/E</div>
       <div class="big" style="color:#38bdf8" id="mkt-wpe">—</div>
       <div class="sub">Market-Cap Weighted</div>
     </div>
     <div class="card card-hose card-pb">
-      <div class="lbl">HOSE Median P/B</div>
-      <div class="big" style="color:var(--accent2)" id="mkt-pb">—</div>
-      <div class="sub">Unweighted Median</div>
-    </div>
-    <div class="card card-hose card-pb">
       <div class="lbl">HOSE Weighted P/B</div>
       <div class="big" style="color:#f472b6" id="mkt-wpb">—</div>
       <div class="sub">Market-Cap Weighted</div>
+    </div>
+    <div class="card card-hose card-pe">
+      <div class="lbl">HOSE Median P/E</div>
+      <div class="big" id="mkt-pe">—</div>
+      <div class="sub">Unweighted Median</div>
+    </div>
+    <div class="card card-hose card-pb">
+      <div class="lbl">HOSE Median P/B</div>
+      <div class="big" style="color:var(--accent2)" id="mkt-pb">—</div>
+      <div class="sub">Unweighted Median</div>
     </div>
     <div class="card card-hose card-pe">
       <div class="lbl">Stocks with P/E</div>
@@ -485,14 +485,6 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
     <!-- Real-time Computed Stats Grid -->
     <div class="grid-6" style="gap:12px">
       <div class="card-pe" style="border-radius:10px;padding:12px">
-        <div class="lbl">Custom Median P/E</div>
-        <div style="display:flex;align-items:baseline;gap:8px">
-          <span class="big" id="custom-pe">—</span>
-          <span id="diff-pe" style="font-size:.85rem;font-weight:700"></span>
-        </div>
-        <div class="sub" id="custom-pe-sub">Trung vị (Unweighted)</div>
-      </div>
-      <div class="card-pe" style="border-radius:10px;padding:12px">
         <div class="lbl">Custom Weighted P/E</div>
         <div style="display:flex;align-items:baseline;gap:8px">
           <span class="big" style="color:#38bdf8" id="custom-wpe">—</span>
@@ -501,20 +493,28 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
         <div class="sub" id="custom-wpe-sub">Trọng số Vốn hóa (Weighted)</div>
       </div>
       <div class="card-pb" style="border-radius:10px;padding:12px">
-        <div class="lbl">Custom Median P/B</div>
-        <div style="display:flex;align-items:baseline;gap:8px">
-          <span class="big" style="color:var(--accent2)" id="custom-pb">—</span>
-          <span id="diff-pb" style="font-size:.85rem;font-weight:700"></span>
-        </div>
-        <div class="sub" id="custom-pb-sub">Trung vị (Unweighted)</div>
-      </div>
-      <div class="card-pb" style="border-radius:10px;padding:12px">
         <div class="lbl">Custom Weighted P/B</div>
         <div style="display:flex;align-items:baseline;gap:8px">
           <span class="big" style="color:#f472b6" id="custom-wpb">—</span>
           <span id="diff-wpb" style="font-size:.85rem;font-weight:700"></span>
         </div>
         <div class="sub" id="custom-wpb-sub">Trọng số Vốn hóa (Weighted)</div>
+      </div>
+      <div class="card-pe" style="border-radius:10px;padding:12px">
+        <div class="lbl">Custom Median P/E</div>
+        <div style="display:flex;align-items:baseline;gap:8px">
+          <span class="big" id="custom-pe">—</span>
+          <span id="diff-pe" style="font-size:.85rem;font-weight:700"></span>
+        </div>
+        <div class="sub" id="custom-pe-sub">Trung vị (Unweighted)</div>
+      </div>
+      <div class="card-pb" style="border-radius:10px;padding:12px">
+        <div class="lbl">Custom Median P/B</div>
+        <div style="display:flex;align-items:baseline;gap:8px">
+          <span class="big" style="color:var(--accent2)" id="custom-pb">—</span>
+          <span id="diff-pb" style="font-size:.85rem;font-weight:700"></span>
+        </div>
+        <div class="sub" id="custom-pb-sub">Trung vị (Unweighted)</div>
       </div>
       <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px">
         <div class="lbl">Số cổ phiếu hợp lệ còn lại</div>
@@ -572,22 +572,6 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
   <!-- ── Sector charts ──────────────────────────────────────────────────── -->
   <div class="grid-2 mb-8">
     <div class="card card-pe">
-      <div class="sec-title">📊 Sector Median P/E</div>
-      <div class="sec-sub">Colour: green &lt;12 · blue &lt;20 · yellow &lt;30 · red ≥30</div>
-      <div style="position:relative; height:380px; width:100%">
-        <canvas id="chart-pe"></canvas>
-      </div>
-    </div>
-    <div class="card card-pb">
-      <div class="sec-title">📊 Sector Median P/B</div>
-      <div class="sec-sub">Lower = cheaper relative to book value</div>
-      <div style="position:relative; height:380px; width:100%">
-        <canvas id="chart-pb"></canvas>
-      </div>
-    </div>
-  </div>
-  <div class="grid-2 mb-8">
-    <div class="card card-pe">
       <div class="sec-title">📊 Sector Weighted P/E</div>
       <div class="sec-sub">Trọng số vốn hóa · Colour: green &lt;12 · blue &lt;20 · yellow &lt;30 · red ≥30</div>
       <div style="position:relative; height:380px; width:100%">
@@ -599,6 +583,22 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
       <div class="sec-sub">Trọng số vốn hóa · Lower = cheaper relative to book value</div>
       <div style="position:relative; height:380px; width:100%">
         <canvas id="chart-wpb"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="grid-2 mb-8">
+    <div class="card card-pe">
+      <div class="sec-title">📊 Sector Median P/E</div>
+      <div class="sec-sub">Colour: green &lt;12 · blue &lt;20 · yellow &lt;30 · red ≥30</div>
+      <div style="position:relative; height:380px; width:100%">
+        <canvas id="chart-pe"></canvas>
+      </div>
+    </div>
+    <div class="card card-pb">
+      <div class="sec-title">📊 Sector Median P/B</div>
+      <div class="sec-sub">Lower = cheaper relative to book value</div>
+      <div style="position:relative; height:380px; width:100%">
+        <canvas id="chart-pb"></canvas>
       </div>
     </div>
   </div>
