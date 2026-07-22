@@ -457,11 +457,6 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
   <header class="hdr">
     <div class="hdr-left">
       <h1>📊  VN-HOSE P/E &amp; P/B 🔍</h1>
-      <p>
-        As of <span class="hl" id="hdr-date"></span>
-        &nbsp;·&nbsp; Source: vnstock (KBS)
-        &nbsp;·&nbsp; PE = Close / Annual EPS &nbsp; PB = Close / BVPS
-      </p>
     </div>
     <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">
       <span id="theme-icon">☀️</span>
@@ -615,8 +610,7 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
   </div>
 
   <p class="footer">
-    Auto-updated after market close (Mon–Fri) via GitHub Actions
-    &nbsp;·&nbsp; vnstock (KBS) · Chart.js · DataTables
+    © Bản quyền thuộc về FTU-kudo
   </p>
 </div><!-- /page -->
 
@@ -713,7 +707,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── Header
   const m = D.market;
-  document.getElementById('hdr-date').textContent  = m.date;
+  const hdrDateEl = document.getElementById('hdr-date');
+  if (hdrDateEl) hdrDateEl.textContent = m.date;
   document.getElementById('mkt-pe').textContent    = fmt(m.median_pe);
   document.getElementById('mkt-pb').textContent    = fmt(m.median_pb);
   document.getElementById('mkt-npe').textContent   = m.valid_pe;
