@@ -117,6 +117,7 @@ def load_fundamentals() -> pd.DataFrame:
     if "ticker" not in df.columns:
         df = df.reset_index()
     df["ticker"] = df["ticker"].str.upper()
+    df = df.drop_duplicates(subset=["ticker"], keep="first")
     log.info(f"Fundamentals loaded: {len(df)} tickers  (cache age: {age} days)")
     return df.set_index("ticker")
 
@@ -227,6 +228,7 @@ def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
     df.loc[(df["pb"] < PB_MIN) | (df["pb"] > PB_MAX), "pb"] = np.nan
 
     df["date"] = date.today()
+    df = df.drop_duplicates(subset=["ticker"], keep="first")
 
     n_pe = df["pe"].notna().sum()
     n_pb = df["pb"].notna().sum()
@@ -276,6 +278,12 @@ def _append_parquet(new_df: pd.DataFrame, path: str, date_col: str = "date") -> 
         combined = pd.concat([old, new_df], ignore_index=True)
     else:
         combined = new_df.copy()
+    if date_col in combined.columns and "ticker" in combined.columns:
+        combined = combined.drop_duplicates(subset=[date_col, "ticker"], keep="last")
+    elif date_col in combined.columns and "group" in combined.columns:
+        combined = combined.drop_duplicates(subset=[date_col, "group"], keep="last")
+    else:
+        combined = combined.drop_duplicates()
     combined[date_col] = pd.to_datetime(combined[date_col])
     combined.to_parquet(path, index=False)
     log.info(f"Updated {path}  ({len(combined)} rows, {combined[date_col].nunique()} days)")

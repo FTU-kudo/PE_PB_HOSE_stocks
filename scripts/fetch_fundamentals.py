@@ -119,8 +119,7 @@ def get_hose_tickers() -> list[str]:
 def get_sector_map(tickers: list[str]) -> pd.DataFrame:
     """
     Build ticker → sector / industry / group mapping.
-    Primary: Reference().equity.list_by_industry()  [VCI – ICB standard]
-    Fallback: Reference().industry.sectors()         [KBS]
+    Primary: Reference().equity.list_by_industry()
     Vingroup override applied last.
     """
     from scripts.config import VINGROUP_TICKERS, VINGROUP_GROUP
@@ -128,62 +127,46 @@ def get_sector_map(tickers: list[str]) -> pd.DataFrame:
     ref = Reference()
     base = pd.DataFrame({"ticker": tickers})
 
-    def _try_vci():
+    try:
         df = ref.equity.list_by_industry()
-        cmap = {}
-        for col in df.columns:
-            cl = col.lower()
-            if cl in ("ticker", "symbol", "code"):
-                cmap[col] = "ticker"
-            elif "industry" in cl or "nganh" in cl:
-                cmap[col] = "industry"
-            elif "sector" in cl or "linh_vuc" in cl:
-                cmap[col] = "sector"
-        df = df.rename(columns=cmap)
-        df["ticker"] = df["ticker"].str.upper()
-        return df
+        df["symbol"] = df["symbol"].astype(str).str.upper().str.strip()
+        df = df[df["symbol"].isin(tickers)]
 
-    def _try_kbs():
-        df = ref.industry.sectors()
-        cmap = {}
-        for col in df.columns:
-            cl = col.lower()
-            if cl in ("ticker", "symbol", "code"):
-                cmap[col] = "ticker"
-            elif "industry" in cl or "sector" in cl or "nganh" in cl:
-                cmap[col] = "sector"
-        df = df.rename(columns=cmap)
-        df["ticker"] = df["ticker"].str.upper()
-        return df
+        if "icb_level" in df.columns and "icb_name" in df.columns:
+            sec_df = df[df["icb_level"].astype(str).isin(["1", "2"])].drop_duplicates(subset=["symbol"])
+            ind_df = df[df["icb_level"].astype(str).isin(["3", "4"])].drop_duplicates(subset=["symbol"])
+            if sec_df.empty:
+                sec_df = df.drop_duplicates(subset=["symbol"])
+            if ind_df.empty:
+                ind_df = df.drop_duplicates(subset=["symbol"], keep="last")
 
-    for fn, label in [(_try_vci, "VCI"), (_try_kbs, "KBS")]:
-        try:
-            ind = fn()
-            merge_cols = [c for c in ("ticker", "sector", "industry") if c in ind.columns]
-            base = base.merge(ind[merge_cols], on="ticker", how="left")
-            log.info(f"Sector map loaded from {label}.")
-            break
-        except Exception as exc:
-            log.warning(f"Sector map ({label}) failed: {exc}")
+            sec_map = sec_df.set_index("symbol")["icb_name"].to_dict()
+            ind_map = ind_df.set_index("symbol")["icb_name"].to_dict()
 
-    for col in ("sector", "industry"):
-        if col not in base.columns:
-            base[col] = "Unknown"
-    base["sector"]   = base["sector"].fillna("Unknown")
-    base["industry"] = base["industry"].fillna("Unknown")
+            base["sector"] = base["ticker"].map(sec_map).fillna("Unknown")
+            base["industry"] = base["ticker"].map(ind_map).fillna("Unknown")
+        else:
+            df_unique = df.drop_duplicates(subset=["symbol"])
+            sec_col = next((c for c in df.columns if any(k in c.lower() for k in ["sector", "nganh", "icb_name"])), None)
+            base["sector"] = base["ticker"].map(df_unique.set_index("symbol")[sec_col]).fillna("Unknown") if sec_col else "Unknown"
+            base["industry"] = base["sector"]
+        log.info("Sector map loaded successfully.")
+    except Exception as exc:
+        log.warning(f"Sector map failed: {exc}")
+        base["sector"] = "Unknown"
+        base["industry"] = "Unknown"
 
-    # Special Vingroup group AFTER sector mapping
     base["group"] = base["sector"]
     mask = base["ticker"].isin(VINGROUP_TICKERS)
     base.loc[mask, "group"] = VINGROUP_GROUP
-    return base
+    return base.drop_duplicates(subset=["ticker"])
 
 
 # ── Fundamentals fetch ────────────────────────────────────────────────────────
 def _extract_eps_bvps(ratio_df: pd.DataFrame, ticker: str) -> dict:
     """
     From a Finance.ratio(period='year') DataFrame, extract the most recent:
-      eps_annual  – EPS of the last complete fiscal year  (already period-specific)
+      eps_annual  – EPS of the last complete fiscal year
       bvps        – Book Value Per Share (last annual)
     Returns dict with those two keys (NaN if not found).
     """
@@ -191,20 +174,47 @@ def _extract_eps_bvps(ratio_df: pd.DataFrame, ticker: str) -> dict:
     if ratio_df is None or ratio_df.empty:
         return null
 
-    # Detect EPS and BVPS columns (vnstock may return 'eps', 'EPS', 'bvps', etc.)
-    cols_lower = {c.lower(): c for c in ratio_df.columns}
-    eps_col  = cols_lower.get("eps",  cols_lower.get("earningspershare", None))
-    bvps_col = cols_lower.get("bvps", cols_lower.get("bookvaluepershare",
-               cols_lower.get("nav",  None)))
+    eps = np.nan
+    bvps = np.nan
 
-    row = ratio_df.iloc[-1]   # most recent period
-    eps  = pd.to_numeric(row[eps_col],  errors="coerce") if eps_col  else np.nan
-    bvps = pd.to_numeric(row[bvps_col], errors="coerce") if bvps_col else np.nan
+    item_col = next((c for c in ratio_df.columns if c.lower() in ("item", "chi_tieu", "name", "metric")), None)
+    if item_col is not None:
+        val_cols = [c for c in ratio_df.columns if c.lower() not in ("item", "item_id", "id", "symbol", "ticker")]
+        for _, row in ratio_df.iterrows():
+            item_str = str(row[item_col]).lower()
+            is_eps = "eps" in item_str or "thu nhập trên mỗi cổ phần" in item_str
+            is_bvps = "bvps" in item_str or "giá trị sổ sách" in item_str
+            if not (is_eps or is_bvps):
+                continue
+            val = np.nan
+            for vc in val_cols:
+                v = pd.to_numeric(row[vc], errors="coerce")
+                if pd.notna(v) and v != 0:
+                    val = v
+                    break
+            if is_eps and pd.isna(eps):
+                eps = val
+            elif is_bvps and pd.isna(bvps):
+                bvps = val
+    else:
+        cols_lower = {c.lower(): c for c in ratio_df.columns}
+        eps_col  = next((cols_lower[k] for k in cols_lower if "eps" in k or "earningspershare" in k), None)
+        bvps_col = next((cols_lower[k] for k in cols_lower if "bvps" in k or "bookvalue" in k or "nav" in k), None)
+        for idx in range(len(ratio_df) - 1, -1, -1):
+            row = ratio_df.iloc[idx]
+            if pd.isna(eps) and eps_col:
+                v = pd.to_numeric(row[eps_col], errors="coerce")
+                if pd.notna(v) and v != 0:
+                    eps = v
+            if pd.isna(bvps) and bvps_col:
+                v = pd.to_numeric(row[bvps_col], errors="coerce")
+                if pd.notna(v) and v != 0:
+                    bvps = v
+            if pd.notna(eps) and pd.notna(bvps):
+                break
 
-    # Sanity: vnstock stores prices in raw VND (thousands) for some sources
-    # EPS for Vietnamese stocks is typically 1,000–20,000 VND range; flag if implausible
     if not np.isnan(eps) and eps < 0:
-        eps = np.nan   # loss-making → PE not meaningful
+        eps = np.nan
     return {"ticker": ticker, "eps_annual": eps, "bvps": bvps, "fetched_date": str(date.today())}
 
 
@@ -250,7 +260,7 @@ def main():
     merged = fundamentals.reset_index().merge(
         sector_map[["ticker", "sector", "industry", "group"]],
         on="ticker", how="left"
-    )
+    ).drop_duplicates(subset=["ticker"])
     merged.to_parquet(FUND_FILE, index=False)
     log.info(f"Fundamentals saved → {FUND_FILE}  ({len(merged)} rows)")
     log.info("=== Weekly fundamentals refresh complete ===")

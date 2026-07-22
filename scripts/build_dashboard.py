@@ -53,6 +53,11 @@ def load_data():
     tick_h["date"] = pd.to_datetime(tick_h["date"])
     sect_h["date"] = pd.to_datetime(sect_h["date"])
 
+    if "ticker" in tick_h.columns:
+        tick_h = tick_h.drop_duplicates(subset=["date", "ticker"], keep="last")
+    if "group" in sect_h.columns:
+        sect_h = sect_h.drop_duplicates(subset=["date", "group"], keep="last")
+
     latest_date = tick_h["date"].max()
     cutoff_30   = latest_date - timedelta(days=30)
 
@@ -67,6 +72,7 @@ def load_data():
 
 # ── Build JSON payload ────────────────────────────────────────────────────────
 def build_payload(tick_l, tick_30, sect_l, sect_30, latest_date):
+    tick_l = tick_l.drop_duplicates(subset=["ticker"], keep="first")
     all_pe = tick_l["pe"].dropna()
     all_pb = tick_l["pb"].dropna()
 
@@ -83,7 +89,7 @@ def build_payload(tick_l, tick_30, sect_l, sect_30, latest_date):
 
     vg = tick_l[tick_l["ticker"].isin(VINGROUP_TICKERS)][
         ["ticker", "close", "pe", "pb"]
-    ].copy()
+    ].drop_duplicates(subset=["ticker"]).copy()
     vingroup = _records(vg)
 
     sect_cols = ["group","count","valid_pe","valid_pb",
@@ -658,6 +664,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 # ── Build entry-point ─────────────────────────────────────────────────────────
 def build():
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     Path(DOCS_DIR).mkdir(parents=True, exist_ok=True)
 
     tick_l, tick_30, sect_l, sect_30, latest_date = load_data()
@@ -665,13 +673,13 @@ def build():
 
     with open(JSON_FILE, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2, default=str)
-    print(f"JSON saved → {JSON_FILE}")
+    print(f"JSON saved -> {JSON_FILE}")
 
     html = HTML.replace("__DATA_JSON__",
                         json.dumps(payload, ensure_ascii=False, default=str))
     with open(DASHBOARD_FILE, "w", encoding="utf-8") as f:
         f.write(html)
-    print(f"Dashboard built → {DASHBOARD_FILE}")
+    print(f"Dashboard built -> {DASHBOARD_FILE}")
 
 
 if __name__ == "__main__":
