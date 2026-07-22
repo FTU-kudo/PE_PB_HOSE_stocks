@@ -228,9 +228,12 @@ def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
     # PB = Price / BVPS
     df["pb"] = np.where(df["bvps"] > 0, df["close"] / df["bvps"], np.nan)
 
-    # Outlier filter → NaN (not capped)
-    df.loc[(df["pe"] < PE_MIN) | (df["pe"] > PE_MAX), "pe"] = np.nan
-    df.loc[(df["pb"] < PB_MIN) | (df["pb"] > PB_MAX), "pb"] = np.nan
+    # Outlier filter (exempt Vingroup Ecosystem from PE_MAX/PB_MAX upper limits so VIC/VPL stay included)
+    is_vin = df["group"] == VINGROUP_GROUP
+    df.loc[~is_vin & ((df["pe"] < PE_MIN) | (df["pe"] > PE_MAX)), "pe"] = np.nan
+    df.loc[~is_vin & ((df["pb"] < PB_MIN) | (df["pb"] > PB_MAX)), "pb"] = np.nan
+    df.loc[is_vin & (df["pe"] < PE_MIN), "pe"] = np.nan
+    df.loc[is_vin & (df["pb"] < PB_MIN), "pb"] = np.nan
 
     df["date"] = date.today()
     df = df.drop_duplicates(subset=["ticker"], keep="first")
