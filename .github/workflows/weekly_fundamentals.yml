@@ -82,8 +82,13 @@ jobs:
           else
             DATE=$(date -u '+%Y-%m-%d')
             COUNT=$(python -c "import pandas as pd; df=pd.read_parquet('data/fundamentals.parquet'); print(len(df))")
-            git commit -m "🔄 Weekly fundamentals refresh ${DATE} (${COUNT} tickers) [skip ci]"
-            git push
+            git commit -m "\U0001f504 Weekly fundamentals refresh ${DATE} (${COUNT} tickers) [skip ci]"
+            # Pull-rebase + push with up to 3 retries to handle concurrent remote pushes
+            for i in 1 2 3; do
+              git pull --rebase origin main && git push origin main && break
+              echo "Push attempt $i failed. Waiting 10s before retry..."
+              sleep 10
+            done
           fi
 
       # ── Job summary ──────────────────────────────────────────────────────────
