@@ -240,29 +240,49 @@ def _extract_eps_bvps(ratio_df: pd.DataFrame, ticker: str) -> dict:
 
 def fetch_all_fundamentals(tickers: list[str]) -> pd.DataFrame:
     """
-    Batch-fetch Finance.ratio(period='year') for all tickers.
-    Returns DataFrame indexed by ticker with eps_annual, bvps columns.
+    Batch-fetch Finance.ratio(period='year') and Company.overview() for all tickers.
+    Returns DataFrame indexed by ticker with eps_annual, bvps, shares columns.
     """
-    from vnstock import Finance
+    from vnstock import Finance, Company
     records = []
     n = len(tickers)
     for i, ticker in enumerate(tickers, 1):
         if i % 25 == 0 or i == 1:
-            log.info(f"  Fetching ratio {i}/{n}: {ticker}")
+            log.info(f"  Fetching ratio/shares {i}/{n}: {ticker}")
+        rec = {"ticker": ticker, "eps_annual": np.nan, "bvps": np.nan, "shares": np.nan,
+               "fetched_date": str(date.today())}
         try:
             fin = Finance(symbol=ticker, source="KBS")
             ratio_df = fin.ratio(period="year", lang="en")
-            records.append(_extract_eps_bvps(ratio_df, ticker))
+            extracted = _extract_eps_bvps(ratio_df, ticker)
+            rec["eps_annual"] = extracted["eps_annual"]
+            rec["bvps"] = extracted["bvps"]
         except Exception as exc:
             log.debug(f"  {ticker}: ratio failed – {exc}")
-            records.append({"ticker": ticker, "eps_annual": np.nan, "bvps": np.nan,
-                            "fetched_date": str(date.today())})
+
+        try:
+            for src in ["KBS", "VCI"]:
+                try:
+                    c = Company(symbol=ticker, source=src)
+                    ov = c.overview()
+                    if ov is not None and not ov.empty and "outstanding_shares" in ov.columns:
+                        val = pd.to_numeric(ov.iloc[0]["outstanding_shares"], errors="coerce")
+                        if pd.notna(val) and val > 0:
+                            rec["shares"] = float(val)
+                            break
+                except Exception:
+                    continue
+        except Exception as exc:
+            log.debug(f"  {ticker}: shares failed – {exc}")
+
+        records.append(rec)
         time.sleep(FUND_BATCH_SLEEP)
 
     df = pd.DataFrame(records).set_index("ticker")
     valid_eps  = df["eps_annual"].notna().sum()
     valid_bvps = df["bvps"].notna().sum()
-    log.info(f"Fundamentals fetched: {len(df)} tickers | EPS valid: {valid_eps} | BVPS valid: {valid_bvps}")
+    valid_sh   = df["shares"].notna().sum()
+    log.info(f"Fundamentals fetched: {len(df)} tickers | EPS valid: {valid_eps} | BVPS valid: {valid_bvps} | Shares valid: {valid_sh}")
     return df
 
 

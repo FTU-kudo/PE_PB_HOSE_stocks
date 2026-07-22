@@ -16,7 +16,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.config import (
     VINGROUP_TICKERS, VINGROUP_GROUP,
-    TICKER_HIST_FILE, SECTOR_HIST_FILE,
+    TICKER_HIST_FILE, SECTOR_HIST_FILE, FUND_FILE,
     DOCS_DIR, DASHBOARD_FILE, JSON_FILE,
 )
 
@@ -53,6 +53,24 @@ def load_data():
     tick_h["date"] = pd.to_datetime(tick_h["date"])
     sect_h["date"] = pd.to_datetime(sect_h["date"])
 
+    if Path(FUND_FILE).exists():
+        fund = pd.read_parquet(FUND_FILE)
+        if "ticker" in fund.columns:
+            fund_cols = ["ticker"]
+            for c in ["eps_annual", "bvps", "shares"]:
+                if c in fund.columns and c not in tick_h.columns:
+                    fund_cols.append(c)
+            if len(fund_cols) > 1:
+                tick_h = tick_h.merge(fund[fund_cols], on="ticker", how="left")
+        else:
+            fund_copy = fund.reset_index()
+            fund_cols = ["ticker"]
+            for c in ["eps_annual", "bvps", "shares"]:
+                if c in fund_copy.columns and c not in tick_h.columns:
+                    fund_cols.append(c)
+            if len(fund_cols) > 1:
+                tick_h = tick_h.merge(fund_copy[fund_cols], on="ticker", how="left")
+
     if "ticker" in tick_h.columns:
         tick_h["ticker"] = tick_h["ticker"].astype(str).str.upper().str.strip()
         tick_h = tick_h[tick_h["ticker"].str.len() == 3]
@@ -75,18 +93,36 @@ def load_data():
 # ── Build JSON payload ────────────────────────────────────────────────────────
 def build_payload(tick_l, tick_5y, sect_l, sect_5y, latest_date):
     tick_l = tick_l.drop_duplicates(subset=["ticker"], keep="first")
+    if "shares" not in tick_l.columns:
+        tick_l["shares"] = np.nan
+    tick_l["shares"] = pd.to_numeric(tick_l["shares"], errors="coerce").fillna(0)
+    if "eps_annual" not in tick_l.columns:
+        tick_l["eps_annual"] = np.nan
+    tick_l["eps_annual"] = pd.to_numeric(tick_l["eps_annual"], errors="coerce")
+    if "bvps" not in tick_l.columns:
+        tick_l["bvps"] = np.nan
+    tick_l["bvps"] = pd.to_numeric(tick_l["bvps"], errors="coerce")
+    tick_l["close"] = pd.to_numeric(tick_l["close"], errors="coerce")
+
     all_pe = tick_l["pe"].dropna()
     all_pb = tick_l["pb"].dropna()
 
+    pe_val_m = tick_l[tick_l["pe"].notna() & (tick_l["shares"] > 0)]
+    w_pe_m = (pe_val_m["close"] * pe_val_m["shares"]).sum() / (pe_val_m["eps_annual"] * pe_val_m["shares"]).sum() if len(pe_val_m) > 0 and (pe_val_m["eps_annual"] * pe_val_m["shares"]).sum() > 0 else np.nan
+    pb_val_m = tick_l[tick_l["pb"].notna() & (tick_l["shares"] > 0)]
+    w_pb_m = (pb_val_m["close"] * pb_val_m["shares"]).sum() / (pb_val_m["bvps"] * pb_val_m["shares"]).sum() if len(pb_val_m) > 0 and (pb_val_m["bvps"] * pb_val_m["shares"]).sum() > 0 else np.nan
+
     market = {
-        "date":      latest_date.strftime("%Y-%m-%d"),
-        "median_pe": _safe(all_pe.median()),
-        "median_pb": _safe(all_pb.median()),
-        "mean_pe":   _safe(all_pe.mean()),
-        "mean_pb":   _safe(all_pb.mean()),
-        "total":     len(tick_l),
-        "valid_pe":  int(all_pe.notna().sum()),
-        "valid_pb":  int(all_pb.notna().sum()),
+        "date":        latest_date.strftime("%Y-%m-%d"),
+        "median_pe":   _safe(all_pe.median()),
+        "median_pb":   _safe(all_pb.median()),
+        "mean_pe":     _safe(all_pe.mean()),
+        "mean_pb":     _safe(all_pb.mean()),
+        "weighted_pe": _safe(w_pe_m),
+        "weighted_pb": _safe(w_pb_m),
+        "total":       len(tick_l),
+        "valid_pe":    int(all_pe.notna().sum()),
+        "valid_pb":    int(all_pb.notna().sum()),
     }
 
     vg = tick_l[tick_l["ticker"].isin(VINGROUP_TICKERS)][
@@ -96,45 +132,63 @@ def build_payload(tick_l, tick_5y, sect_l, sect_5y, latest_date):
 
     sect_cols = ["group","count","valid_pe","valid_pb",
                  "median_pe","median_pb","mean_pe","mean_pb",
+                 "weighted_pe","weighted_pb",
                  "p25_pe","p75_pe","p25_pb","p75_pb"]
     avail = [c for c in sect_cols if c in sect_l.columns]
     sectors = _records(sect_l[avail].sort_values("median_pe", na_position="last"))
 
     raw_groups = sorted([
         str(g) for g in sect_l["group"].dropna().unique()
-        if str(g).strip() and str(g) != "Unknown" and str(g) != VINGROUP_GROUP
+        if str(g).strip() and str(g) != "Unknown" and str(g) != VINGROUP_GROUP and str(g) != "VN-Index"
     ])
     priority = ["Ngân hàng", "Bất động sản", "Tài chính"]
     all_groups = [g for g in priority if g in raw_groups] + [g for g in raw_groups if g not in priority]
     if VINGROUP_GROUP in sect_l["group"].values:
         all_groups.append(VINGROUP_GROUP)
 
-    # ── VN-Index (full market) daily median P/E & P/B ──────────────────────
-    vni_sub = (
-        tick_5y.groupby("date")[["pe", "pb"]]
-        .median()
-        .reset_index()
-        .sort_values("date")
-    )
-    trend = {
-        "VN-Index": {
-            "dates": vni_sub["date"].dt.strftime("%Y-%m-%d").tolist(),
-            "pe":    [_safe(v) for v in vni_sub["pe"]],
-            "pb":    [_safe(v) for v in vni_sub["pb"]],
-            "is_index": True,
+    # ── VN-Index (full market) daily median & weighted P/E & P/B ───────────
+    vni_sect = sect_5y[sect_5y["group"] == "VN-Index"].sort_values("date")
+    if not vni_sect.empty:
+        trend = {
+            "VN-Index": {
+                "dates": vni_sect["date"].dt.strftime("%Y-%m-%d").tolist(),
+                "pe":    [_safe(v) for v in vni_sect["median_pe"]],
+                "pb":    [_safe(v) for v in vni_sect["median_pb"]],
+                "w_pe":  [_safe(v) for v in vni_sect.get("weighted_pe", pd.Series([np.nan]*len(vni_sect)))],
+                "w_pb":  [_safe(v) for v in vni_sect.get("weighted_pb", pd.Series([np.nan]*len(vni_sect)))],
+                "is_index": True,
+            }
         }
-    }
+    else:
+        vni_sub = (
+            tick_5y.groupby("date")[["pe", "pb"]]
+            .median()
+            .reset_index()
+            .sort_values("date")
+        )
+        trend = {
+            "VN-Index": {
+                "dates": vni_sub["date"].dt.strftime("%Y-%m-%d").tolist(),
+                "pe":    [_safe(v) for v in vni_sub["pe"]],
+                "pb":    [_safe(v) for v in vni_sub["pb"]],
+                "w_pe":  [],
+                "w_pb":  [],
+                "is_index": True,
+            }
+        }
+
     for grp in all_groups:
-        sub = (sect_5y[sect_5y["group"] == grp]
-               .sort_values("date")[["date","median_pe","median_pb"]])
+        sub = sect_5y[sect_5y["group"] == grp].sort_values("date")
         trend[grp] = {
             "dates": sub["date"].dt.strftime("%Y-%m-%d").tolist(),
             "pe":    [_safe(v) for v in sub["median_pe"]],
             "pb":    [_safe(v) for v in sub["median_pb"]],
+            "w_pe":  [_safe(v) for v in sub.get("weighted_pe", pd.Series([np.nan]*len(sub)))],
+            "w_pb":  [_safe(v) for v in sub.get("weighted_pb", pd.Series([np.nan]*len(sub)))],
             "is_index": False,
         }
 
-    tbl_cols = ["ticker","close","pe","pb","sector","industry","group"]
+    tbl_cols = ["ticker","close","pe","pb","eps_annual","bvps","shares","sector","industry","group"]
     avail_t  = [c for c in tbl_cols if c in tick_l.columns]
     tickers  = _records(tick_l[avail_t].sort_values("pe", na_position="last"))
 
@@ -222,9 +276,16 @@ a { color: var(--accent); text-decoration: none; }
 /* ── Layout ───────────────────────────────────────────────────────────── */
 .page   { max-width: 1280px; margin: 0 auto; padding: 24px 16px 64px; }
 .grid-4 { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; }
+.grid-6 { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; }
 .grid-2 { display: grid; grid-template-columns: repeat(1,1fr); gap: 16px; }
-@media(min-width:640px)  { .grid-4 { grid-template-columns: repeat(4,1fr); } }
-@media(min-width:1024px) { .grid-2 { grid-template-columns: repeat(2,1fr); } }
+@media(min-width:640px)  { 
+  .grid-4 { grid-template-columns: repeat(4,1fr); }
+  .grid-6 { grid-template-columns: repeat(3,1fr); }
+}
+@media(min-width:1024px) { 
+  .grid-2 { grid-template-columns: repeat(2,1fr); }
+  .grid-6 { grid-template-columns: repeat(6,1fr); }
+}
 .grid-vg { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
 @media(min-width:640px)  { .grid-vg { grid-template-columns: repeat(4,1fr); } }
 
@@ -465,16 +526,26 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
   </header>
 
   <!-- ── Market summary ─────────────────────────────────────────────────── -->
-  <div class="grid-4 mb-8">
+  <div class="grid-6 mb-8">
     <div class="card card-hose">
       <div class="lbl">HOSE Median P/E</div>
       <div class="big" id="mkt-pe">—</div>
-      <div class="sub">All HOSE stocks</div>
+      <div class="sub">Unweighted Median</div>
+    </div>
+    <div class="card card-hose">
+      <div class="lbl">HOSE Weighted P/E</div>
+      <div class="big" style="color:#38bdf8" id="mkt-wpe">—</div>
+      <div class="sub">Market-Cap Weighted</div>
     </div>
     <div class="card card-hose">
       <div class="lbl">HOSE Median P/B</div>
       <div class="big" style="color:var(--accent2)" id="mkt-pb">—</div>
-      <div class="sub">All HOSE stocks</div>
+      <div class="sub">Unweighted Median</div>
+    </div>
+    <div class="card card-hose">
+      <div class="lbl">HOSE Weighted P/B</div>
+      <div class="big" style="color:#f472b6" id="mkt-wpb">—</div>
+      <div class="sub">Market-Cap Weighted</div>
     </div>
     <div class="card card-hose">
       <div class="lbl">Stocks with P/E</div>
@@ -507,20 +578,36 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
     <!-- Real-time Computed Stats Grid -->
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
       <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px">
-        <div class="lbl">Custom VN-Index Median P/E</div>
+        <div class="lbl">Custom Median P/E</div>
         <div style="display:flex;align-items:baseline;gap:8px">
           <span class="big" id="custom-pe">—</span>
           <span id="diff-pe" style="font-size:.85rem;font-weight:700"></span>
         </div>
-        <div class="sub" id="custom-pe-sub">So với VN-Index gốc</div>
+        <div class="sub" id="custom-pe-sub">Trung vị (Unweighted)</div>
       </div>
       <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px">
-        <div class="lbl">Custom VN-Index Median P/B</div>
+        <div class="lbl">Custom Weighted P/E</div>
+        <div style="display:flex;align-items:baseline;gap:8px">
+          <span class="big" style="color:#38bdf8" id="custom-wpe">—</span>
+          <span id="diff-wpe" style="font-size:.85rem;font-weight:700"></span>
+        </div>
+        <div class="sub" id="custom-wpe-sub">Trọng số Vốn hóa (Weighted)</div>
+      </div>
+      <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px">
+        <div class="lbl">Custom Median P/B</div>
         <div style="display:flex;align-items:baseline;gap:8px">
           <span class="big" style="color:var(--accent2)" id="custom-pb">—</span>
           <span id="diff-pb" style="font-size:.85rem;font-weight:700"></span>
         </div>
-        <div class="sub" id="custom-pb-sub">So với VN-Index gốc</div>
+        <div class="sub" id="custom-pb-sub">Trung vị (Unweighted)</div>
+      </div>
+      <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px">
+        <div class="lbl">Custom Weighted P/B</div>
+        <div style="display:flex;align-items:baseline;gap:8px">
+          <span class="big" style="color:#f472b6" id="custom-wpb">—</span>
+          <span id="diff-wpb" style="font-size:.85rem;font-weight:700"></span>
+        </div>
+        <div class="sub" id="custom-wpb-sub">Trọng số Vốn hóa (Weighted)</div>
       </div>
       <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px">
         <div class="lbl">Số cổ phiếu hợp lệ còn lại</div>
@@ -528,7 +615,7 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
         <div class="sub" id="custom-excluded-info">Chưa loại trừ nhóm nào</div>
       </div>
       <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px">
-        <div class="lbl">Custom VN-Index Mean (TB cộng)</div>
+        <div class="lbl">Custom Mean (TB cộng)</div>
         <div style="font-size:.95rem;font-weight:700;color:var(--text);margin-top:6px" id="custom-mean-pe">Mean P/E: —</div>
         <div style="font-size:.95rem;font-weight:700;color:var(--text);margin-top:4px" id="custom-mean-pb">Mean P/B: —</div>
       </div>
@@ -564,9 +651,11 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
       <!-- Metric -->
       <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
         <span style="font-size:.75rem;font-weight:700;color:var(--muted)">Metric:</span>
-        <button class="trend-btn active" id="btn-metric-pe" onclick="setMetric('pe')">P/E Ratio</button>
-        <button class="trend-btn" id="btn-metric-pb" onclick="setMetric('pb')">P/B Ratio</button>
-        <button class="trend-btn" id="btn-metric-both" onclick="setMetric('both')">Cả hai (P/E &amp; P/B)</button>
+        <button class="trend-btn active" id="btn-metric-pe" onclick="setMetric('pe')">Median P/E</button>
+        <button class="trend-btn" id="btn-metric-wpe" onclick="setMetric('wpe')">Weighted P/E</button>
+        <button class="trend-btn" id="btn-metric-pb" onclick="setMetric('pb')">Median P/B</button>
+        <button class="trend-btn" id="btn-metric-wpb" onclick="setMetric('wpb')">Weighted P/B</button>
+        <button class="trend-btn" id="btn-metric-both" onclick="setMetric('both')">Cả hai Median</button>
       </div>
       <!-- Period presets -->
       <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
@@ -791,7 +880,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.setMetric = function(m) {
     currentMetric = m;
-    ['pe', 'pb', 'both'].forEach(k => {
+    ['pe', 'wpe', 'pb', 'wpb', 'both'].forEach(k => {
       const btn = document.getElementById('btn-metric-' + k);
       if (btn) btn.className = 'trend-btn' + (k === m ? ' active' : '');
     });
@@ -894,18 +983,22 @@ document.addEventListener('DOMContentLoaded', () => {
       const bw = isIndex ? 3 : 2;
 
       // Build date→value lookup for this group
-      const peLookup = {}, pbLookup = {};
+      const peLookup = {}, pbLookup = {}, wpeLookup = {}, wpbLookup = {};
       D.trend[grp].dates.forEach((d, j) => {
         peLookup[d] = D.trend[grp].pe[j];
         pbLookup[d] = D.trend[grp].pb[j];
+        wpeLookup[d] = (D.trend[grp].w_pe && D.trend[grp].w_pe[j] !== undefined) ? D.trend[grp].w_pe[j] : null;
+        wpbLookup[d] = (D.trend[grp].w_pb && D.trend[grp].w_pb[j] !== undefined) ? D.trend[grp].w_pb[j] : null;
       });
       // Align to ALL_DATES: null for any date this group has no data
       const peAligned = ALL_DATES.map(d => peLookup.hasOwnProperty(d) ? peLookup[d] : null);
       const pbAligned = ALL_DATES.map(d => pbLookup.hasOwnProperty(d) ? pbLookup[d] : null);
+      const wpeAligned = ALL_DATES.map(d => wpeLookup.hasOwnProperty(d) ? wpeLookup[d] : null);
+      const wpbAligned = ALL_DATES.map(d => wpbLookup.hasOwnProperty(d) ? wpbLookup[d] : null);
 
       if (currentMetric === 'pe' || currentMetric === 'both') {
         ds.push({
-          label: `${grp} (P/E)`,
+          label: `${grp} (Median P/E)`,
           data: peAligned,
           borderColor: color,
           backgroundColor: isIndex ? `${color}18` : 'transparent',
@@ -919,9 +1012,25 @@ document.addEventListener('DOMContentLoaded', () => {
           order: isIndex ? 0 : 1,
         });
       }
+      if (currentMetric === 'wpe') {
+        ds.push({
+          label: `${grp} (Weighted P/E)`,
+          data: wpeAligned,
+          borderColor: color,
+          backgroundColor: isIndex ? `${color}18` : 'transparent',
+          fill: isIndex,
+          tension: 0.2,
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          borderWidth: bw,
+          spanGaps: false,
+          yAxisID: 'y',
+          order: isIndex ? 0 : 1,
+        });
+      }
       if (currentMetric === 'pb' || currentMetric === 'both') {
         ds.push({
-          label: `${grp} (P/B)`,
+          label: `${grp} (Median P/B)`,
           data: pbAligned,
           borderColor: color,
           borderDash: currentMetric === 'both' ? [6, 3] : [],
@@ -933,6 +1042,22 @@ document.addEventListener('DOMContentLoaded', () => {
           borderWidth: currentMetric === 'both' ? (isIndex ? 2 : 1.5) : bw,
           spanGaps: false,
           yAxisID: currentMetric === 'both' ? 'y2' : 'y',
+          order: isIndex ? 0 : 1,
+        });
+      }
+      if (currentMetric === 'wpb') {
+        ds.push({
+          label: `${grp} (Weighted P/B)`,
+          data: wpbAligned,
+          borderColor: color,
+          backgroundColor: isIndex ? `${color}18` : 'transparent',
+          fill: isIndex,
+          tension: 0.2,
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          borderWidth: bw,
+          spanGaps: false,
+          yAxisID: 'y',
           order: isIndex ? 0 : 1,
         });
       }
@@ -1001,7 +1126,7 @@ document.addEventListener('DOMContentLoaded', () => {
           },
           y: {
             position: 'left',
-            title: { display: true, text: 'Median P/E', color: tc.ticks },
+            title: { display: true, text: currentMetric === 'wpe' ? 'Weighted P/E' : (currentMetric === 'wpb' ? 'Weighted P/B' : (currentMetric === 'pb' ? 'Median P/B' : 'Median P/E')), color: tc.ticks },
             grid: { color: tc.grid },
             ticks: { color: tc.ticks },
             min: 0,
@@ -1153,11 +1278,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const origPe = D.market.median_pe;
     const origPb = D.market.median_pb;
+    const origWPe = D.market.weighted_pe;
+    const origWPb = D.market.weighted_pb;
+
+    let sumPeMc = 0, sumPeErn = 0;
+    let sumPbMc = 0, sumPbBv = 0;
+    valid.forEach(t => {
+      if (t.pe != null && !isNaN(t.pe) && t.shares > 0 && t.eps_annual != null) {
+        sumPeMc += (t.close * t.shares);
+        sumPeErn += (t.eps_annual * t.shares);
+      }
+      if (t.pb != null && !isNaN(t.pb) && t.shares > 0 && t.bvps != null) {
+        sumPbMc += (t.close * t.shares);
+        sumPbBv += (t.bvps * t.shares);
+      }
+    });
+    const wPe = (sumPeErn > 0) ? (sumPeMc / sumPeErn) : null;
+    const wPb = (sumPbBv > 0) ? (sumPbMc / sumPbBv) : null;
 
     const elPe = document.getElementById('custom-pe');
     const elPb = document.getElementById('custom-pb');
+    const elWPe = document.getElementById('custom-wpe');
+    const elWPb = document.getElementById('custom-wpb');
     const diffPe = document.getElementById('diff-pe');
     const diffPb = document.getElementById('diff-pb');
+    const diffWPe = document.getElementById('diff-wpe');
+    const diffWPb = document.getElementById('diff-wpb');
     const elCount = document.getElementById('custom-count');
     const elInfo = document.getElementById('custom-excluded-info');
     const elMeanPe = document.getElementById('custom-mean-pe');
@@ -1165,6 +1311,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (elPe) elPe.textContent = medPe != null ? fmt(medPe) : '—';
     if (elPb) elPb.textContent = medPb != null ? fmt(medPb) : '—';
+    if (elWPe) elWPe.textContent = wPe != null ? fmt(wPe) : '—';
+    if (elWPb) elWPb.textContent = wPb != null ? fmt(wPb) : '—';
     if (elMeanPe) elMeanPe.textContent = `Mean P/E: ${meanPe != null ? fmt(meanPe) : '—'}`;
     if (elMeanPb) elMeanPb.textContent = `Mean P/B: ${meanPb != null ? fmt(meanPb) : '—'}`;
     if (elCount) elCount.textContent = `${peVals.length} / ${D.tickers.length}`;
@@ -1172,6 +1320,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (excludedGroups.size === 0) {
       if (diffPe) { diffPe.textContent = ''; diffPe.style.color = ''; }
       if (diffPb) { diffPb.textContent = ''; diffPb.style.color = ''; }
+      if (diffWPe) { diffWPe.textContent = ''; diffWPe.style.color = ''; }
+      if (diffWPb) { diffWPb.textContent = ''; diffWPb.style.color = ''; }
       if (elInfo) elInfo.textContent = 'Chưa loại trừ nhóm nào (bằng VN-Index gốc)';
     } else {
       if (diffPe && medPe != null && origPe != null) {
@@ -1185,6 +1335,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const sign = d > 0 ? '+' : '';
         diffPb.textContent = `(${sign}${d.toFixed(2)})`;
         diffPb.style.color = d < 0 ? 'var(--green)' : (d > 0 ? 'var(--red)' : 'var(--muted)');
+      }
+      if (diffWPe && wPe != null && origWPe != null) {
+        const d = wPe - origWPe;
+        const sign = d > 0 ? '+' : '';
+        diffWPe.textContent = `(${sign}${d.toFixed(2)})`;
+        diffWPe.style.color = d < 0 ? 'var(--green)' : (d > 0 ? 'var(--red)' : 'var(--muted)');
+      }
+      if (diffWPb && wPb != null && origWPb != null) {
+        const d = wPb - origWPb;
+        const sign = d > 0 ? '+' : '';
+        diffWPb.textContent = `(${sign}${d.toFixed(2)})`;
+        diffWPb.style.color = d < 0 ? 'var(--green)' : (d > 0 ? 'var(--red)' : 'var(--muted)');
       }
       if (elInfo) elInfo.textContent = `Đã loại trừ ${excludedGroups.size} nhóm (${D.tickers.length - valid.length} mã)`;
     }

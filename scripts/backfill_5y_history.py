@@ -56,23 +56,74 @@ def fetch_ticker_history(ticker: str, start_date: str, end_date: str) -> pd.Data
 
 def aggregate_snapshot(df: pd.DataFrame) -> pd.DataFrame:
     rows = []
+    if "shares" not in df.columns:
+        df["shares"] = np.nan
+    df["shares"] = pd.to_numeric(df["shares"], errors="coerce").fillna(0)
+
+    # 1. First, aggregate across all rows per date -> "VN-Index"
+    for dt, dt_df in df.groupby("date"):
+        pe = dt_df["pe"].dropna()
+        pb = dt_df["pb"].dropna()
+
+        pe_valid = dt_df[dt_df["pe"].notna() & (dt_df["shares"] > 0)]
+        sum_pe_mc  = (pe_valid["close"] * pe_valid["shares"]).sum()
+        sum_pe_ern = (pe_valid["eps_annual"] * pe_valid["shares"]).sum()
+        w_pe = sum_pe_mc / sum_pe_ern if len(pe_valid) > 0 and sum_pe_ern > 0 else np.nan
+
+        pb_valid = dt_df[dt_df["pb"].notna() & (dt_df["shares"] > 0)]
+        sum_pb_mc = (pb_valid["close"] * pb_valid["shares"]).sum()
+        sum_pb_bv = (pb_valid["bvps"] * pb_valid["shares"]).sum()
+        w_pb = sum_pb_mc / sum_pb_bv if len(pb_valid) > 0 and sum_pb_bv > 0 else np.nan
+
+        rows.append({
+            "date":        dt,
+            "group":       "VN-Index",
+            "count":       len(dt_df),
+            "valid_pe":    len(pe),
+            "valid_pb":    len(pb),
+            "median_pe":   pe.median()      if len(pe) else np.nan,
+            "median_pb":   pb.median()      if len(pb) else np.nan,
+            "mean_pe":     pe.mean()        if len(pe) else np.nan,
+            "mean_pb":     pb.mean()        if len(pb) else np.nan,
+            "weighted_pe": w_pe,
+            "weighted_pb": w_pb,
+            "p25_pe":      pe.quantile(.25) if len(pe) else np.nan,
+            "p75_pe":      pe.quantile(.75) if len(pe) else np.nan,
+            "p25_pb":      pb.quantile(.25) if len(pb) else np.nan,
+            "p75_pb":      pb.quantile(.75) if len(pb) else np.nan,
+        })
+
+    # 2. Second, aggregate per group
     for (dt, grp_name), grp in df.groupby(["date", "group"]):
         pe = grp["pe"].dropna()
         pb = grp["pb"].dropna()
+
+        pe_valid = grp[grp["pe"].notna() & (grp["shares"] > 0)]
+        sum_pe_mc  = (pe_valid["close"] * pe_valid["shares"]).sum()
+        sum_pe_ern = (pe_valid["eps_annual"] * pe_valid["shares"]).sum()
+        w_pe = sum_pe_mc / sum_pe_ern if len(pe_valid) > 0 and sum_pe_ern > 0 else np.nan
+
+        pb_valid = grp[grp["pb"].notna() & (grp["shares"] > 0)]
+        sum_pb_mc = (pb_valid["close"] * pb_valid["shares"]).sum()
+        sum_pb_bv = (pb_valid["bvps"] * pb_valid["shares"]).sum()
+        w_pb = sum_pb_mc / sum_pb_bv if len(pb_valid) > 0 and sum_pb_bv > 0 else np.nan
+
         rows.append({
-            "date":      dt,
-            "group":     grp_name,
-            "count":     len(grp),
-            "valid_pe":  len(pe),
-            "valid_pb":  len(pb),
-            "median_pe": pe.median()      if len(pe) else np.nan,
-            "median_pb": pb.median()      if len(pb) else np.nan,
-            "mean_pe":   pe.mean()        if len(pe) else np.nan,
-            "mean_pb":   pb.mean()        if len(pb) else np.nan,
-            "p25_pe":    pe.quantile(.25) if len(pe) else np.nan,
-            "p75_pe":    pe.quantile(.75) if len(pe) else np.nan,
-            "p25_pb":    pb.quantile(.25) if len(pb) else np.nan,
-            "p75_pb":    pb.quantile(.75) if len(pb) else np.nan,
+            "date":        dt,
+            "group":       grp_name,
+            "count":       len(grp),
+            "valid_pe":    len(pe),
+            "valid_pb":    len(pb),
+            "median_pe":   pe.median()      if len(pe) else np.nan,
+            "median_pb":   pb.median()      if len(pb) else np.nan,
+            "mean_pe":     pe.mean()        if len(pe) else np.nan,
+            "mean_pb":     pb.mean()        if len(pb) else np.nan,
+            "weighted_pe": w_pe,
+            "weighted_pb": w_pb,
+            "p25_pe":      pe.quantile(.25) if len(pe) else np.nan,
+            "p75_pe":      pe.quantile(.75) if len(pe) else np.nan,
+            "p25_pb":      pb.quantile(.25) if len(pb) else np.nan,
+            "p75_pb":      pb.quantile(.75) if len(pb) else np.nan,
         })
     return pd.DataFrame(rows).sort_values(["date", "group"]).reset_index(drop=True)
 
@@ -83,6 +134,8 @@ def main():
         sys.exit(1)
 
     fund = pd.read_parquet(FUND_FILE)
+    if "ticker" not in fund.columns:
+        fund = fund.reset_index()
     tickers = sorted([str(t).strip() for t in fund["ticker"].unique() if len(str(t).strip()) == 3])
     log.info(f"Loaded {len(tickers)} valid 3-letter tickers from {FUND_FILE}.")
 
@@ -140,7 +193,10 @@ def main():
     log.info(f"Fetched {len(all_prices)} daily price records across {all_prices['ticker'].nunique()} tickers.")
 
     # Merge fundamentals
-    fund_sub = fund[["ticker", "eps_annual", "bvps", "sector", "industry", "group"]].copy()
+    fund_cols = ["ticker", "eps_annual", "bvps", "sector", "industry", "group"]
+    if "shares" in fund.columns:
+        fund_cols.append("shares")
+    fund_sub = fund[fund_cols].copy()
     df = all_prices.merge(fund_sub, on="ticker", how="left")
 
     df["sector"]   = df["sector"].fillna("Unknown")
@@ -192,7 +248,10 @@ def main():
     log.info(f"Aggregated {len(sector_agg)} sector-date rows across {sector_agg['date'].nunique()} trading dates.")
 
     # Save ticker history
-    df_save = df[["date", "ticker", "close", "pe", "pb", "sector", "industry", "group"]]
+    save_cols = ["date", "ticker", "close", "pe", "pb", "sector", "industry", "group"]
+    if "shares" in df.columns:
+        save_cols.append("shares")
+    df_save = df[save_cols].copy()
     df_save["date"] = pd.to_datetime(df_save["date"])
     df_save.to_parquet(TICKER_HIST_FILE, index=False)
     log.info(f"Saved {len(df_save)} rows -> {TICKER_HIST_FILE}")

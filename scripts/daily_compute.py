@@ -192,7 +192,7 @@ def fetch_close_prices(tickers: list[str]) -> pd.Series:
 # ── Compute PE / PB ───────────────────────────────────────────────────────────
 def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
     """
-    Merge daily close with cached EPS / BVPS and compute PE / PB.
+    Merge daily close with cached EPS / BVPS / shares and compute PE / PB.
 
     PE = close / eps_annual
     PB = close / bvps
@@ -204,8 +204,10 @@ def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
     df = close.rename("close").reset_index()
     df.columns = ["ticker", "close"]
 
-    fund = fundamentals[["eps_annual", "bvps",
-                          "sector", "industry", "group"]].copy()
+    fund_cols = ["eps_annual", "bvps", "sector", "industry", "group"]
+    if "shares" in fundamentals.columns:
+        fund_cols.append("shares")
+    fund = fundamentals[fund_cols].copy()
     df = df.merge(fund, on="ticker", how="left")
 
     # Fill missing group for non-fundamentals tickers
@@ -258,25 +260,78 @@ def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
     n_pe = df["pe"].notna().sum()
     n_pb = df["pb"].notna().sum()
     log.info(f"PE/PB computed | valid PE: {n_pe}/{len(df)} | valid PB: {n_pb}/{len(df)}")
-    return df[["date", "ticker", "close", "pe", "pb", "sector", "industry", "group"]]
+
+    ret_cols = ["date", "ticker", "close", "pe", "pb", "sector", "industry", "group"]
+    if "shares" in df.columns:
+        ret_cols.append("shares")
+    return df[ret_cols]
 
 
 # ── Sector aggregation ────────────────────────────────────────────────────────
 def aggregate_sectors(snapshot: pd.DataFrame) -> pd.DataFrame:
     """
-    Compute sector-level descriptive statistics.
+    Compute sector-level descriptive statistics + Market-Cap Weighted PE/PB.
     Uses 'group' column (Vingroup → own bucket; others = sector name).
-    Metrics: count, valid_pe, valid_pb, median_pe, median_pb,
-             mean_pe, mean_pb, p25_pe, p75_pe, p25_pb, p75_pb.
+    Also emits a 'VN-Index' row for full market aggregate.
     """
     rows = []
+    if "shares" not in snapshot.columns:
+        snapshot["shares"] = np.nan
+    snapshot["shares"] = pd.to_numeric(snapshot["shares"], errors="coerce").fillna(0)
+
+    # 1. VN-Index (full market)
+    pe = snapshot["pe"].dropna()
+    pb = snapshot["pb"].dropna()
+    pe_val = snapshot[snapshot["pe"].notna() & (snapshot["shares"] > 0)]
+    w_pe = (pe_val["close"] * pe_val["shares"]).sum() / (pe_val["eps_annual"] * pe_val["shares"]).sum() if len(pe_val) > 0 and (pe_val["eps_annual"] * pe_val["shares"]).sum() > 0 else np.nan
+    pb_val = snapshot[snapshot["pb"].notna() & (snapshot["shares"] > 0)]
+    w_pb = (pb_val["close"] * pb_val["shares"]).sum() / (pb_val["bvps"] * pb_val["shares"]).sum() if len(pb_val) > 0 and (pb_val["bvps"] * pb_val["shares"]).sum() > 0 else np.nan
+
+    rows.append({
+        "date":        snapshot["date"].iloc[0] if len(snapshot) > 0 else date.today(),
+        "group":       "VN-Index",
+        "count":       len(snapshot),
+        "valid_pe":    len(pe),
+        "valid_pb":    len(pb),
+        "median_pe":   pe.median()      if len(pe) else np.nan,
+        "median_pb":   pb.median()      if len(pb) else np.nan,
+        "mean_pe":     pe.mean()        if len(pe) else np.nan,
+        "mean_pb":     pb.mean()        if len(pb) else np.nan,
+        "weighted_pe": w_pe,
+        "weighted_pb": w_pb,
+        "p25_pe":      pe.quantile(.25) if len(pe) else np.nan,
+        "p75_pe":      pe.quantile(.75) if len(pe) else np.nan,
+        "p25_pb":      pb.quantile(.25) if len(pb) else np.nan,
+        "p75_pb":      pb.quantile(.75) if len(pb) else np.nan,
+    })
+
+    # 2. Each group
     for grp_name, grp in snapshot.groupby("group"):
         pe = grp["pe"].dropna()
         pb = grp["pb"].dropna()
+        pe_val = grp[grp["pe"].notna() & (grp["shares"] > 0)]
+        w_pe = (pe_val["close"] * pe_val["shares"]).sum() / (pe_val["eps_annual"] * pe_val["shares"]).sum() if len(pe_val) > 0 and (pe_val["eps_annual"] * pe_val["shares"]).sum() > 0 else np.nan
+        pb_val = grp[grp["pb"].notna() & (grp["shares"] > 0)]
+        w_pb = (pb_val["close"] * pb_val["shares"]).sum() / (pb_val["bvps"] * pb_val["shares"]).sum() if len(pb_val) > 0 and (pb_val["bvps"] * pb_val["shares"]).sum() > 0 else np.nan
+
         rows.append({
-            "date":      grp["date"].iloc[0],
-            "group":     grp_name,
-            "count":     len(grp),
+            "date":        grp["date"].iloc[0],
+            "group":       grp_name,
+            "count":       len(grp),
+            "valid_pe":    len(pe),
+            "valid_pb":    len(pb),
+            "median_pe":   pe.median()      if len(pe) else np.nan,
+            "median_pb":   pb.median()      if len(pb) else np.nan,
+            "mean_pe":     pe.mean()        if len(pe) else np.nan,
+            "mean_pb":     pb.mean()        if len(pb) else np.nan,
+            "weighted_pe": w_pe,
+            "weighted_pb": w_pb,
+            "p25_pe":      pe.quantile(.25) if len(pe) else np.nan,
+            "p75_pe":      pe.quantile(.75) if len(pe) else np.nan,
+            "p25_pb":      pb.quantile(.25) if len(pb) else np.nan,
+            "p75_pb":      pb.quantile(.75) if len(pb) else np.nan,
+        })
+    return pd.DataFrame(rows).sort_values("median_pe").reset_index(drop=True)grp),
             "valid_pe":  len(pe),
             "valid_pb":  len(pb),
             "median_pe": pe.median()      if len(pe) else np.nan,
