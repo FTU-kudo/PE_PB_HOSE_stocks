@@ -865,10 +865,10 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
       <!-- Metric -->
       <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
         <span style="font-size:.75rem;font-weight:700;color:var(--muted)">Metric:</span>
-        <button class="trend-btn active" id="btn-metric-pe" onclick="setMetric('pe')">Median P/E</button>
-        <button class="trend-btn" id="btn-metric-wpe" onclick="setMetric('wpe')">Weighted P/E</button>
-        <button class="trend-btn" id="btn-metric-pb" onclick="setMetric('pb')">Median P/B</button>
+        <button class="trend-btn active" id="btn-metric-wpe" onclick="setMetric('wpe')">Weighted P/E</button>
         <button class="trend-btn" id="btn-metric-wpb" onclick="setMetric('wpb')">Weighted P/B</button>
+        <button class="trend-btn" id="btn-metric-pe" onclick="setMetric('pe')">Median P/E</button>
+        <button class="trend-btn" id="btn-metric-pb" onclick="setMetric('pb')">Median P/B</button>
         <button class="trend-btn" id="btn-metric-both" onclick="setMetric('both')">Cả hai Median</button>
       </div>
       <!-- Period presets -->
@@ -1183,14 +1183,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const sectorGroups = tGroups.filter(g => !D.trend[g].is_index);
   const indexGroups  = tGroups.filter(g => D.trend[g].is_index);
 
-  let currentMetric = 'pe';
+  let currentMetric = 'wpe';
   let selectedGroups = new Set(tGroups); // all selected by default
   // Track active range button
   let activeRange = '5Y';
 
   window.setMetric = function(m) {
     currentMetric = m;
-    ['pe', 'wpe', 'pb', 'wpb', 'both'].forEach(k => {
+    ['wpe', 'wpb', 'pe', 'pb', 'both'].forEach(k => {
       const btn = document.getElementById('btn-metric-' + k);
       if (btn) btn.className = 'trend-btn' + (k === m ? ' active' : '');
     });
@@ -1425,7 +1425,7 @@ document.addEventListener('DOMContentLoaded', () => {
         charts.trend.options.scales.y.title.text = 'Median P/E';
       } else {
         delete charts.trend.options.scales.y2;
-        charts.trend.options.scales.y.title.text = currentMetric === 'pe' ? 'Median P/E' : 'Median P/B';
+        charts.trend.options.scales.y.title.text = currentMetric === 'wpe' ? 'Weighted P/E' : (currentMetric === 'wpb' ? 'Weighted P/B' : (currentMetric === 'pb' ? 'Median P/B' : 'Median P/E'));
       }
       charts.trend.update();
       return;
