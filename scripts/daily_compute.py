@@ -220,6 +220,9 @@ def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
     df["eps_annual"] = pd.to_numeric(df["eps_annual"], errors="coerce")
     df["bvps"]       = pd.to_numeric(df["bvps"],       errors="coerce")
 
+    # Normalize close price to full VND if KBS or VCI returned prices in thousands
+    df["close"] = np.where((df["close"] > 0) & (df["close"] < 1000), df["close"] * 1000, df["close"])
+
     # PE = Price / EPS   (EPS must be positive — loss-making → NaN)
     df["pe"] = np.where(df["eps_annual"] > 0, df["close"] / df["eps_annual"], np.nan)
     # PB = Price / BVPS

@@ -154,6 +154,9 @@ def main():
     df["bvps"]       = pd.to_numeric(df["bvps"],       errors="coerce")
     df["close"]      = pd.to_numeric(df["close"],      errors="coerce")
 
+    # Normalize close price to full VND if VCI returned prices in thousands (e.g. 10.21 -> 10210.0)
+    df["close"] = np.where((df["close"] > 0) & (df["close"] < 1000), df["close"] * 1000, df["close"])
+
     # Compute PE / PB
     df["pe"] = np.where(df["eps_annual"] > 0, df["close"] / df["eps_annual"], np.nan)
     df["pb"] = np.where(df["bvps"] > 0, df["close"] / df["bvps"], np.nan)
