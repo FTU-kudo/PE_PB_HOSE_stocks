@@ -44,7 +44,19 @@
   - Trong giữa quý, `EPS TTM` cố định nên P/E biến động mượt mà theo giá cổ phiếu.
   - Tại mốc công bố BCTC mới, mẫu số `EPS TTM` thay đổi đột ngột. Đặc thù mẫu nhỏ (như Vingroup $N=4$) khiến `Median P/E` rất nhạy cảm khi chỉ cần 1-2 mã đứng giữa thay đổi EPS.
 
-### 3. Cải tiến UI/UX Dashboard (`scripts/build_dashboard.py` & `docs/index.html`)
+### 3. Phân tích đối chiếu định giá loại trừ Vingroup giữa VinaCapital/Bloomberg (`9.3x`) và Dự án (`10.21x`)
+- **Bối cảnh đối chiếu:** Ngày `20/07/2026`, VinaCapital tung ra bản phân tích P/E tương tự (dữ liệu Bloomberg đến ngày `06/07/2026`) với P/E toàn thị trường xấp xỉ `12.1x`, nhưng con số định giá khi loại bỏ nhóm Vingroup (`VNI loại nhóm Vingroup`) giảm sâu về **`9.3x`**. Trong khi đó trên Custom Calculator của dự án chúng ta, P/E toàn thị trường là `12.39 - 12.43x` và khi loại bỏ `Vingroup Ecosystem` là **`10.18 - 10.21x`**.
+- **Phân rã 3 nguyên nhân cốt lõi tạo nên chênh lệch (`9.3x` vs `10.21x`):**
+  1. **Hiệu ứng bù trừ định giá khổng lồ bên trong 4 mã hệ sinh thái Vingroup (`VIC, VHM, VRE, VPL`):**
+     - Trong dự án của chúng ta, khi chọn loại trừ `Vingroup Ecosystem`, hệ thống loại bỏ trọn gói cả 4 mã: `VIC` (`P/E riêng ~134.2x`), `VPL` (`P/E ~52.3x`), `VHM` (`P/E ~8.05x`, lợi nhuận TTM kỷ lục `~64.76 nghìn tỷ`), và `VRE` (`P/E ~7.19x`).
+     - **Toán học thực chiến:** Nếu *chỉ loại trừ riêng `VIC` + `VPL`* (những doanh nghiệp mẹ/dịch vụ có P/E siêu cao `52x - 134x`), chỉ số Trọng số vốn hóa (`Weighted P/E`) của thị trường rớt thẳng xuống **`~9.92x`** (cực kỳ sát với mức `9.3x` của VinaCapital). Tuy nhiên, vì Custom Calculator của chúng ta loại bỏ trọn gói cả hệ sinh thái (bao gồm `VHM` và `VRE`), thị trường bị lấy đi **`~71.6 nghìn tỷ đồng` lợi nhuận siêu rẻ (`7x - 8x`)**. Việc thiếu hụt khối lợi nhuận rẻ khổng lồ này khiến định giá P/E phần thị trường còn lại bị đẩy bật ngược trở lên mức `10.21x`.
+     - *Kết luận:* Bloomberg/VinaCapital trong biểu đồ này nhiều khả năng chỉ định nghĩa *"loại nhóm Vingroup"* là loại bỏ tập đoàn mẹ `VIC` (hoặc tách biệt bất động sản Vinhomes ra khỏi nhóm Vingroup khi tính P/E ngành/tập đoàn).
+  2. **Chuẩn mực xử lý Lợi nhuận bất thường (`Normalized EPS` trên Bloomberg vs `ISA22` BCTC chính thức):**
+     - Bloomberg thường áp dụng cơ chế điều chỉnh thu nhập (`Normalized EPS` / `Excluding One-offs`). Vinhomes vừa qua có các khoản lãi tài chính/đánh giá lại tài sản lớn. Nếu Bloomberg bóc tách giảm trừ EPS normalized của VHM, việc loại VHM trong hệ thống Bloomberg sẽ không làm mất đi quá nhiều lợi nhuận của thị trường, cho phép P/E thị trường còn lại giảm sâu xuống `9.3x`.
+     - Dự án chúng ta lấy số liệu lợi nhuận ròng chính thức theo chuẩn Thông tư 96 (`ISA22` trên BCTC kiểm toán/tự lập), phản ánh chuẩn xác 100% thực tế sổ sách pháp lý trên HOSE.
+  3. **Độ lệch thời gian dữ liệu (`Time Lag`):** Dữ liệu của VinaCapital chốt tại ngày `06/07/2026`, trong khi dự án cập nhật realtime đến ngày hiện tại (`23/07/2026`) qua nhịp biến động giá (`VIC` giảm từ 220.3 xuống 202.1, `VHM` giảm từ 154.1 xuống 126.9...) và hấp thụ báo cáo tài chính mới.
+
+### 4. Cải tiến UI/UX Dashboard (`scripts/build_dashboard.py` & `docs/index.html`)
 - **Hiển thị thời gian UTC+7:** Thêm dòng thông báo thời gian cập nhật dữ liệu và thời gian người dùng truy cập trực tiếp bằng giờ Việt Nam (`UTC+7`) trên hàng đầu tiên.
 - **Toàn màn hình (Fullscreen):** Bổ sung cơ chế phóng to toàn màn hình cho cả 2 biểu đồ Line Chart (`card-trend-main` và `card-trend-custom`).
 - **Đường tham chiếu rõ nét:** Đổi màu đường VN-Index Gốc trong `Custom VN-Index Chart` sang **màu đen nét đứt** (`#000000`, `borderDash: [5, 5]`) để dễ quan sát và phân biệt.
@@ -93,6 +105,7 @@ build_dashboard.py (sau khi tính toán xong)
 2. `789ea4d`: `feat(ui): prioritize Weighted P/E and P/B and fix left y-axis titles on line charts` (Ưu tiên nút Weighted P/E & P/B, gán mặc định `wpe`, sửa lỗi tên trục dọc trái).
 3. `1a3569b`: `docs: update HANDOFF.md with Point-in-Time historical backfill engine and UI enhancements completed tonight`
 4. `f3c3cbb`: `feat(ui): prioritize Weighted P/E and P/B over Median across top hero cards, custom calculator cards, and sector bar charts` (Đồng bộ ưu tiên hiển thị Weighted P/E & P/B trước Median trên toàn bộ Hero Cards, Custom Cards và Sector Bar Charts).
+5. `c42ba7c`: `docs: expand HANDOFF.md with Circular 96 cutoff rules, audited annual EPS rationale, and Financials PE collapse analysis`
 
 ---
 
