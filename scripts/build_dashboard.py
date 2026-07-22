@@ -459,8 +459,6 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
       <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
         <span style="font-size:.8rem;font-weight:600;color:var(--muted)">Period:</span>
         <button class="trend-btn active" onclick="setRange('5Y')">5Y (All)</button>
-        <button class="trend-btn" onclick="setRange('2021-2022')">2021–2022</button>
-        <button class="trend-btn" onclick="setRange('2023-2026')">2023–2026</button>
         <button class="trend-btn" onclick="setRange('3Y')">3Y</button>
         <button class="trend-btn" onclick="setRange('1Y')">1Y</button>
         <button class="trend-btn" onclick="setRange('YTD')">YTD</button>
@@ -740,6 +738,8 @@ document.addEventListener('DOMContentLoaded', () => {
     tGroups.forEach((grp, i) => {
       if (!selectedSectors.has(grp)) return;
       const color = PALETTE[i % PALETTE.length];
+      const pts = D.trend[grp].dates.length;
+      const radius = pts > 60 ? 0 : 3;
       if (currentMetric === 'pe' || currentMetric === 'both') {
         ds.push({
           label: `${grp} (P/E)`,
@@ -747,7 +747,8 @@ document.addEventListener('DOMContentLoaded', () => {
           borderColor: color,
           backgroundColor: 'transparent',
           tension: 0.35,
-          pointRadius: 3,
+          pointRadius: radius,
+          pointHoverRadius: 5,
           borderWidth: 2,
           yAxisID: 'y'
         });
@@ -760,7 +761,8 @@ document.addEventListener('DOMContentLoaded', () => {
           borderDash: currentMetric === 'both' ? [5, 5] : [],
           backgroundColor: 'transparent',
           tension: 0.35,
-          pointRadius: 3,
+          pointRadius: radius,
+          pointHoverRadius: 5,
           borderWidth: currentMetric === 'both' ? 1.5 : 2,
           yAxisID: currentMetric === 'both' ? 'y2' : 'y'
         });
@@ -845,11 +847,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const now = new Date();
     const curYear = now.getFullYear();
 
-    if (period === '2021-2022') {
-      minDate = '2021-01-01'; maxDate = '2022-12-31';
-    } else if (period === '2023-2026') {
-      minDate = '2023-01-01'; maxDate = '2026-12-31';
-    } else if (period === '3Y') {
+    if (period === '3Y') {
       minDate = new Date(now.setFullYear(curYear - 3)).toISOString().split('T')[0];
     } else if (period === '1Y') {
       minDate = new Date(now.setFullYear(curYear - 1)).toISOString().split('T')[0];
