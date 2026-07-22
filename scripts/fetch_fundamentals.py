@@ -158,9 +158,14 @@ def get_sector_map(tickers: list[str]) -> pd.DataFrame:
         base["sector"] = "Unknown"
         base["industry"] = "Unknown"
 
+    # Separate Bất động sản from Tài chính into its own major Sector and Group
+    mask_bds = base["industry"].astype(str).str.lower().str.contains("bất động|real estate")
+    base.loc[mask_bds, "sector"] = "Bất động sản"
     base["group"] = base["sector"]
-    mask = base["ticker"].isin(VINGROUP_TICKERS)
-    base.loc[mask, "group"] = VINGROUP_GROUP
+    base.loc[mask_bds, "group"] = "Bất động sản"
+
+    mask_vin = base["ticker"].isin(VINGROUP_TICKERS)
+    base.loc[mask_vin, "group"] = VINGROUP_GROUP
     return base.drop_duplicates(subset=["ticker"])
 
 

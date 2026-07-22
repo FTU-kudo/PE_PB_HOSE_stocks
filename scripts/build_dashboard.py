@@ -100,10 +100,12 @@ def build_payload(tick_l, tick_5y, sect_l, sect_5y, latest_date):
     avail = [c for c in sect_cols if c in sect_l.columns]
     sectors = _records(sect_l[avail].sort_values("median_pe", na_position="last"))
 
-    all_groups = sorted([
+    raw_groups = sorted([
         str(g) for g in sect_l["group"].dropna().unique()
         if str(g).strip() and str(g) != "Unknown"
     ])
+    priority = ["Ngân hàng", "Bất động sản", "Tài chính"]
+    all_groups = [g for g in priority if g in raw_groups] + [g for g in raw_groups if g not in priority]
 
     # ── VN-Index (full market) daily median P/E & P/B ──────────────────────
     vni_sub = (

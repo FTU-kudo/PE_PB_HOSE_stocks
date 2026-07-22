@@ -44,7 +44,16 @@ def aggregate_snapshot(df: pd.DataFrame) -> pd.DataFrame:
 def main():
     print("Loading ticker history and fundamentals...")
     tick = pd.read_parquet(TICKER_HIST_FILE)
-    fund = pd.read_parquet(FUND_FILE)[["ticker", "eps_annual", "bvps", "sector", "industry", "group"]]
+    fund_full = pd.read_parquet(FUND_FILE)
+    mask_bds_fund = fund_full["industry"].astype(str).str.lower().str.contains("bất động|real estate")
+    fund_full.loc[mask_bds_fund, "sector"] = "Bất động sản"
+    fund_full["group"] = fund_full["sector"]
+    fund_full.loc[mask_bds_fund, "group"] = "Bất động sản"
+    mask_vin_fund = fund_full["ticker"].isin(VINGROUP_TICKERS)
+    fund_full.loc[mask_vin_fund, "group"] = VINGROUP_GROUP
+    fund_full.to_parquet(FUND_FILE)
+
+    fund = fund_full[["ticker", "eps_annual", "bvps", "sector", "industry", "group"]]
 
     print(f"Loaded {len(tick)} daily records. Normalizing close prices to full VND...")
     tick["close"] = pd.to_numeric(tick["close"], errors="coerce")
@@ -55,6 +64,10 @@ def main():
     df["sector"]   = df["sector"].fillna("Unknown")
     df["industry"] = df["industry"].fillna("Unknown")
     df["group"]    = df["group"].fillna("Unknown")
+
+    mask_bds = df["industry"].astype(str).str.lower().str.contains("bất động|real estate")
+    df.loc[mask_bds, "sector"] = "Bất động sản"
+    df.loc[mask_bds, "group"] = "Bất động sản"
 
     mask = df["ticker"].isin(VINGROUP_TICKERS)
     df.loc[mask, "group"] = VINGROUP_GROUP

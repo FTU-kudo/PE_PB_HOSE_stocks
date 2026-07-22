@@ -213,6 +213,11 @@ def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
     df["industry"] = df["industry"].fillna("Unknown")
     df["group"]    = df["group"].fillna("Unknown")
 
+    # Separate Bất động sản from Tài chính
+    mask_bds = df["industry"].astype(str).str.lower().str.contains("bất động|real estate")
+    df.loc[mask_bds, "sector"] = "Bất động sản"
+    df.loc[mask_bds, "group"] = "Bất động sản"
+
     # Vingroup override (in case sector map was stale)
     mask = df["ticker"].isin(VINGROUP_TICKERS)
     df.loc[mask, "group"] = VINGROUP_GROUP
