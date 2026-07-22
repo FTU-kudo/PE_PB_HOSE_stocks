@@ -13,48 +13,56 @@
 <style>
 /* ── CSS custom properties: all colours go here ─────────────────────── */
 :root {
-  --bg:         #0f172a;
-  --card:       #1e293b;
-  --card2:      #0f172a;
-  --border:     #334155;
-  --text:       #e2e8f0;
-  --muted:      #94a3b8;
-  --dim:        #64748b;
-  --accent:     #38bdf8;
-  --accent2:    #818cf8;
-  --green:      #4ade80;
-  --yellow:     #facc15;
-  --orange:     #fb923c;
-  --red:        #f87171;
-  --grid:       #1e3a5f;
-  --hover:      #1e3a5f;
-  --vg-bg:      #0f172a;
-  --vg-border:  #1d4ed8;
-  --btn-bg:     #1e293b;
-  --btn-border: #475569;
-  --shadow:     rgba(0,0,0,0.4);
+  --bg:             #0f172a;
+  --card:           #1e293b;
+  --card2:          #0f172a;
+  --border:         #334155;
+  --text:           #e2e8f0;
+  --muted:          #94a3b8;
+  --dim:            #64748b;
+  --accent:         #38bdf8;
+  --accent2:        #818cf8;
+  --green:          #4ade80;
+  --yellow:         #facc15;
+  --orange:         #fb923c;
+  --red:            #f87171;
+  --grid:           #1e3a5f;
+  --hover:          #1e3a5f;
+  --vg-bg:          #0f172a;
+  --vg-border:      #1d4ed8;
+  --btn-bg:         #1e293b;
+  --btn-border:     #475569;
+  --shadow:         rgba(0,0,0,0.4);
+  --pe-card-bg:     rgba(250, 204, 21, 0.08);
+  --pe-card-border: rgba(250, 204, 21, 0.35);
+  --pb-card-bg:     rgba(244, 114, 182, 0.08);
+  --pb-card-border: rgba(244, 114, 182, 0.35);
 }
 [data-theme="light"] {
-  --bg:         #f1f5f9;
-  --card:       #ffffff;
-  --card2:      #f8fafc;
-  --border:     #e2e8f0;
-  --text:       #1e293b;
-  --muted:      #475569;
-  --dim:        #94a3b8;
-  --accent:     #0284c7;
-  --accent2:    #6366f1;
-  --green:      #16a34a;
-  --yellow:     #b45309;
-  --orange:     #c2410c;
-  --red:        #dc2626;
-  --grid:       #e2e8f0;
-  --hover:      #eff6ff;
-  --vg-bg:      #eff6ff;
-  --vg-border:  #3b82f6;
-  --btn-bg:     #ffffff;
-  --btn-border: #cbd5e1;
-  --shadow:     rgba(0,0,0,0.08);
+  --bg:             #f1f5f9;
+  --card:           #ffffff;
+  --card2:          #f8fafc;
+  --border:         #e2e8f0;
+  --text:           #1e293b;
+  --muted:          #475569;
+  --dim:            #94a3b8;
+  --accent:         #0284c7;
+  --accent2:        #6366f1;
+  --green:          #16a34a;
+  --yellow:         #b45309;
+  --orange:         #c2410c;
+  --red:            #dc2626;
+  --grid:           #e2e8f0;
+  --hover:          #eff6ff;
+  --vg-bg:          #eff6ff;
+  --vg-border:      #3b82f6;
+  --btn-bg:         #ffffff;
+  --btn-border:     #cbd5e1;
+  --shadow:         rgba(0,0,0,0.08);
+  --pe-card-bg:     #fef9c3;
+  --pe-card-border: #fde047;
+  --pb-card-bg:     #fce7f3;
+  --pb-card-border: #f9a8d4;
 }
 
 /* ── Reset / base ─────────────────────────────────────────────────────── */
@@ -93,6 +101,17 @@ a { color: var(--accent); text-decoration: none; }
   padding: 20px;
   box-shadow: 0 2px 8px var(--shadow);
   transition: background .25s, border-color .25s;
+}
+.card-pe {
+  background: var(--pe-card-bg) !important;
+  border: 1.5px solid var(--pe-card-border) !important;
+}
+.card-pb {
+  background: var(--pb-card-bg) !important;
+  border: 1.5px solid var(--pb-card-border) !important;
+}
+.card-hose.card-pe, .card-hose.card-pb {
+  border-width: 2px !important;
 }
 
 /* ── Top HOSE Hero Cards (Standing out prominently) ──────────────────── */
@@ -323,32 +342,32 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
 
   <!-- ── Market summary ─────────────────────────────────────────────────── -->
   <div class="grid-6 mb-8">
-    <div class="card card-hose">
+    <div class="card card-hose card-pe">
       <div class="lbl">HOSE Median P/E</div>
       <div class="big" id="mkt-pe">—</div>
       <div class="sub">Unweighted Median</div>
     </div>
-    <div class="card card-hose">
+    <div class="card card-hose card-pe">
       <div class="lbl">HOSE Weighted P/E</div>
       <div class="big" style="color:#38bdf8" id="mkt-wpe">—</div>
       <div class="sub">Market-Cap Weighted</div>
     </div>
-    <div class="card card-hose">
+    <div class="card card-hose card-pb">
       <div class="lbl">HOSE Median P/B</div>
       <div class="big" style="color:var(--accent2)" id="mkt-pb">—</div>
       <div class="sub">Unweighted Median</div>
     </div>
-    <div class="card card-hose">
+    <div class="card card-hose card-pb">
       <div class="lbl">HOSE Weighted P/B</div>
       <div class="big" style="color:#f472b6" id="mkt-wpb">—</div>
       <div class="sub">Market-Cap Weighted</div>
     </div>
-    <div class="card card-hose">
+    <div class="card card-hose card-pe">
       <div class="lbl">Stocks with P/E</div>
       <div class="big" style="color:var(--text)" id="mkt-npe">—</div>
       <div class="sub" id="mkt-total"></div>
     </div>
-    <div class="card card-hose">
+    <div class="card card-hose card-pb">
       <div class="lbl">Stocks with P/B</div>
       <div class="big" style="color:var(--text)" id="mkt-npb">—</div>
       <div class="sub">Valid values</div>
@@ -372,8 +391,8 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
     </div>
 
     <!-- Real-time Computed Stats Grid -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
-      <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px">
+    <div class="grid-6" style="gap:12px">
+      <div class="card-pe" style="border-radius:10px;padding:12px">
         <div class="lbl">Custom Median P/E</div>
         <div style="display:flex;align-items:baseline;gap:8px">
           <span class="big" id="custom-pe">—</span>
@@ -381,7 +400,7 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
         </div>
         <div class="sub" id="custom-pe-sub">Trung vị (Unweighted)</div>
       </div>
-      <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px">
+      <div class="card-pe" style="border-radius:10px;padding:12px">
         <div class="lbl">Custom Weighted P/E</div>
         <div style="display:flex;align-items:baseline;gap:8px">
           <span class="big" style="color:#38bdf8" id="custom-wpe">—</span>
@@ -389,7 +408,7 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
         </div>
         <div class="sub" id="custom-wpe-sub">Trọng số Vốn hóa (Weighted)</div>
       </div>
-      <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px">
+      <div class="card-pb" style="border-radius:10px;padding:12px">
         <div class="lbl">Custom Median P/B</div>
         <div style="display:flex;align-items:baseline;gap:8px">
           <span class="big" style="color:var(--accent2)" id="custom-pb">—</span>
@@ -397,7 +416,7 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
         </div>
         <div class="sub" id="custom-pb-sub">Trung vị (Unweighted)</div>
       </div>
-      <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px">
+      <div class="card-pb" style="border-radius:10px;padding:12px">
         <div class="lbl">Custom Weighted P/B</div>
         <div style="display:flex;align-items:baseline;gap:8px">
           <span class="big" style="color:#f472b6" id="custom-wpb">—</span>
@@ -412,23 +431,35 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
       </div>
       <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px">
         <div class="lbl">Custom Mean (TB cộng)</div>
-        <div style="font-size:.95rem;font-weight:700;color:var(--text);margin-top:6px" id="custom-mean-pe">Mean P/E: —</div>
-        <div style="font-size:.95rem;font-weight:700;color:var(--text);margin-top:4px" id="custom-mean-pb">Mean P/B: —</div>
+        <div style="font-size:.95rem;font-weight:700;color:var(--text);margin-top:6px;background:var(--pe-card-bg);padding:2px 6px;border-radius:4px" id="custom-mean-pe">Mean P/E: —</div>
+        <div style="font-size:.95rem;font-weight:700;color:var(--text);margin-top:6px;background:var(--pb-card-bg);padding:2px 6px;border-radius:4px" id="custom-mean-pb">Mean P/B: —</div>
       </div>
     </div>
   </div>
 
   <!-- ── Sector charts ──────────────────────────────────────────────────── -->
   <div class="grid-2 mb-8">
-    <div class="card">
+    <div class="card card-pe">
       <div class="sec-title">📊 Sector Median P/E</div>
       <div class="sec-sub">Colour: green &lt;12 · blue &lt;20 · yellow &lt;30 · red ≥30</div>
       <canvas id="chart-pe"></canvas>
     </div>
-    <div class="card">
+    <div class="card card-pe">
+      <div class="sec-title">📊 Sector Weighted P/E</div>
+      <div class="sec-sub">Trọng số vốn hóa · Colour: green &lt;12 · blue &lt;20 · yellow &lt;30 · red ≥30</div>
+      <canvas id="chart-wpe"></canvas>
+    </div>
+  </div>
+  <div class="grid-2 mb-8">
+    <div class="card card-pb">
       <div class="sec-title">📊 Sector Median P/B</div>
       <div class="sec-sub">Lower = cheaper relative to book value</div>
       <canvas id="chart-pb"></canvas>
+    </div>
+    <div class="card card-pb">
+      <div class="sec-title">📊 Sector Weighted P/B</div>
+      <div class="sec-sub">Trọng số vốn hóa · Lower = cheaper relative to book value</div>
+      <canvas id="chart-wpb"></canvas>
     </div>
   </div>
 
@@ -595,7 +626,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const hdrDateEl = document.getElementById('hdr-date');
   if (hdrDateEl) hdrDateEl.textContent = m.date;
   document.getElementById('mkt-pe').textContent    = fmt(m.median_pe);
+  document.getElementById('mkt-wpe').textContent   = fmt(m.weighted_pe);
   document.getElementById('mkt-pb').textContent    = fmt(m.median_pb);
+  document.getElementById('mkt-wpb').textContent   = fmt(m.weighted_pb);
   document.getElementById('mkt-npe').textContent   = m.valid_pe;
   document.getElementById('mkt-npb').textContent   = m.valid_pb;
   document.getElementById('mkt-total').textContent = `of ${m.total} listed`;
@@ -646,8 +679,25 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
+  // ── Sector Weighted P/E chart
+  const sWPe = D.sectors.filter(s => s.weighted_pe != null).slice().sort((a,b) => a.weighted_pe - b.weighted_pe);
+  charts.wpe = new Chart(document.getElementById('chart-wpe'), {
+    type: 'bar',
+    data: {
+      labels: sWPe.map(s => s.group),
+      datasets: [{ data: sWPe.map(s => s.weighted_pe), backgroundColor: sWPe.map(s => peCol(s.weighted_pe)), borderRadius: 5 }],
+    },
+    options: {
+      ...barBase(),
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ` Weighted P/E: ${ctx.parsed.x.toFixed(1)}` } },
+      },
+    },
+  });
+
   // ── Sector P/B chart
-  const sPb  = D.sectors.filter(s => s.median_pb != null);
+  const sPb  = D.sectors.filter(s => s.median_pb != null).slice().sort((a,b) => a.median_pb - b.median_pb);
   charts.pb  = new Chart(document.getElementById('chart-pb'), {
     type: 'bar',
     data: {
@@ -659,6 +709,23 @@ document.addEventListener('DOMContentLoaded', () => {
       plugins: {
         legend: { display: false },
         tooltip: { callbacks: { label: ctx => ` P/B: ${ctx.parsed.x.toFixed(2)}` } },
+      },
+    },
+  });
+
+  // ── Sector Weighted P/B chart
+  const sWPb = D.sectors.filter(s => s.weighted_pb != null).slice().sort((a,b) => a.weighted_pb - b.weighted_pb);
+  charts.wpb = new Chart(document.getElementById('chart-wpb'), {
+    type: 'bar',
+    data: {
+      labels: sWPb.map(s => s.group),
+      datasets: [{ data: sWPb.map(s => s.weighted_pb), backgroundColor: '#f472b6', borderRadius: 5 }],
+    },
+    options: {
+      ...barBase(),
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ` Weighted P/B: ${ctx.parsed.x.toFixed(2)}` } },
       },
     },
   });
