@@ -611,6 +611,42 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
   padding: 4px 0;
   align-self: center;
 }
+
+/* ── Fullscreen Chart Mode ─────────────────────────────────────────────────── */
+.card:fullscreen,
+.card.is-fullscreen {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 99999 !important;
+  background: var(--card) !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  padding: 24px 32px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow-y: auto !important;
+  box-sizing: border-box !important;
+}
+.card:fullscreen .chart-canvas-box,
+.card.is-fullscreen .chart-canvas-box {
+  flex: 1 1 auto !important;
+  min-height: 65vh !important;
+  max-height: none !important;
+  width: 100% !important;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+.card:fullscreen .chart-canvas-box canvas,
+.card.is-fullscreen .chart-canvas-box canvas {
+  max-height: none !important;
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  height: 100% !important;
+}
 </style>
 </head>
 
@@ -741,7 +777,7 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
   </div>
 
   <!-- ── Custom VN-Index 5-Year Trend ────────────────────────────────────── -->
-  <div class="card mb-8">
+  <div class="card mb-8" id="card-trend-custom">
     <div class="sec-title">📈 Custom VN-Index 5-Year Interactive Trend (So sánh định giá với VN-Index Gốc)</div>
     <div class="sec-sub">Đường liền màu sáng là VN-Index sau khi loại trừ · Đường đứt nét là VN-Index gốc toàn thị trường · Điều chỉnh thời gian tùy ý trong vòng 5 năm</div>
 
@@ -768,10 +804,13 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
         <span style="font-size:.75rem;color:var(--muted)">Đến:</span>
         <input type="date" id="cust-date-to" class="trend-input" onchange="applyCustomDateRange()"/>
         <button class="trend-btn" onclick="resetCustomZoom()">↺ Reset</button>
+        <button class="trend-btn fullscreen-btn" style="font-weight:700;color:var(--accent)" onclick="toggleFullscreen('card-trend-custom', this)">⛶ Toàn màn hình</button>
       </div>
     </div>
 
-    <canvas id="chart-custom-trend" style="max-height:400px"></canvas>
+    <div class="chart-canvas-box" style="position:relative; width:100%">
+      <canvas id="chart-custom-trend" style="max-height:400px"></canvas>
+    </div>
     <p id="cust-trend-msg" style="color:var(--dim);font-size:.72rem;margin-top:8px">
       💡 Kéo ngang để zoom · Cuộn chuột / pinch để điều chỉnh thời gian xem
     </p>
@@ -812,7 +851,7 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
   </div>
 
   <!-- ── 5-Year Trend ───────────────────────────────────────────────────── -->
-  <div class="card mb-8">
+  <div class="card mb-8" id="card-trend-main">
     <div class="sec-title">📈 VN-Index &amp; Sector 5-Year P/E · P/B Interactive Trend</div>
     <div class="sec-sub">Chọn tự do VN-Index và/hoặc các nhóm ngành · Điều chỉnh thời gian tùy ý trong vòng 5 năm</div>
 
@@ -847,10 +886,13 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
         <span style="font-size:.75rem;color:var(--muted)">Đến:</span>
         <input type="date" id="date-to" class="trend-input" onchange="applyCustomRange()"/>
         <button class="trend-btn" onclick="resetZoom()">↺ Reset</button>
+        <button class="trend-btn fullscreen-btn" style="font-weight:700;color:var(--accent)" onclick="toggleFullscreen('card-trend-main', this)">⛶ Toàn màn hình</button>
       </div>
     </div>
 
-    <canvas id="chart-trend" style="max-height:400px"></canvas>
+    <div class="chart-canvas-box" style="position:relative; width:100%">
+      <canvas id="chart-trend" style="max-height:400px"></canvas>
+    </div>
     <p id="trend-msg" style="color:var(--dim);font-size:.72rem;margin-top:8px">
       💡 Kéo ngang để zoom · Cuộn chuột / pinch để điều chỉnh thời gian xem
     </p>
@@ -893,9 +935,10 @@ const charts      = {};   // chart references stored here after creation
 function themeColors(theme) {
   const dk = theme === 'dark';
   return {
-    grid:   dk ? '#1e3a5f' : '#e2e8f0',
-    ticks:  dk ? '#94a3b8' : '#475569',
-    legend: dk ? '#94a3b8' : '#475569',
+    grid:    dk ? '#1e3a5f' : '#e2e8f0',
+    ticks:   dk ? '#94a3b8' : '#475569',
+    legend:  dk ? '#94a3b8' : '#475569',
+    refLine: dk ? '#ffffff' : '#111827',
   };
 }
 
@@ -912,9 +955,51 @@ function applyChartTheme(theme) {
     });
     const leg = ch.options.plugins?.legend?.labels;
     if (leg) leg.color = c.legend;
+    if (ch === charts.customTrend && ch.data.datasets?.[1]) {
+      ch.data.datasets[1].borderColor = c.refLine;
+    }
     ch.update('none');
   });
 }
+
+window.toggleFullscreen = function(cardId, btnEl) {
+  const card = document.getElementById(cardId);
+  if (!card) return;
+
+  const isFull = document.fullscreenElement === card || card.classList.contains('is-fullscreen');
+  if (isFull) {
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(()=>{});
+    }
+    card.classList.remove('is-fullscreen');
+    if (btnEl) btnEl.innerHTML = '⛶ Toàn màn hình';
+  } else {
+    card.classList.add('is-fullscreen');
+    if (card.requestFullscreen) {
+      card.requestFullscreen().catch(() => {});
+    }
+    if (btnEl) btnEl.innerHTML = '❌ Thu nhỏ';
+  }
+  setTimeout(() => {
+    Object.values(charts).forEach(ch => { if (ch && ch.resize) ch.resize(); });
+  }, 150);
+};
+
+document.addEventListener('fullscreenchange', () => {
+  ['card-trend-main', 'card-trend-custom'].forEach(id => {
+    const card = document.getElementById(id);
+    const btn = card?.querySelector('.fullscreen-btn');
+    if (card && document.fullscreenElement !== card && !card.classList.contains('is-fullscreen')) {
+      if (btn) btn.innerHTML = '⛶ Toàn màn hình';
+    } else if (card && document.fullscreenElement !== card && card.classList.contains('is-fullscreen')) {
+      card.classList.remove('is-fullscreen');
+      if (btn) btn.innerHTML = '⛶ Toàn màn hình';
+      setTimeout(() => {
+        Object.values(charts).forEach(ch => { if (ch && ch.resize) ch.resize(); });
+      }, 100);
+    }
+  });
+});
 
 function setTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
@@ -1694,6 +1779,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainColor = isWPe ? '#38bdf8' : '#f472b6';
     const mainLabel = isWPe ? 'Custom Weighted P/E' : 'Custom Weighted P/B';
     const origLabel = isWPe ? 'VN-Index Gốc (Weighted P/E)' : 'VN-Index Gốc (Weighted P/B)';
+    const currTheme = document.documentElement.getAttribute('data-theme') || INIT_THEME;
+    const currentTc = themeColors(currTheme);
 
     if (charts.customTrend) {
       charts.customTrend.data.labels = ALL_DATES;
@@ -1702,6 +1789,7 @@ document.addEventListener('DOMContentLoaded', () => {
       charts.customTrend.data.datasets[0].borderColor = mainColor;
       charts.customTrend.data.datasets[1].data = origData;
       charts.customTrend.data.datasets[1].label = origLabel;
+      charts.customTrend.data.datasets[1].borderColor = currentTc.refLine;
       charts.customTrend.options.scales.y.title.text = mainLabel;
       charts.customTrend.update();
       return;
@@ -1725,9 +1813,9 @@ document.addEventListener('DOMContentLoaded', () => {
           {
             label: origLabel,
             data: origData,
-            borderColor: tc.muted,
-            borderWidth: 1.5,
-            borderDash: [5, 5],
+            borderColor: currentTc.refLine,
+            borderWidth: 2,
+            borderDash: [6, 4],
             tension: 0.15,
             pointRadius: 0,
             pointHoverRadius: 4,
