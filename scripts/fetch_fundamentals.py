@@ -88,22 +88,29 @@ def get_hose_tickers() -> list[str]:
     """Return all HOSE equity tickers via vnstock Reference."""
     log.info("Fetching HOSE ticker universe...")
     from vnstock import Reference
+    from scripts.config import EXCHANGE
     ref = Reference()
     try:
-        df = ref.equity.list_by_exchange(exchange=EXCHANGE)
-    except Exception:
+        df = ref.equity.list_by_exchange()
+    except TypeError:
         try:
-            df = ref.equity.list_by_exchange(exchange="HSX")   # legacy alias
-        except Exception as exc:
-            log.error(f"list_by_exchange failed: {exc}")
-            raise
+            df = ref.equity.list_by_exchange(exchange=EXCHANGE)
+        except Exception:
+            df = ref.equity.list_by_exchange(exchange="HSX")
+
+    ex_col = next(
+        (c for c in df.columns if c.lower() in ("exchange", "board", "san", "market")),
+        None,
+    )
+    if ex_col is not None:
+        df = df[df[ex_col].astype(str).str.upper().isin(["HOSE", "HSX", "XSTC"])]
 
     # Detect ticker column (handles 'ticker', 'symbol', 'code', etc.)
     ticker_col = next(
         (c for c in df.columns if c.lower() in ("ticker", "symbol", "code", "stock_code")),
         df.columns[0],
     )
-    tickers = df[ticker_col].dropna().str.upper().str.strip().tolist()
+    tickers = df[ticker_col].dropna().astype(str).str.upper().str.strip().tolist()
     log.info(f"  → {len(tickers)} HOSE tickers found.")
     return tickers
 
