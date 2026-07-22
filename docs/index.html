@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>VN-HOSE P/E & P/B Dashboard</title>
+<title>📊  VN-HOSE P/E & P/B 🔍</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"/>
@@ -86,6 +86,40 @@ a { color: var(--accent); text-decoration: none; }
   padding: 20px;
   box-shadow: 0 2px 8px var(--shadow);
   transition: background .25s, border-color .25s;
+}
+
+/* ── Top HOSE Hero Cards (Standing out prominently) ──────────────────── */
+.card-hose {
+  background: linear-gradient(135deg, var(--card) 0%, var(--card2) 100%);
+  border: 2px solid var(--accent) !important;
+  border-radius: 16px;
+  padding: 22px 20px;
+  box-shadow: 0 6px 20px var(--shadow);
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s, box-shadow .2s;
+}
+.card-hose:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px var(--shadow);
+}
+.card-hose::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+}
+.card-hose .lbl {
+  color: var(--accent);
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+.card-hose .big {
+  font-size: 2.3rem;
+  font-weight: 900;
+  margin: 6px 0 2px;
 }
 
 /* ── Header ───────────────────────────────────────────────────────────── */
@@ -272,7 +306,7 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
   <!-- ── Header ──────────────────────────────────────────────────────────── -->
   <header class="hdr">
     <div class="hdr-left">
-      <h1>🇻🇳 VN-HOSE P/E &amp; P/B</h1>
+      <h1>📊  VN-HOSE P/E &amp; P/B 🔍</h1>
       <p>
         As of <span class="hl" id="hdr-date"></span>
         &nbsp;·&nbsp; Source: vnstock (KBS)
@@ -287,35 +321,26 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
 
   <!-- ── Market summary ─────────────────────────────────────────────────── -->
   <div class="grid-4 mb-8">
-    <div class="card">
+    <div class="card card-hose">
       <div class="lbl">HOSE Median P/E</div>
       <div class="big" id="mkt-pe">—</div>
       <div class="sub">All HOSE stocks</div>
     </div>
-    <div class="card">
+    <div class="card card-hose">
       <div class="lbl">HOSE Median P/B</div>
-      <div class="big" id="mkt-pb">—</div>
+      <div class="big" style="color:var(--accent2)" id="mkt-pb">—</div>
       <div class="sub">All HOSE stocks</div>
     </div>
-    <div class="card">
+    <div class="card card-hose">
       <div class="lbl">Stocks with P/E</div>
       <div class="big" style="color:var(--text)" id="mkt-npe">—</div>
       <div class="sub" id="mkt-total"></div>
     </div>
-    <div class="card">
+    <div class="card card-hose">
       <div class="lbl">Stocks with P/B</div>
       <div class="big" style="color:var(--text)" id="mkt-npb">—</div>
       <div class="sub">Valid values</div>
     </div>
-  </div>
-
-  <!-- ── Vingroup Ecosystem ─────────────────────────────────────────────── -->
-  <div class="card mb-8">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
-      <span class="sec-title">🏙️ Vingroup Ecosystem</span>
-      <span class="vg-badge">Special Group</span>
-    </div>
-    <div class="grid-vg" id="vg-cards"></div>
   </div>
 
   <!-- ── Custom VN-Index Calculator Tool ──────────────────────────────── -->
@@ -545,18 +570,20 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('mkt-npb').textContent   = m.valid_pb;
   document.getElementById('mkt-total').textContent = `of ${m.total} listed`;
 
-  // ── Vingroup cards
+  // ── Vingroup cards (if present)
   const vgEl = document.getElementById('vg-cards');
-  D.vingroup.forEach(v => {
-    const div = document.createElement('div');
-    div.className = 'vg-card';
-    div.innerHTML = `
-      <div class="vg-ticker">${v.ticker}</div>
-      <div class="vg-row">Close: <span class="vg-val">${fmtK(v.close)}</span></div>
-      <div class="vg-row">P/E:&nbsp; <span class="vg-val" style="color:${peCol(v.pe)}">${fmt(v.pe)}</span></div>
-      <div class="vg-row">P/B:&nbsp; <span class="vg-val" style="color:var(--accent2)">${fmt(v.pb)}</span></div>`;
-    vgEl.appendChild(div);
-  });
+  if (vgEl && D.vingroup) {
+    D.vingroup.forEach(v => {
+      const div = document.createElement('div');
+      div.className = 'vg-card';
+      div.innerHTML = `
+        <div class="vg-ticker">${v.ticker}</div>
+        <div class="vg-row">Close: <span class="vg-val">${fmtK(v.close)}</span></div>
+        <div class="vg-row">P/E:&nbsp; <span class="vg-val" style="color:${peCol(v.pe)}">${fmt(v.pe)}</span></div>
+        <div class="vg-row">P/B:&nbsp; <span class="vg-val" style="color:var(--accent2)">${fmt(v.pb)}</span></div>`;
+      vgEl.appendChild(div);
+    });
+  }
 
   // ── Sector P/E chart
   const tc = themeColors(INIT_THEME);
