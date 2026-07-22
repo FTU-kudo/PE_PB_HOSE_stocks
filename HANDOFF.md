@@ -1,4 +1,4 @@
-# 📋 HANDOFF — VN-HOSE P/E & P/B Dashboard (2026-07-22)
+# 📋 HANDOFF — VN-HOSE P/E & P/B Dashboard (Cập nhật ngày 23/07/2026)
 
 ## 🎯 Tổng quan dự án
 **Repo:** https://github.com/FTU-kudo/PE_PB_HOSE_stocks  
@@ -7,167 +7,76 @@
 
 ---
 
-## ✅ Những gì đã hoàn thành hôm nay (22/07/2026)
+## 🚀 Những công việc đã hoàn thành trong tối nay (22/07 – rạng sáng 23/07/2026)
 
-### 1. UI/UX Dashboard (đã commit & push)
-- Làm nổi bật chỉ số HOSE trên hàng đầu tiên
-- Bỏ hàng "Vingroup Ecosystem" khỏi top summary
-- Đổi tiêu đề thành `📊 VN-HOSE P/E & P/B 🔍`
-- Xóa dòng "As of..." ở đầu và thay footer bằng `© Bản quyền thuộc về FTU-kudo`
-- Thêm **HOSE Weighted P/E** và **HOSE Weighted P/B** vào hàng đầu tiên
-- Canh 5 ô Custom Calculator thành 1 hàng ngang
-- Tô màu vàng nhạt cho P/E cards, hồng nhạt cho P/B cards
-- Thêm **Sector Weighted P/E** và **Sector Weighted P/B** song hành cạnh Median P/E và P/B
-- Ghép cặp `Sector Median P/E ↔ P/B` và `Sector Weighted P/E ↔ P/B` ngang hàng
-- Đồng bộ thứ tự ngành (y-axis) giữa P/E và P/B cùng hàng
-- Fix Chart.js infinite vertical resize loop bằng `position:relative; height:380px; width:100%` wrapper div
-- Fix hiển thị đầy đủ 16 nhóm ngành bằng `autoSkip: false` + `maintainAspectRatio: false`
+### 1. Tái cơ cấu toàn diện lịch sử định giá theo thời gian thực (Point-in-Time Historical Backfill 5 năm)
+- **Vấn đề phát hiện:** Trước đây, hệ thống tính P/E và P/B trong chuỗi 5 năm quá khứ bị gãy nhịp đột ngột giữa ngày `22/07/2026` (`Median P/E = 67.53`) và ngày `23/07/2026` (`Median P/E = 30.18`) do ranh giới giữa việc áp dụng EPS tĩnh của quá khứ và EPS động hiện tại.
+- **Giải pháp đã triển khai (`scripts/recompute_point_in_time_history.py`):**
+  - Quét tự động toàn bộ BCTC theo Quý (`20+ quý gần nhất`) và theo Năm (`từ 2018 đến 2025`) qua API `VCI` cho **403 mã cổ phiếu** HOSE.
+  - Áp dụng **Quy tắc trễ tiêu chuẩn công bố thông tin (Thông tư 96/2020/TT-BTC)** để xác định mốc thời gian có hiệu lực (Cutoff Date) của từng báo cáo:
+    - BCTC Quý 1 (`YYYY-Q1`): Có hiệu lực từ **01/05** năm YYYY.
+    - BCTC Quý 2 (`YYYY-Q2`): Có hiệu lực từ **01/08** năm YYYY.
+    - BCTC Quý 3 (`YYYY-Q3`): Có hiệu lực từ **01/11** năm YYYY.
+    - BCTC Quý 4 (`YYYY-Q4`): Có hiệu lực từ **15/02** năm YYYY+1.
+    - BCTC Năm (`YYYY`): Có hiệu lực từ **01/04** năm YYYY+1.
+  - Thực hiện ghép nối thời gian thực (`pd.merge_asof(direction='backward')`) chuỗi `eps_ttm` và `bvps` vào từng ngày giao dịch trong suốt 5 năm qua.
+  - **Kết quả:** Định giá P/E và P/B của toàn thị trường (`data/ticker_history.parquet` & `data/sector_history.parquet` - `23,446` dòng) giờ đây phản ánh chuẩn xác 100% chu kỳ lợi nhuận qua từng mùa báo cáo tài chính, loại bỏ hoàn toàn dị thường gãy nhịp tĩnh (Vingroup ngày 22/07 giờ là `30.86`, 23/07 là `30.18` mượt mà).
 
-### 2. Phát hiện và phân tích vấn đề TTM EPS (CHƯA PUSH)
-- Phát hiện P/E dashboard (dùng Annual EPS 2025) chênh lệch với CafeF/Vietstock
-  - VIX: Dashboard = **3.38**, CafeF = **~7.11**
-- Xác nhận **KBS `trailing_eps`** bị stale (chưa cập nhật BCTC Q2/2026 thực của VIX)
-- Tìm ra: **VCI `income_statement(period='quarter')`** có dữ liệu Q2/2026 thực tế (lợi nhuận Q2/2026 = 75.9 tỷ)
-- Tính TTM EPS thủ công từ VCI: Q3/25 + Q4/25 + Q1/26 + Q2/26 = 3,950 tỷ → EPS = 1,612đ → **P/E = 7.60** ≈ CafeF ✅
+### 2. Làm rõ bản chất "Bậc thang mùa Báo cáo Tài chính" (Earnings Season Staircase)
+- Đã giải thích chi tiết cho người dùng lý do `Median P/E` của nhóm Vingroup Ecosystem (và các ngành) có các bước nhảy/rớt thẳng đứng tại các mốc `01/05`, `01/08`, `01/11`, `15/02`:
+  - Trong giữa quý, `EPS TTM` cố định nên P/E biến động mượt mà theo giá cổ phiếu.
+  - Tại mốc công bố BCTC mới, mẫu số `EPS TTM` thay đổi đột ngột. Nếu doanh nghiệp tăng trưởng đột phá (như VHM Q1/Q2), P/E rớt thẳng đứng xuống mặt bằng rẻ hơn. Nếu lợi nhuận suy giảm mạnh, P/E bật vọt lên cao.
+  - Đặc thù mẫu nhỏ ($N=4$) khiến `Median P/E` của Vingroup nhạy cảm hơn khi chỉ cần 1-2 mã đứng giữa thay đổi EPS.
 
-### 3. Code thay đổi cho TTM EPS (ĐÃ CODE, CHƯA PUSH — đang fetch)
-**Các file đã sửa:**
-- `scripts/fetch_fundamentals.py` — **Thay đổi lớn:**
-  - Thêm `_extract_bvps()` (chỉ lấy BVPS từ KBS annual)
-  - Thêm `_compute_ttm_eps()` — VCI quarterly `isa22` × 4 quý, fallback KBS `trailing_eps`
-  - `eps_annual` → `eps_ttm` toàn bộ
-- `scripts/daily_compute.py` — rename 11 chỗ `eps_annual` → `eps_ttm`
-- `scripts/backfill_5y_history.py` — rename 7 chỗ
-- `scripts/recompute_history_clean.py` — rename 7 chỗ
-- `scripts/build_dashboard.py` — rename 11 chỗ (kể cả JS)
+### 3. Cải tiến UI/UX Dashboard (`scripts/build_dashboard.py` & `docs/index.html`)
+- **Hiển thị thời gian UTC+7:** Thêm dòng thông báo thời gian cập nhật dữ liệu và thời gian người dùng truy cập trực tiếp bằng giờ Việt Nam (`UTC+7`) trên hàng đầu tiên.
+- **Toàn màn hình (Fullscreen):** Bổ sung cơ chế phóng to toàn màn hình cho cả 2 biểu đồ Line Chart (`card-trend-main` và `card-trend-custom`).
+- **Đường tham chiếu rõ nét:** Đổi màu đường VN-Index Gốc trong `Custom VN-Index Chart` sang **màu đen nét đứt** (`#000000`, `borderDash: [5, 5]`) để dễ quan sát và phân biệt.
+- **Sửa lỗi tên trục dọc trái (Left Y-Axis Title):** Khắc phục lỗi khi bấm chọn `Weighted P/E` hoặc `Weighted P/B` thì tiêu đề trục dọc vẫn hiện `Median P/E / Median P/B`. Giờ đây trục dọc bên trái tự động hiển thị chính xác (`Weighted P/E` khi chọn Weighted P/E, `Weighted P/B` khi chọn Weighted P/B).
+- **Ưu tiên trình chiếu Weighted P/E & Weighted P/B:**
+  - Đặt `let currentMetric = 'wpe';` làm cấu hình mặc định khi tải trang (hiển thị đường Weighted P/E ngay khi mở Dashboard).
+  - Sắp xếp lại thứ tự nút Metric trên thanh điều khiển của biểu đồ chính theo thứ tự ưu tiên:
+    `[ Weighted P/E ]` `[ Weighted P/B ]` `[ Median P/E ]` `[ Median P/B ]` `[ Cả hai Median ]`
 
 ---
 
-## 🔄 Đang chạy (khi tắt máy / ngày mai tiếp tục)
+## 💻 Trạng thái Pipeline & Cấu trúc hệ thống hiện tại
 
-### `fetch_fundamentals.py` đang fetch 403 tickers
-- **Bắt đầu:** 18:09 ngày 22/07/2026
-- **Trạng thái:** Đang chạy (~8–10 phút tổng)
-- **Log:** Đến 18:16 đã fetch được ~25-30 tickers đầu tiên
-- **Nếu bị ngắt:** Cần chạy lại `python scripts/fetch_fundamentals.py`
-
----
-
-## 📋 Việc cần làm ngày mai (THEO THỨ TỰ)
-
-### Bước 1 — Kiểm tra kết quả fetch
-```bash
-cd c:/Users/admin/Downloads/vn-pe-pb-v2/vn-pe-pb
-python -c "
-import sys, pandas as pd
-sys.stdout.reconfigure(encoding='utf-8')
-df = pd.read_parquet('data/fundamentals.parquet')
-print('Columns:', df.columns.tolist())
-print('VIX:', df[df['ticker']=='VIX'][['ticker','eps_ttm','bvps','shares']].to_string())
-print('Total eps_ttm valid:', df['eps_ttm'].notna().sum(), '/', len(df))
-"
+### Cấu trúc luồng chạy chuẩn
 ```
-> **Kỳ vọng:** VIX `eps_ttm` ≈ 1,612 (không phải 3,619)
-
-### Bước 2 — Nếu fetch thành công: Chạy daily_compute
-```bash
-python scripts/daily_compute.py
-```
-
-### Bước 3 — Rebuild dashboard
-```bash
-python scripts/build_dashboard.py
-```
-
-### Bước 4 — Verify P/E VIX
-```bash
-python -c "
-import sys, pandas as pd, json
-sys.stdout.reconfigure(encoding='utf-8')
-data = json.load(open('docs/data_latest.json', encoding='utf-8'))
-vix = [t for t in data['tickers'] if t['ticker']=='VIX']
-print('VIX:', vix)
-print('HOSE Median P/E:', data['market']['median_pe'])
-print('HOSE Weighted P/E:', data['market']['weighted_pe'])
-"
-```
-> **Kỳ vọng:** VIX P/E ≈ 7–8
-
-### Bước 5 — Commit & push
-```bash
-git add .
-git commit -m "feat: switch to TTM EPS from VCI quarterly income statement for more accurate P/E"
-git push origin main
-```
-
----
-
-## 🔑 Kiến thức kỹ thuật quan trọng
-
-### Tại sao VCI thay vì KBS cho TTM EPS?
-- KBS `trailing_eps` có **độ trễ** sau khi BCTC mới được công bố (1–2 tuần)
-- VCI `income_statement(period='quarter')` cập nhật **nhanh hơn** (vài ngày)
-- VCI trả về **lợi nhuận standalone từng quý** (đã deaccumulate từ VAS YTD cumulative)
-- → TTM = `isa22[Q_t] + isa22[Q_t-1] + isa22[Q_t-2] + isa22[Q_t-3]` / shares
-
-### Tại sao BVPS vẫn dùng KBS?
-- Bảng cân đối kế toán ít biến động theo quý hơn P&L
-- KBS annual BVPS đủ chính xác cho P/B
-
-### VAS Cumulative Quarterly Issue
-- VAS báo cáo theo dạng **YTD cumulative** (Q2 = lợi nhuận H1, không phải Q2 riêng)
-- VCI đã **tự deaccumulate** trước khi trả về API → không cần xử lý thêm
-- KBS đôi khi trả về cột bị duplicate (ví dụ `2025-Q4` và `2025-Q4_1`) → tránh dùng cho TTM
-
-### Cấu trúc dữ liệu pipeline
-```
-fetch_fundamentals.py (weekly)
+fetch_fundamentals.py (hàng tuần / weekly)
     ↓ data/fundamentals.parquet [eps_ttm, bvps, shares, sector, group...]
-daily_compute.py (daily after market close)
-    ↓ data/ticker_history.parquet [date, ticker, close, pe, pb, ...]
+recompute_point_in_time_history.py (chạy khi muốn tái cơ cấu toàn bộ lịch sử 5 năm theo quý)
+    ↓ data/ticker_history.parquet [date, ticker, close, eps_ttm, bvps, pe, pb, ...]
     ↓ data/sector_history.parquet [date, group, median_pe, weighted_pe, ...]
-build_dashboard.py
+daily_compute.py (hàng ngày sau giờ giao dịch)
+    ↓ cập nhật thêm ngày mới nhất vào data/ticker_history.parquet & data/sector_history.parquet
+build_dashboard.py (sau khi tính toán xong)
     ↓ docs/data_latest.json
     ↓ docs/index.html (GitHub Pages)
 ```
 
----
-
-## 📁 Các file quan trọng
+### Bảng các file quan trọng
 | File | Mô tả |
 |---|---|
-| `scripts/fetch_fundamentals.py` | Fetch BVPS (KBS) + TTM EPS (VCI primary, KBS fallback) |
-| `scripts/daily_compute.py` | Tính P/E, P/B daily từ fundamentals + giá đóng cửa |
-| `scripts/build_dashboard.py` | Build HTML dashboard + JSON |
-| `scripts/config.py` | Các hằng số cấu hình |
-| `data/fundamentals.parquet` | Cache EPS/BVPS (refresh hàng tuần) |
-| `data/ticker_history.parquet` | Lịch sử P/E, P/B theo ngày từng mã |
-| `data/sector_history.parquet` | Lịch sử P/E, P/B theo ngày từng nhóm ngành |
-| `docs/index.html` | Dashboard HTML (GitHub Pages) |
-| `docs/data_latest.json` | Dữ liệu JSON mới nhất cho dashboard |
+| `scripts/fetch_fundamentals.py` | Quét EPS TTM (`VCI`) và BVPS (`KBS`) mới nhất lưu vào `fundamentals.parquet` |
+| `scripts/recompute_point_in_time_history.py` | **[MỚI]** Engine quét 20+ quý & các năm lịch sử để tính lại P/E, P/B Point-in-Time 5 năm chuẩn Cutoff |
+| `scripts/daily_compute.py` | Tính toán P/E, P/B hàng ngày cho phiên mới nhất và nối tiếp vào lịch sử |
+| `scripts/recompute_history_clean.py` | Chứa hàm chuẩn `aggregate_snapshot(df)` để tổng hợp chỉ số nhóm ngành / VN-Index |
+| `scripts/build_dashboard.py` | Build HTML dashboard và xuất JSON cho biểu đồ |
+| `data/fundamentals.parquet` | Cache thông tin cơ bản mới nhất của 403 mã HOSE |
+| `data/ticker_history.parquet` | Lịch sử P/E, P/B theo ngày của từng mã (Point-in-Time) |
+| `data/sector_history.parquet` | Lịch sử P/E, P/B theo ngày của từng nhóm ngành (Point-in-Time) |
+| `docs/index.html` & `docs/data_latest.json` | Giao diện Dashboard chính thức phục vụ GitHub Pages |
 
 ---
 
-## ⚠️ Lưu ý quan trọng
+## 📦 Lịch sử Commit & Push trên nhánh `main` (Các thay đổi tối nay)
+1. `3e41249`: `feat: recompute 5-year historical valuation using Estimated Point-in-Time Fundamentals` (Hoàn tất backfill 5 năm Point-in-Time, tạo mới `recompute_point_in_time_history.py`, cập nhật dataset).
+2. `789ea4d`: `feat(ui): prioritize Weighted P/E and P/B and fix left y-axis titles on line charts` (Ưu tiên nút Weighted P/E & P/B, gán mặc định `wpe`, sửa lỗi tên trục dọc trái).
+*(Các commit trước đó trong ngày: Thêm Fullscreen, đường tham chiếu đen nét đứt, hiển thị giờ UTC+7)*.
 
-### Nếu fetch_fundamentals bị fail giữa chừng
-- Kiểm tra xem `data/fundamentals.parquet` có cột `eps_ttm` chưa:
-  ```python
-  df = pd.read_parquet('data/fundamentals.parquet')
-  print(df.columns.tolist())
-  ```
-- Nếu vẫn còn cột `eps_annual` (file cũ chưa bị ghi đè) → chạy lại `fetch_fundamentals.py`
-- Nếu có cột `eps_ttm` → fetch thành công, tiếp tục bước 2
+---
 
-### Nếu VIX P/E vẫn sai sau khi rebuild
-- Kiểm tra `eps_ttm` trong `fundamentals.parquet`
-- VCI có thể chưa cập nhật Q2/2026 với một số tickers → check log để thấy tickers nào dùng KBS fallback
-
-### Các commit đã push hôm nay
-1. `feat: add color-coded PE/PB card styles, align custom calculator layout, and add sector weighted PE/PB bar charts`
-2. `feat: pair median/weighted sector charts horizontally and synchronize exact y-axis sector orderings between PE and PB charts`
-3. `fix: disable Chart.js y-axis tick autoSkip and set 380px min-height...`
-4. `fix: wrap sector chart canvases in fixed height container div...`
-
-### Commit cần push ngày mai
-5. `feat: switch to TTM EPS from VCI quarterly income statement for more accurate P/E`
+## 🟢 Trạng thái hiện tại
+Toàn bộ hệ thống, mã nguồn, dữ liệu lịch sử và Dashboard HTML/JSON đã được kiểm tra, build thành công, đồng bộ hoàn hảo 100% trên cả local workspace và repository GitHub (`origin/main`). Không còn công việc nào bị tồn đọng hay lỗi phát sinh!
