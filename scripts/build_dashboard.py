@@ -102,10 +102,12 @@ def build_payload(tick_l, tick_5y, sect_l, sect_5y, latest_date):
 
     raw_groups = sorted([
         str(g) for g in sect_l["group"].dropna().unique()
-        if str(g).strip() and str(g) != "Unknown"
+        if str(g).strip() and str(g) != "Unknown" and str(g) != VINGROUP_GROUP
     ])
     priority = ["Ngân hàng", "Bất động sản", "Tài chính"]
     all_groups = [g for g in priority if g in raw_groups] + [g for g in raw_groups if g not in priority]
+    if VINGROUP_GROUP in sect_l["group"].values:
+        all_groups.append(VINGROUP_GROUP)
 
     # ── VN-Index (full market) daily median P/E & P/B ──────────────────────
     vni_sub = (
@@ -464,6 +466,53 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
       <span class="vg-badge">Special Group</span>
     </div>
     <div class="grid-vg" id="vg-cards"></div>
+  </div>
+
+  <!-- ── Custom VN-Index Calculator Tool ──────────────────────────────── -->
+  <div class="card mb-8">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+      <div>
+        <div class="sec-title">🧮 VN-Index Custom Calculator (Loại trừ Nhóm ngành tùy chọn)</div>
+        <div class="sec-sub" style="margin-bottom:0">Nhấn chọn thủ công các nhóm ngành muốn loại trừ để xem định giá thực tế của phần thị trường còn lại</div>
+      </div>
+      <button class="trend-btn" onclick="resetExclusions()" style="padding:6px 12px">↺ Đặt lại mặc định</button>
+    </div>
+
+    <!-- Exclusion Checkbox Chips -->
+    <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:16px">
+      <div style="font-size:.75rem;font-weight:700;color:var(--muted);margin-bottom:8px">❌ Nhấn để chọn nhóm ngành muốn LOẠI TRỪ (Exclude):</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center" id="exclusion-chips"></div>
+    </div>
+
+    <!-- Real-time Computed Stats Grid -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+      <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px">
+        <div class="lbl">Custom VN-Index Median P/E</div>
+        <div style="display:flex;align-items:baseline;gap:8px">
+          <span class="big" id="custom-pe">—</span>
+          <span id="diff-pe" style="font-size:.85rem;font-weight:700"></span>
+        </div>
+        <div class="sub" id="custom-pe-sub">So với VN-Index gốc</div>
+      </div>
+      <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px">
+        <div class="lbl">Custom VN-Index Median P/B</div>
+        <div style="display:flex;align-items:baseline;gap:8px">
+          <span class="big" style="color:var(--accent2)" id="custom-pb">—</span>
+          <span id="diff-pb" style="font-size:.85rem;font-weight:700"></span>
+        </div>
+        <div class="sub" id="custom-pb-sub">So với VN-Index gốc</div>
+      </div>
+      <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px">
+        <div class="lbl">Số cổ phiếu hợp lệ còn lại</div>
+        <div class="big" style="color:var(--green);font-size:1.6rem" id="custom-count">—</div>
+        <div class="sub" id="custom-excluded-info">Chưa loại trừ nhóm nào</div>
+      </div>
+      <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px">
+        <div class="lbl">Custom VN-Index Mean (TB cộng)</div>
+        <div style="font-size:.95rem;font-weight:700;color:var(--text);margin-top:6px" id="custom-mean-pe">Mean P/E: —</div>
+        <div style="font-size:.95rem;font-weight:700;color:var(--text);margin-top:4px" id="custom-mean-pb">Mean P/B: —</div>
+      </div>
+    </div>
   </div>
 
   <!-- ── Sector charts ──────────────────────────────────────────────────── -->
@@ -1022,10 +1071,109 @@ document.addEventListener('DOMContentLoaded', () => {
     setRangeBtn('custom');
   };
 
+  // ── Custom VN-Index Calculator Tool Logic
+  const allSectorGroups = D.sectors.map(s => s.group);
+  let excludedGroups = new Set();
+
+  window.toggleExclusion = function(grp) {
+    if (excludedGroups.has(grp)) {
+      excludedGroups.delete(grp);
+    } else {
+      excludedGroups.add(grp);
+    }
+    renderExclusionChips();
+    updateCustomVNIndex();
+  };
+
+  window.resetExclusions = function() {
+    excludedGroups.clear();
+    renderExclusionChips();
+    updateCustomVNIndex();
+  };
+
+  function renderExclusionChips() {
+    const container = document.getElementById('exclusion-chips');
+    if (!container) return;
+    let html = '';
+    allSectorGroups.forEach((grp, i) => {
+      const active = excludedGroups.has(grp);
+      const color = PALETTE[i % PALETTE.length];
+      const style = active
+        ? `border-color:var(--red);background:var(--red)22;color:#f87171;text-decoration:line-through`
+        : `border-color:var(--border);color:var(--dim)`;
+      const esc = grp.replace(/'/g, "\\'");
+      html += `<button class="sector-chip" style="${style}" onclick="toggleExclusion('${esc}')">`;
+      html += active ? `✕ ` : ``;
+      html += `${grp}</button>`;
+    });
+    container.innerHTML = html;
+  }
+
+  function updateCustomVNIndex() {
+    const valid = D.tickers.filter(t => !excludedGroups.has(t.group));
+    const peVals = valid.map(t => t.pe).filter(v => v != null && !isNaN(v)).sort((a,b) => a - b);
+    const pbVals = valid.map(t => t.pb).filter(v => v != null && !isNaN(v)).sort((a,b) => a - b);
+
+    const calcMedian = arr => {
+      if (!arr.length) return null;
+      const mid = Math.floor(arr.length / 2);
+      return arr.length % 2 !== 0 ? arr[mid] : (arr[mid - 1] + arr[mid]) / 2;
+    };
+    const calcMean = arr => {
+      if (!arr.length) return null;
+      return arr.reduce((a,b) => a + b, 0) / arr.length;
+    };
+
+    const medPe = calcMedian(peVals);
+    const medPb = calcMedian(pbVals);
+    const meanPe = calcMean(peVals);
+    const meanPb = calcMean(pbVals);
+
+    const origPe = D.market.median_pe;
+    const origPb = D.market.median_pb;
+
+    const elPe = document.getElementById('custom-pe');
+    const elPb = document.getElementById('custom-pb');
+    const diffPe = document.getElementById('diff-pe');
+    const diffPb = document.getElementById('diff-pb');
+    const elCount = document.getElementById('custom-count');
+    const elInfo = document.getElementById('custom-excluded-info');
+    const elMeanPe = document.getElementById('custom-mean-pe');
+    const elMeanPb = document.getElementById('custom-mean-pb');
+
+    if (elPe) elPe.textContent = medPe != null ? fmt(medPe) : '—';
+    if (elPb) elPb.textContent = medPb != null ? fmt(medPb) : '—';
+    if (elMeanPe) elMeanPe.textContent = `Mean P/E: ${meanPe != null ? fmt(meanPe) : '—'}`;
+    if (elMeanPb) elMeanPb.textContent = `Mean P/B: ${meanPb != null ? fmt(meanPb) : '—'}`;
+    if (elCount) elCount.textContent = `${peVals.length} / ${D.tickers.length}`;
+
+    if (excludedGroups.size === 0) {
+      if (diffPe) { diffPe.textContent = ''; diffPe.style.color = ''; }
+      if (diffPb) { diffPb.textContent = ''; diffPb.style.color = ''; }
+      if (elInfo) elInfo.textContent = 'Chưa loại trừ nhóm nào (bằng VN-Index gốc)';
+    } else {
+      if (diffPe && medPe != null && origPe != null) {
+        const d = medPe - origPe;
+        const sign = d > 0 ? '+' : '';
+        diffPe.textContent = `(${sign}${d.toFixed(2)})`;
+        diffPe.style.color = d < 0 ? 'var(--green)' : (d > 0 ? 'var(--red)' : 'var(--muted)');
+      }
+      if (diffPb && medPb != null && origPb != null) {
+        const d = medPb - origPb;
+        const sign = d > 0 ? '+' : '';
+        diffPb.textContent = `(${sign}${d.toFixed(2)})`;
+        diffPb.style.color = d < 0 ? 'var(--green)' : (d > 0 ? 'var(--red)' : 'var(--muted)');
+      }
+      if (elInfo) elInfo.textContent = `Đã loại trừ ${excludedGroups.size} nhóm (${D.tickers.length - valid.length} mã)`;
+    }
+  }
+
 
   if (tGroups.length > 0) {
     renderChips();
     renderTrendChart();
+    renderExclusionChips();
+    updateCustomVNIndex();
   } else {
     document.getElementById('trend-msg').textContent =
       'Dữ liệu lịch sử sẽ được tích lũy dần theo ngày.';
