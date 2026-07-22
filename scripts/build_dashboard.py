@@ -121,34 +121,64 @@ def build_payload(tick_l, tick_5y, sect_l, sect_5y, latest_date):
         "weighted_pe": _safe(w_pe_m),
         "weighted_pb": _safe(w_pb_m),
         "total":       len(tick_l),
-        "valid_pe":    int(all_pe.notna().sum()),
-        "valid_pb":    int(all_pb.notna().sum()),
+        "valid_pe":    int(all_pe.count()),
+        "valid_pb":    int(all_pb.count()),
+        "p25_pe":      _safe(all_pe.quantile(.25)),
+        "p75_pe":      _safe(all_pe.quantile(.75)),
+        "p25_pb":      _safe(all_pb.quantile(.25)),
+        "p75_pb":      _safe(all_pb.quantile(.75)),
     }
 
-    vg = tick_l[tick_l["ticker"].isin(VINGROUP_TICKERS)][
-        ["ticker", "close", "pe", "pb"]
-    ].drop_duplicates(subset=["ticker"]).copy()
-    vingroup = _records(vg)
+    vg_l = tick_l[tick_l["group"] == VINGROUP_GROUP]
+    vg_pe = vg_l["pe"].dropna()
+    vg_pb = vg_l["pb"].dropna()
+    vg_pe_val = vg_l[vg_l["pe"].notna() & (vg_l["shares"] > 0)]
+    vg_w_pe = (vg_pe_val["close"] * vg_pe_val["shares"]).sum() / (vg_pe_val["eps_ttm"] * vg_pe_val["shares"]).sum() if len(vg_pe_val) > 0 and (vg_pe_val["eps_ttm"] * vg_pe_val["shares"]).sum() > 0 else np.nan
+    vg_pb_val = vg_l[vg_l["pb"].notna() & (vg_l["shares"] > 0)]
+    vg_w_pb = (vg_pb_val["close"] * vg_pb_val["shares"]).sum() / (vg_pb_val["bvps"] * vg_pb_val["shares"]).sum() if len(vg_pb_val) > 0 and (vg_pb_val["bvps"] * vg_pb_val["shares"]).sum() > 0 else np.nan
 
-    sect_cols = ["group","count","valid_pe","valid_pb",
-                 "median_pe","median_pb","mean_pe","mean_pb",
-                 "weighted_pe","weighted_pb",
-                 "p25_pe","p75_pe","p25_pb","p75_pb"]
-    avail = [c for c in sect_cols if c in sect_l.columns]
-    sectors = _records(sect_l[avail].sort_values("median_pe", na_position="last"))
+    vingroup = {
+        "median_pe":   _safe(vg_pe.median()),
+        "median_pb":   _safe(vg_pb.median()),
+        "weighted_pe": _safe(vg_w_pe),
+        "weighted_pb": _safe(vg_w_pb),
+        "valid_pe":    int(vg_pe.count()),
+        "valid_pb":    int(vg_pb.count()),
+    }
 
-    raw_groups = sorted([
-        str(g) for g in sect_l["group"].dropna().unique()
-        if str(g).strip() and str(g) != "Unknown" and str(g) != VINGROUP_GROUP and str(g) != "VN-Index"
-    ])
-    priority = ["Ngân hàng", "Bất động sản", "Tài chính"]
+    raw_groups = [g for g in sect_l["group"].unique() if g != "VN-Index" and g != VINGROUP_GROUP]
+    priority   = ["Ngân hàng","Bất động sản","Tài chính","Dịch vụ Tiêu dùng",
+                  "Xây dựng và Vật liệu","Công nghiệp","Hàng Tiêu dùng","Dược phẩm và Y tế"]
     all_groups = [g for g in priority if g in raw_groups] + [g for g in raw_groups if g not in priority]
     if VINGROUP_GROUP in sect_l["group"].values:
         all_groups.append(VINGROUP_GROUP)
 
+    sectors = _records(
+        sect_l[sect_l["group"] != "VN-Index"]
+        .sort_values("median_pe", na_position="last")
+    )
+
+    # Precompute daily pe_mc, pe_ern, pb_mc, pb_bv per group right from tick_5y
+    tick_5y_c = tick_5y.copy()
+    tick_5y_c["shares"] = pd.to_numeric(tick_5y_c["shares"], errors="coerce").fillna(0)
+    tick_5y_c["close"] = pd.to_numeric(tick_5y_c["close"], errors="coerce")
+    tick_5y_c["pe"] = pd.to_numeric(tick_5y_c.get("pe", np.nan), errors="coerce")
+    tick_5y_c["pb"] = pd.to_numeric(tick_5y_c.get("pb", np.nan), errors="coerce")
+    mc_5y = tick_5y_c["close"] * tick_5y_c["shares"]
+    pe_valid = tick_5y_c["pe"].notna() & (tick_5y_c["pe"] > 0) & (tick_5y_c["shares"] > 0)
+    pb_valid = tick_5y_c["pb"].notna() & (tick_5y_c["pb"] > 0) & (tick_5y_c["shares"] > 0)
+    tick_5y_c["pe_mc"] = np.where(pe_valid, mc_5y, 0.0)
+    tick_5y_c["pe_ern"] = np.where(pe_valid, mc_5y / tick_5y_c["pe"], 0.0)
+    tick_5y_c["pb_mc"] = np.where(pb_valid, mc_5y, 0.0)
+    tick_5y_c["pb_bv"] = np.where(pb_valid, mc_5y / tick_5y_c["pb"], 0.0)
+
+    vni_sums = tick_5y_c.groupby("date")[["pe_mc", "pe_ern", "pb_mc", "pb_bv"]].sum().reset_index()
+    grp_sums = tick_5y_c.groupby(["date", "group"])[["pe_mc", "pe_ern", "pb_mc", "pb_bv"]].sum().reset_index()
+
     # ── VN-Index (full market) daily median & weighted P/E & P/B ───────────
     vni_sect = sect_5y[sect_5y["group"] == "VN-Index"].sort_values("date")
     if not vni_sect.empty:
+        vni_sect = vni_sect.merge(vni_sums, on="date", how="left")
         trend = {
             "VN-Index": {
                 "dates": vni_sect["date"].dt.strftime("%Y-%m-%d").tolist(),
@@ -156,6 +186,10 @@ def build_payload(tick_l, tick_5y, sect_l, sect_5y, latest_date):
                 "pb":    [_safe(v) for v in vni_sect["median_pb"]],
                 "w_pe":  [_safe(v) for v in vni_sect.get("weighted_pe", pd.Series([np.nan]*len(vni_sect)))],
                 "w_pb":  [_safe(v) for v in vni_sect.get("weighted_pb", pd.Series([np.nan]*len(vni_sect)))],
+                "pe_mc": [_safe(v) for v in vni_sect.get("pe_mc", pd.Series([0]*len(vni_sect)))],
+                "pe_ern": [_safe(v) for v in vni_sect.get("pe_ern", pd.Series([0]*len(vni_sect)))],
+                "pb_mc": [_safe(v) for v in vni_sect.get("pb_mc", pd.Series([0]*len(vni_sect)))],
+                "pb_bv": [_safe(v) for v in vni_sect.get("pb_bv", pd.Series([0]*len(vni_sect)))],
                 "is_index": True,
             }
         }
@@ -165,7 +199,7 @@ def build_payload(tick_l, tick_5y, sect_l, sect_5y, latest_date):
             .median()
             .reset_index()
             .sort_values("date")
-        )
+        ).merge(vni_sums, on="date", how="left")
         trend = {
             "VN-Index": {
                 "dates": vni_sub["date"].dt.strftime("%Y-%m-%d").tolist(),
@@ -173,18 +207,27 @@ def build_payload(tick_l, tick_5y, sect_l, sect_5y, latest_date):
                 "pb":    [_safe(v) for v in vni_sub["pb"]],
                 "w_pe":  [],
                 "w_pb":  [],
+                "pe_mc": [_safe(v) for v in vni_sub.get("pe_mc", pd.Series([0]*len(vni_sub)))],
+                "pe_ern": [_safe(v) for v in vni_sub.get("pe_ern", pd.Series([0]*len(vni_sub)))],
+                "pb_mc": [_safe(v) for v in vni_sub.get("pb_mc", pd.Series([0]*len(vni_sub)))],
+                "pb_bv": [_safe(v) for v in vni_sub.get("pb_bv", pd.Series([0]*len(vni_sub)))],
                 "is_index": True,
             }
         }
 
     for grp in all_groups:
         sub = sect_5y[sect_5y["group"] == grp].sort_values("date")
+        sub = sub.merge(grp_sums[grp_sums["group"] == grp], on="date", how="left")
         trend[grp] = {
             "dates": sub["date"].dt.strftime("%Y-%m-%d").tolist(),
             "pe":    [_safe(v) for v in sub["median_pe"]],
             "pb":    [_safe(v) for v in sub["median_pb"]],
             "w_pe":  [_safe(v) for v in sub.get("weighted_pe", pd.Series([np.nan]*len(sub)))],
             "w_pb":  [_safe(v) for v in sub.get("weighted_pb", pd.Series([np.nan]*len(sub)))],
+            "pe_mc": [_safe(v) for v in sub.get("pe_mc", pd.Series([0]*len(sub)))],
+            "pe_ern": [_safe(v) for v in sub.get("pe_ern", pd.Series([0]*len(sub)))],
+            "pb_mc": [_safe(v) for v in sub.get("pb_mc", pd.Series([0]*len(sub)))],
+            "pb_bv": [_safe(v) for v in sub.get("pb_bv", pd.Series([0]*len(sub)))],
             "is_index": False,
         }
 
@@ -693,6 +736,31 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
         <div class="lbl">Custom Mean (TB cộng)</div>
         <div style="font-size:.95rem;font-weight:700;color:var(--text);margin-top:6px;background:var(--pe-card-bg);padding:2px 6px;border-radius:4px" id="custom-mean-pe">Mean P/E: —</div>
         <div style="font-size:.95rem;font-weight:700;color:var(--text);margin-top:6px;background:var(--pb-card-bg);padding:2px 6px;border-radius:4px" id="custom-mean-pb">Mean P/B: —</div>
+      </div>
+    </div>
+
+    <!-- Custom Trend Chart Container -->
+    <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border)">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:14px">
+        <div>
+          <div style="font-size:1.05rem;font-weight:700;color:var(--text)">📈 Custom VN-Index 5-Year Interactive Trend (So sánh định giá với VN-Index Gốc)</div>
+          <div style="font-size:.8rem;color:var(--dim);margin-top:2px">Đường liền màu sáng là VN-Index sau khi loại trừ · Đường đứt nét là VN-Index gốc toàn thị trường</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <div style="display:flex;background:var(--card2);border:1px solid var(--border);border-radius:6px;overflow:hidden">
+            <button id="cust-btn-wpe" class="trend-btn active" style="border-radius:0;border:none;padding:5px 12px;font-size:.8rem" onclick="setCustomMetric('wpe')">Weighted P/E</button>
+            <button id="cust-btn-wpb" class="trend-btn" style="border-radius:0;border:none;padding:5px 12px;font-size:.8rem" onclick="setCustomMetric('wpb')">Weighted P/B</button>
+          </div>
+          <div style="display:flex;background:var(--card2);border:1px solid var(--border);border-radius:6px;overflow:hidden">
+            <button id="cust-range-5Y" class="trend-btn active" style="border-radius:0;border:none;padding:5px 10px;font-size:.8rem" onclick="setCustomRange('5Y')">5 Năm</button>
+            <button id="cust-range-3Y" class="trend-btn" style="border-radius:0;border:none;padding:5px 10px;font-size:.8rem" onclick="setCustomRange('3Y')">3 Năm</button>
+            <button id="cust-range-1Y" class="trend-btn" style="border-radius:0;border:none;padding:5px 10px;font-size:.8rem" onclick="setCustomRange('1Y')">1 Năm</button>
+            <button id="cust-range-YTD" class="trend-btn" style="border-radius:0;border:none;padding:5px 10px;font-size:.8rem" onclick="setCustomRange('YTD')">YTD</button>
+          </div>
+        </div>
+      </div>
+      <div style="position:relative; height:380px; width:100%">
+        <canvas id="chart-custom-trend"></canvas>
       </div>
     </div>
   </div>
@@ -1219,6 +1287,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   const ALL_DATES = buildAllDates();
 
+  // Prebuild group sum lookup by date for fast Custom Trend Chart recomputation
+  const lookupSum = {};
+  tGroups.forEach(grp => {
+    lookupSum[grp] = {};
+    if (D.trend[grp] && D.trend[grp].dates) {
+      D.trend[grp].dates.forEach((d, j) => {
+        lookupSum[grp][d] = {
+          pe_mc:  D.trend[grp].pe_mc  ? D.trend[grp].pe_mc[j]  : null,
+          pe_ern: D.trend[grp].pe_ern ? D.trend[grp].pe_ern[j] : null,
+          pb_mc:  D.trend[grp].pb_mc  ? D.trend[grp].pb_mc[j]  : null,
+          pb_bv:  D.trend[grp].pb_bv  ? D.trend[grp].pb_bv[j]  : null,
+          w_pe:   D.trend[grp].w_pe   ? D.trend[grp].w_pe[j]   : null,
+          w_pb:   D.trend[grp].w_pb   ? D.trend[grp].w_pb[j]   : null,
+        };
+      });
+    }
+  });
+
   // ── Snap a target date-string to the nearest actual date in ALL_DATES (>= target)
   function snapDate(targetStr) {
     for (let i = 0; i < ALL_DATES.length; i++) {
@@ -1495,6 +1581,174 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (elInfo) elInfo.textContent = `Đã loại trừ ${excludedGroups.size} nhóm (${D.tickers.length - valid.length} mã)`;
     }
+    updateCustomTrendChart();
+  }
+
+  let currentCustomMetric = 'wpe'; // 'wpe' or 'wpb'
+  let activeCustomRange = '5Y';
+
+  window.setCustomMetric = function(m) {
+    currentCustomMetric = ['wpe','wpb'].includes(m) ? m : 'wpe';
+    ['wpe','wpb'].forEach(id => {
+      const btn = document.getElementById('cust-btn-' + id);
+      if (btn) btn.className = 'trend-btn' + (id === m ? ' active' : '');
+    });
+    updateCustomTrendChart();
+  };
+
+  window.setCustomRange = function(period) {
+    if (!charts.customTrend) return;
+    activeCustomRange = period;
+    ['5Y','3Y','1Y','YTD'].forEach(r => {
+      const b = document.getElementById('cust-range-' + r);
+      if (b) b.className = 'trend-btn' + (r === period ? ' active' : '');
+    });
+    const now = new Date();
+    let minDate = null;
+    if (period === '3Y') {
+      minDate = new Date(now.getFullYear() - 3, now.getMonth(), now.getDate()).toISOString().split('T')[0];
+    } else if (period === '1Y') {
+      minDate = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate()).toISOString().split('T')[0];
+    } else if (period === 'YTD') {
+      minDate = `${now.getFullYear()}-01-01`;
+    }
+    if (minDate) {
+      const snapped = snapDate(minDate);
+      charts.customTrend.options.scales.x.min = snapped;
+      charts.customTrend.options.scales.x.max = ALL_DATES[ALL_DATES.length - 1];
+    } else {
+      charts.customTrend.options.scales.x.min = undefined;
+      charts.customTrend.options.scales.x.max = undefined;
+    }
+    charts.customTrend.update();
+  };
+
+  function updateCustomTrendChart() {
+    if (!document.getElementById('chart-custom-trend') || typeof Chart === 'undefined') return;
+
+    // Calculate daily custom values across ALL_DATES
+    const customData = [];
+    const origData = [];
+    ALL_DATES.forEach((d, idx) => {
+      let sumPeMc = 0, sumPeErn = 0, sumPbMc = 0, sumPbBv = 0;
+      allSectorGroups.forEach(grp => {
+        if (!excludedGroups.has(grp) && lookupSum[grp] && lookupSum[grp][d]) {
+          const e = lookupSum[grp][d];
+          if (e.pe_mc != null && !isNaN(e.pe_mc)) sumPeMc += e.pe_mc;
+          if (e.pe_ern != null && !isNaN(e.pe_ern)) sumPeErn += e.pe_ern;
+          if (e.pb_mc != null && !isNaN(e.pb_mc)) sumPbMc += e.pb_mc;
+          if (e.pb_bv != null && !isNaN(e.pb_bv)) sumPbBv += e.pb_bv;
+        }
+      });
+      if (currentCustomMetric === 'wpe') {
+        const cVal = (sumPeErn > 0) ? (sumPeMc / sumPeErn) : null;
+        customData.push(cVal != null ? parseFloat(cVal.toFixed(4)) : null);
+        const oEntry = lookupSum['VN-Index'] && lookupSum['VN-Index'][d];
+        const oVal = oEntry && (oEntry.pe_ern > 0) ? (oEntry.pe_mc / oEntry.pe_ern) : (D.trend['VN-Index']?.w_pe?.[idx] ?? null);
+        origData.push(oVal != null ? parseFloat(oVal.toFixed(4)) : null);
+      } else {
+        const cVal = (sumPbBv > 0) ? (sumPbMc / sumPbBv) : null;
+        customData.push(cVal != null ? parseFloat(cVal.toFixed(4)) : null);
+        const oEntry = lookupSum['VN-Index'] && lookupSum['VN-Index'][d];
+        const oVal = oEntry && (oEntry.pb_bv > 0) ? (oEntry.pb_mc / oEntry.pb_bv) : (D.trend['VN-Index']?.w_pb?.[idx] ?? null);
+        origData.push(oVal != null ? parseFloat(oVal.toFixed(4)) : null);
+      }
+    });
+
+    const isWPe = currentCustomMetric === 'wpe';
+    const mainColor = isWPe ? '#38bdf8' : '#f472b6';
+    const mainLabel = isWPe ? 'Custom Weighted P/E' : 'Custom Weighted P/B';
+    const origLabel = isWPe ? 'VN-Index Gốc (Weighted P/E)' : 'VN-Index Gốc (Weighted P/B)';
+
+    if (charts.customTrend) {
+      charts.customTrend.data.labels = ALL_DATES;
+      charts.customTrend.data.datasets[0].data = customData;
+      charts.customTrend.data.datasets[0].label = mainLabel;
+      charts.customTrend.data.datasets[0].borderColor = mainColor;
+      charts.customTrend.data.datasets[1].data = origData;
+      charts.customTrend.data.datasets[1].label = origLabel;
+      charts.customTrend.options.scales.y.title.text = mainLabel;
+      charts.customTrend.update();
+      return;
+    }
+
+    charts.customTrend = new Chart(document.getElementById('chart-custom-trend'), {
+      type: 'line',
+      data: {
+        labels: ALL_DATES,
+        datasets: [
+          {
+            label: mainLabel,
+            data: customData,
+            borderColor: mainColor,
+            borderWidth: 2.5,
+            tension: 0.15,
+            pointRadius: 0,
+            pointHoverRadius: 5,
+            spanGaps: true,
+          },
+          {
+            label: origLabel,
+            data: origData,
+            borderColor: tc.muted,
+            borderWidth: 1.5,
+            borderDash: [5, 5],
+            tension: 0.15,
+            pointRadius: 0,
+            pointHoverRadius: 4,
+            spanGaps: true,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        interaction: { mode: 'index', intersect: false },
+        scales: {
+          x: {
+            type: 'category',
+            ticks: { color: tc.ticks, maxRotation: 30, autoSkip: true, maxTicksLimit: 18, font: { size: 11 } },
+            grid: { color: tc.grid },
+          },
+          y: {
+            position: 'left',
+            title: { display: true, text: mainLabel, color: tc.ticks },
+            grid: { color: tc.grid },
+            ticks: { color: tc.ticks },
+            min: 0,
+          },
+        },
+        plugins: {
+          legend: { position: 'bottom', labels: { color: tc.legend, font: { size: 11 }, boxWidth: 16, padding: 12 } },
+          tooltip: {
+            callbacks: {
+              title: ctx => ctx[0]?.label || '',
+              label: ctx => {
+                const v = ctx.parsed.y;
+                return ` ${ctx.dataset.label}: ${v != null ? v.toFixed(2) : '—'}`;
+              },
+              afterBody: ctx => {
+                if (ctx.length >= 2 && ctx[0].parsed.y != null && ctx[1].parsed.y != null) {
+                  const diff = ctx[0].parsed.y - ctx[1].parsed.y;
+                  const sign = diff > 0 ? '+' : '';
+                  return [`\nChênh lệch so với VN-Index gốc: ${sign}${diff.toFixed(2)}`];
+                }
+                return [];
+              }
+            },
+          },
+          zoom: {
+            zoom: {
+              wheel: { enabled: true },
+              pinch: { enabled: true },
+              drag: { enabled: true, backgroundColor: 'rgba(56,189,248,0.12)', borderColor: 'rgba(56,189,248,0.8)', borderWidth: 1 },
+              mode: 'x',
+            },
+            pan: { enabled: true, mode: 'x' },
+          },
+        },
+      },
+    });
   }
 
 
