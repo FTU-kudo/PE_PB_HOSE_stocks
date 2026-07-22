@@ -43,27 +43,35 @@ jobs:
           pip show vnstock | grep -E "Name|Version" || echo "vnstock not installed"
 
           echo "=== vnstock imports ==="
-          python - << 'PYEOF'
-          for cls in ["Reference", "Finance", "Trading"]:
+          python -c "
+          for cls in ['Reference', 'Finance', 'Trading']:
               try:
-                  exec(f"from vnstock import {cls}; print(f'  {cls} OK')")
+                  exec(f'from vnstock import {cls}; print(f\"  {cls} OK\")')
               except Exception as e:
-                  print(f"  {cls} FAILED: {e}")
-          PYEOF
+                  print(f'  {cls} FAILED: {e}')
+          "
 
           echo "=== Check fundamentals cache ==="
           if [ -f data/fundamentals.parquet ]; then
             python -c "
-import pandas as pd
-df = pd.read_parquet('data/fundamentals.parquet')
-import os, datetime
-mtime = datetime.date.fromtimestamp(os.path.getmtime('data/fundamentals.parquet'))
-print(f'  {len(df)} tickers | cache date: {mtime}')
-print(f'  EPS valid: {df[\"eps_annual\"].notna().sum()} | BVPS valid: {df[\"bvps\"].notna().sum()}')
-"
+          import pandas as pd, os, datetime
+          df = pd.read_parquet('data/fundamentals.parquet')
+          mtime = datetime.date.fromtimestamp(os.path.getmtime('data/fundamentals.parquet'))
+          print(f'  {len(df)} tickers | cache date: {mtime}')
+          print(f'  EPS valid: {df[\"eps_annual\"].notna().sum()} | BVPS valid: {df[\"bvps\"].notna().sum()}')
+          "
           else
-            echo "  ERROR: data/fundamentals.parquet not found — run Weekly Fundamentals first!"
-            exit 1
+            echo "  ⚠️ data/fundamentals.parquet not found — will auto-fetch fundamentals in next step."
+          fi
+
+      # ── Self-healing fallback: ensure fundamentals exist ─────────────────────
+      - name: Ensure fundamentals cache exists
+        env:
+          VNSTOCK_API_KEY: ${{ secrets.VNSTOCK_API_KEY }}
+        run: |
+          if [ ! -f data/fundamentals.parquet ]; then
+            echo "Fundamentals cache missing. Auto-running weekly fundamentals fetch..."
+            python scripts/fetch_fundamentals.py
           fi
 
       # ── Main scripts ─────────────────────────────────────────────────────────
@@ -102,3 +110,4 @@ print(f'  EPS valid: {df[\"eps_annual\"].notna().sum()} | BVPS valid: {df[\"bvps
           else
             echo "⚠️ No snapshot found for ${DATE}" >> $GITHUB_STEP_SUMMARY
           fi
+

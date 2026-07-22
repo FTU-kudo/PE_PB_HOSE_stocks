@@ -46,19 +46,13 @@ jobs:
           pip show vnstock | grep -E "Name|Version|Location" || echo "vnstock not found!"
 
           echo "=== Test vnstock top-level imports ==="
-          python - << 'PYEOF'
-          try:
-              import vnstock
-              print(f"  vnstock {vnstock.__version__} imported OK")
-          except Exception as e:
-              print(f"  ERROR: {e}")
-
-          for cls in ["Reference", "Finance", "Trading"]:
+          python -c "
+          for cls in ['Reference', 'Finance', 'Trading']:
               try:
-                  exec(f"from vnstock import {cls}; print(f'  {cls} OK')")
+                  exec(f'from vnstock import {cls}; print(f\"  {cls} OK\")')
               except Exception as e:
-                  print(f"  {cls} FAILED: {e}")
-          PYEOF
+                  print(f'  {cls} FAILED: {e}')
+          "
 
           echo "=== Test scripts.config import ==="
           python -c "
@@ -100,18 +94,18 @@ jobs:
           echo "### 🔄 Weekly Fundamentals — ${DATE}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           if [ -f data/fundamentals.parquet ]; then
-            python - << 'PYEOF' >> $GITHUB_STEP_SUMMARY
-import pandas as pd
-df = pd.read_parquet('data/fundamentals.parquet')
-valid_eps  = df['eps_annual'].notna().sum()
-valid_bvps = df['bvps'].notna().sum()
-total      = len(df)
-print(f"| Metric | Value |")
-print(f"|--------|-------|")
-print(f"| Total tickers | {total} |")
-print(f"| Valid EPS  | {valid_eps} ({valid_eps/total*100:.0f}%) |")
-print(f"| Valid BVPS | {valid_bvps} ({valid_bvps/total*100:.0f}%) |")
-PYEOF
+            python -c "
+          import pandas as pd
+          df = pd.read_parquet('data/fundamentals.parquet')
+          valid_eps  = df['eps_annual'].notna().sum()
+          valid_bvps = df['bvps'].notna().sum()
+          total      = len(df)
+          print(f'| Metric | Value |')
+          print(f'|--------|-------|')
+          print(f'| Total tickers | {total} |')
+          print(f'| Valid EPS  | {valid_eps} ({valid_eps/total*100:.0f}%) |')
+          print(f'| Valid BVPS | {valid_bvps} ({valid_bvps/total*100:.0f}%) |')
+          " >> $GITHUB_STEP_SUMMARY
           else
             echo "⚠️ data/fundamentals.parquet not found after fetch." >> $GITHUB_STEP_SUMMARY
           fi
