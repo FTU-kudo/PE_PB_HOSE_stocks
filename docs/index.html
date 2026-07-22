@@ -375,7 +375,7 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
     <div class="status-item">
       <span class="status-icon">🔄</span>
       <span class="status-label">Dữ liệu cập nhật:</span>
-      <strong class="status-val" id="banner-updated">01:48:10, Ngày 23/07/2026 (UTC+7)</strong>
+      <strong class="status-val" id="banner-updated">01:55:17, Ngày 23/07/2026 (UTC+7)</strong>
     </div>
     <div class="status-divider"></div>
     <div class="status-item">
@@ -491,31 +491,43 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
         <div style="font-size:.95rem;font-weight:700;color:var(--text);margin-top:6px;background:var(--pb-card-bg);padding:2px 6px;border-radius:4px" id="custom-mean-pb">Mean P/B: —</div>
       </div>
     </div>
+  </div>
 
-    <!-- Custom Trend Chart Container -->
-    <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border)">
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:14px">
-        <div>
-          <div style="font-size:1.05rem;font-weight:700;color:var(--text)">📈 Custom VN-Index 5-Year Interactive Trend (So sánh định giá với VN-Index Gốc)</div>
-          <div style="font-size:.8rem;color:var(--dim);margin-top:2px">Đường liền màu sáng là VN-Index sau khi loại trừ · Đường đứt nét là VN-Index gốc toàn thị trường</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-          <div style="display:flex;background:var(--card2);border:1px solid var(--border);border-radius:6px;overflow:hidden">
-            <button id="cust-btn-wpe" class="trend-btn active" style="border-radius:0;border:none;padding:5px 12px;font-size:.8rem" onclick="setCustomMetric('wpe')">Weighted P/E</button>
-            <button id="cust-btn-wpb" class="trend-btn" style="border-radius:0;border:none;padding:5px 12px;font-size:.8rem" onclick="setCustomMetric('wpb')">Weighted P/B</button>
-          </div>
-          <div style="display:flex;background:var(--card2);border:1px solid var(--border);border-radius:6px;overflow:hidden">
-            <button id="cust-range-5Y" class="trend-btn active" style="border-radius:0;border:none;padding:5px 10px;font-size:.8rem" onclick="setCustomRange('5Y')">5 Năm</button>
-            <button id="cust-range-3Y" class="trend-btn" style="border-radius:0;border:none;padding:5px 10px;font-size:.8rem" onclick="setCustomRange('3Y')">3 Năm</button>
-            <button id="cust-range-1Y" class="trend-btn" style="border-radius:0;border:none;padding:5px 10px;font-size:.8rem" onclick="setCustomRange('1Y')">1 Năm</button>
-            <button id="cust-range-YTD" class="trend-btn" style="border-radius:0;border:none;padding:5px 10px;font-size:.8rem" onclick="setCustomRange('YTD')">YTD</button>
-          </div>
-        </div>
+  <!-- ── Custom VN-Index 5-Year Trend ────────────────────────────────────── -->
+  <div class="card mb-8">
+    <div class="sec-title">📈 Custom VN-Index 5-Year Interactive Trend (So sánh định giá với VN-Index Gốc)</div>
+    <div class="sec-sub">Đường liền màu sáng là VN-Index sau khi loại trừ · Đường đứt nét là VN-Index gốc toàn thị trường · Điều chỉnh thời gian tùy ý trong vòng 5 năm</div>
+
+    <!-- Controls Bar -->
+    <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:var(--card2);padding:10px 14px;border-radius:8px;border:1px solid var(--border);margin-bottom:14px">
+      <!-- Metric -->
+      <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+        <span style="font-size:.75rem;font-weight:700;color:var(--muted)">Metric:</span>
+        <button class="trend-btn active" id="cust-btn-wpe" onclick="setCustomMetric('wpe')">Weighted P/E</button>
+        <button class="trend-btn" id="cust-btn-wpb" onclick="setCustomMetric('wpb')">Weighted P/B</button>
       </div>
-      <div style="position:relative; height:380px; width:100%">
-        <canvas id="chart-custom-trend"></canvas>
+      <!-- Period presets -->
+      <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+        <span style="font-size:.75rem;font-weight:700;color:var(--muted)">Giai đoạn:</span>
+        <button class="trend-btn active" id="cust-range-5Y" onclick="setCustomRange('5Y')">5 Năm (Tất cả)</button>
+        <button class="trend-btn" id="cust-range-3Y" onclick="setCustomRange('3Y')">3 Năm</button>
+        <button class="trend-btn" id="cust-range-1Y" onclick="setCustomRange('1Y')">1 Năm</button>
+        <button class="trend-btn" id="cust-range-YTD" onclick="setCustomRange('YTD')">YTD</button>
+      </div>
+      <!-- Custom date range -->
+      <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+        <span style="font-size:.75rem;color:var(--muted)">Từ:</span>
+        <input type="date" id="cust-date-from" class="trend-input" onchange="applyCustomDateRange()"/>
+        <span style="font-size:.75rem;color:var(--muted)">Đến:</span>
+        <input type="date" id="cust-date-to" class="trend-input" onchange="applyCustomDateRange()"/>
+        <button class="trend-btn" onclick="resetCustomZoom()">↺ Reset</button>
       </div>
     </div>
+
+    <canvas id="chart-custom-trend" style="max-height:400px"></canvas>
+    <p id="cust-trend-msg" style="color:var(--dim);font-size:.72rem;margin-top:8px">
+      💡 Kéo ngang để zoom · Cuộn chuột / pinch để điều chỉnh thời gian xem
+    </p>
   </div>
 
   <!-- ── Sector charts ──────────────────────────────────────────────────── -->
@@ -1365,15 +1377,38 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (period === 'YTD') {
       minDate = `${now.getFullYear()}-01-01`;
     }
-    if (minDate) {
-      const snapped = snapDate(minDate);
-      charts.customTrend.options.scales.x.min = snapped;
-      charts.customTrend.options.scales.x.max = ALL_DATES[ALL_DATES.length - 1];
-    } else {
-      charts.customTrend.options.scales.x.min = undefined;
-      charts.customTrend.options.scales.x.max = undefined;
-    }
+    const snappedMin = minDate ? snapDate(minDate) : undefined;
+    charts.customTrend.options.scales.x.min = snappedMin;
+    charts.customTrend.options.scales.x.max = undefined;
     charts.customTrend.update();
+    if (document.getElementById('cust-date-from')) document.getElementById('cust-date-from').value = snappedMin || '';
+    if (document.getElementById('cust-date-to'))   document.getElementById('cust-date-to').value   = '';
+  };
+
+  window.applyCustomDateRange = function() {
+    if (!charts.customTrend) return;
+    const f = document.getElementById('cust-date-from').value;
+    const t = document.getElementById('cust-date-to').value;
+    charts.customTrend.options.scales.x.min = f ? snapDate(f) : undefined;
+    charts.customTrend.options.scales.x.max = t ? snapDate(t) : undefined;
+    charts.customTrend.update();
+    ['5Y','3Y','1Y','YTD'].forEach(r => {
+      const b = document.getElementById('cust-range-' + r);
+      if (b) b.className = 'trend-btn';
+    });
+  };
+
+  window.resetCustomZoom = function() {
+    if (!charts.customTrend) return;
+    if (charts.customTrend.resetZoom) charts.customTrend.resetZoom();
+    charts.customTrend.options.scales.x.min = undefined;
+    charts.customTrend.options.scales.x.max = undefined;
+    charts.customTrend.update();
+    const fromEl = document.getElementById('cust-date-from');
+    const toEl   = document.getElementById('cust-date-to');
+    if (fromEl) fromEl.value = '';
+    if (toEl)   toEl.value   = '';
+    window.setCustomRange('5Y');
   };
 
   function updateCustomTrendChart() {
