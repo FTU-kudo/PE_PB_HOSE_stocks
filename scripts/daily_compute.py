@@ -8,17 +8,17 @@ Flow
 2.  Fetch today's close prices for all HOSE tickers
     via KBS price_board (batch = 50 tickers / call).
 3.  Compute:
-        PE_daily = close_price  / eps_annual
+        PE_daily = close_price  / eps_ttm
         PB_daily = close_price  / bvps
     Both capped to [PE_MIN, PE_MAX] and [PB_MIN, PB_MAX].
 4.  Sector aggregation (median, mean, IQR) per group.
 5.  Append to ticker_history.parquet and sector_history.parquet.
 6.  Save today's CSV snapshot for transparency.
 
-Why annual EPS?
+Why TTM EPS?
   VAS quarterly income statements are year-to-date cumulative (Q2 IS = H1 P&L).
   Deaccumulating to period-specific EPS before TTM summation is complex and
-  error-prone in an automated pipeline. Using the last audited annual EPS is
+  error-prone in an automated pipeline. Using the last audited TTM EPS is
   safer for market-level P/E analysis. (TTM can be added later via IS pipeline.)
 """
 
@@ -32,6 +32,13 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+
+# Load .env file if present (contains VNSTOCK_API_KEY for higher rate limits)
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # dotenv not installed, rely on system env vars
 
 warnings.filterwarnings("ignore")
 
@@ -194,7 +201,7 @@ def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
     """
     Merge daily close with cached EPS / BVPS / shares and compute PE / PB.
 
-    PE = close / eps_annual
+    PE = close / eps_ttm
     PB = close / bvps
 
     Both are windsorised to [PE_MIN, PE_MAX] and [PB_MIN, PB_MAX]:
@@ -204,7 +211,7 @@ def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
     df = close.rename("close").reset_index()
     df.columns = ["ticker", "close"]
 
-    fund_cols = ["eps_annual", "bvps", "sector", "industry", "group"]
+    fund_cols = ["eps_ttm", "bvps", "sector", "industry", "group"]
     if "shares" in fundamentals.columns:
         fund_cols.append("shares")
     fund = fundamentals[fund_cols].copy()
@@ -236,14 +243,14 @@ def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
     mask = df["ticker"].isin(VINGROUP_TICKERS)
     df.loc[mask, "group"] = VINGROUP_GROUP
 
-    df["eps_annual"] = pd.to_numeric(df["eps_annual"], errors="coerce")
+    df["eps_ttm"] = pd.to_numeric(df["eps_ttm"], errors="coerce")
     df["bvps"]       = pd.to_numeric(df["bvps"],       errors="coerce")
 
     # Normalize close price to full VND if KBS or VCI returned prices in thousands
     df["close"] = np.where((df["close"] > 0) & (df["close"] < 1000), df["close"] * 1000, df["close"])
 
     # PE = Price / EPS   (EPS must be positive — loss-making → NaN)
-    df["pe"] = np.where(df["eps_annual"] > 0, df["close"] / df["eps_annual"], np.nan)
+    df["pe"] = np.where(df["eps_ttm"] > 0, df["close"] / df["eps_ttm"], np.nan)
     # PB = Price / BVPS
     df["pb"] = np.where(df["bvps"] > 0, df["close"] / df["bvps"], np.nan)
 
@@ -262,8 +269,9 @@ def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
     log.info(f"PE/PB computed | valid PE: {n_pe}/{len(df)} | valid PB: {n_pb}/{len(df)}")
 
     ret_cols = ["date", "ticker", "close", "pe", "pb", "sector", "industry", "group"]
-    if "shares" in df.columns:
-        ret_cols.append("shares")
+    for col in ["shares", "eps_ttm", "bvps"]:
+        if col in df.columns:
+            ret_cols.append(col)
     return df[ret_cols]
 
 
@@ -283,7 +291,7 @@ def aggregate_sectors(snapshot: pd.DataFrame) -> pd.DataFrame:
     pe = snapshot["pe"].dropna()
     pb = snapshot["pb"].dropna()
     pe_val = snapshot[snapshot["pe"].notna() & (snapshot["shares"] > 0)]
-    w_pe = (pe_val["close"] * pe_val["shares"]).sum() / (pe_val["eps_annual"] * pe_val["shares"]).sum() if len(pe_val) > 0 and (pe_val["eps_annual"] * pe_val["shares"]).sum() > 0 else np.nan
+    w_pe = (pe_val["close"] * pe_val["shares"]).sum() / (pe_val["eps_ttm"] * pe_val["shares"]).sum() if len(pe_val) > 0 and (pe_val["eps_ttm"] * pe_val["shares"]).sum() > 0 else np.nan
     pb_val = snapshot[snapshot["pb"].notna() & (snapshot["shares"] > 0)]
     w_pb = (pb_val["close"] * pb_val["shares"]).sum() / (pb_val["bvps"] * pb_val["shares"]).sum() if len(pb_val) > 0 and (pb_val["bvps"] * pb_val["shares"]).sum() > 0 else np.nan
 
@@ -310,7 +318,7 @@ def aggregate_sectors(snapshot: pd.DataFrame) -> pd.DataFrame:
         pe = grp["pe"].dropna()
         pb = grp["pb"].dropna()
         pe_val = grp[grp["pe"].notna() & (grp["shares"] > 0)]
-        w_pe = (pe_val["close"] * pe_val["shares"]).sum() / (pe_val["eps_annual"] * pe_val["shares"]).sum() if len(pe_val) > 0 and (pe_val["eps_annual"] * pe_val["shares"]).sum() > 0 else np.nan
+        w_pe = (pe_val["close"] * pe_val["shares"]).sum() / (pe_val["eps_ttm"] * pe_val["shares"]).sum() if len(pe_val) > 0 and (pe_val["eps_ttm"] * pe_val["shares"]).sum() > 0 else np.nan
         pb_val = grp[grp["pb"].notna() & (grp["shares"] > 0)]
         w_pb = (pb_val["close"] * pb_val["shares"]).sum() / (pb_val["bvps"] * pb_val["shares"]).sum() if len(pb_val) > 0 and (pb_val["bvps"] * pb_val["shares"]).sum() > 0 else np.nan
 
@@ -330,18 +338,6 @@ def aggregate_sectors(snapshot: pd.DataFrame) -> pd.DataFrame:
             "p75_pe":      pe.quantile(.75) if len(pe) else np.nan,
             "p25_pb":      pb.quantile(.25) if len(pb) else np.nan,
             "p75_pb":      pb.quantile(.75) if len(pb) else np.nan,
-        })
-    return pd.DataFrame(rows).sort_values("median_pe").reset_index(drop=True)grp),
-            "valid_pe":  len(pe),
-            "valid_pb":  len(pb),
-            "median_pe": pe.median()      if len(pe) else np.nan,
-            "median_pb": pb.median()      if len(pb) else np.nan,
-            "mean_pe":   pe.mean()        if len(pe) else np.nan,
-            "mean_pb":   pb.mean()        if len(pb) else np.nan,
-            "p25_pe":    pe.quantile(.25) if len(pe) else np.nan,
-            "p75_pe":    pe.quantile(.75) if len(pe) else np.nan,
-            "p25_pb":    pb.quantile(.25) if len(pb) else np.nan,
-            "p75_pb":    pb.quantile(.75) if len(pb) else np.nan,
         })
     return pd.DataFrame(rows).sort_values("median_pe").reset_index(drop=True)
 

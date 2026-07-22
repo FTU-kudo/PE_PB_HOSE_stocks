@@ -32,7 +32,7 @@ def aggregate_snapshot(df: pd.DataFrame) -> pd.DataFrame:
 
         pe_valid = dt_df[dt_df["pe"].notna() & (dt_df["shares"] > 0)]
         sum_pe_mc  = (pe_valid["close"] * pe_valid["shares"]).sum()
-        sum_pe_ern = (pe_valid["eps_annual"] * pe_valid["shares"]).sum()
+        sum_pe_ern = (pe_valid["eps_ttm"] * pe_valid["shares"]).sum()
         w_pe = sum_pe_mc / sum_pe_ern if len(pe_valid) > 0 and sum_pe_ern > 0 else np.nan
 
         pb_valid = dt_df[dt_df["pb"].notna() & (dt_df["shares"] > 0)]
@@ -65,7 +65,7 @@ def aggregate_snapshot(df: pd.DataFrame) -> pd.DataFrame:
 
         pe_valid = grp[grp["pe"].notna() & (grp["shares"] > 0)]
         sum_pe_mc  = (pe_valid["close"] * pe_valid["shares"]).sum()
-        sum_pe_ern = (pe_valid["eps_annual"] * pe_valid["shares"]).sum()
+        sum_pe_ern = (pe_valid["eps_ttm"] * pe_valid["shares"]).sum()
         w_pe = sum_pe_mc / sum_pe_ern if len(pe_valid) > 0 and sum_pe_ern > 0 else np.nan
 
         pb_valid = grp[grp["pb"].notna() & (grp["shares"] > 0)]
@@ -120,7 +120,7 @@ def main():
     fund_full.loc[mask_vin_fund, "group"] = VINGROUP_GROUP
     fund_full.to_parquet(FUND_FILE)
 
-    fund_cols = ["ticker", "eps_annual", "bvps", "sector", "industry", "group"]
+    fund_cols = ["ticker", "eps_ttm", "bvps", "sector", "industry", "group"]
     if "shares" in fund_full.columns:
         fund_cols.append("shares")
     fund = fund_full[fund_cols]
@@ -154,11 +154,11 @@ def main():
     mask = df["ticker"].isin(VINGROUP_TICKERS)
     df.loc[mask, "group"] = VINGROUP_GROUP
 
-    df["eps_annual"] = pd.to_numeric(df["eps_annual"], errors="coerce")
+    df["eps_ttm"] = pd.to_numeric(df["eps_ttm"], errors="coerce")
     df["bvps"]       = pd.to_numeric(df["bvps"],       errors="coerce")
 
     print("Recomputing P/E and P/B ratios...")
-    df["pe"] = np.where(df["eps_annual"] > 0, df["close"] / df["eps_annual"], np.nan)
+    df["pe"] = np.where(df["eps_ttm"] > 0, df["close"] / df["eps_ttm"], np.nan)
     df["pb"] = np.where(df["bvps"] > 0, df["close"] / df["bvps"], np.nan)
 
     print("Applying guard-rails (filtering extreme outliers, exempting Vingroup Ecosystem from PE_MAX/PB_MAX)...")

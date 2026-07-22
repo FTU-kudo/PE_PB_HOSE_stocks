@@ -1,19 +1,22 @@
 """
 Weekly fundamentals refresh  (run every Sunday ~01:00 UTC via GitHub Actions).
-For each HOSE ticker, fetches Finance.ratio(period='year') and extracts:
-  - eps_annual : EPS of the most recent complete fiscal year
-  - bvps       : Book Value Per Share from the most recent annual report
+For each HOSE ticker fetches:
+  - eps_ttm : TTM EPS = sum of net profit (isa22) from the 4 most recent
+              standalone quarters via Finance.income_statement(period='quarter',
+              source='VCI'), divided by shares outstanding.
+              Fallback: KBS Finance.ratio(period='quarter') trailing_eps field.
+  - bvps    : Book Value Per Share from KBS Finance.ratio(period='year').
 
 Design notes
 ------------
-- We use ANNUAL EPS (not TTM) to avoid cumulative-quarter deaccumulation.
-  VAS quarterly IS statements are year-to-date cumulative, so Q2 IS contains
-  H1 revenue. Using the last full fiscal year is safe, audited, and avoids
-  that deaccumulation trap.
-- BVPS comes from the most recent annual balance sheet ratio row.
-- Banks / financial firms follow SBV Circular 49, not Circular 200, so their
-  equity structure differs — but Finance.ratio() handles this at the API level.
-- Results are written to data/fundamentals.parquet (ticker as index).
+- VCI income_statement(period='quarter') returns standalone quarter values
+  (already deaccumulated from VAS YTD cumulative), making TTM summation
+  straightforward: TTM = Q(t) + Q(t-1) + Q(t-2) + Q(t-3).
+- VCI updates faster than KBS after each quarterly BCTC publication, so
+  TTM values stay current within days of a new report.
+- BVPS comes from the most recent KBS annual ratio row (balance sheet changes
+  are slower; annual is sufficient).
+- Results are written to data/fundamentals.parquet.
 """
 
 import os
@@ -26,6 +29,13 @@ from datetime import date
 
 import numpy as np
 import pandas as pd
+
+# Load .env file if present (contains VNSTOCK_API_KEY for higher rate limits)
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # dotenv not installed, rely on system env vars
 
 warnings.filterwarnings("ignore")
 
@@ -183,83 +193,127 @@ def get_sector_map(tickers: list[str]) -> pd.DataFrame:
 
 
 # ── Fundamentals fetch ────────────────────────────────────────────────────────
-def _extract_eps_bvps(ratio_df: pd.DataFrame, ticker: str) -> dict:
+def _extract_bvps(ratio_df: pd.DataFrame, ticker: str) -> float:
     """
-    From a Finance.ratio(period='year') DataFrame, extract the most recent:
-      eps_annual  – EPS of the last complete fiscal year
-      bvps        – Book Value Per Share (last annual)
-    Returns dict with those two keys (NaN if not found).
+    From a Finance.ratio(period='year') DataFrame, extract the most recent
+    BVPS (Book Value Per Share). Returns NaN if not found.
     """
-    null = {"ticker": ticker, "eps_annual": np.nan, "bvps": np.nan, "fetched_date": str(date.today())}
     if ratio_df is None or ratio_df.empty:
-        return null
-
-    eps = np.nan
-    bvps = np.nan
+        return np.nan
 
     item_col = next((c for c in ratio_df.columns if c.lower() in ("item", "chi_tieu", "name", "metric")), None)
+    meta_lower = {"item", "item_id", "id", "symbol", "ticker", "item_en", "period"}
+    val_cols = [c for c in ratio_df.columns if c.lower() not in meta_lower]
+
     if item_col is not None:
-        val_cols = [c for c in ratio_df.columns if c.lower() not in ("item", "item_id", "id", "symbol", "ticker")]
         for _, row in ratio_df.iterrows():
-            item_str = str(row[item_col]).lower()
-            is_eps = "eps" in item_str or "thu nhập trên mỗi cổ phần" in item_str
-            is_bvps = "bvps" in item_str or "giá trị sổ sách" in item_str
-            if not (is_eps or is_bvps):
+            item_str = str(row.get("item", "")).lower()
+            item_id  = str(row.get("item_id", "")).lower()
+            is_bvps  = ("book_value_per_share" in item_id or "bvps" in item_id
+                        or "bvps" in item_str or "giá trị sổ sách" in item_str)
+            if not is_bvps:
                 continue
-            val = np.nan
             for vc in val_cols:
                 v = pd.to_numeric(row[vc], errors="coerce")
                 if pd.notna(v) and v != 0:
-                    val = v
-                    break
-            if is_eps and pd.isna(eps):
-                eps = val
-            elif is_bvps and pd.isna(bvps):
-                bvps = val
+                    return float(v)
     else:
         cols_lower = {c.lower(): c for c in ratio_df.columns}
-        eps_col  = next((cols_lower[k] for k in cols_lower if "eps" in k or "earningspershare" in k), None)
-        bvps_col = next((cols_lower[k] for k in cols_lower if "bvps" in k or "bookvalue" in k or "nav" in k), None)
-        for idx in range(len(ratio_df) - 1, -1, -1):
-            row = ratio_df.iloc[idx]
-            if pd.isna(eps) and eps_col:
-                v = pd.to_numeric(row[eps_col], errors="coerce")
+        bvps_col = next((cols_lower[k] for k in cols_lower
+                         if "bvps" in k or "bookvalue" in k or "nav" in k), None)
+        if bvps_col:
+            for idx in range(len(ratio_df) - 1, -1, -1):
+                v = pd.to_numeric(ratio_df.iloc[idx][bvps_col], errors="coerce")
                 if pd.notna(v) and v != 0:
-                    eps = v
-            if pd.isna(bvps) and bvps_col:
-                v = pd.to_numeric(row[bvps_col], errors="coerce")
-                if pd.notna(v) and v != 0:
-                    bvps = v
-            if pd.notna(eps) and pd.notna(bvps):
-                break
+                    return float(v)
+    return np.nan
 
-    if not np.isnan(eps) and eps < 0:
-        eps = np.nan
-    return {"ticker": ticker, "eps_annual": eps, "bvps": bvps, "fetched_date": str(date.today())}
+
+def _compute_ttm_eps(ticker: str, shares: float) -> float:
+    """
+    Compute TTM EPS from VCI income_statement(period='quarter').
+
+    VCI returns standalone-quarter profits (already deaccumulated from VAS
+    YTD cumulative), so TTM = sum of the 4 most recent 'isa22' values
+    (net profit attributable to parent company shareholders), divided by shares.
+
+    Fallback: KBS Finance.ratio(period='quarter') trailing_eps field.
+    Returns NaN if both sources fail or profit is negative / zero.
+    """
+    from vnstock import Finance
+
+    if not (pd.notna(shares) and shares > 0):
+        return np.nan
+
+    # ── Primary: VCI income_statement quarterly ───────────────────────────────
+    try:
+        fin_vci = Finance(symbol=ticker, source="VCI")
+        is_df = fin_vci.income_statement(period="quarter", lang="en")
+        if is_df is not None and not is_df.empty:
+            meta_cols = {"item", "item_en", "item_id", "period"}
+            val_cols  = [c for c in is_df.columns if c not in meta_cols]
+
+            # isa22 = net profit attributable to parent company shareholders
+            pat = is_df[is_df["item_id"].astype(str).str.lower() == "isa22"]
+            if not pat.empty and len(val_cols) >= 4:
+                recent_4 = val_cols[:4]   # columns are already sorted newest-first
+                vals = pd.to_numeric(pat[recent_4].iloc[0], errors="coerce")
+                if vals.notna().sum() == 4:
+                    ttm_profit = float(vals.sum())
+                    if ttm_profit > 0:
+                        eps = ttm_profit / shares
+                        log.debug(f"  {ticker}: VCI TTM EPS = {eps:,.0f} (profit {ttm_profit/1e9:.1f}B)")
+                        return eps
+    except Exception as exc:
+        log.debug(f"  {ticker}: VCI income_statement failed – {exc}")
+
+    # ── Fallback: KBS ratio quarter trailing_eps ──────────────────────────────
+    try:
+        fin_kbs = Finance(symbol=ticker, source="KBS")
+        r = fin_kbs.ratio(period="quarter", lang="en")
+        if r is not None and not r.empty:
+            meta_cols = {"item", "item_en", "item_id", "period"}
+            val_cols  = [c for c in r.columns if c not in meta_cols]
+            trail = r[r["item_id"].astype(str).str.lower() == "trailing_eps"]
+            if not trail.empty and val_cols:
+                v = pd.to_numeric(trail[val_cols[0]].iloc[0], errors="coerce")
+                if pd.notna(v) and v > 0:
+                    log.debug(f"  {ticker}: KBS trailing_eps fallback = {v:,.0f}")
+                    return float(v)
+    except Exception as exc:
+        log.debug(f"  {ticker}: KBS trailing_eps fallback failed – {exc}")
+
+    return np.nan
 
 
 def fetch_all_fundamentals(tickers: list[str]) -> pd.DataFrame:
     """
-    Batch-fetch Finance.ratio(period='year') and Company.overview() for all tickers.
-    Returns DataFrame indexed by ticker with eps_annual, bvps, shares columns.
+    Batch-fetch fundamentals for all tickers.
+    For each ticker:
+      - eps_ttm : TTM EPS from VCI income_statement quarterly (isa22 × 4 quarters)
+                  Fallback: KBS ratio quarterly trailing_eps
+      - bvps    : Book Value Per Share from KBS ratio annual
+      - shares  : Outstanding shares from Company.overview()
+    Returns DataFrame with those columns.
     """
     from vnstock import Finance, Company
     records = []
     n = len(tickers)
     for i, ticker in enumerate(tickers, 1):
         if i % 25 == 0 or i == 1:
-            log.info(f"  Fetching ratio/shares {i}/{n}: {ticker}")
-        rec = {"ticker": ticker, "eps_annual": np.nan, "bvps": np.nan, "shares": np.nan,
+            log.info(f"  Fetching fundamentals {i}/{n}: {ticker}")
+        rec = {"ticker": ticker, "eps_ttm": np.nan, "bvps": np.nan, "shares": np.nan,
                "fetched_date": str(date.today())}
+
+        # ── 1. BVPS from KBS annual ratio ─────────────────────────────────────
         try:
             fin = Finance(symbol=ticker, source="KBS")
             ratio_df = fin.ratio(period="year", lang="en")
-            extracted = _extract_eps_bvps(ratio_df, ticker)
-            rec["eps_annual"] = extracted["eps_annual"]
-            rec["bvps"] = extracted["bvps"]
+            rec["bvps"] = _extract_bvps(ratio_df, ticker)
         except Exception as exc:
-            log.debug(f"  {ticker}: ratio failed – {exc}")
+            log.debug(f"  {ticker}: KBS ratio(year) failed – {exc}")
 
+        # ── 2. Shares outstanding ──────────────────────────────────────────────
         try:
             for src in ["KBS", "VCI"]:
                 try:
@@ -275,14 +329,17 @@ def fetch_all_fundamentals(tickers: list[str]) -> pd.DataFrame:
         except Exception as exc:
             log.debug(f"  {ticker}: shares failed – {exc}")
 
+        # ── 3. TTM EPS (VCI primary, KBS fallback) ─────────────────────────────
+        rec["eps_ttm"] = _compute_ttm_eps(ticker, rec["shares"])
+
         records.append(rec)
         time.sleep(FUND_BATCH_SLEEP)
 
     df = pd.DataFrame(records).set_index("ticker")
-    valid_eps  = df["eps_annual"].notna().sum()
+    valid_eps  = df["eps_ttm"].notna().sum()
     valid_bvps = df["bvps"].notna().sum()
     valid_sh   = df["shares"].notna().sum()
-    log.info(f"Fundamentals fetched: {len(df)} tickers | EPS valid: {valid_eps} | BVPS valid: {valid_bvps} | Shares valid: {valid_sh}")
+    log.info(f"Fundamentals fetched: {len(df)} tickers | TTM EPS valid: {valid_eps} | BVPS valid: {valid_bvps} | Shares valid: {valid_sh}")
     return df
 
 
@@ -290,7 +347,7 @@ def fetch_all_fundamentals(tickers: list[str]) -> pd.DataFrame:
 def main():
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-    log.info("=== Weekly fundamentals refresh started ===")
+    log.info("=== Weekly fundamentals refresh (TTM EPS) started ===")
     register_vnstock()
 
     tickers    = get_hose_tickers()
@@ -305,7 +362,7 @@ def main():
     ).drop_duplicates(subset=["ticker"])
     merged.to_parquet(FUND_FILE, index=False)
     log.info(f"Fundamentals saved -> {FUND_FILE}  ({len(merged)} rows)")
-    log.info("=== Weekly fundamentals refresh complete ===")
+    log.info("=== Weekly fundamentals refresh (TTM EPS) complete ===")
 
 
 if __name__ == "__main__":

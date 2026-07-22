@@ -57,7 +57,7 @@ def load_data():
         fund = pd.read_parquet(FUND_FILE)
         if "ticker" in fund.columns:
             fund_cols = ["ticker"]
-            for c in ["eps_annual", "bvps", "shares"]:
+            for c in ["eps_ttm", "bvps", "shares"]:
                 if c in fund.columns and c not in tick_h.columns:
                     fund_cols.append(c)
             if len(fund_cols) > 1:
@@ -65,7 +65,7 @@ def load_data():
         else:
             fund_copy = fund.reset_index()
             fund_cols = ["ticker"]
-            for c in ["eps_annual", "bvps", "shares"]:
+            for c in ["eps_ttm", "bvps", "shares"]:
                 if c in fund_copy.columns and c not in tick_h.columns:
                     fund_cols.append(c)
             if len(fund_cols) > 1:
@@ -96,9 +96,9 @@ def build_payload(tick_l, tick_5y, sect_l, sect_5y, latest_date):
     if "shares" not in tick_l.columns:
         tick_l["shares"] = np.nan
     tick_l["shares"] = pd.to_numeric(tick_l["shares"], errors="coerce").fillna(0)
-    if "eps_annual" not in tick_l.columns:
-        tick_l["eps_annual"] = np.nan
-    tick_l["eps_annual"] = pd.to_numeric(tick_l["eps_annual"], errors="coerce")
+    if "eps_ttm" not in tick_l.columns:
+        tick_l["eps_ttm"] = np.nan
+    tick_l["eps_ttm"] = pd.to_numeric(tick_l["eps_ttm"], errors="coerce")
     if "bvps" not in tick_l.columns:
         tick_l["bvps"] = np.nan
     tick_l["bvps"] = pd.to_numeric(tick_l["bvps"], errors="coerce")
@@ -108,7 +108,7 @@ def build_payload(tick_l, tick_5y, sect_l, sect_5y, latest_date):
     all_pb = tick_l["pb"].dropna()
 
     pe_val_m = tick_l[tick_l["pe"].notna() & (tick_l["shares"] > 0)]
-    w_pe_m = (pe_val_m["close"] * pe_val_m["shares"]).sum() / (pe_val_m["eps_annual"] * pe_val_m["shares"]).sum() if len(pe_val_m) > 0 and (pe_val_m["eps_annual"] * pe_val_m["shares"]).sum() > 0 else np.nan
+    w_pe_m = (pe_val_m["close"] * pe_val_m["shares"]).sum() / (pe_val_m["eps_ttm"] * pe_val_m["shares"]).sum() if len(pe_val_m) > 0 and (pe_val_m["eps_ttm"] * pe_val_m["shares"]).sum() > 0 else np.nan
     pb_val_m = tick_l[tick_l["pb"].notna() & (tick_l["shares"] > 0)]
     w_pb_m = (pb_val_m["close"] * pb_val_m["shares"]).sum() / (pb_val_m["bvps"] * pb_val_m["shares"]).sum() if len(pb_val_m) > 0 and (pb_val_m["bvps"] * pb_val_m["shares"]).sum() > 0 else np.nan
 
@@ -188,7 +188,7 @@ def build_payload(tick_l, tick_5y, sect_l, sect_5y, latest_date):
             "is_index": False,
         }
 
-    tbl_cols = ["ticker","close","pe","pb","eps_annual","bvps","shares","sector","industry","group"]
+    tbl_cols = ["ticker","close","pe","pb","eps_ttm","bvps","shares","sector","industry","group"]
     avail_t  = [c for c in tbl_cols if c in tick_l.columns]
     tickers  = _records(tick_l[avail_t].sort_values("pe", na_position="last"))
 
@@ -1358,9 +1358,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let sumPeMc = 0, sumPeErn = 0;
     let sumPbMc = 0, sumPbBv = 0;
     valid.forEach(t => {
-      if (t.pe != null && !isNaN(t.pe) && t.shares > 0 && t.eps_annual != null) {
+      if (t.pe != null && !isNaN(t.pe) && t.shares > 0 && t.eps_ttm != null) {
         sumPeMc += (t.close * t.shares);
-        sumPeErn += (t.eps_annual * t.shares);
+        sumPeErn += (t.eps_ttm * t.shares);
       }
       if (t.pb != null && !isNaN(t.pb) && t.shares > 0 && t.bvps != null) {
         sumPbMc += (t.close * t.shares);
