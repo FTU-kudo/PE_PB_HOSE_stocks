@@ -117,6 +117,7 @@ def load_fundamentals() -> pd.DataFrame:
     if "ticker" not in df.columns:
         df = df.reset_index()
     df["ticker"] = df["ticker"].str.upper()
+    df = df[df["ticker"].astype(str).str.len() == 3]
     df = df.drop_duplicates(subset=["ticker"], keep="first")
     log.info(f"Fundamentals loaded: {len(df)} tickers  (cache age: {age} days)")
     return df.set_index("ticker")
@@ -167,6 +168,7 @@ def fetch_close_prices(tickers: list[str]) -> pd.Series:
     )
     board = board.rename(columns={ticker_col: "ticker"})
     board["ticker"] = board["ticker"].str.upper()
+    board = board[board["ticker"].astype(str).str.len() == 3]
 
     # --- Detect price column (priority order) ---
     cols_l = {c.lower(): c for c in board.columns}
@@ -297,11 +299,13 @@ def update_history(snapshot: pd.DataFrame, sector_agg: pd.DataFrame) -> None:
     # Human-readable daily CSV (semicolon for VN locale compatibility)
     csv_path = Path(DAILY_DIR) / f"pe_pb_{today_str}.csv"
     snapshot.to_csv(csv_path, index=False, sep=";")
-    log.info(f"Daily CSV saved → {csv_path}")
+    log.info(f"Daily CSV saved -> {csv_path}")
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 def main():
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     today = date.today()
     log.info(f"=== Daily PE/PB pipeline | {today} ===")
 

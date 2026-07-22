@@ -54,24 +54,26 @@ def load_data():
     sect_h["date"] = pd.to_datetime(sect_h["date"])
 
     if "ticker" in tick_h.columns:
+        tick_h["ticker"] = tick_h["ticker"].astype(str).str.upper().str.strip()
+        tick_h = tick_h[tick_h["ticker"].str.len() == 3]
         tick_h = tick_h.drop_duplicates(subset=["date", "ticker"], keep="last")
     if "group" in sect_h.columns:
         sect_h = sect_h.drop_duplicates(subset=["date", "group"], keep="last")
 
     latest_date = tick_h["date"].max()
-    cutoff_30   = latest_date - timedelta(days=30)
+    cutoff_5y   = latest_date - timedelta(days=365*5 + 10)
 
     return (
         tick_h[tick_h["date"] == latest_date].copy(),
-        tick_h[tick_h["date"] >= cutoff_30].copy(),
+        tick_h[tick_h["date"] >= cutoff_5y].copy(),
         sect_h[sect_h["date"] == latest_date].copy(),
-        sect_h[sect_h["date"] >= cutoff_30].copy(),
+        sect_h[sect_h["date"] >= cutoff_5y].copy(),
         latest_date,
     )
 
 
 # ── Build JSON payload ────────────────────────────────────────────────────────
-def build_payload(tick_l, tick_30, sect_l, sect_30, latest_date):
+def build_payload(tick_l, tick_5y, sect_l, sect_5y, latest_date):
     tick_l = tick_l.drop_duplicates(subset=["ticker"], keep="first")
     all_pe = tick_l["pe"].dropna()
     all_pb = tick_l["pb"].dropna()
@@ -98,12 +100,13 @@ def build_payload(tick_l, tick_30, sect_l, sect_30, latest_date):
     avail = [c for c in sect_cols if c in sect_l.columns]
     sectors = _records(sect_l[avail].sort_values("median_pe", na_position="last"))
 
-    top_groups = (
-        sect_l.nlargest(8, "count")["group"].tolist() if not sect_l.empty else []
-    )
+    all_groups = sorted([
+        str(g) for g in sect_l["group"].dropna().unique()
+        if str(g).strip() and str(g) != "Unknown"
+    ])
     trend = {}
-    for grp in top_groups:
-        sub = (sect_30[sect_30["group"] == grp]
+    for grp in all_groups:
+        sub = (sect_5y[sect_5y["group"] == grp]
                .sort_values("date")[["date","median_pe","median_pb"]])
         trend[grp] = {
             "dates": sub["date"].dt.strftime("%Y-%m-%d").tolist(),
@@ -132,6 +135,7 @@ HTML = r"""<!DOCTYPE html>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>VN-HOSE P/E & P/B Dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"/>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
@@ -320,8 +324,53 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
 .mb-4  { margin-bottom: 16px; }
 .mb-6  { margin-bottom: 24px; }
 .mb-8  { margin-bottom: 32px; }
-.ovx   { overflow-x: auto; }
-.footer { text-align: center; color: var(--dim); font-size: .75rem; margin-top: 48px; }
+/* ── Trend Controls ───────────────────────────────────────────────────── */
+.trend-btn {
+  background: var(--btn-bg);
+  border: 1px solid var(--btn-border);
+  color: var(--text);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+}
+.trend-btn:hover, .trend-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.trend-input {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: .75rem;
+}
+.sector-chip {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--dim);
+  padding: 3px 10px;
+  border-radius: 14px;
+  font-size: .75rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all .2s;
+}
+.sector-chip.action {
+  background: var(--card2);
+  color: var(--muted);
+  border-style: dashed;
+}
+.sector-chip.action:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
 </style>
 </head>
 
@@ -391,12 +440,51 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
     </div>
   </div>
 
-  <!-- ── 30-day trend ───────────────────────────────────────────────────── -->
+  <!-- ── 5-Year Trend ───────────────────────────────────────────────────── -->
   <div class="card mb-8">
-    <div class="sec-title">📈 30-Day Sector P/E Trend</div>
-    <div class="sec-sub">Median P/E per sector · top 8 sectors by stock count</div>
-    <canvas id="chart-trend" height="220"></canvas>
-    <p id="trend-msg" style="color:var(--dim);font-size:.75rem;margin-top:8px"></p>
+    <div class="sec-title">📈 5-Year Sector P/E &amp; P/B Interactive Trend</div>
+    <div class="sec-sub">Drag across chart to zoom time window · Toggle metrics and individual sectors freely</div>
+    
+    <!-- Controls Bar -->
+    <div class="trend-controls mb-4" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--card2);padding:12px;border-radius:8px;border:1px solid var(--border)">
+      <!-- Metric Selection -->
+      <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+        <span style="font-size:.8rem;font-weight:600;color:var(--muted)">Metric:</span>
+        <button class="trend-btn active" id="btn-metric-pe" onclick="setMetric('pe')">P/E Ratio</button>
+        <button class="trend-btn" id="btn-metric-pb" onclick="setMetric('pb')">P/B Ratio</button>
+        <button class="trend-btn" id="btn-metric-both" onclick="setMetric('both')">Both (P/E &amp; P/B)</button>
+      </div>
+
+      <!-- Quick Date Presets -->
+      <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+        <span style="font-size:.8rem;font-weight:600;color:var(--muted)">Period:</span>
+        <button class="trend-btn active" onclick="setRange('5Y')">5Y (All)</button>
+        <button class="trend-btn" onclick="setRange('2021-2022')">2021–2022</button>
+        <button class="trend-btn" onclick="setRange('2023-2026')">2023–2026</button>
+        <button class="trend-btn" onclick="setRange('3Y')">3Y</button>
+        <button class="trend-btn" onclick="setRange('1Y')">1Y</button>
+        <button class="trend-btn" onclick="setRange('YTD')">YTD</button>
+      </div>
+
+      <!-- Custom Date Inputs -->
+      <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:.8rem">
+        <span style="color:var(--muted)">From:</span>
+        <input type="date" id="date-from" class="trend-input" onchange="applyCustomRange()"/>
+        <span style="color:var(--muted)">To:</span>
+        <input type="date" id="date-to" class="trend-input" onchange="applyCustomRange()"/>
+        <button class="trend-btn" onclick="resetZoom()">Reset Zoom</button>
+      </div>
+    </div>
+
+    <!-- Sector Toggles -->
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:12px" id="sector-chips">
+      <!-- Dynamically generated sector chips -->
+    </div>
+
+    <canvas id="chart-trend" height="230"></canvas>
+    <p id="trend-msg" style="color:var(--dim);font-size:.75rem;margin-top:8px">
+      Tip: Click and drag horizontally across the chart to zoom into any custom period. Scroll/pinch to zoom.
+    </p>
   </div>
 
   <!-- ── Full ticker table ──────────────────────────────────────────────── -->
@@ -582,22 +670,128 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  // ── 30-day trend
+  // ── 5-Year Interactive Trend
   const tGroups = Object.keys(D.trend);
-  if (tGroups.length > 0) {
-    charts.trend = new Chart(document.getElementById('chart-trend'), {
-      type: 'line',
-      data: {
-        datasets: tGroups.map((grp, i) => ({
-          label: grp,
+  let currentMetric = 'pe';
+  let selectedSectors = new Set(tGroups);
+
+  window.setMetric = function(m) {
+    currentMetric = m;
+    ['pe', 'pb', 'both'].forEach(k => {
+      const btn = document.getElementById('btn-metric-' + k);
+      if (btn) btn.className = 'trend-btn' + (k === m ? ' active' : '');
+    });
+    renderTrendChart();
+  };
+
+  window.toggleSector = function(grp) {
+    if (selectedSectors.has(grp)) {
+      selectedSectors.delete(grp);
+    } else {
+      selectedSectors.add(grp);
+    }
+    renderSectorChips();
+    renderTrendChart();
+  };
+
+  window.selectAllSectors = function(select) {
+    if (select) {
+      tGroups.forEach(g => selectedSectors.add(g));
+    } else {
+      selectedSectors.clear();
+    }
+    renderSectorChips();
+    renderTrendChart();
+  };
+
+  window.selectTop5Sectors = function() {
+    selectedSectors.clear();
+    // sort by data count or alphabetical, grab first 5
+    tGroups.slice(0, 5).forEach(g => selectedSectors.add(g));
+    renderSectorChips();
+    renderTrendChart();
+  };
+
+  function renderSectorChips() {
+    const container = document.getElementById('sector-chips');
+    if (!container) return;
+    let html = `
+      <button class="sector-chip action" onclick="selectAllSectors(true)">✓ Select All</button>
+      <button class="sector-chip action" onclick="selectAllSectors(false)">✕ Clear All</button>
+      <button class="sector-chip action" onclick="selectTop5Sectors()">★ Top 5</button>
+      <span style="border-left:1px solid var(--border);height:20px;margin:0 4px"></span>
+    `;
+    tGroups.forEach((grp, i) => {
+      const color = PALETTE[i % PALETTE.length];
+      const active = selectedSectors.has(grp) ? 'active' : '';
+      const style = selectedSectors.has(grp)
+        ? `border-color:${color};background:${color}22;color:var(--text)`
+        : `border-color:var(--border);color:var(--dim)`;
+      const esc = grp.replace(/'/g, "\\'");
+      html += `<button class="sector-chip ${active}" style="${style}" onclick="toggleSector('${esc}')">
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${color};margin-right:5px"></span>${grp}
+      </button>`;
+    });
+    container.innerHTML = html;
+  }
+
+  function getDatasets() {
+    const ds = [];
+    tGroups.forEach((grp, i) => {
+      if (!selectedSectors.has(grp)) return;
+      const color = PALETTE[i % PALETTE.length];
+      if (currentMetric === 'pe' || currentMetric === 'both') {
+        ds.push({
+          label: `${grp} (P/E)`,
           data: D.trend[grp].dates.map((d, j) => ({ x: d, y: D.trend[grp].pe[j] })),
-          borderColor: PALETTE[i % PALETTE.length],
+          borderColor: color,
           backgroundColor: 'transparent',
           tension: 0.35,
           pointRadius: 3,
           borderWidth: 2,
-        })),
-      },
+          yAxisID: 'y'
+        });
+      }
+      if (currentMetric === 'pb' || currentMetric === 'both') {
+        ds.push({
+          label: `${grp} (P/B)`,
+          data: D.trend[grp].dates.map((d, j) => ({ x: d, y: D.trend[grp].pb[j] })),
+          borderColor: color,
+          borderDash: currentMetric === 'both' ? [5, 5] : [],
+          backgroundColor: 'transparent',
+          tension: 0.35,
+          pointRadius: 3,
+          borderWidth: currentMetric === 'both' ? 1.5 : 2,
+          yAxisID: currentMetric === 'both' ? 'y2' : 'y'
+        });
+      }
+    });
+    return ds;
+  }
+
+  function renderTrendChart() {
+    if (!document.getElementById('chart-trend')) return;
+    if (charts.trend) {
+      charts.trend.data.datasets = getDatasets();
+      if (currentMetric === 'both') {
+        charts.trend.options.scales.y2 = {
+          position: 'right',
+          title: { display: true, text: 'Median P/B', color: tc.ticks },
+          grid: { drawOnChartArea: false },
+          ticks: { color: tc.ticks }
+        };
+        charts.trend.options.scales.y.title.text = 'Median P/E';
+      } else {
+        delete charts.trend.options.scales.y2;
+        charts.trend.options.scales.y.title.text = currentMetric === 'pe' ? 'Median P/E' : 'Median P/B';
+      }
+      charts.trend.update();
+      return;
+    }
+
+    charts.trend = new Chart(document.getElementById('chart-trend'), {
+      type: 'line',
+      data: { datasets: getDatasets() },
       options: {
         responsive: true,
         parsing: false,
@@ -608,6 +802,7 @@ document.addEventListener('DOMContentLoaded', () => {
             grid: { color: tc.grid },
           },
           y: {
+            position: 'left',
             title: { display: true, text: 'Median P/E', color: tc.ticks },
             grid: { color: tc.grid },
             ticks: { color: tc.ticks },
@@ -615,12 +810,77 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         plugins: {
           legend: { labels: { color: tc.legend, font: { size: 11 }, boxWidth: 14 } },
+          zoom: {
+            zoom: {
+              wheel: { enabled: true },
+              pinch: { enabled: true },
+              drag: {
+                enabled: true,
+                backgroundColor: 'rgba(56, 189, 248, 0.2)',
+                borderColor: 'rgba(56, 189, 248, 0.8)',
+                borderWidth: 1
+              },
+              mode: 'x'
+            },
+            pan: { enabled: true, mode: 'x' }
+          }
         },
       },
     });
+  }
+
+  window.resetZoom = function() {
+    if (charts.trend && charts.trend.resetZoom) charts.trend.resetZoom();
+    const fromEl = document.getElementById('date-from');
+    const toEl = document.getElementById('date-to');
+    if (fromEl) fromEl.value = '';
+    if (toEl) toEl.value = '';
+  };
+
+  window.setRange = function(period) {
+    if (!charts.trend) return;
+    resetZoom();
+    let minDate = null;
+    let maxDate = null;
+    const now = new Date();
+    const curYear = now.getFullYear();
+
+    if (period === '2021-2022') {
+      minDate = '2021-01-01'; maxDate = '2022-12-31';
+    } else if (period === '2023-2026') {
+      minDate = '2023-01-01'; maxDate = '2026-12-31';
+    } else if (period === '3Y') {
+      minDate = new Date(now.setFullYear(curYear - 3)).toISOString().split('T')[0];
+    } else if (period === '1Y') {
+      minDate = new Date(now.setFullYear(curYear - 1)).toISOString().split('T')[0];
+    } else if (period === 'YTD') {
+      minDate = `${curYear}-01-01`;
+    }
+
+    if (minDate || maxDate) {
+      charts.trend.options.scales.x.min = minDate || undefined;
+      charts.trend.options.scales.x.max = maxDate || undefined;
+      charts.trend.update();
+      if (document.getElementById('date-from') && minDate) document.getElementById('date-from').value = minDate;
+      if (document.getElementById('date-to') && maxDate) document.getElementById('date-to').value = maxDate;
+    }
+  };
+
+  window.applyCustomRange = function() {
+    if (!charts.trend) return;
+    const f = document.getElementById('date-from').value;
+    const t = document.getElementById('date-to').value;
+    charts.trend.options.scales.x.min = f || undefined;
+    charts.trend.options.scales.x.max = t || undefined;
+    charts.trend.update();
+  };
+
+  if (tGroups.length > 0) {
+    renderSectorChips();
+    renderTrendChart();
   } else {
     document.getElementById('trend-msg').textContent =
-      'Trend appears after the second trading day of data collection.';
+      'Trend data will accumulate daily over the next 5 years.';
   }
 
   // ── Ticker table
@@ -668,8 +928,8 @@ def build():
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     Path(DOCS_DIR).mkdir(parents=True, exist_ok=True)
 
-    tick_l, tick_30, sect_l, sect_30, latest_date = load_data()
-    payload = build_payload(tick_l, tick_30, sect_l, sect_30, latest_date)
+    tick_l, tick_5y, sect_l, sect_5y, latest_date = load_data()
+    payload = build_payload(tick_l, tick_5y, sect_l, sect_5y, latest_date)
 
     with open(JSON_FILE, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2, default=str)

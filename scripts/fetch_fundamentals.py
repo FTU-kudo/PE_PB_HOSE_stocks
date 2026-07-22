@@ -110,8 +110,10 @@ def get_hose_tickers() -> list[str]:
         (c for c in df.columns if c.lower() in ("ticker", "symbol", "code", "stock_code")),
         df.columns[0],
     )
-    tickers = df[ticker_col].dropna().astype(str).str.upper().str.strip().tolist()
-    log.info(f"  → {len(tickers)} HOSE tickers found.")
+    raw_tickers = df[ticker_col].dropna().astype(str).str.upper().str.strip().tolist()
+    # Exclude covered warrants (len 8, e.g. CHPG2616) and ETFs/open funds (e.g. FUEVN100)
+    tickers = [t for t in raw_tickers if len(t) == 3]
+    log.info(f"  -> {len(tickers)} HOSE stocks found (filtered out {len(raw_tickers) - len(tickers)} warrants/ETFs).")
     return tickers
 
 
@@ -248,6 +250,8 @@ def fetch_all_fundamentals(tickers: list[str]) -> pd.DataFrame:
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 def main():
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     log.info("=== Weekly fundamentals refresh started ===")
     register_vnstock()
 
@@ -262,7 +266,7 @@ def main():
         on="ticker", how="left"
     ).drop_duplicates(subset=["ticker"])
     merged.to_parquet(FUND_FILE, index=False)
-    log.info(f"Fundamentals saved → {FUND_FILE}  ({len(merged)} rows)")
+    log.info(f"Fundamentals saved -> {FUND_FILE}  ({len(merged)} rows)")
     log.info("=== Weekly fundamentals refresh complete ===")
 
 
