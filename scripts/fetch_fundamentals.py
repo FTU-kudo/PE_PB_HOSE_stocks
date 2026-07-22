@@ -51,18 +51,38 @@ for d in [DATA_DIR, DAILY_DIR, "docs"]:
 
 # ── vnstock authentication ────────────────────────────────────────────────────
 def register_vnstock() -> None:
-    api_key = os.getenv("VNSTOCK_API_KEY", "")
-    if api_key:
-        try:
-            from vnstock import register_user
-            register_user(api_key=api_key)
-            log.info("vnstock API key registered (Sponsor tier).")
-        except Exception as exc:
-            log.warning(f"API key registration failed: {exc}")
-    else:
+    """
+    Attempt to register the vnstock API key.
+    Tries all known import paths across vnstock versions.
+    Silently skips if key is not set or if registration is unavailable.
+    """
+    api_key = os.getenv("VNSTOCK_API_KEY", "").strip()
+    if not api_key:
         log.warning("VNSTOCK_API_KEY not set — running as Guest (20 req/min).")
+        return
 
+    registered = False
+    attempts = [
+        ("vnstock",             "register_user"),
+        ("vnstock.common.user", "register_user"),
+        ("vnstock.core.utils",  "register_user"),
+        ("vnstock",             "init_user"),
+    ]
+    for module, func in attempts:
+        try:
+            mod = __import__(module, fromlist=[func])
+            getattr(mod, func)(api_key=api_key)
+            log.info(f"vnstock registered via {module}.{func}")
+            registered = True
+            break
+        except (ImportError, AttributeError):
+            continue
+        except Exception as exc:
+            log.warning(f"{module}.{func} raised: {exc}")
+            break
 
+    if not registered:
+        log.warning("Could not register API key (function not found). Guest mode.")
 # ── Ticker discovery ──────────────────────────────────────────────────────────
 def get_hose_tickers() -> list[str]:
     """Return all HOSE equity tickers via vnstock Reference."""

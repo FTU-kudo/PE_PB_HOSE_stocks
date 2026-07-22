@@ -1,18 +1,9 @@
 name: 🔄 Weekly Fundamentals Refresh
 
-# Why weekly and not daily?
-# Finance.ratio(period='year') returns quarterly/annual data — companies
-# only file new reports every 3 months. Refreshing weekly ensures we catch
-# earnings season updates (Q4 in Jan–Feb, Q1 in Apr–May, etc.) without
-# hammering the API with 400 calls every day.
-#
-# Runtime estimate: ~400 tickers × 1.2 s sleep = ~8–10 minutes.
-
 on:
   schedule:
-    # Every Sunday at 01:00 UTC (quiet period, well before Monday open)
-    - cron: '0 1 * * 0'
-  workflow_dispatch:       # manual trigger (first run, quarterly forced refresh)
+    - cron: '0 1 * * 0'   # Every Sunday 01:00 UTC
+  workflow_dispatch:
     inputs:
       reason:
         description: 'Reason for manual trigger (optional)'
@@ -23,20 +14,18 @@ jobs:
   refresh-fundamentals:
     name: Fetch EPS & BVPS for all HOSE tickers
     runs-on: ubuntu-latest
-    timeout-minutes: 60    # safety cap — should complete in ~15 min
+    timeout-minutes: 60
 
     permissions:
       contents: write
 
     steps:
-      # ── 1. Checkout ────────────────────────────────────────────────────────
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      # ── 2. Python env ──────────────────────────────────────────────────────
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
@@ -47,22 +36,55 @@ jobs:
       - name: Install dependencies
         run: pip install --upgrade pip && pip install -r requirements.txt
 
-      # ── 3. Run fundamentals fetch ──────────────────────────────────────────
+      # ── Diagnostics (runs before main script so errors are visible) ─────────
+      - name: Diagnose environment
+        run: |
+          echo "=== Python version ==="
+          python --version
+
+          echo "=== vnstock version ==="
+          pip show vnstock | grep -E "Name|Version|Location" || echo "vnstock not found!"
+
+          echo "=== Test vnstock top-level imports ==="
+          python - << 'PYEOF'
+          try:
+              import vnstock
+              print(f"  vnstock {vnstock.__version__} imported OK")
+          except Exception as e:
+              print(f"  ERROR: {e}")
+
+          for cls in ["Reference", "Finance", "Trading"]:
+              try:
+                  exec(f"from vnstock import {cls}; print(f'  {cls} OK')")
+              except Exception as e:
+                  print(f"  {cls} FAILED: {e}")
+          PYEOF
+
+          echo "=== Test scripts.config import ==="
+          python -c "
+          import sys, os
+          sys.path.insert(0, os.getcwd())
+          from scripts.config import EXCHANGE, VINGROUP_TICKERS
+          print(f'  config OK — EXCHANGE={EXCHANGE}, VINGROUP={VINGROUP_TICKERS}')
+          " || echo "  scripts.config import FAILED"
+
+          echo "=== Workspace files ==="
+          find . -not -path './.git/*' -type f | sort
+
+      # ── Main script ─────────────────────────────────────────────────────────
       - name: Fetch Finance.ratio() for all HOSE tickers
         env:
           VNSTOCK_API_KEY: ${{ secrets.VNSTOCK_API_KEY }}
         run: python scripts/fetch_fundamentals.py
 
-      # ── 4. Commit & push ──────────────────────────────────────────────────
+      # ── Commit results ───────────────────────────────────────────────────────
       - name: Commit and push fundamentals cache
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name  "github-actions[bot]"
-
           git add data/fundamentals.parquet
-
           if git diff --staged --quiet; then
-            echo "No changes in fundamentals (all EPS/BVPS values identical)."
+            echo "No changes in fundamentals."
           else
             DATE=$(date -u '+%Y-%m-%d')
             COUNT=$(python -c "import pandas as pd; df=pd.read_parquet('data/fundamentals.parquet'); print(len(df))")
@@ -70,7 +92,7 @@ jobs:
             git push
           fi
 
-      # ── 5. Summary ────────────────────────────────────────────────────────
+      # ── Job summary ──────────────────────────────────────────────────────────
       - name: Write job summary
         if: always()
         run: |
@@ -78,7 +100,7 @@ jobs:
           echo "### 🔄 Weekly Fundamentals — ${DATE}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           if [ -f data/fundamentals.parquet ]; then
-            python - << 'EOF' >> $GITHUB_STEP_SUMMARY
+            python - << 'PYEOF' >> $GITHUB_STEP_SUMMARY
 import pandas as pd
 df = pd.read_parquet('data/fundamentals.parquet')
 valid_eps  = df['eps_annual'].notna().sum()
@@ -89,7 +111,7 @@ print(f"|--------|-------|")
 print(f"| Total tickers | {total} |")
 print(f"| Valid EPS  | {valid_eps} ({valid_eps/total*100:.0f}%) |")
 print(f"| Valid BVPS | {valid_bvps} ({valid_bvps/total*100:.0f}%) |")
-EOF
+PYEOF
           else
             echo "⚠️ data/fundamentals.parquet not found after fetch." >> $GITHUB_STEP_SUMMARY
           fi

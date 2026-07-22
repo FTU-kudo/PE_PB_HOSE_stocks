@@ -2,10 +2,8 @@ name: 📊 Daily P/E & P/B Update
 
 on:
   schedule:
-    # 09:05 UTC = 16:05 ICT (Mon–Fri)
-    # HOSE closes 14:30 ICT; prices confirmed by ~15:00 ICT
-    - cron: '5 9 * * 1-5'
-  workflow_dispatch:       # manual trigger for testing
+    - cron: '5 9 * * 1-5'   # 09:05 UTC = 16:05 ICT, Mon–Fri
+  workflow_dispatch:
     inputs:
       force_run:
         description: 'Force run even outside market days'
@@ -18,19 +16,15 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write      # needed to git-push results back to the repo
+      contents: write
 
     steps:
-      # ── 1. Checkout ────────────────────────────────────────────────────────
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          # Use PAT if you need to push and trigger downstream workflows,
-          # otherwise GITHUB_TOKEN is sufficient for same-repo pushes.
           token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0   # full history so git log works in scripts
+          fetch-depth: 0
 
-      # ── 2. Python env ──────────────────────────────────────────────────────
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
@@ -41,35 +35,52 @@ jobs:
       - name: Install dependencies
         run: pip install --upgrade pip && pip install -r requirements.txt
 
-      # ── 3. Guard: abort if fundamentals cache is missing ───────────────────
-      - name: Check fundamentals cache exists
+      # ── Diagnostics ──────────────────────────────────────────────────────────
+      - name: Diagnose environment
         run: |
-          if [ ! -f data/fundamentals.parquet ]; then
-            echo "::error::data/fundamentals.parquet not found."
-            echo "::error::Run the 'Weekly Fundamentals Refresh' workflow first."
+          echo "=== Python & vnstock ==="
+          python --version
+          pip show vnstock | grep -E "Name|Version" || echo "vnstock not installed"
+
+          echo "=== vnstock imports ==="
+          python - << 'PYEOF'
+          for cls in ["Reference", "Finance", "Trading"]:
+              try:
+                  exec(f"from vnstock import {cls}; print(f'  {cls} OK')")
+              except Exception as e:
+                  print(f"  {cls} FAILED: {e}")
+          PYEOF
+
+          echo "=== Check fundamentals cache ==="
+          if [ -f data/fundamentals.parquet ]; then
+            python -c "
+import pandas as pd
+df = pd.read_parquet('data/fundamentals.parquet')
+import os, datetime
+mtime = datetime.date.fromtimestamp(os.path.getmtime('data/fundamentals.parquet'))
+print(f'  {len(df)} tickers | cache date: {mtime}')
+print(f'  EPS valid: {df[\"eps_annual\"].notna().sum()} | BVPS valid: {df[\"bvps\"].notna().sum()}')
+"
+          else
+            echo "  ERROR: data/fundamentals.parquet not found — run Weekly Fundamentals first!"
             exit 1
           fi
-          echo "Fundamentals cache OK."
 
-      # ── 4. Fetch close prices & compute PE/PB ─────────────────────────────
-      - name: Run daily compute pipeline
+      # ── Main scripts ─────────────────────────────────────────────────────────
+      - name: Compute daily PE/PB
         env:
           VNSTOCK_API_KEY: ${{ secrets.VNSTOCK_API_KEY }}
         run: python scripts/daily_compute.py
 
-      # ── 5. Build GitHub Pages dashboard ───────────────────────────────────
-      - name: Build HTML dashboard
+      - name: Build GitHub Pages dashboard
         run: python scripts/build_dashboard.py
 
-      # ── 6. Commit & push results ───────────────────────────────────────────
+      # ── Commit & push ─────────────────────────────────────────────────────────
       - name: Commit and push data + dashboard
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name  "github-actions[bot]"
-
           git add data/ docs/
-
-          # Only commit if there are actual changes (idempotency guard)
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else
@@ -78,18 +89,16 @@ jobs:
             git push
           fi
 
-      # ── 7. Summary ────────────────────────────────────────────────────────
+      # ── Job summary ───────────────────────────────────────────────────────────
       - name: Write job summary
         if: always()
         run: |
           DATE=$(date -u '+%Y-%m-%d')
           echo "### 📊 Daily P/E & P/B — ${DATE}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          if [ -f data/daily/pe_pb_${DATE}.csv ]; then
-            ROWS=$(wc -l < data/daily/pe_pb_${DATE}.csv)
-            echo "✅ Snapshot saved: \`data/daily/pe_pb_${DATE}.csv\` (${ROWS} rows)" >> $GITHUB_STEP_SUMMARY
+          if [ -f "data/daily/pe_pb_${DATE}.csv" ]; then
+            ROWS=$(wc -l < "data/daily/pe_pb_${DATE}.csv")
+            echo "✅ Snapshot: \`data/daily/pe_pb_${DATE}.csv\` (${ROWS} rows)" >> $GITHUB_STEP_SUMMARY
           else
-            echo "⚠️ No snapshot found for today." >> $GITHUB_STEP_SUMMARY
+            echo "⚠️ No snapshot found for ${DATE}" >> $GITHUB_STEP_SUMMARY
           fi
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "🌐 Dashboard: https://\${{ github.repository_owner }}.github.io/\${{ github.event.repository.name }}/" >> $GITHUB_STEP_SUMMARY
