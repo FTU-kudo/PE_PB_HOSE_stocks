@@ -646,24 +646,24 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
     <div class="card card-pe">
       <div class="sec-title">📊 Sector Median P/E</div>
       <div class="sec-sub">Colour: green &lt;12 · blue &lt;20 · yellow &lt;30 · red ≥30</div>
-      <canvas id="chart-pe"></canvas>
+      <canvas id="chart-pe" style="min-height:380px"></canvas>
     </div>
     <div class="card card-pb">
       <div class="sec-title">📊 Sector Median P/B</div>
       <div class="sec-sub">Lower = cheaper relative to book value</div>
-      <canvas id="chart-pb"></canvas>
+      <canvas id="chart-pb" style="min-height:380px"></canvas>
     </div>
   </div>
   <div class="grid-2 mb-8">
     <div class="card card-pe">
       <div class="sec-title">📊 Sector Weighted P/E</div>
       <div class="sec-sub">Trọng số vốn hóa · Colour: green &lt;12 · blue &lt;20 · yellow &lt;30 · red ≥30</div>
-      <canvas id="chart-wpe"></canvas>
+      <canvas id="chart-wpe" style="min-height:380px"></canvas>
     </div>
     <div class="card card-pb">
       <div class="sec-title">📊 Sector Weighted P/B</div>
       <div class="sec-sub">Trọng số vốn hóa · Lower = cheaper relative to book value</div>
-      <canvas id="chart-wpb"></canvas>
+      <canvas id="chart-wpb" style="min-height:380px"></canvas>
     </div>
   </div>
 
@@ -861,10 +861,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const barBase = (axis) => ({
     indexAxis: 'y',
     responsive: true,
+    maintainAspectRatio: false,
     plugins: { legend: { display: false } },
     scales: {
       x: { grid: { color: tc.grid }, ticks: { color: tc.ticks } },
-      y: { grid: { color: tc.grid }, ticks: { color: tc.ticks, font: { size: 11 } } },
+      y: { grid: { color: tc.grid }, ticks: { color: tc.ticks, font: { size: 11 }, autoSkip: false } },
     },
   });
 
