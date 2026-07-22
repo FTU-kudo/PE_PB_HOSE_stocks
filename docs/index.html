@@ -444,17 +444,17 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
       <div class="sec-sub">Colour: green &lt;12 · blue &lt;20 · yellow &lt;30 · red ≥30</div>
       <canvas id="chart-pe"></canvas>
     </div>
-    <div class="card card-pe">
-      <div class="sec-title">📊 Sector Weighted P/E</div>
-      <div class="sec-sub">Trọng số vốn hóa · Colour: green &lt;12 · blue &lt;20 · yellow &lt;30 · red ≥30</div>
-      <canvas id="chart-wpe"></canvas>
-    </div>
-  </div>
-  <div class="grid-2 mb-8">
     <div class="card card-pb">
       <div class="sec-title">📊 Sector Median P/B</div>
       <div class="sec-sub">Lower = cheaper relative to book value</div>
       <canvas id="chart-pb"></canvas>
+    </div>
+  </div>
+  <div class="grid-2 mb-8">
+    <div class="card card-pe">
+      <div class="sec-title">📊 Sector Weighted P/E</div>
+      <div class="sec-sub">Trọng số vốn hóa · Colour: green &lt;12 · blue &lt;20 · yellow &lt;30 · red ≥30</div>
+      <canvas id="chart-wpe"></canvas>
     </div>
     <div class="card card-pb">
       <div class="sec-title">📊 Sector Weighted P/B</div>
@@ -696,13 +696,12 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  // ── Sector P/B chart
-  const sPb  = D.sectors.filter(s => s.median_pb != null).slice().sort((a,b) => a.median_pb - b.median_pb);
+  // ── Sector Median P/B chart (matching exact y-axis sector order of Sector Median P/E)
   charts.pb  = new Chart(document.getElementById('chart-pb'), {
     type: 'bar',
     data: {
-      labels: sPb.map(s => s.group),
-      datasets: [{ data: sPb.map(s => s.median_pb), backgroundColor: 'var(--accent2)', borderRadius: 5 }],
+      labels: sLabels,
+      datasets: [{ data: sects.map(s => s.median_pb), backgroundColor: 'var(--accent2)', borderRadius: 5 }],
     },
     options: {
       ...barBase(),
@@ -713,13 +712,12 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  // ── Sector Weighted P/B chart
-  const sWPb = D.sectors.filter(s => s.weighted_pb != null).slice().sort((a,b) => a.weighted_pb - b.weighted_pb);
+  // ── Sector Weighted P/B chart (matching exact y-axis sector order of Sector Weighted P/E)
   charts.wpb = new Chart(document.getElementById('chart-wpb'), {
     type: 'bar',
     data: {
-      labels: sWPb.map(s => s.group),
-      datasets: [{ data: sWPb.map(s => s.weighted_pb), backgroundColor: '#f472b6', borderRadius: 5 }],
+      labels: sWPe.map(s => s.group),
+      datasets: [{ data: sWPe.map(s => s.weighted_pb), backgroundColor: '#f472b6', borderRadius: 5 }],
     },
     options: {
       ...barBase(),
