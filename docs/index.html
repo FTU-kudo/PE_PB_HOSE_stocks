@@ -673,20 +673,29 @@ document.addEventListener('DOMContentLoaded', () => {
       const isIndex = D.trend[grp].is_index;
       const color = isIndex ? VNI_COLOR : PALETTE[sectorIdx % PALETTE.length];
       const bw = isIndex ? 3 : 2;
-      const pts = D.trend[grp].dates.length;
-      const radius = isIndex ? 0 : (pts > 60 ? 0 : 2);
+
+      // Build date→value lookup for this group
+      const peLookup = {}, pbLookup = {};
+      D.trend[grp].dates.forEach((d, j) => {
+        peLookup[d] = D.trend[grp].pe[j];
+        pbLookup[d] = D.trend[grp].pb[j];
+      });
+      // Align to ALL_DATES: null for any date this group has no data
+      const peAligned = ALL_DATES.map(d => peLookup.hasOwnProperty(d) ? peLookup[d] : null);
+      const pbAligned = ALL_DATES.map(d => pbLookup.hasOwnProperty(d) ? pbLookup[d] : null);
 
       if (currentMetric === 'pe' || currentMetric === 'both') {
         ds.push({
-          label: isIndex ? `${grp} (P/E)` : `${grp} (P/E)`,
-          data: D.trend[grp].dates.map((d, j) => ({ x: d, y: D.trend[grp].pe[j] })),
+          label: `${grp} (P/E)`,
+          data: peAligned,
           borderColor: color,
           backgroundColor: isIndex ? `${color}18` : 'transparent',
           fill: isIndex,
-          tension: isIndex ? 0.25 : 0.35,
-          pointRadius: radius,
-          pointHoverRadius: 5,
+          tension: 0.2,
+          pointRadius: 0,
+          pointHoverRadius: 4,
           borderWidth: bw,
+          spanGaps: false,   // do NOT connect across missing (null) dates → no spikes
           yAxisID: 'y',
           order: isIndex ? 0 : 1,
         });
@@ -694,15 +703,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (currentMetric === 'pb' || currentMetric === 'both') {
         ds.push({
           label: `${grp} (P/B)`,
-          data: D.trend[grp].dates.map((d, j) => ({ x: d, y: D.trend[grp].pb[j] })),
+          data: pbAligned,
           borderColor: color,
           borderDash: currentMetric === 'both' ? [6, 3] : [],
           backgroundColor: 'transparent',
           fill: false,
-          tension: isIndex ? 0.25 : 0.35,
-          pointRadius: radius,
-          pointHoverRadius: 5,
+          tension: 0.2,
+          pointRadius: 0,
+          pointHoverRadius: 4,
           borderWidth: currentMetric === 'both' ? (isIndex ? 2 : 1.5) : bw,
+          spanGaps: false,
           yAxisID: currentMetric === 'both' ? 'y2' : 'y',
           order: isIndex ? 0 : 1,
         });
@@ -712,7 +722,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return ds;
   }
 
-  // ── Build union of all dates for x-axis
+  // ── Build sorted union of all trading dates for the x-axis labels
   function buildAllDates() {
     const dateSet = new Set();
     tGroups.forEach(g => D.trend[g].dates.forEach(d => dateSet.add(d)));
@@ -720,9 +730,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   const ALL_DATES = buildAllDates();
 
+  // ── Snap a target date-string to the nearest actual date in ALL_DATES (>= target)
+  function snapDate(targetStr) {
+    for (let i = 0; i < ALL_DATES.length; i++) {
+      if (ALL_DATES[i] >= targetStr) return ALL_DATES[i];
+    }
+    return ALL_DATES[ALL_DATES.length - 1];
+  }
+
   function renderTrendChart() {
     if (!document.getElementById('chart-trend')) return;
     if (charts.trend) {
+      charts.trend.data.labels   = ALL_DATES;
       charts.trend.data.datasets = getDatasets();
       if (currentMetric === 'both') {
         charts.trend.options.scales.y2 = {
@@ -746,12 +765,19 @@ document.addEventListener('DOMContentLoaded', () => {
       options: {
         responsive: true,
         maintainAspectRatio: true,
-        parsing: false,
+        // ← no 'parsing: false' — indexed arrays are passed directly so Chart.js can
+        //   map them to ALL_DATES labels correctly via position index
         interaction: { mode: 'index', intersect: false },
         scales: {
           x: {
             type: 'category',
-            ticks: { color: tc.ticks, maxRotation: 30, autoSkip: true, maxTicksLimit: 18, font: { size: 11 } },
+            ticks: {
+              color: tc.ticks,
+              maxRotation: 30,
+              autoSkip: true,
+              maxTicksLimit: 18,
+              font: { size: 11 },
+            },
             grid: { color: tc.grid },
           },
           y: {
@@ -765,13 +791,16 @@ document.addEventListener('DOMContentLoaded', () => {
         plugins: {
           legend: {
             position: 'bottom',
-            labels: { color: tc.legend, font: { size: 11 }, boxWidth: 16, padding: 12 }
+            labels: { color: tc.legend, font: { size: 11 }, boxWidth: 16, padding: 12 },
           },
           tooltip: {
             callbacks: {
               title: ctx => ctx[0]?.label || '',
-              label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y != null ? ctx.parsed.y.toFixed(2) : '—'}`,
-            }
+              label: ctx => {
+                const v = ctx.parsed.y;
+                return ` ${ctx.dataset.label}: ${v != null ? v.toFixed(2) : '—'}`;
+              },
+            },
           },
           zoom: {
             zoom: {
@@ -781,12 +810,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 enabled: true,
                 backgroundColor: 'rgba(255,215,0,0.12)',
                 borderColor: 'rgba(255,215,0,0.8)',
-                borderWidth: 1
+                borderWidth: 1,
               },
-              mode: 'x'
+              mode: 'x',
             },
-            pan: { enabled: true, mode: 'x' }
-          }
+            pan: { enabled: true, mode: 'x' },
+          },
         },
       },
     });
@@ -801,7 +830,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   window.resetZoom = function() {
-    if (charts.trend && charts.trend.resetZoom) charts.trend.resetZoom();
+    if (!charts.trend) return;
+    if (charts.trend.resetZoom) charts.trend.resetZoom();
     charts.trend.options.scales.x.min = undefined;
     charts.trend.options.scales.x.max = undefined;
     charts.trend.update();
@@ -824,10 +854,12 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (period === 'YTD') {
       minDate = `${now.getFullYear()}-01-01`;
     }
-    charts.trend.options.scales.x.min = minDate || undefined;
+    // Snap to the nearest actual trading date so the category axis always finds a match
+    const snappedMin = minDate ? snapDate(minDate) : undefined;
+    charts.trend.options.scales.x.min = snappedMin;
     charts.trend.options.scales.x.max = undefined;
     charts.trend.update();
-    if (document.getElementById('date-from')) document.getElementById('date-from').value = minDate || '';
+    if (document.getElementById('date-from')) document.getElementById('date-from').value = snappedMin || '';
     if (document.getElementById('date-to'))   document.getElementById('date-to').value   = '';
   };
 
@@ -835,11 +867,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!charts.trend) return;
     const f = document.getElementById('date-from').value;
     const t = document.getElementById('date-to').value;
-    charts.trend.options.scales.x.min = f || undefined;
-    charts.trend.options.scales.x.max = t || undefined;
+    // Snap both ends to actual trading dates
+    charts.trend.options.scales.x.min = f ? snapDate(f) : undefined;
+    charts.trend.options.scales.x.max = t ? snapDate(t) : undefined;
     charts.trend.update();
     setRangeBtn('custom');
   };
+
 
   if (tGroups.length > 0) {
     renderChips();
