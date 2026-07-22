@@ -45,10 +45,24 @@ def main():
     print("Loading ticker history and fundamentals...")
     tick = pd.read_parquet(TICKER_HIST_FILE)
     fund_full = pd.read_parquet(FUND_FILE)
+    fund_full["group"] = fund_full["sector"]
+
     mask_bds_fund = fund_full["industry"].astype(str).str.lower().str.contains("bất động|real estate")
     fund_full.loc[mask_bds_fund, "sector"] = "Bất động sản"
-    fund_full["group"] = fund_full["sector"]
-    fund_full.loc[mask_bds_fund, "group"] = "Bất động sản"
+    fund_full.loc[mask_bds_fund, "group"]  = "Bất động sản"
+
+    mask_xd_fund = fund_full["industry"].astype(str).str.lower().str.contains("xây dựng và vật liệu|construction & materials|construction and materials")
+    fund_full.loc[mask_xd_fund, "sector"] = "Xây dựng và Vật liệu"
+    fund_full.loc[mask_xd_fund, "group"]  = "Xây dựng và Vật liệu"
+
+    mask_hc_fund = fund_full["industry"].astype(str).str.lower().str.contains("hóa chất|chemical")
+    fund_full.loc[mask_hc_fund, "sector"] = "Hóa chất"
+    fund_full.loc[mask_hc_fund, "group"]  = "Hóa chất"
+
+    mask_tp_fund = fund_full["industry"].astype(str).str.lower().str.contains("sản xuất thực phẩm|food producer")
+    fund_full.loc[mask_tp_fund, "sector"] = "Sản xuất thực phẩm"
+    fund_full.loc[mask_tp_fund, "group"]  = "Sản xuất thực phẩm"
+
     mask_vin_fund = fund_full["ticker"].isin(VINGROUP_TICKERS)
     fund_full.loc[mask_vin_fund, "group"] = VINGROUP_GROUP
     fund_full.to_parquet(FUND_FILE)
@@ -67,7 +81,19 @@ def main():
 
     mask_bds = df["industry"].astype(str).str.lower().str.contains("bất động|real estate")
     df.loc[mask_bds, "sector"] = "Bất động sản"
-    df.loc[mask_bds, "group"] = "Bất động sản"
+    df.loc[mask_bds, "group"]  = "Bất động sản"
+
+    mask_xd = df["industry"].astype(str).str.lower().str.contains("xây dựng và vật liệu|construction & materials|construction and materials")
+    df.loc[mask_xd, "sector"] = "Xây dựng và Vật liệu"
+    df.loc[mask_xd, "group"]  = "Xây dựng và Vật liệu"
+
+    mask_hc = df["industry"].astype(str).str.lower().str.contains("hóa chất|chemical")
+    df.loc[mask_hc, "sector"] = "Hóa chất"
+    df.loc[mask_hc, "group"]  = "Hóa chất"
+
+    mask_tp = df["industry"].astype(str).str.lower().str.contains("sản xuất thực phẩm|food producer")
+    df.loc[mask_tp, "sector"] = "Sản xuất thực phẩm"
+    df.loc[mask_tp, "group"]  = "Sản xuất thực phẩm"
 
     mask = df["ticker"].isin(VINGROUP_TICKERS)
     df.loc[mask, "group"] = VINGROUP_GROUP

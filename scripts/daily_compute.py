@@ -213,10 +213,22 @@ def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
     df["industry"] = df["industry"].fillna("Unknown")
     df["group"]    = df["group"].fillna("Unknown")
 
-    # Separate Bất động sản from Tài chính
+    # Separate major independent sectors
     mask_bds = df["industry"].astype(str).str.lower().str.contains("bất động|real estate")
     df.loc[mask_bds, "sector"] = "Bất động sản"
-    df.loc[mask_bds, "group"] = "Bất động sản"
+    df.loc[mask_bds, "group"]  = "Bất động sản"
+
+    mask_xd = df["industry"].astype(str).str.lower().str.contains("xây dựng và vật liệu|construction & materials|construction and materials")
+    df.loc[mask_xd, "sector"] = "Xây dựng và Vật liệu"
+    df.loc[mask_xd, "group"]  = "Xây dựng và Vật liệu"
+
+    mask_hc = df["industry"].astype(str).str.lower().str.contains("hóa chất|chemical")
+    df.loc[mask_hc, "sector"] = "Hóa chất"
+    df.loc[mask_hc, "group"]  = "Hóa chất"
+
+    mask_tp = df["industry"].astype(str).str.lower().str.contains("sản xuất thực phẩm|food producer")
+    df.loc[mask_tp, "sector"] = "Sản xuất thực phẩm"
+    df.loc[mask_tp, "group"]  = "Sản xuất thực phẩm"
 
     # Vingroup override (in case sector map was stale)
     mask = df["ticker"].isin(VINGROUP_TICKERS)

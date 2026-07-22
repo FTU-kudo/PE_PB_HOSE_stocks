@@ -158,11 +158,24 @@ def get_sector_map(tickers: list[str]) -> pd.DataFrame:
         base["sector"] = "Unknown"
         base["industry"] = "Unknown"
 
-    # Separate Bất động sản from Tài chính into its own major Sector and Group
+    # Separate major independent sectors
+    base["group"] = base["sector"]
+
     mask_bds = base["industry"].astype(str).str.lower().str.contains("bất động|real estate")
     base.loc[mask_bds, "sector"] = "Bất động sản"
-    base["group"] = base["sector"]
-    base.loc[mask_bds, "group"] = "Bất động sản"
+    base.loc[mask_bds, "group"]  = "Bất động sản"
+
+    mask_xd = base["industry"].astype(str).str.lower().str.contains("xây dựng và vật liệu|construction & materials|construction and materials")
+    base.loc[mask_xd, "sector"] = "Xây dựng và Vật liệu"
+    base.loc[mask_xd, "group"]  = "Xây dựng và Vật liệu"
+
+    mask_hc = base["industry"].astype(str).str.lower().str.contains("hóa chất|chemical")
+    base.loc[mask_hc, "sector"] = "Hóa chất"
+    base.loc[mask_hc, "group"]  = "Hóa chất"
+
+    mask_tp = base["industry"].astype(str).str.lower().str.contains("sản xuất thực phẩm|food producer")
+    base.loc[mask_tp, "sector"] = "Sản xuất thực phẩm"
+    base.loc[mask_tp, "group"]  = "Sản xuất thực phẩm"
 
     mask_vin = base["ticker"].isin(VINGROUP_TICKERS)
     base.loc[mask_vin, "group"] = VINGROUP_GROUP
