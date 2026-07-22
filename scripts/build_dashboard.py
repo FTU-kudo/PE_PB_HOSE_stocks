@@ -5,7 +5,7 @@ Supports full light / dark mode via CSS custom properties + localStorage.
 
 import json
 import sys
-from datetime import timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import numpy as np
@@ -352,6 +352,47 @@ a { color: var(--accent); text-decoration: none; }
   margin: 6px 0 2px;
 }
 
+/* ── Status Banner ────────────────────────────────────────────────────── */
+.status-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(129, 140, 248, 0.1) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 0.88rem;
+  color: var(--text);
+  box-shadow: 0 4px 12px var(--shadow);
+  backdrop-filter: blur(8px);
+}
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.status-icon {
+  font-size: 1.1rem;
+}
+.status-label {
+  color: var(--muted);
+}
+.status-val {
+  color: var(--accent);
+  font-weight: 700;
+}
+.status-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+}
+@media (max-width: 640px) {
+  .status-divider { display: none; }
+  .status-banner { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+
 /* ── Header ───────────────────────────────────────────────────────────── */
 .hdr {
   display: flex;
@@ -532,6 +573,21 @@ table.dataTable tbody tr:hover td { background: var(--hover) !important; }
 
 <body>
 <div class="page">
+
+  <!-- ── Status Notification Banner ──────────────────────────────────────── -->
+  <div class="status-banner mb-6">
+    <div class="status-item">
+      <span class="status-icon">🔄</span>
+      <span class="status-label">Dữ liệu cập nhật:</span>
+      <strong class="status-val" id="banner-updated">__UPDATED_AT__</strong>
+    </div>
+    <div class="status-divider"></div>
+    <div class="status-item">
+      <span class="status-icon">🕒</span>
+      <span class="status-label">Truy cập lúc:</span>
+      <strong class="status-val" id="banner-accessed">Đang tải...</strong>
+    </div>
+  </div>
 
   <!-- ── Header ──────────────────────────────────────────────────────────── -->
   <header class="hdr">
@@ -827,6 +883,21 @@ function fmtK(v)       { return v == null ? '—' : (v/1000).toFixed(1)+'K'; }
    DOM POPULATION
    ════════════════════════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
+
+  // ── Status banner timestamps in UTC+7 (Vietnam time)
+  const accessedEl = document.getElementById('banner-accessed');
+  if (accessedEl) {
+    const now = new Date();
+    const timeFormatter = new Intl.DateTimeFormat('vi-VN', {
+      timeZone: 'Asia/Ho_Chi_Minh',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+    });
+    const dateFormatter = new Intl.DateTimeFormat('vi-VN', {
+      timeZone: 'Asia/Ho_Chi_Minh',
+      day: '2-digit', month: '2-digit', year: 'numeric'
+    });
+    accessedEl.textContent = `${timeFormatter.format(now)}, Ngày ${dateFormatter.format(now)} (UTC+7)`;
+  }
 
   // Sync theme toggle button text now that DOM exists
   const dk0 = INIT_THEME === 'dark';
@@ -1482,6 +1553,10 @@ def build():
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     Path(DOCS_DIR).mkdir(parents=True, exist_ok=True)
 
+    utc_plus_7 = timezone(timedelta(hours=7))
+    now_vn = datetime.now(utc_plus_7)
+    updated_str = now_vn.strftime("%H:%M:%S, Ngày %d/%m/%Y (UTC+7)")
+
     tick_l, tick_5y, sect_l, sect_5y, latest_date = load_data()
     payload = build_payload(tick_l, tick_5y, sect_l, sect_5y, latest_date)
 
@@ -1491,6 +1566,7 @@ def build():
 
     html = HTML.replace("__DATA_JSON__",
                         json.dumps(payload, ensure_ascii=False, default=str))
+    html = html.replace("__UPDATED_AT__", updated_str)
     with open(DASHBOARD_FILE, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"Dashboard built -> {DASHBOARD_FILE}")
