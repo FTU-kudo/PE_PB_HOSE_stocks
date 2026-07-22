@@ -1,404 +1,404 @@
 date;ticker;close;pe;pb;sector;industry;group
-2026-07-22;DBT;12500;18.342969506647492;0.9444461654352347;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
-2026-07-22;DSN;36600;6.102868348123618;1.244437432677975;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Dịch vụ Tiêu dùng
-2026-07-22;VPG;1940;;0.1707145371348117;Nguyên vật liệu;Khai khoáng;Nguyên vật liệu
-2026-07-22;HPG;20700;9.393761997467768;1.2108074213720965;Nguyên vật liệu;Kim loại;Nguyên vật liệu
-2026-07-22;VGC;38650;12.349071343444768;1.5017331126905966;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;HT1;12150;16.93733881647731;0.9110807667475767;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;TVT;0;;;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
-2026-07-22;DGW;34500;13.835640610211906;2.1974410321476068;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
-2026-07-22;HHS;9840;1.116588142378605;0.258366723206268;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
-2026-07-22;VTO;10050;6.612668688849264;0.677750757664653;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;IMP;35100;15.483017203352448;2.3436639279406806;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
-2026-07-22;FPT;65600;10.894820144123855;2.5545618984756353;Công nghệ Thông tin;Phần mềm & Dịch vụ Máy tính;Công nghệ Thông tin
-2026-07-22;STK;8550;17.183166525985772;0.6817355472063992;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
-2026-07-22;BCM;38100;11.263858093126386;1.6872345428723639;Tài chính;Bất động sản;Tài chính
-2026-07-22;TNH;8060;;0.7611032786931687;Dược phẩm và Y tế;Thiết bị và Dịch vụ Y tế;Dược phẩm và Y tế
-2026-07-22;ST8;2500;;0.22212586895639938;Công nghệ Thông tin;Thiết bị và Phần cứng;Công nghệ Thông tin
-2026-07-22;VSI;0;;;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;CTD;57300;12.621534584766932;0.6482803204835424;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;CRV;0;;;Tài chính;Bất động sản;Tài chính
-2026-07-22;ADS;7760;6.129348203848219;0.5819578080589157;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
-2026-07-22;LM8;0;;;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;GTA;0;;;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
-2026-07-22;GEX;21300;12.749604941818703;0.6378005522813797;Công nghiệp;Điện tử & Thiết bị điện;Công nghiệp
-2026-07-22;HPX;4060;10.177734326038454;0.34752924681167596;Tài chính;Bất động sản;Tài chính
-2026-07-22;PTB;33900;4.563253559405081;0.6777008628391428;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
-2026-07-22;SVT;0;;;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
-2026-07-22;NT2;21600;5.501376617621215;1.2796064499274002;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;VSC;13700;13.528058378015423;0.8030678363711181;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;SVD;4400;94.68474284484614;0.46536568753020907;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
-2026-07-22;HPA;31400;5.003593344902152;2.517867638745332;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;HTN;6730;32.59395583107323;0.3849907384843149;Tài chính;Bất động sản;Tài chính
-2026-07-22;CII;13950;62.48880129009138;0.7296941038624095;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;BTP;7860;11.167628086726719;0.4416340685285719;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;CTF;16850;;1.4870643056027466;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
-2026-07-22;DAT;0;;;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;CRE;6440;40.73628945537352;0.5021195839892466;Tài chính;Bất động sản;Tài chính
-2026-07-22;NTL;14350;100.43393057110863;1.087225816423247;Tài chính;Bất động sản;Tài chính
-2026-07-22;MZG;11150;10.028421355590734;0.8741272447038865;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
-2026-07-22;DSC;10500;8.051529790660226;0.9539592032532734;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;PLP;3990;9.616543346749896;0.344989780002006;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;TCX;41050;16.69432108405316;2.151476526107028;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;VPI;62100;50.87786853683116;3.6305471076641376;Tài chính;Bất động sản;Tài chính
-2026-07-22;GMH;6980;6.462843280679987;0.6065888761333349;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;L10;23300;6.055565662603634;0.7536065572179821;Công nghiệp;Công nghiệp nặng;Công nghiệp
-2026-07-22;VRC;12450;;0.48880844598175904;Tài chính;Bất động sản;Tài chính
-2026-07-22;SFG;10850;16.21993332635702;0.7888574072983487;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;KLB;11450;2.5253527774469453;0.7868280179492994;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;VRE;22500;7.9316957613017856;1.057040736940614;Tài chính;Bất động sản;Vingroup Ecosystem
-2026-07-22;HTG;34200;3.88903292714545;1.1069798966624556;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
-2026-07-22;CLW;0;;;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
-2026-07-22;TTA;10300;7.562241654001747;0.7405133411027321;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;DIG;10950;10.703916949334793;0.8698636339804483;Tài chính;Bất động sản;Tài chính
-2026-07-22;NSC;0;;;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;SJD;13850;5.949466051530537;0.8996181981394467;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;TNT;9220;34.355553899467154;0.7294540408351853;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;CCI;0;;;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
-2026-07-22;VPD;20950;8.510724731881703;1.3746457580531604;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;ANT;24700;4.039267567952091;1.2410320362120084;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;UIC;56000;4.479598627962934;0.8193116436181622;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;VPS;9460;9.887537104393996;0.657617131969021;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;AAM;6550;37.06847764572722;0.345568571092424;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;DGC;41000;5.206970736824458;1.0130182731201036;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;HAX;8570;;0.6730273114011769;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
-2026-07-22;AAT;2610;7.791509940891993;0.24564104784259397;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
-2026-07-22;PMG;6220;13.949315990132318;0.4170678653903407;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
-2026-07-22;VDS;12400;11.253494028387845;1.0883054557454628;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;VJC;130600;34.32623591533562;3.1143480830066763;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Dịch vụ Tiêu dùng
-2026-07-22;CIG;7100;3.1846276676863456;0.9316643856198258;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;STB;71900;22.822788506710342;2.2641454771725957;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;APH;5330;7.949054465191195;0.22424750866487322;Công nghiệp;Hàng công nghiệp;Công nghiệp
-2026-07-22;FCN;10550;52.584359268304844;0.5020226038651457;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;ACL;0;;;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;PNJ;35500;4.250148156573064;0.9123067612210519;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
-2026-07-22;NAB;12350;4.453612113824949;0.9043120674770572;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;NHT;11350;5.646063922397712;0.677711068186093;Hàng Tiêu dùng;Hàng hóa giải trí;Hàng Tiêu dùng
-2026-07-22;PDV;8450;6.287576641466754;0.6437452719004808;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;NNC;42500;6.3017671637896004;1.74304412608484;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;SC5;0;;;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;SGN;54000;8.6954701431371;1.3177297858420671;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;VFG;46050;5.697720169558213;1.1202111883920336;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;VBB;13900;8.772594163384833;0.9180134716825866;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;DXV;3700;44.99027237354086;0.3753890857145176;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;GEL;23550;38.7169960214382;0.9830473382167062;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;SVC;20000;3.1927053069147613;0.6550937799500688;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
-2026-07-22;TEG;5800;31.371700562527046;0.4662476868487605;Tài chính;Bất động sản;Tài chính
-2026-07-22;RYG;9030;10.873491799725453;0.5277140456089866;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;PPC;9020;17.507763975155278;0.647488469752167;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;PVP;17150;8.960807569923036;0.9208879400193197;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;VDP;51000;17.650845510109434;1.501526699352842;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
-2026-07-22;LHG;27550;4.711221771145776;0.7501814186461608;Tài chính;Bất động sản;Tài chính
-2026-07-22;AGG;11100;4.757598227258894;0.5132468550914551;Tài chính;Bất động sản;Tài chính
-2026-07-22;HAR;2990;16.680613668061365;0.2616490717145977;Tài chính;Bất động sản;Tài chính
-2026-07-22;OGC;2180;9.744758839569085;0.34440593136526937;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;ACB;22650;7.013274130772017;1.230910025639883;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;NKG;10500;22.826583186591012;0.6154881436467262;Nguyên vật liệu;Kim loại;Nguyên vật liệu
-2026-07-22;ICT;17200;17.407497368634118;0.8491319600434045;Công nghệ Thông tin;Phần mềm & Dịch vụ Máy tính;Công nghệ Thông tin
-2026-07-22;APG;4560;;0.4280315616956808;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;SBV;5900;;0.3624205515795086;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
-2026-07-22;GMD;74100;17.748545505498218;2.1184308631076263;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;HDB;26150;5.623244751996628;1.2891750216546893;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;BVH;58000;15.178199917828366;1.6897231330380202;Tài chính;Bảo hiểm nhân thọ;Tài chính
-2026-07-22;PTL;1910;15.836166155376835;0.37841789619462174;Tài chính;Bất động sản;Tài chính
-2026-07-22;VIP;9950;7.939357670057849;0.5325896704367236;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;SKG;8000;11.101859561476546;0.5917444255825909;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Dịch vụ Tiêu dùng
-2026-07-22;DTT;0;;;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;VID;4600;;0.29580395657083475;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
-2026-07-22;TCH;12100;9.456671251719396;0.6011926469667596;Tài chính;Bất động sản;Tài chính
-2026-07-22;TAL;20500;10.239913685020255;1.1329359399333943;Tài chính;Bất động sản;Tài chính
-2026-07-22;PVT;16650;6.555969870101233;0.6809595927166361;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;D2D;26750;3.374151101423829;1.1239472185982804;Tài chính;Bất động sản;Tài chính
-2026-07-22;SJS;0;;;Tài chính;Bất động sản;Tài chính
-2026-07-22;DPR;36000;10.825602550030823;0.9266905409607517;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;AGR;13650;21.405385061707097;1.2136278403559264;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;HII;5770;8.37798202436439;0.47275125664166356;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;DPM;22300;10.057775833374677;1.3147437605680636;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;ASP;9610;25.7137505685923;1.0880259405310608;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
-2026-07-22;SHI;14200;46.57875746244177;1.109180026948388;Nguyên vật liệu;Kim loại;Nguyên vật liệu
-2026-07-22;TMP;0;;;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;DC4;6620;3.1100545903842;0.5160296584538442;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;TDP;28500;26.03667059500644;2.252401771573267;Công nghiệp;Hàng công nghiệp;Công nghiệp
-2026-07-22;SFC;0;;;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
-2026-07-22;GEE;68400;7.187131252357621;2.9813300742107103;Công nghiệp;Điện tử & Thiết bị điện;Công nghiệp
-2026-07-22;VHC;53000;8.387721641587905;1.1842874109130967;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;DLG;2260;1.8548155443391192;0.6795500536724268;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;ADG;8100;9.21543642486575;0.4198995040520302;Dịch vụ Tiêu dùng;Truyền thông;Dịch vụ Tiêu dùng
-2026-07-22;DCM;29000;7.833709261335243;1.4222797673346477;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;NLG;22850;12.545363705741218;0.5935527443696912;Tài chính;Bất động sản;Tài chính
-2026-07-22;SFI;26000;6.697009270206293;0.821166125381329;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;PLX;32650;15.506858163304077;1.403328704282753;Dầu khí;Sản xuất Dầu khí;Dầu khí
-2026-07-22;PET;34200;14.13953488372093;1.37289574623106;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
-2026-07-22;HDG;16450;7.533465531532934;0.7246504497678475;Tài chính;Bất động sản;Tài chính
-2026-07-22;AST;62000;11.15240298308792;4.062198815803526;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
-2026-07-22;TDH;3430;3.563081078273516;2.13137470561552;Tài chính;Bất động sản;Tài chính
-2026-07-22;TYA;17000;2.0810609983461688;0.16245477187479784;Công nghiệp;Điện tử & Thiết bị điện;Công nghiệp
-2026-07-22;HTI;18350;2.7021375601538526;0.7308610977573518;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;HVH;9960;10.063248934063491;0.7324051788987891;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;TLH;3990;87.78877887788778;0.3546159171887401;Nguyên vật liệu;Kim loại;Nguyên vật liệu
-2026-07-22;PDN;97500;10.235145916439219;3.6481806803576338;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;KDH;18000;18.192292532063917;1.0905369864706769;Tài chính;Bất động sản;Tài chính
-2026-07-22;PTC;0;;;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;LGL;4900;12.33107683015829;0.3617597767425378;Tài chính;Bất động sản;Tài chính
-2026-07-22;DHC;29200;6.63282110690881;1.2755107612484105;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
-2026-07-22;PNC;0;;;Dịch vụ Tiêu dùng;Truyền thông;Dịch vụ Tiêu dùng
-2026-07-22;DQC;9350;75.87438123833482;0.3324716332357846;Hàng Tiêu dùng;Hàng gia dụng;Hàng Tiêu dùng
-2026-07-22;BWE;44650;9.90861439179083;1.5613580492990498;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
-2026-07-22;VNM;59600;13.236855314064382;3.612252566760003;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;AFX;9990;7.389107907602867;0.670675502486333;Dịch vụ Tiêu dùng;Phân phối thực phẩm & dược phẩm;Dịch vụ Tiêu dùng
-2026-07-22;DPG;27350;6.917081017101756;0.9426646216416495;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;ILB;20300;6.3788937175752665;0.9058415625097613;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;VOS;10600;4.869689855884745;0.7014084413844214;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;HTL;0;;;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
-2026-07-22;AAN;15150;21.916500303793075;1.0548009106795981;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;PDR;12200;21.921943506073458;0.9621489043726512;Tài chính;Bất động sản;Tài chính
-2026-07-22;MWG;72400;15.169292658397586;3.2264260335147235;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
-2026-07-22;SBG;12000;15.652922531077573;0.9705141622279123;Công nghiệp;Hàng công nghiệp;Công nghiệp
-2026-07-22;VTB;12800;8.868810886465363;0.7274037426059125;Công nghiệp;Điện tử & Thiết bị điện;Công nghiệp
-2026-07-22;MHC;9000;2.3839228244717625;0.6001736502428036;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;TTE;0;;;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;NO1;4990;15.706147115293822;0.3729636483767486;Công nghiệp;Công nghiệp nặng;Công nghiệp
-2026-07-22;TSA;15100;21.278394678992164;1.389379618997144;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;SHA;3890;8.154281521853054;0.30900041147098495;Nguyên vật liệu;Kim loại;Nguyên vật liệu
-2026-07-22;VCA;0;;;Nguyên vật liệu;Kim loại;Nguyên vật liệu
-2026-07-22;KOS;35500;;3.287454056672004;Tài chính;Bất động sản;Tài chính
-2026-07-22;TCL;29950;5.7639050601120445;1.2660774932426548;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;PHR;57900;16.40486876104991;1.8583071303469259;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;CDC;18300;44.31743879107839;1.1964021637227327;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;DBD;49400;15.875005222041192;2.69231670582516;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
-2026-07-22;PJT;0;;;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;DTA;0;;;Tài chính;Bất động sản;Tài chính
-2026-07-22;FMC;34050;6.385839751993114;0.8515448474034134;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;BHN;28650;14.214482399345092;1.2303450763651353;Hàng Tiêu dùng;Bia và đồ uống;Hàng Tiêu dùng
-2026-07-22;QCG;10150;16.299722182075122;0.5885651361846945;Tài chính;Bất động sản;Tài chính
-2026-07-22;PGC;12000;6.428284451586983;0.8178515176938768;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
-2026-07-22;SPM;0;;;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
-2026-07-22;NHA;8450;4.97922866150084;0.6901384523910643;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;SBT;20700;21.302871256560667;1.4413576335553628;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;SRC;38000;43.315703082254245;1.8795607169831665;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
-2026-07-22;CTI;18600;8.02052564627757;0.6238104421172663;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;VND;16700;12.572366390375741;1.2162136574239284;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;MCP;27400;55.37926713422399;1.9743535793445148;Công nghiệp;Hàng công nghiệp;Công nghiệp
-2026-07-22;TCB;29850;8.347758969296468;1.1783989407437059;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;DBC;16350;3.83276486514997;0.7798392243389968;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;KHG;4790;31.33176347462062;0.4069838081619371;Tài chính;Bất động sản;Tài chính
-2026-07-22;DRH;1590;12.572151498379062;0.14861896527550592;Tài chính;Bất động sản;Tài chính
-2026-07-22;VNL;18800;4.824694222172036;0.8126939334127007;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;SGT;10750;4.780539867478988;0.6578371660252499;Công nghệ Thông tin;Phần mềm & Dịch vụ Máy tính;Công nghệ Thông tin
-2026-07-22;BSI;28500;13.518833870133813;1.2650569519762187;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;HSG;10450;8.82869791490656;0.5723148575127689;Nguyên vật liệu;Kim loại;Nguyên vật liệu
-2026-07-22;TMS;33900;15.854605318541939;1.0838025548327364;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;BIC;20850;5.238601331132367;1.2453389382544828;Tài chính;Bảo hiểm phi nhân thọ;Tài chính
-2026-07-22;LCG;7100;9.215393601142189;0.5273266617845626;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;HCM;25650;17.461927551722024;1.9047392734960542;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;SBA;0;;;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;EVF;12250;10.417729700309554;0.9433635338012929;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;VIB;14750;6.359704909692191;1.070447802787954;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;AAA;6780;7.011302882079813;0.4391305474235084;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;HAH;43750;5.163052136795509;1.3694063662528189;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;VMD;14000;5.102896258119072;0.40553673511064636;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
-2026-07-22;KDC;49250;27.31967626877014;1.8445188577241147;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;EVE;8450;9.045462817260242;0.3683968676238881;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
-2026-07-22;SAB;47150;13.67066880449059;2.6292735453815963;Hàng Tiêu dùng;Bia và đồ uống;Hàng Tiêu dùng
-2026-07-22;SSB;15650;8.07741935483871;1.1028334009831777;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;TV2;24650;17.588674748656768;1.30465802610798;Công nghiệp;Tư vấn & Hỗ trợ Kinh doanh;Công nghiệp
-2026-07-22;CSM;14000;34.091462523742265;1.0634709869922305;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
-2026-07-22;SCS;47000;6.387735547748323;3.220400069615457;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Dịch vụ Tiêu dùng
-2026-07-22;SMC;9500;3.882273132217963;0.6941298534290015;Nguyên vật liệu;Kim loại;Nguyên vật liệu
-2026-07-22;DAH;2710;;0.2679923221683051;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Dịch vụ Tiêu dùng
-2026-07-22;EIB;17300;28.343928173536927;1.239123645917195;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;FTS;22300;18.352096912239123;1.748181851677353;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;NVL;12700;13.440575722298655;0.4415575926697268;Tài chính;Bất động sản;Tài chính
-2026-07-22;BFC;53000;9.777785977179017;1.7868690076673537;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;FDC;0;;;Tài chính;Bất động sản;Tài chính
-2026-07-22;STG;0;;;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;CKG;6000;8.546034639927074;0.47742382106155185;Tài chính;Bất động sản;Tài chính
-2026-07-22;HQC;2220;18.22510467120926;0.2342777964801344;Tài chính;Bất động sản;Tài chính
-2026-07-22;BVB;13100;18.698792429130147;1.125227514990865;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;SSI;22750;11.083341858980917;1.4727931408624677;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;VIC;210400;143.36038374794737;11.046967990570174;Tài chính;Bất động sản;Vingroup Ecosystem
-2026-07-22;MSH;30600;4.737538802145826;1.7950877950455577;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
-2026-07-22;TCM;15450;6.137528304135382;0.707342767317193;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
-2026-07-22;TDC;7040;2.94385762434035;0.5213412985989694;Tài chính;Bất động sản;Tài chính
-2026-07-22;KHP;9600;10.220376876397317;0.8272766913068731;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;ANV;17300;4.608626389580775;1.3060378962371764;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;NAF;48550;22.812276810885994;4.164236456582152;Hàng Tiêu dùng;Bia và đồ uống;Hàng Tiêu dùng
-2026-07-22;VNG;6000;89.02077151335311;0.5150647865657368;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Dịch vụ Tiêu dùng
-2026-07-22;YBM;0;;;Nguyên vật liệu;Khai khoáng;Nguyên vật liệu
-2026-07-22;CLC;51000;7.341911373052594;1.3878793502874136;Hàng Tiêu dùng;Thuốc lá;Hàng Tiêu dùng
-2026-07-22;FIR;4920;;0.46733099857805993;Tài chính;Bất động sản;Tài chính
-2026-07-22;ABR;0;;;Công nghiệp;Tư vấn & Hỗ trợ Kinh doanh;Công nghiệp
-2026-07-22;SMA;0;;;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;FRT;107600;20.294611365736813;3.565716891357644;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
-2026-07-22;SHB;11700;4.060286579885271;0.7888684592185348;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;ACG;31800;9.514206984864034;1.0875516715292994;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
-2026-07-22;BRC;12000;7.141496857741383;0.7018270312190209;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;DSE;21500;26.381015485042578;1.7120724198670478;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;CCL;3900;8.179358654390638;0.3228399318228287;Tài chính;Bất động sản;Tài chính
-2026-07-22;DXG;11000;28.032619775739043;0.5859557070754151;Tài chính;Bất động sản;Tài chính
-2026-07-22;CSV;22250;11.766634583857764;1.5161529917616676;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;NBB;16900;;0.9296139241864091;Tài chính;Bất động sản;Tài chính
-2026-07-22;SGR;12500;10.578607516735357;0.6093144189138995;Tài chính;Bất động sản;Tài chính
-2026-07-22;LGC;0;;;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;PIT;7500;;0.9679067918664856;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
-2026-07-22;REE;44750;8.916367461933588;0.9775237259753065;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;TCR;2130;23.679822123401888;;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;HRC;0;;;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;ORS;13200;37.42875776221397;0.5806705336978067;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;VTP;48150;14.482422579946583;3.31626644186306;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;HUB;12400;4.827137857607219;0.5617883353713262;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;EVG;4790;13.262819802857459;0.3543135267880258;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;BSR;23100;14.929328050979455;1.911465233260819;Dầu khí;Sản xuất Dầu khí;Dầu khí
-2026-07-22;COM;0;;;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
-2026-07-22;CRC;5840;6.524629358597651;0.45429511134897643;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;TTF;1910;71.16244411326379;3.6938191382377967;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
-2026-07-22;LBM;27700;7.7987088491414385;1.7178028247624069;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;OPC;19550;10.80588105239885;1.375497430528585;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
-2026-07-22;LSS;8090;5.465293024826887;0.35542597957420935;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;BID;36200;8.477295133985757;1.464529263074767;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;VCB;55800;12.284714776662566;2.0762798423366853;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;CTS;22650;7.064195289912703;1.6871345007459893;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;VPH;3200;;0.29710784086161274;Tài chính;Bất động sản;Tài chính
-2026-07-22;VPL;75400;122.74732609438847;3.694615074029502;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Vingroup Ecosystem
-2026-07-22;TCT;18100;9.078187773035275;0.6524617453748213;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Dịch vụ Tiêu dùng
-2026-07-22;MSB;15700;7.619324937516682;1.1540290683016146;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;YEG;7670;18.222422845738993;0.6936794676304018;Dịch vụ Tiêu dùng;Truyền thông;Dịch vụ Tiêu dùng
-2026-07-22;PGV;23500;7.094896505084173;1.4746661763663096;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;PC1;19700;6.838971724149902;0.9126830983599039;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;JVC;3010;6.779890080187404;0.5403901221712551;Dược phẩm và Y tế;Thiết bị và Dịch vụ Y tế;Dược phẩm và Y tế
-2026-07-22;NCT;93800;6.34379157195503;3.4585770868161845;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;HHP;14750;26.5943061139859;1.1274715514084985;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
-2026-07-22;VCK;29600;12.260587182715886;1.521636540662138;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;VAB;10050;4.748495128658231;0.8079174300347526;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;MCH;135100;19.275382582815663;7.6497577387972955;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;TCI;9550;94.23722123544503;0.7875885934080071;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;ASG;0;;;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;THG;28600;5.076637703797716;1.1209329925069942;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;DRL;42950;8.336196171366574;3.7189753465271096;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;HHV;9900;7.936317067891585;0.6156130666671641;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;VHM;129800;12.725590004627486;2.1392711677833014;Tài chính;Bất động sản;Vingroup Ecosystem
-2026-07-22;VPX;26100;13.711367827142205;1.4465267285994405;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;VPB;24850;8.218353551254747;1.093647470549636;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;SSC;26100;25.009582215408205;0.9461945216424776;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;TDG;2470;10.467875911171385;0.2303311639929912;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
-2026-07-22;SHP;0;;;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;GAS;67400;13.946453069357737;2.403912170893189;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
-2026-07-22;GDT;15750;5.203137078711076;1.0938882553211586;Hàng Tiêu dùng;Hàng gia dụng;Hàng Tiêu dùng
-2026-07-22;KSB;12950;9.50633143696091;0.5331214570065332;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;CNG;20900;10.691412084876513;1.1529539618311557;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
-2026-07-22;FCM;3140;7.73284736245875;0.2621455191483109;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;TPB;14300;5.1357932466114535;0.8614535673515122;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;PGI;0;;;Tài chính;Bảo hiểm phi nhân thọ;Tài chính
-2026-07-22;NHH;9900;7.283803469739107;0.6125885082108518;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;S4A;0;;;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;VCG;15450;2.6074805156229433;0.8057593277724641;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;PVD;17850;9.553373116754528;0.5803188990521457;Dầu khí;Thiết bị, Dịch vụ và Phân phối Dầu khí;Dầu khí
-2026-07-22;CCC;0;;;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;DRC;10100;11.2603824070461;0.8006652656345747;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
-2026-07-22;MIG;16750;10.339314704048691;1.3481948676837288;Tài chính;Bảo hiểm phi nhân thọ;Tài chính
-2026-07-22;DXS;6050;9.967215275375212;0.39667241022090394;Tài chính;Bất động sản;Tài chính
-2026-07-22;ITD;14850;7.7321197983921355;0.8867524557370197;Công nghệ Thông tin;Phần mềm & Dịch vụ Máy tính;Công nghệ Thông tin
-2026-07-22;HDC;11950;3.367098237556529;0.8128261932730639;Tài chính;Bất động sản;Tài chính
-2026-07-22;HTV;0;;;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;CTG;30350;4.7097710290888495;0.9071789991200214;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;TDW;0;;;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
 2026-07-22;GEG;12150;7.113208320404663;0.8652773801537417;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;HAP;7170;;0.6655564776189229;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
-2026-07-22;TNI;6620;7.944985178162092;0.5880774840943696;Nguyên vật liệu;Kim loại;Nguyên vật liệu
-2026-07-22;BTT;0;;;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
-2026-07-22;QNP;30600;8.66624751482608;1.3243152943701886;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;OCB;10200;6.431151995863886;0.8006895349877777;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;HCD;6400;11.806157649098857;0.47129240158825536;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;BMI;13400;7.068107013250064;0.6891579004753132;Tài chính;Bảo hiểm phi nhân thọ;Tài chính
-2026-07-22;VIX;12000;3.3156773514369315;0.8565536705823067;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;C32;17400;9.943027594758767;0.4597255332882239;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;ITC;10550;20.249131494597034;0.36907430217844794;Tài chính;Bất động sản;Tài chính
-2026-07-22;C47;8900;6.190443068790429;0.6579068950860268;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;LPB;54100;14.107866504639167;3.4245274658496756;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;PHC;4430;10.141941391941392;0.32836121809411145;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;PGD;22600;13.28973985040222;1.516341939132961;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
-2026-07-22;ASM;5750;57.350887692000796;0.2855209117998593;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;TVS;14000;8.30702774547267;0.9544769057494962;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;KBC;26500;10.691778224277195;0.9337966374159274;Tài chính;Bất động sản;Tài chính
-2026-07-22;TN1;13800;2.9278290147855364;0.717290761606856;Tài chính;Bất động sản;Tài chính
-2026-07-22;HSL;7630;;0.6509794553272814;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;NAV;0;;;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;CMG;24100;12.289961498253398;1.248404528652179;Công nghệ Thông tin;Phần mềm & Dịch vụ Máy tính;Công nghệ Thông tin
-2026-07-22;DHM;6400;38.3808095952024;0.6122585644449972;Nguyên vật liệu;Khai khoáng;Nguyên vật liệu
-2026-07-22;IDI;4750;10.133981908175455;0.35795835625522804;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;HID;3310;46.632854325162015;0.2725659490194625;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;TIP;17000;5.117121889843417;0.5808407293719541;Tài chính;Bất động sản;Tài chính
-2026-07-22;VSH;42400;11.612016245868013;2.023652874804138;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;HMC;0;;;Nguyên vật liệu;Kim loại;Nguyên vật liệu
-2026-07-22;VVS;108300;7.25900505382254;3.574591290209614;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
-2026-07-22;TMT;11400;6.68692295960864;2.3984246137274043;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
-2026-07-22;SIP;46800;7.914790849960596;1.94890211847326;Tài chính;Bất động sản;Tài chính
-2026-07-22;DCL;38050;142.40269461077844;1.8268852207146218;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
-2026-07-22;TPC;0;;;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;MDG;40000;9.587268107952639;2.38295945692354;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;CMX;5000;7.574036203893055;0.2908909816232531;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;MBB;22650;5.690311396952606;1.2846253317906486;Ngân hàng;Ngân hàng;Ngân hàng
-2026-07-22;CLL;30000;10.33823250684908;1.6217846767296604;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;KMR;2300;22.972433080303635;0.20068774818748425;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
-2026-07-22;ADP;22500;6.779926595994721;1.9570561005352765;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;DMC;0;;;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
-2026-07-22;TVB;7000;37.561708521141874;0.6855687772391166;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;CHP;27400;8.78289579126198;1.909446253617669;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;SZL;46500;9.037971140689141;1.8630934804148807;Tài chính;Bất động sản;Tài chính
-2026-07-22;CTR;68000;12.96984701302516;3.7627372807029675;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;BKG;2190;15.51321102217185;0.2057338686797898;Hàng Tiêu dùng;Hàng gia dụng;Hàng Tiêu dùng
-2026-07-22;TDM;0;;;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
-2026-07-22;ACC;6020;12.142727474433709;0.4552260250147457;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;TNC;31800;12.430566685299487;1.753110254647534;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;POW;13250;12.78710673615132;0.833778014941302;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;GHC;24950;7.040027990812693;1.0831832650573328;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;HNA;21200;10.480832929590555;1.438466215042557;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;SAM;5480;21.599463954909147;0.4369744146695819;Công nghệ Thông tin;Thiết bị và Phần cứng;Công nghệ Thông tin
-2026-07-22;VCI;19950;10.712962416028095;0.9416764767800045;Tài chính;Dịch vụ tài chính;Tài chính
-2026-07-22;BMC;12050;12.966330582247425;0.6552335214206986;Nguyên vật liệu;Khai khoáng;Nguyên vật liệu
-2026-07-22;SMB;38050;6.421561595517564;1.808640596257231;Hàng Tiêu dùng;Bia và đồ uống;Hàng Tiêu dùng
-2026-07-22;LAF;20000;7.590276855348299;1.1816029152507126;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;BMP;150800;10.046615496438047;4.290116572822738;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;DHA;47400;6.359010409190246;1.4279478311008846;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;TLG;46600;9.062533425384817;1.7831054963270323;Hàng Tiêu dùng;Hàng gia dụng;Hàng Tiêu dùng
-2026-07-22;CMV;7950;7.361520084449135;0.5472771755816628;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
-2026-07-22;HAG;13650;7.130059599985374;1.2198042593956204;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;FIT;3100;26.356061894235673;0.17454090112652074;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
-2026-07-22;VCF;0;;;Hàng Tiêu dùng;Bia và đồ uống;Hàng Tiêu dùng
-2026-07-22;HVN;21800;7.354727267820032;10.079340126870225;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Dịch vụ Tiêu dùng
-2026-07-22;TSC;2000;;0.15746803989295322;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;BAF;29100;66.45049324077456;2.176861384798027;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;MSN;64800;23.51063057833249;2.1856883957148363;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;ABS;3180;;0.6328836807559577;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;TIX;0;;;Tài chính;Bất động sản;Tài chính
-2026-07-22;TRC;74800;8.779435463520155;1.0565314974921503;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;VID;4600;;0.29580395657083475;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
+2026-07-22;PNJ;35500;4.250148156573064;0.9123067612210519;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
 2026-07-22;CVT;0;;;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;SZC;18750;9.787493931753762;1.0536537339802485;Tài chính;Bất động sản;Tài chính
-2026-07-22;DTL;0;;;Nguyên vật liệu;Kim loại;Nguyên vật liệu
-2026-07-22;PAN;20950;6.505988925844148;0.4821185786177764;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;TBC;31500;10.40761507022662;1.355982984350665;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
-2026-07-22;HAS;8820;;0.5549138184865575;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;IJC;7200;4.8090409970745;0.5621038924133149;Tài chính;Bất động sản;Tài chính
-2026-07-22;ELC;13950;10.70992606696199;0.9933124085013301;Công nghệ Thông tin;Thiết bị và Phần cứng;Công nghệ Thông tin
-2026-07-22;NVT;0;;;Tài chính;Bất động sản;Tài chính
+2026-07-22;SAM;5520;21.757124275747902;0.4401640089372431;Công nghệ Thông tin;Thiết bị và Phần cứng;Công nghệ Thông tin
+2026-07-22;KHG;4730;30.939298796441655;0.4018858898968606;Tài chính;Bất động sản;Tài chính
+2026-07-22;FIT;3140;26.696140112225812;0.1767930417862178;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
+2026-07-22;HHS;9800;1.1120491661900742;0.2573164519737222;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
+2026-07-22;LBM;27200;7.6579379312869;1.6867955535573091;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;CNG;20900;10.691412084876513;1.1529539618311557;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
+2026-07-22;SC5;0;;;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;ELC;13900;10.671539235180763;0.9897521489726515;Công nghệ Thông tin;Thiết bị và Phần cứng;Công nghệ Thông tin
+2026-07-22;LSS;8050;5.438270562404999;0.3536686199718647;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;VRC;12200;;0.478993015339555;Tài chính;Bất động sản;Tài chính
+2026-07-22;FRT;105700;19.936249269129934;3.5027534890009564;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
+2026-07-22;PMG;6220;13.949315990132318;0.4170678653903407;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
 2026-07-22;SAV;11400;30.65999677263192;0.8456684712539484;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
-2026-07-22;TRA;37900;6.2925974813006915;0.9317384789553712;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
-2026-07-22;RAL;81000;5.28154549758027;0.5612007423369424;Hàng Tiêu dùng;Hàng gia dụng;Hàng Tiêu dùng
-2026-07-22;BCE;5450;1.8748752949918468;0.40128351821827174;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;GVR;27850;20.945519087873407;1.792330370571544;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
-2026-07-22;MCM;27400;13.972249277165572;1.3223210692075822;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;LIX;25150;8.156342326389902;1.5692925329754224;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
-2026-07-22;PAC;16050;7.750627776704654;1.092647672524302;Công nghiệp;Điện tử & Thiết bị điện;Công nghiệp
-2026-07-22;LDG;2740;7.559454836395741;0.5371790649163255;Tài chính;Bất động sản;Tài chính
-2026-07-22;SRF;7400;12.515432881762985;0.5644610731625457;Công nghiệp;Công nghiệp nặng;Công nghiệp
-2026-07-22;VNS;7790;13.513044684984735;0.4719318673356508;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Dịch vụ Tiêu dùng
-2026-07-22;SCR;4690;26.456817284368476;0.3769590416720585;Tài chính;Bất động sản;Tài chính
+2026-07-22;HHP;14700;26.504155923768998;1.1236496139460967;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
+2026-07-22;SSB;15550;8.025806451612903;1.095786542190953;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;PGI;0;;;Tài chính;Bảo hiểm phi nhân thọ;Tài chính
+2026-07-22;PET;33300;13.767441860465116;1.3367669108039268;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
+2026-07-22;KLB;11400;2.514325036060714;0.7833920877399138;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;HVN;21700;7.320989986774986;10.033104621701096;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Dịch vụ Tiêu dùng
+2026-07-22;TDP;28500;26.03667059500644;2.252401771573267;Công nghiệp;Hàng công nghiệp;Công nghiệp
+2026-07-22;PLP;3930;9.471933672362681;0.3398019637613743;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;HTG;34200;3.88903292714545;1.1069798966624556;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
+2026-07-22;CRC;5840;6.524629358597651;0.45429511134897643;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;TDM;0;;;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
+2026-07-22;SCR;4700;26.51322840864218;0.37776279229396054;Tài chính;Bất động sản;Tài chính
+2026-07-22;DHM;6450;38.680659670164914;0.6170418344797237;Nguyên vật liệu;Khai khoáng;Nguyên vật liệu
+2026-07-22;EVE;8450;9.045462817260242;0.3683968676238881;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
+2026-07-22;TLD;8400;9.854990848937069;0.6431601828718787;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;SVD;4200;90.38089089735314;0.4442127017333814;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
+2026-07-22;BWE;44650;9.90861439179083;1.5613580492990498;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
+2026-07-22;TRC;74200;8.70901218440101;1.0480566459079885;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;IJC;7220;4.822399444288596;0.563665292114463;Tài chính;Bất động sản;Tài chính
+2026-07-22;YBM;0;;;Nguyên vật liệu;Khai khoáng;Nguyên vật liệu
+2026-07-22;TNT;9220;34.355553899467154;0.7294540408351853;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;DBT;12500;18.342969506647492;0.9444461654352347;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
+2026-07-22;PPC;9000;17.46894409937888;0.6460527968702331;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;SJD;13850;5.949466051530537;0.8996181981394467;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;ABR;0;;;Công nghiệp;Tư vấn & Hỗ trợ Kinh doanh;Công nghiệp
+2026-07-22;SSC;26100;25.009582215408205;0.9461945216424776;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;CLW;0;;;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
+2026-07-22;TDG;2520;10.679776233259874;0.23499373816288982;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
+2026-07-22;ACB;22500;6.966828606727169;1.2227583036157779;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;TMS;33900;15.854605318541939;1.0838025548327364;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;KOS;35400;;3.278193622709548;Tài chính;Bất động sản;Tài chính
+2026-07-22;MSH;30150;4.667869113878976;1.7686894451184172;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
+2026-07-22;CHP;27150;8.702759880757766;1.8920242987488947;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;HPA;31200;4.971723323597042;2.5018302652501387;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;ADP;22500;6.779926595994721;1.9570561005352765;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;TCX;40550;16.490979779740698;2.125270965496711;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;DAH;2690;;0.26601451905267187;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Dịch vụ Tiêu dùng
+2026-07-22;AAN;15100;21.84416861962214;1.051319719555243;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;PTC;0;;;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;ACL;0;;;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;TRA;38500;6.392216438788302;0.9464889561947701;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
+2026-07-22;MSB;15450;7.497998107301448;1.135652809252226;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;VPG;1890;;0.16631467793030624;Nguyên vật liệu;Khai khoáng;Nguyên vật liệu
+2026-07-22;BKG;2200;15.584047602181768;0.2066732927376884;Hàng Tiêu dùng;Hàng gia dụng;Hàng Tiêu dùng
+2026-07-22;CIG;7100;3.1846276676863456;0.9316643856198258;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;SBG;11700;15.261599467800634;0.9462513081722145;Công nghiệp;Hàng công nghiệp;Công nghiệp
+2026-07-22;PTL;1860;15.42160683193765;0.36851166854554784;Tài chính;Bất động sản;Tài chính
+2026-07-22;DGW;34050;13.655175732687404;2.1687787578152466;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
+2026-07-22;CMG;23800;12.136974425661032;1.2328642233162597;Công nghệ Thông tin;Phần mềm & Dịch vụ Máy tính;Công nghệ Thông tin
+2026-07-22;TSC;2000;;0.15746803989295322;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;SIP;46500;7.864055011178797;1.9364091561753545;Tài chính;Bất động sản;Tài chính
+2026-07-22;SHA;3890;8.154281521853054;0.30900041147098495;Nguyên vật liệu;Kim loại;Nguyên vật liệu
+2026-07-22;HPX;4000;10.027324459151187;0.34239334661248866;Tài chính;Bất động sản;Tài chính
+2026-07-22;SSI;22450;10.937187900400948;1.4533716928510945;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;HRC;0;;;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;BIC;20600;5.175788365531259;1.2304068166926785;Tài chính;Bảo hiểm phi nhân thọ;Tài chính
+2026-07-22;SPM;10150;;0.17576740655797718;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
+2026-07-22;PIT;7500;;0.9679067918664856;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
+2026-07-22;SMC;9490;3.8781865289208914;0.693399190425392;Nguyên vật liệu;Kim loại;Nguyên vật liệu
+2026-07-22;MHC;8890;2.354785989950441;0.5928381945176138;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;CKG;6150;8.75968550592525;0.4893594165880906;Tài chính;Bất động sản;Tài chính
+2026-07-22;TYA;17000;2.0810609983461688;0.16245477187479784;Công nghiệp;Điện tử & Thiết bị điện;Công nghiệp
+2026-07-22;DSN;36500;6.08619384444022;1.2410373304028985;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Dịch vụ Tiêu dùng
+2026-07-22;ICT;16400;16.59784632823253;0.8096374502739438;Công nghệ Thông tin;Phần mềm & Dịch vụ Máy tính;Công nghệ Thông tin
+2026-07-22;BMC;12050;12.966330582247425;0.6552335214206986;Nguyên vật liệu;Khai khoáng;Nguyên vật liệu
+2026-07-22;TAL;20000;9.990159692702688;1.1053033560325798;Tài chính;Bất động sản;Tài chính
+2026-07-22;STB;71900;22.822788506710342;2.2641454771725957;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;HTN;6710;32.497094149554435;0.3838466352495919;Tài chính;Bất động sản;Tài chính
+2026-07-22;DMC;0;;;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
+2026-07-22;TMT;11400;6.68692295960864;2.3984246137274043;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
+2026-07-22;KBC;26500;10.691778224277195;0.9337966374159274;Tài chính;Bất động sản;Tài chính
+2026-07-22;PDV;8400;6.250372045955116;0.6399361282797679;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;CTF;16800;;1.4826516518769224;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
+2026-07-22;DRH;1550;12.255870957539338;0.1448801233817825;Tài chính;Bất động sản;Tài chính
+2026-07-22;VCG;15550;2.624357412164192;0.8109745985023828;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;QNP;30600;8.66624751482608;1.3243152943701886;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;HTI;17950;2.6432353790060845;0.7149295206945212;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;LIX;25000;8.107696149492945;1.559932935363243;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
+2026-07-22;TDW;0;;;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
+2026-07-22;TVB;6990;37.508048937540245;0.6845893932716322;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;DHG;91200;13.98953239374398;2.8821075790896775;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
+2026-07-22;BID;35950;8.418750278088066;1.4544151107054661;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;DCM;29150;7.8742284471697355;1.4296363868208615;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;IDI;4740;10.112647209421402;0.3572047597157434;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;VHC;54100;8.56180643037558;1.2088669609509157;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;CSV;21700;11.475773953694988;1.4786750526394692;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;EVF;12200;10.375208354594005;0.9395130703980223;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;NAB;12350;4.453612113824949;0.9043120674770572;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;SAB;47050;13.641674809147027;2.623697143376545;Hàng Tiêu dùng;Bia và đồ uống;Hàng Tiêu dùng
+2026-07-22;TN1;13800;2.9278290147855364;0.717290761606856;Tài chính;Bất động sản;Tài chính
+2026-07-22;BTP;7820;11.110795373817169;0.43938656690756134;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;AAT;2550;7.612394769837005;0.23999412720253432;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
+2026-07-22;SGT;10750;4.780539867478988;0.6578371660252499;Công nghệ Thông tin;Phần mềm & Dịch vụ Máy tính;Công nghệ Thông tin
+2026-07-22;MCH;135300;19.303917568134413;7.6610823246430355;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;TNH;8070;;0.7620475755649965;Dược phẩm và Y tế;Thiết bị và Dịch vụ Y tế;Dược phẩm và Y tế
+2026-07-22;BCE;5460;1.8783154331477951;0.40201981825169975;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;VCA;5960;;0.5324594803695769;Nguyên vật liệu;Kim loại;Nguyên vật liệu
+2026-07-22;ABT;50000;3.7275850989040156;0.8771432776704057;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;CTD;56200;12.379236364116956;0.635835148537087;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;PVD;17350;9.285771628890256;0.5640634677061473;Dầu khí;Thiết bị, Dịch vụ và Phân phối Dầu khí;Dầu khí
+2026-07-22;ASP;9520;25.472935006555534;1.0778363115354526;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
+2026-07-22;TCH;12050;9.41759409778667;0.5987083798305333;Tài chính;Bất động sản;Tài chính
+2026-07-22;DHA;48150;6.4596276625002185;1.4505419423524808;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;PC1;20050;6.9604762979292145;0.9288982803104605;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;L10;23300;6.055565662603634;0.7536065572179821;Công nghiệp;Công nghiệp nặng;Công nghiệp
+2026-07-22;HAS;8820;;0.5549138184865575;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;PTB;33500;4.509409859589092;0.6697043924811589;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
+2026-07-22;VCK;29500;12.219166280071576;1.5164958766734145;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;DVP;74500;8.812062945334457;2.0332658671155683;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;JVC;3030;6.824939183710245;0.5439807542122602;Dược phẩm và Y tế;Thiết bị và Dịch vụ Y tế;Dược phẩm và Y tế
+2026-07-22;NKG;10600;23.043979216939498;0.6213499354909807;Nguyên vật liệu;Kim loại;Nguyên vật liệu
+2026-07-22;AAA;6770;7.00096172738648;0.43848286225031735;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;HAR;2900;16.178521617852162;0.2537733471479376;Tài chính;Bất động sản;Tài chính
+2026-07-22;BMP;149600;9.966668954026074;4.255977714153061;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;TCI;9550;94.23722123544503;0.7875885934080071;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;BSR;22700;14.67081154793219;1.8783662681827098;Dầu khí;Sản xuất Dầu khí;Dầu khí
+2026-07-22;CLC;51500;7.413890896317816;1.401486010584349;Hàng Tiêu dùng;Thuốc lá;Hàng Tiêu dùng
+2026-07-22;VPL;75000;122.09614664561187;3.6750149940611756;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Vingroup Ecosystem
+2026-07-22;ASG;0;;;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;PVT;16700;6.575657467308744;0.6830045164184879;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;KHP;9500;10.113914617268179;0.8186592257724266;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;DIG;11200;10.94829861484472;0.8897235342996366;Tài chính;Bất động sản;Tài chính
+2026-07-22;TBC;31400;10.374575022384633;1.3516782764638373;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;SGR;12350;10.451664226534533;0.6020026458869326;Tài chính;Bất động sản;Tài chính
+2026-07-22;VBB;13950;8.804150257497728;0.9213156784152579;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;DRC;10100;11.2603824070461;0.8006652656345747;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
+2026-07-22;SJS;46200;23.440116084384417;3.988951812253335;Tài chính;Bất động sản;Tài chính
+2026-07-22;VCF;0;;;Hàng Tiêu dùng;Bia và đồ uống;Hàng Tiêu dùng
+2026-07-22;ASM;5700;56.85218432076601;0.2830381212624692;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;SBV;5900;;0.3624205515795086;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
+2026-07-22;VIC;206000;140.36235290911196;10.815947747421367;Tài chính;Bất động sản;Vingroup Ecosystem
+2026-07-22;HUB;12300;4.788209326497483;0.557257784279622;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;VCI;19750;10.605564296569167;0.9322361110979995;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;OGC;2170;9.700058110947207;0.3428260876434103;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;C47;9000;6.259998608889198;0.6652991073903642;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;NTC;127900;9.537893177087877;2.3885290844034093;Tài chính;Bất động sản;Tài chính
+2026-07-22;KSB;12950;9.50633143696091;0.5331214570065332;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;VSI;0;;;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;VJC;129700;34.089684519288134;3.0928862662018832;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Dịch vụ Tiêu dùng
+2026-07-22;VPI;61800;50.6320817323054;3.6130082327478856;Tài chính;Bất động sản;Tài chính
+2026-07-22;LGC;0;;;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;HT1;12050;16.797936850909597;0.9035821596138518;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;C32;17400;9.943027594758767;0.4597255332882239;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;VDP;51000;17.650845510109434;1.501526699352842;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
+2026-07-22;FTS;22700;18.68128250707749;1.7795393736805343;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;VPX;26100;13.711367827142205;1.4465267285994405;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;TLG;46150;8.975019690590328;1.7658866664268784;Hàng Tiêu dùng;Hàng gia dụng;Hàng Tiêu dùng
+2026-07-22;TEG;5800;31.371700562527046;0.4662476868487605;Tài chính;Bất động sản;Tài chính
+2026-07-22;DXV;3700;44.99027237354086;0.3753890857145176;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;TCM;15500;6.157390855281452;0.7096319024865043;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
+2026-07-22;BSI;29100;13.803440898978735;1.29168972991256;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;PGC;12000;6.428284451586983;0.8178515176938768;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
+2026-07-22;ITC;10350;19.865261703230264;0.36207763294283757;Tài chính;Bất động sản;Tài chính
+2026-07-22;TCB;29250;8.179964819159855;1.1547125298744858;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;VND;16650;12.534724574835694;1.2125722991681682;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;D2D;26450;3.3363101544919727;1.1113422030625986;Tài chính;Bất động sản;Tài chính
+2026-07-22;AAM;6550;37.06847764572722;0.345568571092424;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;ITD;14850;7.7321197983921355;0.8867524557370197;Công nghệ Thông tin;Phần mềm & Dịch vụ Máy tính;Công nghệ Thông tin
+2026-07-22;CTI;18500;7.977404540652421;0.6204566225359907;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;NHT;11300;5.621191394105211;0.6747255568724978;Hàng Tiêu dùng;Hàng hóa giải trí;Hàng Tiêu dùng
+2026-07-22;TPB;14150;5.081921289479165;0.8524173411205523;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;LPB;53800;14.02963434287592;3.405537479902265;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;SHI;14200;46.57875746244177;1.109180026948388;Nguyên vật liệu;Kim loại;Nguyên vật liệu
+2026-07-22;VFG;46100;5.703906619253716;1.121427487185076;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;PJT;0;;;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;VRE;22000;7.7554358554950795;1.0335509427863783;Tài chính;Bất động sản;Vingroup Ecosystem
+2026-07-22;VNG;6000;89.02077151335311;0.5150647865657368;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Dịch vụ Tiêu dùng
+2026-07-22;TV2;24500;17.48164427351281;1.2967189306144224;Công nghiệp;Tư vấn & Hỗ trợ Kinh doanh;Công nghiệp
+2026-07-22;VPS;8800;9.197708934319996;0.6117368669479266;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;MWG;70600;14.792155548105933;3.1462110216317605;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
+2026-07-22;NNC;42450;6.294353320067495;1.7409934859365048;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;NHH;9710;7.144013302138053;0.6008317590633707;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;TMP;0;;;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;CSM;14050;34.21321774704135;1.0672690976600598;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
+2026-07-22;DAT;0;;;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;TIX;0;;;Tài chính;Bất động sản;Tài chính
+2026-07-22;VPB;24600;8.135673938063048;1.0826449809062795;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;STG;0;;;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;SBA;25200;8.987866380386478;1.448640519854998;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;ANV;17150;4.568667201231809;1.29471386823512;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;ADG;8100;9.21543642486575;0.4198995040520302;Dịch vụ Tiêu dùng;Truyền thông;Dịch vụ Tiêu dùng
+2026-07-22;VSH;42500;11.639403076636569;2.0284256410182984;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;NAF;48700;22.88275758373116;4.177102274676639;Hàng Tiêu dùng;Bia và đồ uống;Hàng Tiêu dùng
+2026-07-22;SMA;0;;;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;FDC;0;;;Tài chính;Bất động sản;Tài chính
+2026-07-22;TSA;15100;21.278394678992164;1.389379618997144;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;ADS;7580;5.987172601181637;0.5684587867379616;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
+2026-07-22;SCS;47000;6.387735547748323;3.220400069615457;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Dịch vụ Tiêu dùng
+2026-07-22;S4A;0;;;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;VCB;54900;12.086574215748653;2.042791457782868;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;QCG;10200;16.38001638001638;0.5914644718309247;Tài chính;Bất động sản;Tài chính
+2026-07-22;VHM;128100;12.558922030761025;2.111252978374737;Tài chính;Bất động sản;Vingroup Ecosystem
+2026-07-22;CTR;66300;12.64560083769953;3.6686688486853933;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;TDC;6900;2.8853150011290363;0.5109737159563762;Tài chính;Bất động sản;Tài chính
+2026-07-22;HCD;6330;11.677027799811839;0.46613764094588384;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;KMR;2300;22.972433080303635;0.20068774818748425;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
+2026-07-22;DXS;6000;9.884841595413434;0.393394125838913;Tài chính;Bất động sản;Tài chính
+2026-07-22;AST;62400;11.224353970075585;4.088406550099032;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
 2026-07-22;HU1;0;;;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;ACC;6020;12.142727474433709;0.4552260250147457;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;HVH;9970;10.073352597651908;0.7331405254639485;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;GEE;69400;7.292206270666942;3.0249167712020952;Công nghiệp;Điện tử & Thiết bị điện;Công nghiệp
+2026-07-22;CRE;6450;40.79954456322348;0.5028992727842609;Tài chính;Bất động sản;Tài chính
+2026-07-22;HNA;21200;10.480832929590555;1.438466215042557;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;VIX;12100;3.343307996032239;0.8636916178371592;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;MZG;10750;9.668657360771334;0.842768419781774;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
+2026-07-22;SHP;0;;;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;VNM;59600;13.236855314064382;3.612252566760003;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;SBT;20700;21.302871256560667;1.4413576335553628;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;HTV;0;;;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;HMC;0;;;Nguyên vật liệu;Kim loại;Nguyên vật liệu
+2026-07-22;SZL;46000;8.940788655305386;1.843060217184613;Tài chính;Bất động sản;Tài chính
+2026-07-22;SRF;7400;12.515432881762985;0.5644610731625457;Công nghiệp;Công nghiệp nặng;Công nghiệp
+2026-07-22;GAS;66300;13.71884033380442;2.364679182940926;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
+2026-07-22;TCR;2130;23.679822123401888;;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;BTT;0;;;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
+2026-07-22;YEG;7630;18.127390653583902;0.6900618432881311;Dịch vụ Tiêu dùng;Truyền thông;Dịch vụ Tiêu dùng
+2026-07-22;VAB;10050;4.748495128658231;0.8079174300347526;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;MBB;22450;5.640065821703576;1.2732820617527623;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;VTP;48000;14.437305998700642;3.3059353937575673;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;SZC;18750;9.787493931753762;1.0536537339802485;Tài chính;Bất động sản;Tài chính
+2026-07-22;VTB;12650;8.764879508889598;0.7188794799972494;Công nghiệp;Điện tử & Thiết bị điện;Công nghiệp
+2026-07-22;HHV;10000;8.016481886759177;0.6218313804718829;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;NHA;8260;4.867269673845791;0.6746205463609694;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;TNI;6800;8.16101196548372;0.6040675063205004;Nguyên vật liệu;Kim loại;Nguyên vật liệu
+2026-07-22;DPR;35800;10.765460313641764;0.9215422601776363;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;GVR;27550;20.71989410667549;1.7730234006910608;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;APH;5300;7.904313070452783;0.22298532756544617;Công nghiệp;Hàng công nghiệp;Công nghiệp
 2026-07-22;TCO;10500;9.782639076518873;0.9760532311545036;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;DVP;74600;8.823891217744302;2.0359950830445825;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;HAH;43800;5.16895276780899;1.370971402099965;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;LCG;7140;9.26731131157116;0.5302975162171517;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;NVT;0;;;Tài chính;Bất động sản;Tài chính
+2026-07-22;VPH;3240;;0.3008216888723829;Tài chính;Bất động sản;Tài chính
+2026-07-22;VTO;10050;6.612668688849264;0.677750757664653;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;CMV;7950;7.361520084449135;0.5472771755816628;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
+2026-07-22;PVP;17150;8.960807569923036;0.9208879400193197;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;HQC;2210;18.14300960512273;0.23322249109058424;Tài chính;Bất động sản;Tài chính
+2026-07-22;BCM;37950;11.21951219512195;1.680591887191764;Tài chính;Bất động sản;Tài chính
+2026-07-22;NSC;70000;5.609262013436586;0.7938708632948702;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;DXG;11100;28.287461773700308;0.5912825771397371;Tài chính;Bất động sản;Tài chính
+2026-07-22;REE;44250;8.816743244481815;0.9666016731711131;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;DBC;16200;3.7976018847357498;0.7726847360423088;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;AGR;13650;21.405385061707097;1.2136278403559264;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;DTL;0;;;Nguyên vật liệu;Kim loại;Nguyên vật liệu
+2026-07-22;DLG;2250;1.84660839591284;0.6765431950278585;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;SKG;8000;11.101859561476546;0.5917444255825909;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Dịch vụ Tiêu dùng
+2026-07-22;ORS;13250;37.57053335979811;0.5828700432951469;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;TCT;18100;9.078187773035275;0.6524617453748213;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Dịch vụ Tiêu dùng
+2026-07-22;SVT;0;;;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
+2026-07-22;GHC;24900;7.025919718286014;1.081012557111326;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;NCT;93900;6.350554675976305;3.4622642692115106;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;FIR;4880;;0.4635315595652302;Tài chính;Bất động sản;Tài chính
+2026-07-22;VIB;14650;6.31658826623665;1.0631905295487136;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;NLG;22750;12.490460582302527;0.5909551393615087;Tài chính;Bất động sản;Tài chính
+2026-07-22;APG;4510;;0.4233382331683159;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;SHB;11550;4.008231623732895;0.7787547610234253;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;CMX;5000;7.574036203893055;0.2908909816232531;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;RAL;80200;5.229382085258489;0.5556580189558368;Hàng Tiêu dùng;Hàng gia dụng;Hàng Tiêu dùng
+2026-07-22;SFG;10800;16.145187089830028;0.7852221197071122;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;TVS;13850;8.218023876771177;0.9442503674736088;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;TVT;0;;;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
+2026-07-22;CDC;18100;43.83309519773327;1.1833267302394241;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;SFC;16800;8.596032521656372;1.036474014115789;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
+2026-07-22;HDB;25850;5.558733339927833;1.2743852508517675;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;DBD;49250;15.826801764889245;2.68414165509897;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
+2026-07-22;VGC;38250;12.221267241572118;1.4861912434777573;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;RYG;9030;10.873491799725453;0.5277140456089866;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;DC4;6590;3.095960687406628;0.5136911554699144;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;COM;0;;;Dịch vụ Tiêu dùng;Bán lẻ;Dịch vụ Tiêu dùng
+2026-07-22;CCL;3900;8.179358654390638;0.3228399318228287;Tài chính;Bất động sản;Tài chính
+2026-07-22;FCN;10600;52.83357424114041;0.5044018579119;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;HTL;0;;;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
+2026-07-22;GDT;15950;5.2692086606629625;1.1077788998331732;Hàng Tiêu dùng;Hàng gia dụng;Hàng Tiêu dùng
+2026-07-22;IMP;35400;15.615350683722982;2.363695243564105;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
+2026-07-22;MSN;64100;23.256657717146798;2.1620775642796453;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;CII;13950;62.48880129009138;0.7296941038624095;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;OCB;10200;6.431151995863886;0.8006895349877777;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;DTT;0;;;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;TCL;29800;5.735037422081434;1.2597365375168985;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;CTG;30050;4.663216455489948;0.8982118261468416;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;UIC;56000;4.479598627962934;0.8193116436181622;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;DPM;22200;10.012673699592728;1.3088480486372651;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;NTL;14300;100.08398656215006;1.083437573160448;Tài chính;Bất động sản;Tài chính
+2026-07-22;BRC;12000;7.141496857741383;0.7018270312190209;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;AFX;9990;7.389107907602867;0.670675502486333;Dịch vụ Tiêu dùng;Phân phối thực phẩm & dược phẩm;Dịch vụ Tiêu dùng
+2026-07-22;DCL;38050;142.40269461077844;1.8268852207146218;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
+2026-07-22;MDG;39300;9.419490916063468;2.341257666427378;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;ACG;31800;9.514206984864034;1.0875516715292994;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
+2026-07-22;POW;13100;12.642347037251495;0.8243390185457401;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;CLL;30000;10.33823250684908;1.6217846767296604;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;LGL;4970;12.507235070589124;0.3669277735531455;Tài chính;Bất động sản;Tài chính
+2026-07-22;GIL;6760;21.8777306708955;0.2591276368441167;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
+2026-07-22;BFC;52800;9.740888671604756;1.780126105751628;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;PHR;57000;16.149870801033593;1.8294215272845382;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;FPT;65400;10.861604229050307;2.546773600004673;Công nghệ Thông tin;Phần mềm & Dịch vụ Máy tính;Công nghệ Thông tin
+2026-07-22;DGC;41000;5.206970736824458;1.0130182731201036;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;NVL;12700;13.440575722298655;0.4415575926697268;Tài chính;Bất động sản;Tài chính
+2026-07-22;LAF;19700;7.476422702518075;1.163878871521952;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;LHG;27300;4.668470212423945;0.7433739647564498;Tài chính;Bất động sản;Tài chính
+2026-07-22;TPC;0;;;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;VSC;13850;13.676175805511942;0.8118605499080281;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;MCP;27400;55.37926713422399;1.9743535793445148;Công nghiệp;Hàng công nghiệp;Công nghiệp
+2026-07-22;VNS;7790;13.513044684984735;0.4719318673356508;Dịch vụ Tiêu dùng;Du lịch & Giải trí;Dịch vụ Tiêu dùng
+2026-07-22;THG;28400;5.041136740834095;1.1130943002517004;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;BMI;13350;7.041733479618533;0.6865864157720472;Tài chính;Bảo hiểm phi nhân thọ;Tài chính
+2026-07-22;SFI;26000;6.697009270206293;0.821166125381329;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;FCM;3200;7.8806087770280255;0.2671546691957309;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;KDC;49250;27.31967626877014;1.8445188577241147;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;ABS;3100;;0.6169620787243613;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;DPG;27050;6.841208099181078;0.9323246075102969;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;SGN;54600;8.792086478060845;1.332371227906979;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;GMH;6990;6.472102368474658;0.607457914637824;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;PGV;23400;7.064705456126368;1.4683910011477297;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;SRC;38000;43.315703082254245;1.8795607169831665;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
+2026-07-22;NT2;21350;5.437703277139488;1.2647961900902776;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;DSC;10500;8.051529790660226;0.9539592032532734;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;TNC;31800;12.430566685299487;1.753110254647534;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;PAC;15750;7.60575622947653;1.0722243515425394;Công nghiệp;Điện tử & Thiết bị điện;Công nghiệp
+2026-07-22;GTA;0;;;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
+2026-07-22;CRV;0;;;Tài chính;Bất động sản;Tài chính
+2026-07-22;ANT;24700;4.039267567952091;1.2410320362120084;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;DHC;29150;6.621463536520267;1.2733266674791495;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
+2026-07-22;VOS;10500;4.8237493855462095;0.6947913806166438;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;TLH;3950;86.9086908690869;0.35106087039988054;Nguyên vật liệu;Kim loại;Nguyên vật liệu
+2026-07-22;CCC;0;;;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;DRL;42950;8.336196171366574;3.7189753465271096;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;STK;8350;16.781221110173238;0.6657885168623898;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
+2026-07-22;BVB;12950;18.484684118872934;1.112343230468069;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;PNC;0;;;Dịch vụ Tiêu dùng;Truyền thông;Dịch vụ Tiêu dùng
+2026-07-22;TDH;3430;3.563081078273516;2.13137470561552;Tài chính;Bất động sản;Tài chính
+2026-07-22;EIB;17150;28.098171570876204;1.2283797992762946;Ngân hàng;Ngân hàng;Ngân hàng
+2026-07-22;NO1;4990;15.706147115293822;0.3729636483767486;Công nghiệp;Công nghiệp nặng;Công nghiệp
+2026-07-22;TIP;17000;5.117121889843417;0.5808407293719541;Tài chính;Bất động sản;Tài chính
+2026-07-22;GEX;21300;12.749604941818703;0.6378005522813797;Công nghiệp;Điện tử & Thiết bị điện;Công nghiệp
+2026-07-22;MIG;16750;10.339314704048691;1.3481948676837288;Tài chính;Bảo hiểm phi nhân thọ;Tài chính
+2026-07-22;GEL;23650;38.8813994015717;0.9872216368927856;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;FMC;34200;6.413971204645065;0.8552961462906531;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;HAX;8500;;0.6675300054737461;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
+2026-07-22;TTF;1910;71.16244411326379;3.6938191382377967;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
+2026-07-22;MCM;27200;13.870262056164362;1.3126690906002276;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;PDR;12150;21.832099475310862;0.9582056711580093;Tài chính;Bất động sản;Tài chính
+2026-07-22;TTA;10300;7.562241654001747;0.7405133411027321;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;ST8;2550;;0.22656838633552737;Công nghệ Thông tin;Thiết bị và Phần cứng;Công nghệ Thông tin
+2026-07-22;KDH;18050;18.242826677986315;1.0935662558775399;Tài chính;Bất động sản;Tài chính
+2026-07-22;PAN;20600;6.397296986748899;0.47406409162416197;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;SVC;20000;3.1927053069147613;0.6550937799500688;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
+2026-07-22;EVG;4740;13.124377007420533;0.35061505573595875;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;HSL;7400;;0.6313562214183333;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;NBB;16950;;0.932364261240215;Tài chính;Bất động sản;Tài chính
+2026-07-22;VMD;14000;5.102896258119072;0.40553673511064636;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
+2026-07-22;SMB;38250;6.455314875914502;1.8181472485371637;Hàng Tiêu dùng;Bia và đồ uống;Hàng Tiêu dùng
+2026-07-22;AGG;11000;4.714736981968274;0.5086230095500905;Tài chính;Bất động sản;Tài chính
+2026-07-22;VPD;20800;8.449788755281118;1.3648034256565984;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;DTA;0;;;Tài chính;Bất động sản;Tài chính
+2026-07-22;BVH;57600;15.073522677015756;1.678069870051551;Tài chính;Bảo hiểm nhân thọ;Tài chính
+2026-07-22;VVS;108000;7.238897006582034;3.5646893752782853;Hàng Tiêu dùng;Ô tô và phụ tùng;Hàng Tiêu dùng
+2026-07-22;HAG;13700;7.156177034417555;1.224272406865934;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;VNL;18600;4.773367687893611;0.8040482532700124;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;VIP;9920;7.915419908238579;0.5309838724354068;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;HDG;16400;7.5105674600085175;0.7224478648141459;Tài chính;Bất động sản;Tài chính
+2026-07-22;PGD;22600;13.28973985040222;1.516341939132961;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
+2026-07-22;PDN;97600;10.245643501994541;3.6519224041323595;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;HCM;25500;17.359811016331836;1.8936004473352586;Tài chính;Dịch vụ tài chính;Tài chính
 2026-07-22;GSP;10500;6.855083534089351;0.7792913347256671;Công nghiệp;Vận tải;Công nghiệp
-2026-07-22;GIL;6930;22.427910288358845;0.26564416025587706;Hàng Tiêu dùng;Hàng cá nhân;Hàng Tiêu dùng
-2026-07-22;TLD;8390;9.843258716974049;0.6423945159875074;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
-2026-07-22;NTC;128000;9.54535048215206;2.390396581732888;Tài chính;Bất động sản;Tài chính
-2026-07-22;ABT;50200;3.7424954392996312;0.8806518507810873;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
-2026-07-22;DHG;91900;14.096908190625786;2.9042290188414626;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
+2026-07-22;LM8;0;;;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;OPC;19600;10.833517576829538;1.379015326770346;Dược phẩm và Y tế;Dược phẩm;Dược phẩm và Y tế
+2026-07-22;HID;3300;46.49196956889264;0.2717424869378327;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;TTE;0;;;Tiện ích Cộng đồng;Sản xuất & Phân phối Điện;Tiện ích Cộng đồng
+2026-07-22;PLX;32800;15.578099471864432;1.409775849937957;Dầu khí;Sản xuất Dầu khí;Dầu khí
+2026-07-22;HPG;20550;9.325691258355683;1.2020334545505595;Nguyên vật liệu;Kim loại;Nguyên vật liệu
+2026-07-22;GMD;72600;17.389263207816068;2.075547647255245;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;VDS;12350;11.208117036337894;1.0839171272948762;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;NAV;15000;8.131491640826592;1.1666850743645065;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;HAP;7170;;0.6655564776189229;Nguyên vật liệu;Lâm nghiệp và Giấy;Nguyên vật liệu
+2026-07-22;CCI;0;;;Tiện ích Cộng đồng;Nước & Khí đốt;Tiện ích Cộng đồng
+2026-07-22;DQC;9490;77.01046823013876;0.3374498181184595;Hàng Tiêu dùng;Hàng gia dụng;Hàng Tiêu dùng
+2026-07-22;PHC;4400;10.073260073260073;0.3261375529602913;Công nghiệp;Xây dựng và Vật liệu;Công nghiệp
+2026-07-22;HII;5790;8.407021823408982;0.4743899091776832;Nguyên vật liệu;Hóa chất;Nguyên vật liệu
+2026-07-22;LDG;2690;7.421508580257132;0.5273765272353707;Tài chính;Bất động sản;Tài chính
+2026-07-22;CTS;22850;7.126572290265133;1.7020319356311635;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;BHN;28650;14.214482399345092;1.2303450763651353;Hàng Tiêu dùng;Bia và đồ uống;Hàng Tiêu dùng
+2026-07-22;ILB;20300;6.3788937175752665;0.9058415625097613;Công nghiệp;Vận tải;Công nghiệp
+2026-07-22;DSE;21500;26.381015485042578;1.7120724198670478;Tài chính;Dịch vụ tài chính;Tài chính
+2026-07-22;HDC;11950;3.367098237556529;0.8128261932730639;Tài chính;Bất động sản;Tài chính
+2026-07-22;BAF;28850;65.87961271465107;2.158159826509384;Hàng Tiêu dùng;Sản xuất thực phẩm;Hàng Tiêu dùng
+2026-07-22;HSG;10450;8.82869791490656;0.5723148575127689;Nguyên vật liệu;Kim loại;Nguyên vật liệu
