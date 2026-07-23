@@ -58,7 +58,7 @@ jobs:
           df = pd.read_parquet('data/fundamentals.parquet')
           mtime = datetime.date.fromtimestamp(os.path.getmtime('data/fundamentals.parquet'))
           print(f'  {len(df)} tickers | cache date: {mtime}')
-          print(f'  EPS valid: {df[\"eps_annual\"].notna().sum()} | BVPS valid: {df[\"bvps\"].notna().sum()}')
+          print(f'  EPS valid: {df[\"eps_ttm\"].notna().sum()} | BVPS valid: {df[\"bvps\"].notna().sum()}')
           "
           else
             echo "  ⚠️ data/fundamentals.parquet not found — will auto-fetch fundamentals in next step."

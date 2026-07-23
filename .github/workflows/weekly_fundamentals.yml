@@ -14,7 +14,7 @@ jobs:
   refresh-fundamentals:
     name: Fetch EPS & BVPS for all HOSE tickers
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 120
 
     permissions:
       contents: write
@@ -102,7 +102,7 @@ jobs:
             python -c "
           import pandas as pd
           df = pd.read_parquet('data/fundamentals.parquet')
-          valid_eps  = df['eps_annual'].notna().sum()
+          valid_eps  = df['eps_ttm'].notna().sum()
           valid_bvps = df['bvps'].notna().sum()
           total      = len(df)
           print(f'| Metric | Value |')
