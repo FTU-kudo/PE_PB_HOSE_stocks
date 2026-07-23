@@ -1,10 +1,10 @@
-# 🇻🇳 VN-HOSE P/E & P/B Dashboard
+# 📊 VN-HOSE P/E & P/B Dashboard 🔍
 
 Automated daily pipeline tracking **Price-to-Earnings (P/E)** and **Price-to-Book (P/B)** ratios
 for ~400 stocks on the Ho Chi Minh Stock Exchange (HOSE), published as a self-contained
 **GitHub Pages** dashboard — no server, no local setup.
 
-**Live dashboard →** `https://<your-username>.github.io/<repo-name>/`
+**Live dashboard →** [https://ftu-kudo.github.io/PE_PB_HOSE_stocks/](https://ftu-kudo.github.io/PE_PB_HOSE_stocks/)
 
 ---
 
