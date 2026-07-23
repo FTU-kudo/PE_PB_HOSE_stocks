@@ -286,20 +286,17 @@ def _compute_ttm_eps(ticker: str, shares: float) -> float:
     return np.nan
 
 
+import concurrent.futures
+
 def fetch_all_fundamentals(tickers: list[str]) -> pd.DataFrame:
     """
-    Batch-fetch fundamentals for all tickers.
-    For each ticker:
-      - eps_ttm : TTM EPS from VCI income_statement quarterly (isa22 × 4 quarters)
-                  Fallback: KBS ratio quarterly trailing_eps
-      - bvps    : Book Value Per Share from KBS ratio annual
-      - shares  : Outstanding shares from Company.overview()
-    Returns DataFrame with those columns.
+    Fetch BVPS, Shares, and TTM EPS for all tickers concurrently.
     """
-    from vnstock import Finance, Company
     records = []
     n = len(tickers)
-    for i, ticker in enumerate(tickers, 1):
+    
+    def fetch_single(args):
+        i, ticker = args
         if i % 25 == 0 or i == 1:
             log.info(f"  Fetching fundamentals {i}/{n}: {ticker}")
         rec = {"ticker": ticker, "eps_ttm": np.nan, "bvps": np.nan, "shares": np.nan,
@@ -307,6 +304,7 @@ def fetch_all_fundamentals(tickers: list[str]) -> pd.DataFrame:
 
         # ── 1. BVPS from KBS annual ratio ─────────────────────────────────────
         try:
+            from vnstock import Finance, Company
             fin = Finance(symbol=ticker, source="KBS")
             ratio_df = fin.ratio(period="year", lang="en")
             rec["bvps"] = _extract_bvps(ratio_df, ticker)
@@ -317,6 +315,7 @@ def fetch_all_fundamentals(tickers: list[str]) -> pd.DataFrame:
         try:
             for src in ["KBS", "VCI"]:
                 try:
+                    from vnstock import Company
                     c = Company(symbol=ticker, source=src)
                     ov = c.overview()
                     if ov is not None and not ov.empty and "outstanding_shares" in ov.columns:
@@ -331,9 +330,16 @@ def fetch_all_fundamentals(tickers: list[str]) -> pd.DataFrame:
 
         # ── 3. TTM EPS (VCI primary, KBS fallback) ─────────────────────────────
         rec["eps_ttm"] = _compute_ttm_eps(ticker, rec["shares"])
+        
+        # Small sleep to prevent rate limiting inside the thread
+        time.sleep(FUND_BATCH_SLEEP / 5.0)
+        return rec
 
-        records.append(rec)
-        time.sleep(FUND_BATCH_SLEEP)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+        args = [(i, ticker) for i, ticker in enumerate(tickers, 1)]
+        results = executor.map(fetch_single, args)
+        for rec in results:
+            records.append(rec)
 
     df = pd.DataFrame(records).set_index("ticker")
     valid_eps  = df["eps_ttm"].notna().sum()
