@@ -16,8 +16,8 @@ flowchart TD
         direction TB
         W1["<b>fetch_fundamentals.py</b>"]
         W2["Reference(KBS)\n.list_by_exchange('HOSE')\n→ ~400 tickers + sectors"]
-        W3["Finance(ticker, KBS)\n.ratio(period='year')\n→ eps_annual, bvps\n× 400 calls @ 1.2 s each"]
-        W4[("data/fundamentals.parquet\neps_annual · bvps · sector · group")]
+        W3["Finance(ticker, KBS)\n.ratio(period='year')\n→ eps_ttm, bvps\n× 400 calls @ 1.2 s each"]
+        W4[("data/fundamentals.parquet\neps_ttm · bvps · sector · group")]
         W1 --> W2 --> W3 --> W4
     end
 
@@ -25,7 +25,7 @@ flowchart TD
         direction TB
         D1["<b>daily_compute.py</b>"]
         D2["Trading(KBS)\n.price_board(tickers)\n→ close_price\n(batches of 50)"]
-        D3["PE = close / eps_annual\nPB = close / bvps\nOutlier filter: PE 0.5–150 · PB 0.1–30"]
+        D3["PE = close / eps_ttm\nPB = close / bvps\nOutlier filter: PE 0.5–150 · PB 0.1–30"]
         D4["Sector aggregation\nmedian · mean · IQR · count\nVingroup Ecosystem isolated"]
         D5[("data/ticker_history.parquet\ndata/sector_history.parquet\ndata/daily/pe_pb_YYYY-MM-DD.csv")]
         D1 --> D2 --> D3 --> D4 --> D5
@@ -64,7 +64,7 @@ Using the **last audited annual EPS** is safer for market-level P/E analysis.
 | VCI `price_board` | 77 (LISTING · MATCH · BID_ASK) | ❌ |
 | `Finance.ratio(period='year')` | ratios per fiscal year | EPS + BVPS ✅ |
 
-We compute `PE = close / eps_annual` and `PB = close / bvps` ourselves.
+We compute `PE = close / eps_ttm` and `PB = close / bvps` ourselves.
 This also gives us full control over the denominator (annual vs TTM, adjustments, etc.).
 
 ---
@@ -221,7 +221,7 @@ open docs/index.html
 
 | Goal | How |
 |------|-----|
-| **TTM EPS** | Wire quarterly IS pipeline from `vn-quant-master` with VAS deaccumulation; replace `eps_annual` in `daily_compute.py` |
+| **TTM EPS** | Wire quarterly IS pipeline from `vn-quant-master` with VAS deaccumulation; replace `eps_ttm` in `daily_compute.py` |
 | **Market-cap weighted PE/PB** | Fetch `shares_outstanding` weekly; add weighted columns to sector aggregation |
 | **Telegram alert** | Add a post-build step in `daily_pe_pb.yml` that sends the sector summary table via the existing bot |
 | **Google Sheets export** | Add `gspread` to requirements; write `data_latest.json` into a named sheet after dashboard build |
