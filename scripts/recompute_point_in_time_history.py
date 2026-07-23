@@ -93,7 +93,7 @@ def fetch_timeline_for_ticker(ticker: str, shares: float, fin) -> dict:
         if bs_yr is not None and not bs_yr.empty:
             meta_cols = {"item", "item_en", "item_id", "period"}
             val_cols = [c for c in bs_yr.columns if c not in meta_cols]
-            eq = bs_yr[bs_yr["item_id"].astype(str).str.lower() == "bsa53"]
+            eq = bs_yr[bs_yr["item_id"].astype(str).str.lower() == "bsa78"]
             if not eq.empty:
                 for col in val_cols:
                     v = pd.to_numeric(eq[col].iloc[0], errors="coerce")
@@ -130,7 +130,7 @@ def fetch_timeline_for_ticker(ticker: str, shares: float, fin) -> dict:
         if bs_q is not None and not bs_q.empty:
             meta_cols = {"item", "item_en", "item_id", "period"}
             val_cols = [c for c in bs_q.columns if c not in meta_cols]
-            eq = bs_q[bs_q["item_id"].astype(str).str.lower() == "bsa53"]
+            eq = bs_q[bs_q["item_id"].astype(str).str.lower() == "bsa78"]
             if not eq.empty:
                 for col in val_cols:
                     v = pd.to_numeric(eq[col].iloc[0], errors="coerce")
