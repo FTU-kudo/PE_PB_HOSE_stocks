@@ -330,6 +330,26 @@ def main():
 
     merged.to_parquet(FUND_FILE, index=False)
     log.info(f"Fundamentals saved → {FUND_FILE}  ({len(merged)} rows)")
+
+    # ── Missing-data report ───────────────────────────────────────────────────
+    missing_eps  = sorted(merged[merged["eps_annual"].isna()]["ticker"].tolist())
+    missing_bvps = sorted(merged[merged["bvps"].isna()]["ticker"].tolist())
+
+    if missing_eps:
+        log.warning(
+            f"MISSING EPS — {len(missing_eps)} tickers "
+            f"(no valid annual EPS found):\n  {', '.join(missing_eps)}"
+        )
+    else:
+        log.info("All tickers have valid EPS ✓")
+
+    if missing_bvps:
+        log.warning(
+            f"MISSING BVPS — {len(missing_bvps)} tickers:\n  {', '.join(missing_bvps)}"
+        )
+    else:
+        log.info("All tickers have valid BVPS ✓")
+
     log.info("=== Weekly fundamentals refresh complete ===")
 
 
