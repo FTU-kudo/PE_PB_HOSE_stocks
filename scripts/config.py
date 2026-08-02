@@ -15,8 +15,18 @@ PE_MIN, PE_MAX = 0.5, 150     # Negative / loss-making → NaN; extreme outliers
 PB_MIN, PB_MAX = 0.1, 30
 
 # ── API call parameters ───────────────────────────────────────────────────────
-PRICE_BOARD_BATCH = 50    # tickers per KBS price_board call
-FUND_BATCH_SLEEP  = 1.2   # seconds between Finance.ratio() calls (rate limit)
+PRICE_BOARD_BATCH  = 50    # tickers per KBS price_board call
+
+# Rate-limit settings for Finance.ratio() (weekly fundamentals fetch)
+# Guest tier  : 20 req/min → 1 req per 3 s
+# Sponsor tier: 60 req/min → 1 req per 1 s
+# Finance.ratio() makes ~2 HTTP requests internally, so effective rate
+# is doubled. Values below are safe for Guest tier (worst case).
+FUND_BATCH_SLEEP   = 4.0   # base sleep (s) between each Finance.ratio() call
+FUND_BATCH_EVERY   = 15    # pause every N tickers to let the rate window reset
+FUND_BATCH_PAUSE   = 45    # longer pause duration (s) every FUND_BATCH_EVERY tickers
+FUND_MAX_RETRIES   = 3     # max retries per ticker on rate-limit / transient errors
+FUND_RETRY_WAIT    = 90    # base wait (s) on 429; multiplied by attempt number
 
 # ── Data paths ────────────────────────────────────────────────────────────────
 DATA_DIR         = "data"
