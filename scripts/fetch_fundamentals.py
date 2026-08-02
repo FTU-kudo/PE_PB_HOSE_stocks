@@ -134,15 +134,43 @@ def get_hose_tickers() -> list[str]:
     if exchange_col:
         before = len(df)
         df = df[df[exchange_col].str.upper().isin(["HOSE", "HSX"])]
-        log.info(f"  Filtered {before} → {len(df)} HOSE tickers via column '{exchange_col}'.")
+        log.info(f"  Exchange filter: {before} → {len(df)} via column '{exchange_col}'.")
 
     ticker_col = next(
         (c for c in df.columns
          if c.lower() in ("ticker", "symbol", "code", "stock_code")),
         df.columns[0],
     )
-    tickers = df[ticker_col].dropna().str.upper().str.strip().tolist()
-    log.info(f"  → {len(tickers)} HOSE tickers ready.")
+
+    # ── Filter to regular stocks only ─────────────────────────────────────────
+    # Vietnamese stock tickers are exactly 3 uppercase letters (VCB, HPG, VIC…).
+    # Covered Warrants follow C+[3-letter underlying]+[4-digit expiry] → 8 chars.
+    # ETFs follow E1xxx / FUExxx patterns with digits.
+    # Strategy: try the 'type' column first; fall back to the 3-letter regex.
+    raw_tickers = df[ticker_col].dropna().str.upper().str.strip()
+
+    type_col = next(
+        (c for c in df.columns
+         if c.lower() in ("type", "instrument_type", "security_type",
+                          "comtypecode", "sectype", "assettype")),
+        None,
+    )
+    if type_col:
+        stock_types = {"stock", "equity", "s", "cp", "commonstock",
+                       "common_stock", "cổ phiếu"}
+        mask = df[type_col].str.lower().isin(stock_types)
+        before = len(raw_tickers)
+        raw_tickers = raw_tickers[mask]
+        log.info(f"  Type filter  (col='{type_col}'): {before} → {len(raw_tickers)} stocks.")
+    else:
+        # Regex fallback: exactly 3 uppercase ASCII letters, nothing else
+        before = len(raw_tickers)
+        raw_tickers = raw_tickers[raw_tickers.str.match(r'^[A-Z]{3}$')]
+        log.info(f"  Regex filter (^[A-Z]{{3}}$): {before} → {len(raw_tickers)} stocks "
+                 f"(covered warrants and ETFs removed).")
+
+    tickers = raw_tickers.tolist()
+    log.info(f"  → {len(tickers)} HOSE stocks ready.")
     return tickers
 
 
