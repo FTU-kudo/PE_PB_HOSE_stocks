@@ -87,26 +87,62 @@ def register_vnstock() -> None:
         log.warning("Could not register API key (function not found). Guest mode.")
 # ── Ticker discovery ──────────────────────────────────────────────────────────
 def get_hose_tickers() -> list[str]:
-    """Return all HOSE equity tickers via vnstock Reference."""
+    """
+    Return all HOSE equity tickers via vnstock Reference.
+
+    Tries multiple calling conventions in order because vnstock v4
+    changed list_by_exchange() to NOT accept 'exchange' as a keyword arg:
+      1. positional: list_by_exchange("HOSE")
+      2. positional: list_by_exchange("HSX")      ← legacy alias
+      3. no-arg:     list_by_exchange()  → filter result by exchange column
+      4. fallback:   listing.all_symbols() → filter by exchange column
+    """
     log.info("Fetching HOSE ticker universe...")
     from vnstock import Reference
     ref = Reference()
-    try:
-        df = ref.equity.list_by_exchange(exchange=EXCHANGE)
-    except Exception:
-        try:
-            df = ref.equity.list_by_exchange(exchange="HSX")   # legacy alias
-        except Exception as exc:
-            log.error(f"list_by_exchange failed: {exc}")
-            raise
 
-    # Detect ticker column (handles 'ticker', 'symbol', 'code', etc.)
+    df = None
+    strategies = [
+        ("positional HOSE",    lambda: ref.equity.list_by_exchange("HOSE")),
+        ("positional HSX",     lambda: ref.equity.list_by_exchange("HSX")),
+        ("no-arg all",         lambda: ref.equity.list_by_exchange()),
+        ("listing.all_symbols",lambda: ref.listing.all_symbols()),
+    ]
+
+    for label, fn in strategies:
+        try:
+            result = fn()
+            if result is not None and not result.empty:
+                df = result
+                log.info(f"  list_by_exchange strategy '{label}' succeeded ({len(df)} rows).")
+                break
+        except Exception as exc:
+            log.debug(f"  Strategy '{label}' failed: {exc}")
+
+    if df is None or df.empty:
+        raise RuntimeError(
+            "All strategies to fetch HOSE tickers failed. "
+            "Check vnstock version and API availability."
+        )
+
+    # If we fetched ALL exchanges (no-arg / all_symbols), filter to HOSE only
+    exchange_col = next(
+        (c for c in df.columns
+         if c.lower() in ("exchange", "san", "listing_on", "comgroupcode", "market")),
+        None,
+    )
+    if exchange_col:
+        before = len(df)
+        df = df[df[exchange_col].str.upper().isin(["HOSE", "HSX"])]
+        log.info(f"  Filtered {before} → {len(df)} HOSE tickers via column '{exchange_col}'.")
+
     ticker_col = next(
-        (c for c in df.columns if c.lower() in ("ticker", "symbol", "code", "stock_code")),
+        (c for c in df.columns
+         if c.lower() in ("ticker", "symbol", "code", "stock_code")),
         df.columns[0],
     )
     tickers = df[ticker_col].dropna().str.upper().str.strip().tolist()
-    log.info(f"  → {len(tickers)} HOSE tickers found.")
+    log.info(f"  → {len(tickers)} HOSE tickers ready.")
     return tickers
 
 
