@@ -147,95 +147,111 @@ def get_hose_tickers() -> list[str]:
 
 
 # ── Sector mapping ────────────────────────────────────────────────────────────
-def _dedup_columns(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Remove duplicate column names that arise when multiple source columns
-    are renamed to the same target (e.g. two 'sector'-like columns both
-    become 'sector').  Keeps the first occurrence of each name.
-    """
-    return df.loc[:, ~df.columns.duplicated(keep="first")]
-
-
-def _as_series(col) -> pd.Series:
-    """
-    Ensure a column extracted from a DataFrame is always a Series,
-    even if duplicate column names accidentally made it a DataFrame.
-    """
-    if isinstance(col, pd.DataFrame):
-        return col.iloc[:, 0]
-    return col
-
-
 def get_sector_map(tickers: list[str]) -> pd.DataFrame:
     """
     Build ticker → sector / industry / group mapping.
-    Primary: Reference().equity.list_by_industry()  [VCI – ICB standard]
-    Fallback: Reference().industry.sectors()         [KBS]
-    Vingroup override applied last.
+
+    Key design: never rename columns on the raw vnstock DataFrame.
+    Instead, detect ONE column of each role via next() and extract
+    its values explicitly — zero risk of duplicate-column collisions.
+
+    Primary:  Reference().equity.list_by_industry()  [VCI – ICB]
+    Fallback: Reference().industry.sectors()          [KBS]
     """
     from scripts.config import VINGROUP_TICKERS, VINGROUP_GROUP
     from vnstock import Reference
-    ref = Reference()
+
+    ref  = Reference()
     base = pd.DataFrame({"ticker": tickers})
+    # Pre-fill with defaults so the return is always valid even if all lookups fail
+    base["sector"]   = "Unknown"
+    base["industry"] = "Unknown"
 
-    def _normalise(df: pd.DataFrame, role_map: dict) -> pd.DataFrame:
-        """
-        Rename columns by role (ticker / sector / industry) then deduplicate.
-        role_map: {role_name: [list of substrings that match that role]}
-        """
-        cmap = {}
-        for col in df.columns:
-            cl = col.lower()
-            for role, patterns in role_map.items():
-                if any(p in cl for p in patterns):
-                    cmap[col] = role
-                    break
-        df = df.rename(columns=cmap)
-        df = _dedup_columns(df)          # ← drop duplicate cols after rename
-        if "ticker" in df.columns:
-            df["ticker"] = df["ticker"].str.upper().str.strip()
-        return df
-
-    def _try_vci():
-        df = ref.equity.list_by_industry()
-        log.debug(f"  VCI list_by_industry columns: {list(df.columns)}")
-        return _normalise(df, {
-            "ticker":   ["ticker", "symbol", "code"],
-            "industry": ["industry", "nganh"],
-            "sector":   ["sector", "linh_vuc", "icbname", "icb_name"],
-        })
-
-    def _try_kbs():
-        df = ref.industry.sectors()
-        log.debug(f"  KBS sectors columns: {list(df.columns)}")
-        return _normalise(df, {
-            "ticker": ["ticker", "symbol", "code"],
-            "sector": ["sector", "industry", "nganh"],
-        })
-
-    for fn, label in [(_try_vci, "VCI"), (_try_kbs, "KBS")]:
+    # ── 1. Try to obtain a raw sector DataFrame ───────────────────────────────
+    raw    = None
+    source = None
+    for label, fn in [
+        ("VCI list_by_industry", lambda: ref.equity.list_by_industry()),
+        ("KBS sectors",          lambda: ref.industry.sectors()),
+    ]:
         try:
-            ind = fn()
-            merge_cols = [c for c in ("ticker", "sector", "industry")
-                          if c in ind.columns]
-            base = base.merge(ind[merge_cols], on="ticker", how="left")
-            base = _dedup_columns(base)  # ← deduplicate after merge too
-            log.info(f"Sector map loaded from {label}. "
-                     f"Columns after merge: {list(base.columns)}")
-            break
+            result = fn()
+            if result is not None and not result.empty:
+                raw    = result
+                source = label
+                log.info(f"Sector data from {label}: {len(raw)} rows | "
+                         f"columns: {list(raw.columns)}")
+                break
         except Exception as exc:
-            log.warning(f"Sector map ({label}) failed: {exc}")
+            log.warning(f"Sector source '{label}' failed: {exc}")
 
-    # Ensure columns exist and are clean Series (never accidentally DataFrames)
+    if raw is None:
+        log.warning("No sector data available — all tickers will be 'Unknown'.")
+        base["group"] = "Unknown"
+        mask = base["ticker"].isin(VINGROUP_TICKERS)
+        base.loc[mask, "group"] = VINGROUP_GROUP
+        return base
+
+    # ── 2. Detect ONE column of each role (never rename the raw DataFrame) ────
+    cols = list(raw.columns)
+    cl   = [c.lower() for c in cols]
+
+    ticker_col = next(
+        (cols[i] for i, c in enumerate(cl)
+         if c in ("ticker", "symbol", "code", "stockcode", "stock_code")),
+        None,
+    )
+    sector_col = next(
+        (cols[i] for i, c in enumerate(cl)
+         if any(p in c for p in ("sector", "linh_vuc", "icbname", "icb_name",
+                                  "groupname", "group_name"))),
+        None,
+    )
+    industry_col = next(
+        (cols[i] for i, c in enumerate(cl)
+         if any(p in c for p in ("industry", "nganh", "industryname"))),
+        None,
+    )
+
+    log.info(f"  Detected → ticker_col='{ticker_col}' | "
+             f"sector_col='{sector_col}' | industry_col='{industry_col}'")
+
+    if ticker_col is None:
+        log.warning("Could not detect ticker column in sector data.")
+        base["group"] = "Unknown"
+        mask = base["ticker"].isin(VINGROUP_TICKERS)
+        base.loc[mask, "group"] = VINGROUP_GROUP
+        return base
+
+    # ── 3. Build a clean 3-column lookup table (no renames, no merges yet) ───
+    lookup = pd.DataFrame({
+        "ticker": raw[ticker_col].astype(str).str.upper().str.strip(),
+    })
+    if sector_col:
+        lookup["sector"]   = raw[sector_col].values
+    if industry_col:
+        lookup["industry"] = raw[industry_col].values
+
+    # Drop any duplicate tickers in lookup (keep first)
+    lookup = lookup.drop_duplicates(subset="ticker", keep="first")
+
+    # ── 4. Merge lookup into base (base has no sector/industry yet → no clash) ─
+    base = base.drop(columns=["sector", "industry"], errors="ignore")
+    base = base.merge(lookup, on="ticker", how="left")
+
     for col in ("sector", "industry"):
         if col not in base.columns:
             base[col] = "Unknown"
-        base[col] = _as_series(base[col]).fillna("Unknown")
+        # Guaranteed to be a Series here (lookup has unique column names)
+        base[col] = base[col].fillna("Unknown")
 
-    # Vingroup override — must use _as_series to avoid the same trap
-    base["group"] = _as_series(base["sector"]).copy()
+    # ── 5. Vingroup override ──────────────────────────────────────────────────
+    base["group"] = base["sector"].copy()        # plain Series assignment
     mask = base["ticker"].isin(VINGROUP_TICKERS)
     base.loc[mask, "group"] = VINGROUP_GROUP
+
+    log.info(f"Sector map complete. Sample groups: "
+             f"{base['group'].value_counts().head(5).to_dict()}")
     return base
 
 
