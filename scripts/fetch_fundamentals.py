@@ -1,22 +1,19 @@
 """
 Weekly fundamentals refresh  (run every Sunday ~01:00 UTC via GitHub Actions).
-For each HOSE ticker fetches:
-  - eps_ttm : TTM EPS = sum of net profit (isa22) from the 4 most recent
-              standalone quarters via Finance.income_statement(period='quarter',
-              source='VCI'), divided by shares outstanding.
-              Fallback: KBS Finance.ratio(period='quarter') trailing_eps field.
-  - bvps    : Book Value Per Share from KBS Finance.ratio(period='year').
+For each HOSE ticker, fetches Finance.ratio(period='year') and extracts:
+  - eps_annual : EPS of the most recent complete fiscal year
+  - bvps       : Book Value Per Share from the most recent annual report
 
 Design notes
 ------------
-- VCI income_statement(period='quarter') returns standalone quarter values
-  (already deaccumulated from VAS YTD cumulative), making TTM summation
-  straightforward: TTM = Q(t) + Q(t-1) + Q(t-2) + Q(t-3).
-- VCI updates faster than KBS after each quarterly BCTC publication, so
-  TTM values stay current within days of a new report.
-- BVPS comes from the most recent KBS annual ratio row (balance sheet changes
-  are slower; annual is sufficient).
-- Results are written to data/fundamentals.parquet.
+- We use ANNUAL EPS (not TTM) to avoid cumulative-quarter deaccumulation.
+  VAS quarterly IS statements are year-to-date cumulative, so Q2 IS contains
+  H1 revenue. Using the last full fiscal year is safe, audited, and avoids
+  that deaccumulation trap.
+- BVPS comes from the most recent annual balance sheet ratio row.
+- Banks / financial firms follow SBV Circular 49, not Circular 200, so their
+  equity structure differs — but Finance.ratio() handles this at the API level.
+- Results are written to data/fundamentals.parquet (ticker as index).
 """
 
 import os
@@ -30,21 +27,16 @@ from datetime import date
 import numpy as np
 import pandas as pd
 
-# Load .env file if present (contains VNSTOCK_API_KEY for higher rate limits)
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except ImportError:
-    pass  # dotenv not installed, rely on system env vars
-
 warnings.filterwarnings("ignore")
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.config import (
-    EXCHANGE, FUND_FILE, FUND_BATCH_SLEEP,
-    PRICE_BOARD_BATCH, DATA_DIR, DAILY_DIR,
+    EXCHANGE, FUND_FILE,
+    FUND_BATCH_SLEEP, FUND_BATCH_EVERY, FUND_BATCH_PAUSE,
+    FUND_MAX_RETRIES, FUND_RETRY_WAIT,
+    DATA_DIR, DAILY_DIR,
 )
 
 logging.basicConfig(
@@ -98,32 +90,23 @@ def get_hose_tickers() -> list[str]:
     """Return all HOSE equity tickers via vnstock Reference."""
     log.info("Fetching HOSE ticker universe...")
     from vnstock import Reference
-    from scripts.config import EXCHANGE
     ref = Reference()
     try:
-        df = ref.equity.list_by_exchange()
-    except TypeError:
+        df = ref.equity.list_by_exchange(exchange=EXCHANGE)
+    except Exception:
         try:
-            df = ref.equity.list_by_exchange(exchange=EXCHANGE)
-        except Exception:
-            df = ref.equity.list_by_exchange(exchange="HSX")
-
-    ex_col = next(
-        (c for c in df.columns if c.lower() in ("exchange", "board", "san", "market")),
-        None,
-    )
-    if ex_col is not None:
-        df = df[df[ex_col].astype(str).str.upper().isin(["HOSE", "HSX", "XSTC"])]
+            df = ref.equity.list_by_exchange(exchange="HSX")   # legacy alias
+        except Exception as exc:
+            log.error(f"list_by_exchange failed: {exc}")
+            raise
 
     # Detect ticker column (handles 'ticker', 'symbol', 'code', etc.)
     ticker_col = next(
         (c for c in df.columns if c.lower() in ("ticker", "symbol", "code", "stock_code")),
         df.columns[0],
     )
-    raw_tickers = df[ticker_col].dropna().astype(str).str.upper().str.strip().tolist()
-    # Exclude covered warrants (len 8, e.g. CHPG2616) and ETFs/open funds (e.g. FUEVN100)
-    tickers = [t for t in raw_tickers if len(t) == 3]
-    log.info(f"  -> {len(tickers)} HOSE stocks found (filtered out {len(raw_tickers) - len(tickers)} warrants/ETFs).")
+    tickers = df[ticker_col].dropna().str.upper().str.strip().tolist()
+    log.info(f"  → {len(tickers)} HOSE tickers found.")
     return tickers
 
 
@@ -131,7 +114,8 @@ def get_hose_tickers() -> list[str]:
 def get_sector_map(tickers: list[str]) -> pd.DataFrame:
     """
     Build ticker → sector / industry / group mapping.
-    Primary: Reference().equity.list_by_industry()
+    Primary: Reference().equity.list_by_industry()  [VCI – ICB standard]
+    Fallback: Reference().industry.sectors()         [KBS]
     Vingroup override applied last.
     """
     from scripts.config import VINGROUP_TICKERS, VINGROUP_GROUP
@@ -139,221 +123,174 @@ def get_sector_map(tickers: list[str]) -> pd.DataFrame:
     ref = Reference()
     base = pd.DataFrame({"ticker": tickers})
 
-    try:
+    def _try_vci():
         df = ref.equity.list_by_industry()
-        df["symbol"] = df["symbol"].astype(str).str.upper().str.strip()
-        df = df[df["symbol"].isin(tickers)]
+        cmap = {}
+        for col in df.columns:
+            cl = col.lower()
+            if cl in ("ticker", "symbol", "code"):
+                cmap[col] = "ticker"
+            elif "industry" in cl or "nganh" in cl:
+                cmap[col] = "industry"
+            elif "sector" in cl or "linh_vuc" in cl:
+                cmap[col] = "sector"
+        df = df.rename(columns=cmap)
+        df["ticker"] = df["ticker"].str.upper()
+        return df
 
-        if "icb_level" in df.columns and "icb_name" in df.columns:
-            sec_df = df[df["icb_level"].astype(str).isin(["1", "2"])].drop_duplicates(subset=["symbol"])
-            ind_df = df[df["icb_level"].astype(str).isin(["3", "4"])].drop_duplicates(subset=["symbol"])
-            if sec_df.empty:
-                sec_df = df.drop_duplicates(subset=["symbol"])
-            if ind_df.empty:
-                ind_df = df.drop_duplicates(subset=["symbol"], keep="last")
+    def _try_kbs():
+        df = ref.industry.sectors()
+        cmap = {}
+        for col in df.columns:
+            cl = col.lower()
+            if cl in ("ticker", "symbol", "code"):
+                cmap[col] = "ticker"
+            elif "industry" in cl or "sector" in cl or "nganh" in cl:
+                cmap[col] = "sector"
+        df = df.rename(columns=cmap)
+        df["ticker"] = df["ticker"].str.upper()
+        return df
 
-            sec_map = sec_df.set_index("symbol")["icb_name"].to_dict()
-            ind_map = ind_df.set_index("symbol")["icb_name"].to_dict()
+    for fn, label in [(_try_vci, "VCI"), (_try_kbs, "KBS")]:
+        try:
+            ind = fn()
+            merge_cols = [c for c in ("ticker", "sector", "industry") if c in ind.columns]
+            base = base.merge(ind[merge_cols], on="ticker", how="left")
+            log.info(f"Sector map loaded from {label}.")
+            break
+        except Exception as exc:
+            log.warning(f"Sector map ({label}) failed: {exc}")
 
-            base["sector"] = base["ticker"].map(sec_map).fillna("Unknown")
-            base["industry"] = base["ticker"].map(ind_map).fillna("Unknown")
-        else:
-            df_unique = df.drop_duplicates(subset=["symbol"])
-            sec_col = next((c for c in df.columns if any(k in c.lower() for k in ["sector", "nganh", "icb_name"])), None)
-            base["sector"] = base["ticker"].map(df_unique.set_index("symbol")[sec_col]).fillna("Unknown") if sec_col else "Unknown"
-            base["industry"] = base["sector"]
-        log.info("Sector map loaded successfully.")
-    except Exception as exc:
-        log.warning(f"Sector map failed: {exc}")
-        base["sector"] = "Unknown"
-        base["industry"] = "Unknown"
+    for col in ("sector", "industry"):
+        if col not in base.columns:
+            base[col] = "Unknown"
+    base["sector"]   = base["sector"].fillna("Unknown")
+    base["industry"] = base["industry"].fillna("Unknown")
 
-    # Separate major independent sectors
+    # Special Vingroup group AFTER sector mapping
     base["group"] = base["sector"]
-
-    mask_bds = base["industry"].astype(str).str.lower().str.contains("bất động|real estate")
-    base.loc[mask_bds, "sector"] = "Bất động sản"
-    base.loc[mask_bds, "group"]  = "Bất động sản"
-
-    mask_xd = base["industry"].astype(str).str.lower().str.contains("xây dựng và vật liệu|construction & materials|construction and materials")
-    base.loc[mask_xd, "sector"] = "Xây dựng và Vật liệu"
-    base.loc[mask_xd, "group"]  = "Xây dựng và Vật liệu"
-
-    mask_hc = base["industry"].astype(str).str.lower().str.contains("hóa chất|chemical")
-    base.loc[mask_hc, "sector"] = "Hóa chất"
-    base.loc[mask_hc, "group"]  = "Hóa chất"
-
-    mask_tp = base["industry"].astype(str).str.lower().str.contains("sản xuất thực phẩm|food producer")
-    base.loc[mask_tp, "sector"] = "Sản xuất thực phẩm"
-    base.loc[mask_tp, "group"]  = "Sản xuất thực phẩm"
-
-    mask_vin = base["ticker"].isin(VINGROUP_TICKERS)
-    base.loc[mask_vin, "group"] = VINGROUP_GROUP
-    return base.drop_duplicates(subset=["ticker"])
+    mask = base["ticker"].isin(VINGROUP_TICKERS)
+    base.loc[mask, "group"] = VINGROUP_GROUP
+    return base
 
 
 # ── Fundamentals fetch ────────────────────────────────────────────────────────
-def _extract_bvps(ratio_df: pd.DataFrame, ticker: str) -> float:
+def _extract_eps_bvps(ratio_df: pd.DataFrame, ticker: str) -> dict:
     """
-    From a Finance.ratio(period='year') DataFrame, extract the most recent
-    BVPS (Book Value Per Share). Returns NaN if not found.
+    From a Finance.ratio(period='year') DataFrame, extract the most recent:
+      eps_annual  – EPS of the last complete fiscal year  (already period-specific)
+      bvps        – Book Value Per Share (last annual)
+    Returns dict with those two keys (NaN if not found).
     """
+    null = {"ticker": ticker, "eps_annual": np.nan, "bvps": np.nan, "fetched_date": str(date.today())}
     if ratio_df is None or ratio_df.empty:
-        return np.nan
+        return null
 
-    item_col = next((c for c in ratio_df.columns if c.lower() in ("item", "chi_tieu", "name", "metric")), None)
-    meta_lower = {"item", "item_id", "id", "symbol", "ticker", "item_en", "period"}
-    val_cols = [c for c in ratio_df.columns if c.lower() not in meta_lower]
+    # Detect EPS and BVPS columns (vnstock may return 'eps', 'EPS', 'bvps', etc.)
+    cols_lower = {c.lower(): c for c in ratio_df.columns}
+    eps_col  = cols_lower.get("eps",  cols_lower.get("earningspershare", None))
+    bvps_col = cols_lower.get("bvps", cols_lower.get("bookvaluepershare",
+               cols_lower.get("nav",  None)))
 
-    if item_col is not None:
-        for _, row in ratio_df.iterrows():
-            item_str = str(row.get("item", "")).lower()
-            item_id  = str(row.get("item_id", "")).lower()
-            is_bvps  = ("book_value_per_share" in item_id or "bvps" in item_id
-                        or "bvps" in item_str or "giá trị sổ sách" in item_str)
-            if not is_bvps:
-                continue
-            for vc in val_cols:
-                v = pd.to_numeric(row[vc], errors="coerce")
-                if pd.notna(v) and v != 0:
-                    return float(v)
-    else:
-        cols_lower = {c.lower(): c for c in ratio_df.columns}
-        bvps_col = next((cols_lower[k] for k in cols_lower
-                         if "bvps" in k or "bookvalue" in k or "nav" in k), None)
-        if bvps_col:
-            for idx in range(len(ratio_df) - 1, -1, -1):
-                v = pd.to_numeric(ratio_df.iloc[idx][bvps_col], errors="coerce")
-                if pd.notna(v) and v != 0:
-                    return float(v)
-    return np.nan
+    row = ratio_df.iloc[-1]   # most recent period
+    eps  = pd.to_numeric(row[eps_col],  errors="coerce") if eps_col  else np.nan
+    bvps = pd.to_numeric(row[bvps_col], errors="coerce") if bvps_col else np.nan
+
+    # Sanity: vnstock stores prices in raw VND (thousands) for some sources
+    # EPS for Vietnamese stocks is typically 1,000–20,000 VND range; flag if implausible
+    if not np.isnan(eps) and eps < 0:
+        eps = np.nan   # loss-making → PE not meaningful
+    return {"ticker": ticker, "eps_annual": eps, "bvps": bvps, "fetched_date": str(date.today())}
 
 
-def _compute_ttm_eps(ticker: str, shares: float) -> float:
-    """
-    Compute TTM EPS from VCI income_statement(period='quarter').
+def _is_rate_limit_error(exc: Exception) -> bool:
+    """Detect rate-limit / throttle errors from vnstock / underlying HTTP layer."""
+    msg = str(exc).lower()
+    return any(k in msg for k in ("429", "rate limit", "rate_limit",
+                                  "throttl", "too many request", "exceeded"))
 
-    VCI returns standalone-quarter profits (already deaccumulated from VAS
-    YTD cumulative), so TTM = sum of the 4 most recent 'isa22' values
-    (net profit attributable to parent company shareholders), divided by shares.
-
-    Fallback: KBS Finance.ratio(period='quarter') trailing_eps field.
-    Returns NaN if both sources fail or profit is negative / zero.
-    """
-    from vnstock import Finance
-
-    if not (pd.notna(shares) and shares > 0):
-        return np.nan
-
-    # ── Primary: VCI income_statement quarterly ───────────────────────────────
-    try:
-        fin_vci = Finance(symbol=ticker, source="VCI")
-        is_df = fin_vci.income_statement(period="quarter", lang="en")
-        if is_df is not None and not is_df.empty:
-            meta_cols = {"item", "item_en", "item_id", "period"}
-            val_cols  = [c for c in is_df.columns if c not in meta_cols]
-
-            # isa22 = net profit attributable to parent company shareholders
-            pat = is_df[is_df["item_id"].astype(str).str.lower() == "isa22"]
-            if not pat.empty and len(val_cols) >= 4:
-                recent_4 = val_cols[:4]   # columns are already sorted newest-first
-                vals = pd.to_numeric(pat[recent_4].iloc[0], errors="coerce")
-                if vals.notna().sum() == 4:
-                    ttm_profit = float(vals.sum())
-                    if ttm_profit > 0:
-                        eps = ttm_profit / shares
-                        log.debug(f"  {ticker}: VCI TTM EPS = {eps:,.0f} (profit {ttm_profit/1e9:.1f}B)")
-                        return eps
-    except Exception as exc:
-        log.debug(f"  {ticker}: VCI income_statement failed – {exc}")
-
-    # ── Fallback: KBS ratio quarter trailing_eps ──────────────────────────────
-    try:
-        fin_kbs = Finance(symbol=ticker, source="KBS")
-        r = fin_kbs.ratio(period="quarter", lang="en")
-        if r is not None and not r.empty:
-            meta_cols = {"item", "item_en", "item_id", "period"}
-            val_cols  = [c for c in r.columns if c not in meta_cols]
-            trail = r[r["item_id"].astype(str).str.lower() == "trailing_eps"]
-            if not trail.empty and val_cols:
-                v = pd.to_numeric(trail[val_cols[0]].iloc[0], errors="coerce")
-                if pd.notna(v) and v > 0:
-                    log.debug(f"  {ticker}: KBS trailing_eps fallback = {v:,.0f}")
-                    return float(v)
-    except Exception as exc:
-        log.debug(f"  {ticker}: KBS trailing_eps fallback failed – {exc}")
-
-    return np.nan
-
-
-import concurrent.futures
 
 def fetch_all_fundamentals(tickers: list[str]) -> pd.DataFrame:
     """
-    Fetch BVPS, Shares, and TTM EPS for all tickers concurrently.
+    Batch-fetch Finance.ratio(period='year') for all tickers with:
+      - Exponential backoff on rate-limit errors (90 s × attempt)
+      - Base sleep of FUND_BATCH_SLEEP seconds between every call
+      - Longer pause of FUND_BATCH_PAUSE seconds every FUND_BATCH_EVERY tickers
+        so the API rate-limit window can reset
+
+    Effective throughput (defaults):
+      15 tickers × 4 s sleep = 60 s + 45 s batch pause = 105 s per batch
+      → ~8.6 tickers/min  →  ~46 min total for 400 tickers  (well within 2 h timeout)
+      Rate: ~8.6 req/min (safely under Guest-tier 20 req/min even if
+            Finance.ratio() makes 2 internal HTTP calls)
     """
+    from vnstock import Finance
     records = []
-    n = len(tickers)
-    
-    def fetch_single(args):
-        i, ticker = args
-        if i % 25 == 0 or i == 1:
-            log.info(f"  Fetching fundamentals {i}/{n}: {ticker}")
-        rec = {"ticker": ticker, "eps_ttm": np.nan, "bvps": np.nan, "shares": np.nan,
-               "fetched_date": str(date.today())}
+    n       = len(tickers)
+    null    = lambda t: {"ticker": t, "eps_annual": np.nan, "bvps": np.nan,
+                         "fetched_date": str(date.today())}
 
-        # ── 1. BVPS from KBS annual ratio ─────────────────────────────────────
-        try:
-            from vnstock import Finance, Company
-            fin = Finance(symbol=ticker, source="KBS")
-            ratio_df = fin.ratio(period="year", lang="en")
-            rec["bvps"] = _extract_bvps(ratio_df, ticker)
-        except Exception as exc:
-            log.debug(f"  {ticker}: KBS ratio(year) failed – {exc}")
+    for i, ticker in enumerate(tickers, 1):
 
-        # ── 2. Shares outstanding ──────────────────────────────────────────────
-        try:
-            for src in ["KBS", "VCI"]:
-                try:
-                    from vnstock import Company
-                    c = Company(symbol=ticker, source=src)
-                    ov = c.overview()
-                    if ov is not None and not ov.empty and "outstanding_shares" in ov.columns:
-                        val = pd.to_numeric(ov.iloc[0]["outstanding_shares"], errors="coerce")
-                        if pd.notna(val) and val > 0:
-                            rec["shares"] = float(val)
-                            break
-                except Exception:
-                    continue
-        except Exception as exc:
-            log.debug(f"  {ticker}: shares failed – {exc}")
+        # ── Per-ticker fetch with retry ───────────────────────────────────────
+        success = False
+        for attempt in range(1, FUND_MAX_RETRIES + 1):
+            try:
+                fin      = Finance(symbol=ticker, source="KBS")
+                ratio_df = fin.ratio(period="year", lang="en")
+                records.append(_extract_eps_bvps(ratio_df, ticker))
+                success  = True
+                break
 
-        # ── 3. TTM EPS (VCI primary, KBS fallback) ─────────────────────────────
-        rec["eps_ttm"] = _compute_ttm_eps(ticker, rec["shares"])
-        
-        # Small sleep to prevent rate limiting inside the thread
-        time.sleep(FUND_BATCH_SLEEP / 5.0)
-        return rec
+            except Exception as exc:
+                if _is_rate_limit_error(exc):
+                    wait = FUND_RETRY_WAIT * attempt          # 90 s, 180 s, 270 s
+                    log.warning(
+                        f"  [{i}/{n}] {ticker} — rate limit hit "
+                        f"(attempt {attempt}/{FUND_MAX_RETRIES}). "
+                        f"Sleeping {wait} s before retry..."
+                    )
+                    time.sleep(wait)
+                else:
+                    # Non-rate-limit error: short wait then retry
+                    log.debug(f"  [{i}/{n}] {ticker} — attempt {attempt} failed: {exc}")
+                    if attempt < FUND_MAX_RETRIES:
+                        time.sleep(5)
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-        args = [(i, ticker) for i, ticker in enumerate(tickers, 1)]
-        results = executor.map(fetch_single, args)
-        for rec in results:
-            records.append(rec)
+        if not success:
+            log.warning(f"  [{i}/{n}] {ticker} — gave up after {FUND_MAX_RETRIES} attempts.")
+            records.append(null(ticker))
 
-    df = pd.DataFrame(records).set_index("ticker")
-    valid_eps  = df["eps_ttm"].notna().sum()
+        # ── Progress log every 25 tickers ────────────────────────────────────
+        if i == 1 or i % 25 == 0:
+            done  = sum(1 for r in records if not np.isnan(r.get("eps_annual", np.nan)))
+            log.info(f"  Progress {i}/{n} | EPS fetched so far: {done}")
+
+        # ── Base inter-call sleep ─────────────────────────────────────────────
+        time.sleep(FUND_BATCH_SLEEP)
+
+        # ── Batch-level pause every FUND_BATCH_EVERY tickers ─────────────────
+        if i % FUND_BATCH_EVERY == 0 and i < n:
+            log.info(
+                f"  Batch pause after {i} tickers "
+                f"— sleeping {FUND_BATCH_PAUSE} s to reset rate-limit window..."
+            )
+            time.sleep(FUND_BATCH_PAUSE)
+
+    df         = pd.DataFrame(records).set_index("ticker")
+    valid_eps  = df["eps_annual"].notna().sum()
     valid_bvps = df["bvps"].notna().sum()
-    valid_sh   = df["shares"].notna().sum()
-    log.info(f"Fundamentals fetched: {len(df)} tickers | TTM EPS valid: {valid_eps} | BVPS valid: {valid_bvps} | Shares valid: {valid_sh}")
+    log.info(
+        f"Fundamentals complete: {len(df)} tickers | "
+        f"EPS valid: {valid_eps} ({valid_eps/len(df)*100:.0f}%) | "
+        f"BVPS valid: {valid_bvps} ({valid_bvps/len(df)*100:.0f}%)"
+    )
     return df
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 def main():
-    if hasattr(sys.stdout, "reconfigure"):
-        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-    log.info("=== Weekly fundamentals refresh (TTM EPS) started ===")
+    log.info("=== Weekly fundamentals refresh started ===")
     register_vnstock()
 
     tickers    = get_hose_tickers()
@@ -365,10 +302,10 @@ def main():
     merged = fundamentals.reset_index().merge(
         sector_map[["ticker", "sector", "industry", "group"]],
         on="ticker", how="left"
-    ).drop_duplicates(subset=["ticker"])
+    )
     merged.to_parquet(FUND_FILE, index=False)
-    log.info(f"Fundamentals saved -> {FUND_FILE}  ({len(merged)} rows)")
-    log.info("=== Weekly fundamentals refresh (TTM EPS) complete ===")
+    log.info(f"Fundamentals saved → {FUND_FILE}  ({len(merged)} rows)")
+    log.info("=== Weekly fundamentals refresh complete ===")
 
 
 if __name__ == "__main__":
