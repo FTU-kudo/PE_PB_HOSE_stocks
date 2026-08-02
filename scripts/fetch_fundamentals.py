@@ -1,6 +1,7 @@
 """
 Weekly fundamentals refresh  (run every Sunday ~01:00 UTC via GitHub Actions).
-For each HOSE ticker, fetches Finance.ratio(period='year') and extracts:
+For each HOSE ticker, fetches Fundamental.equity(ticker).ratio(period='year')
+and extracts:
   - eps_annual : EPS of the most recent complete fiscal year
   - bvps       : Book Value Per Share from the most recent annual report
 
@@ -12,8 +13,9 @@ Design notes
   that deaccumulation trap.
 - BVPS comes from the most recent annual balance sheet ratio row.
 - Banks / financial firms follow SBV Circular 49, not Circular 200, so their
-  equity structure differs — but Finance.ratio() handles this at the API level.
+  equity structure differs — but Fundamental.ratio() handles this at the API level.
 - Results are written to data/fundamentals.parquet (ticker as index).
+- Compatible with Vnstock 4.0 Unified UI (Fundamental class).
 """
 
 import os
@@ -29,7 +31,12 @@ import pandas as pd
 
 warnings.filterwarnings("ignore")
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+# ── Đường dẫn gốc (hoạt động cả script lẫn notebook) ────────────────────────
+if '__file__' in globals():
+    PROJECT_ROOT = Path(__file__).resolve().parent.parent
+else:
+    PROJECT_ROOT = Path.cwd()
+
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.config import (
@@ -51,7 +58,7 @@ for d in [DATA_DIR, DAILY_DIR, "docs"]:
     Path(d).mkdir(parents=True, exist_ok=True)
 
 
-# ── vnstock authentication ────────────────────────────────────────────────────
+# ── vnstock authentication (giữ nguyên, nhưng Vnstock 4.0 không cần) ───────
 def register_vnstock() -> None:
     """
     Attempt to register the vnstock API key.
@@ -85,6 +92,7 @@ def register_vnstock() -> None:
 
     if not registered:
         log.warning("Could not register API key (function not found). Guest mode.")
+
 # ── Ticker discovery ──────────────────────────────────────────────────────────
 def get_hose_tickers() -> list[str]:
     """
@@ -143,10 +151,6 @@ def get_hose_tickers() -> list[str]:
     )
 
     # ── Filter to regular stocks only ─────────────────────────────────────────
-    # Vietnamese stock tickers are exactly 3 uppercase letters (VCB, HPG, VIC…).
-    # Covered Warrants follow C+[3-letter underlying]+[4-digit expiry] → 8 chars.
-    # ETFs follow E1xxx / FUExxx patterns with digits.
-    # Strategy: try the 'type' column first; fall back to the 3-letter regex.
     raw_tickers = df[ticker_col].dropna().str.upper().str.strip()
 
     type_col = next(
@@ -163,7 +167,6 @@ def get_hose_tickers() -> list[str]:
         raw_tickers = raw_tickers[mask]
         log.info(f"  Type filter  (col='{type_col}'): {before} → {len(raw_tickers)} stocks.")
     else:
-        # Regex fallback: exactly 3 uppercase ASCII letters, nothing else
         before = len(raw_tickers)
         raw_tickers = raw_tickers[raw_tickers.str.match(r'^[A-Z]{3}$')]
         log.info(f"  Regex filter (^[A-Z]{{3}}$): {before} → {len(raw_tickers)} stocks "
@@ -191,11 +194,9 @@ def get_sector_map(tickers: list[str]) -> pd.DataFrame:
 
     ref  = Reference()
     base = pd.DataFrame({"ticker": tickers})
-    # Pre-fill with defaults so the return is always valid even if all lookups fail
     base["sector"]   = "Unknown"
     base["industry"] = "Unknown"
 
-    # ── 1. Try to obtain a raw sector DataFrame ───────────────────────────────
     raw    = None
     source = None
     for label, fn in [
@@ -220,7 +221,6 @@ def get_sector_map(tickers: list[str]) -> pd.DataFrame:
         base.loc[mask, "group"] = VINGROUP_GROUP
         return base
 
-    # ── 2. Detect ONE column of each role (never rename the raw DataFrame) ────
     cols = list(raw.columns)
     cl   = [c.lower() for c in cols]
 
@@ -251,7 +251,6 @@ def get_sector_map(tickers: list[str]) -> pd.DataFrame:
         base.loc[mask, "group"] = VINGROUP_GROUP
         return base
 
-    # ── 3. Build a clean 3-column lookup table (no renames, no merges yet) ───
     lookup = pd.DataFrame({
         "ticker": raw[ticker_col].astype(str).str.upper().str.strip(),
     })
@@ -260,21 +259,17 @@ def get_sector_map(tickers: list[str]) -> pd.DataFrame:
     if industry_col:
         lookup["industry"] = raw[industry_col].values
 
-    # Drop any duplicate tickers in lookup (keep first)
     lookup = lookup.drop_duplicates(subset="ticker", keep="first")
 
-    # ── 4. Merge lookup into base (base has no sector/industry yet → no clash) ─
     base = base.drop(columns=["sector", "industry"], errors="ignore")
     base = base.merge(lookup, on="ticker", how="left")
 
     for col in ("sector", "industry"):
         if col not in base.columns:
             base[col] = "Unknown"
-        # Guaranteed to be a Series here (lookup has unique column names)
         base[col] = base[col].fillna("Unknown")
 
-    # ── 5. Vingroup override ──────────────────────────────────────────────────
-    base["group"] = base["sector"].copy()        # plain Series assignment
+    base["group"] = base["sector"].copy()
     mask = base["ticker"].isin(VINGROUP_TICKERS)
     base.loc[mask, "group"] = VINGROUP_GROUP
 
@@ -286,29 +281,52 @@ def get_sector_map(tickers: list[str]) -> pd.DataFrame:
 # ── Fundamentals fetch ────────────────────────────────────────────────────────
 def _extract_eps_bvps(ratio_df: pd.DataFrame, ticker: str) -> dict:
     """
-    From a Finance.ratio(period='year') DataFrame, extract the most recent:
-      eps_annual  – EPS of the last complete fiscal year  (already period-specific)
+    From a Fundamental.equity(ticker).ratio(period='year') DataFrame,
+    extract the most recent:
+      eps_annual  – EPS of the last complete fiscal year
       bvps        – Book Value Per Share (last annual)
     Returns dict with those two keys (NaN if not found).
+
+    In Vnstock 4.0, ratio returns a DataFrame with rows = metrics,
+    columns = years (orient='report'). We search for rows containing
+    'EPS' and 'BVPS' in the 'item_en' or 'item' column.
     """
     null = {"ticker": ticker, "eps_annual": np.nan, "bvps": np.nan, "fetched_date": str(date.today())}
     if ratio_df is None or ratio_df.empty:
         return null
 
-    # Detect EPS and BVPS columns (vnstock may return 'eps', 'EPS', 'bvps', etc.)
-    cols_lower = {c.lower(): c for c in ratio_df.columns}
-    eps_col  = cols_lower.get("eps",  cols_lower.get("earningspershare", None))
-    bvps_col = cols_lower.get("bvps", cols_lower.get("bookvaluepershare",
-               cols_lower.get("nav",  None)))
+    # Xác định cột tên chỉ tiêu
+    if 'item_en' in ratio_df.columns:
+        name_col = 'item_en'
+    elif 'item' in ratio_df.columns:
+        name_col = 'item'
+    else:
+        log.warning(f"{ticker}: Không tìm thấy cột tên chỉ tiêu")
+        return null
 
-    row = ratio_df.iloc[-1]   # most recent period
-    eps  = pd.to_numeric(row[eps_col],  errors="coerce") if eps_col  else np.nan
-    bvps = pd.to_numeric(row[bvps_col], errors="coerce") if bvps_col else np.nan
+    # Tìm các cột năm (ví dụ 2023, 2022...)
+    year_cols = [c for c in ratio_df.columns if str(c).isdigit() and len(str(c)) == 4]
+    if not year_cols:
+        log.warning(f"{ticker}: Không có cột năm trong ratio")
+        return null
+    latest_year = sorted(year_cols)[-1]
 
-    # Sanity: vnstock stores prices in raw VND (thousands) for some sources
-    # EPS for Vietnamese stocks is typically 1,000–20,000 VND range; flag if implausible
-    if not np.isnan(eps) and eps < 0:
-        eps = np.nan   # loss-making → PE not meaningful
+    # Tìm EPS
+    eps_mask = ratio_df[name_col].str.contains('EPS|Earnings Per Share', case=False, na=False)
+    eps_row = ratio_df[eps_mask]
+    eps = np.nan
+    if not eps_row.empty:
+        eps = pd.to_numeric(eps_row.iloc[0][latest_year], errors='coerce')
+        if eps < 0:
+            eps = np.nan
+
+    # Tìm BVPS
+    bvps_mask = ratio_df[name_col].str.contains('BVPS|Book Value Per Share', case=False, na=False)
+    bvps_row = ratio_df[bvps_mask]
+    bvps = np.nan
+    if not bvps_row.empty:
+        bvps = pd.to_numeric(bvps_row.iloc[0][latest_year], errors='coerce')
+
     return {"ticker": ticker, "eps_annual": eps, "bvps": bvps, "fetched_date": str(date.today())}
 
 
@@ -321,7 +339,7 @@ def _is_rate_limit_error(exc: Exception) -> bool:
 
 def fetch_all_fundamentals(tickers: list[str]) -> pd.DataFrame:
     """
-    Batch-fetch Finance.ratio(period='year') for all tickers with:
+    Batch-fetch Fundamental.equity(ticker).ratio(period='year') for all tickers with:
       - Exponential backoff on rate-limit errors (90 s × attempt)
       - Base sleep of FUND_BATCH_SLEEP seconds between every call
       - Longer pause of FUND_BATCH_PAUSE seconds every FUND_BATCH_EVERY tickers
@@ -331,9 +349,10 @@ def fetch_all_fundamentals(tickers: list[str]) -> pd.DataFrame:
       15 tickers × 4 s sleep = 60 s + 45 s batch pause = 105 s per batch
       → ~8.6 tickers/min  →  ~46 min total for 400 tickers  (well within 2 h timeout)
       Rate: ~8.6 req/min (safely under Guest-tier 20 req/min even if
-            Finance.ratio() makes 2 internal HTTP calls)
+            ratio() makes 2 internal HTTP calls)
     """
-    from vnstock import Finance
+    from vnstock import Fundamental
+    fun = Fundamental()
     records = []
     n       = len(tickers)
     null    = lambda t: {"ticker": t, "eps_annual": np.nan, "bvps": np.nan,
@@ -345,8 +364,8 @@ def fetch_all_fundamentals(tickers: list[str]) -> pd.DataFrame:
         success = False
         for attempt in range(1, FUND_MAX_RETRIES + 1):
             try:
-                fin      = Finance(symbol=ticker, source="KBS")
-                ratio_df = fin.ratio(period="year", lang="en")
+                # Gọi ratio theo cú pháp Vnstock 4.0
+                ratio_df = fun.equity(ticker).ratio(period="year", orient="report", lang="en")
                 records.append(_extract_eps_bvps(ratio_df, ticker))
                 success  = True
                 break
