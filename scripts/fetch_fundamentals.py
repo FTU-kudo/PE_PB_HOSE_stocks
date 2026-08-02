@@ -61,15 +61,33 @@ for d in [DATA_DIR, DAILY_DIR, "docs"]:
 # ── vnstock authentication (giữ nguyên, nhưng Vnstock 4.0 không cần) ───────
 def register_vnstock() -> None:
     """
-    Attempt to register the vnstock API key.
-    Tries all known import paths across vnstock versions.
-    Silently skips if key is not set or if registration is unavailable.
+    Register API key for Vnstock 4.0.
+    Tries:
+      1. vnstock.set_api_key (if available)
+      2. Set environment variable VNSTOCK_API_KEY
+      3. Legacy methods (fallback)
     """
     api_key = os.getenv("VNSTOCK_API_KEY", "").strip()
     if not api_key:
         log.warning("VNSTOCK_API_KEY not set — running as Guest (20 req/min).")
         return
 
+    # ── 1. Ưu tiên dùng set_api_key của Vnstock 4.0 ──
+    try:
+        from vnstock import set_api_key
+        set_api_key(api_key)
+        log.info("vnstock API key registered via set_api_key (60 req/min).")
+        return
+    except (ImportError, AttributeError):
+        pass
+
+    # ── 2. Đặt biến môi trường (nếu chưa có) ──
+    if os.getenv("VNSTOCK_API_KEY") != api_key:
+        os.environ["VNSTOCK_API_KEY"] = api_key
+        log.info("VNSTOCK_API_KEY environment variable set.")
+        # Một số phiên bản tự động đọc biến này
+
+    # ── 3. Fallback: các cách cũ (cho tương thích ngược) ──
     registered = False
     attempts = [
         ("vnstock",             "register_user"),
@@ -91,7 +109,7 @@ def register_vnstock() -> None:
             break
 
     if not registered:
-        log.warning("Could not register API key (function not found). Guest mode.")
+        log.warning("Could not register API key via any method. Guest mode may apply.")
 
 # ── Ticker discovery ──────────────────────────────────────────────────────────
 def get_hose_tickers() -> list[str]:
