@@ -14,7 +14,7 @@ jobs:
   refresh-fundamentals:
     name: Fetch EPS & BVPS for all HOSE tickers
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 120   # ~400 tickers × ~7 s avg = ~47 min; 120 min is safe
 
     permissions:
       contents: write
@@ -36,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: pip install --upgrade pip && pip install -r requirements.txt
 
-      # ── Diagnostics (runs before main script so errors are visible) ─────────
+      # ── Diagnostics ────────────────────────────────────────────────────────
       - name: Diagnose environment
         run: |
           echo "=== Python version ==="
@@ -58,20 +58,21 @@ jobs:
           python -c "
           import sys, os
           sys.path.insert(0, os.getcwd())
-          from scripts.config import EXCHANGE, VINGROUP_TICKERS
-          print(f'  config OK — EXCHANGE={EXCHANGE}, VINGROUP={VINGROUP_TICKERS}')
+          from scripts.config import EXCHANGE, VINGROUP_TICKERS, FUND_BATCH_SLEEP, FUND_BATCH_EVERY
+          print(f'  config OK — EXCHANGE={EXCHANGE}')
+          print(f'  rate-limit settings: sleep={FUND_BATCH_SLEEP}s, batch_every={FUND_BATCH_EVERY}')
           " || echo "  scripts.config import FAILED"
 
           echo "=== Workspace files ==="
           find . -not -path './.git/*' -type f | sort
 
-      # ── Main script ─────────────────────────────────────────────────────────
+      # ── Main script ────────────────────────────────────────────────────────
       - name: Fetch Finance.ratio() for all HOSE tickers
         env:
           VNSTOCK_API_KEY: ${{ secrets.VNSTOCK_API_KEY }}
         run: python scripts/fetch_fundamentals.py
 
-      # ── Commit results ───────────────────────────────────────────────────────
+      # ── Commit results ──────────────────────────────────────────────────────
       - name: Commit and push fundamentals cache
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -82,8 +83,7 @@ jobs:
           else
             DATE=$(date -u '+%Y-%m-%d')
             COUNT=$(python -c "import pandas as pd; df=pd.read_parquet('data/fundamentals.parquet'); print(len(df))")
-            git commit -m "\U0001f504 Weekly fundamentals refresh ${DATE} (${COUNT} tickers) [skip ci]"
-            # Pull-rebase + push with up to 3 retries to handle concurrent remote pushes
+            git commit -m "🔄 Weekly fundamentals refresh ${DATE} (${COUNT} tickers) [skip ci]"
             for i in 1 2 3; do
               git pull --rebase origin main && git push origin main && break
               echo "Push attempt $i failed. Waiting 10s before retry..."
@@ -91,26 +91,12 @@ jobs:
             done
           fi
 
-      # ── Job summary ──────────────────────────────────────────────────────────
+      # ── Job summary ────────────────────────────────────────────────────────
       - name: Write job summary
         if: always()
         run: |
           DATE=$(date -u '+%Y-%m-%d')
           echo "### 🔄 Weekly Fundamentals — ${DATE}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          if [ -f data/fundamentals.parquet ]; then
-            python -c "
-          import pandas as pd
-          df = pd.read_parquet('data/fundamentals.parquet')
-          valid_eps  = df['eps_ttm'].notna().sum()
-          valid_bvps = df['bvps'].notna().sum()
-          total      = len(df)
-          print(f'| Metric | Value |')
-          print(f'|--------|-------|')
-          print(f'| Total tickers | {total} |')
-          print(f'| Valid EPS  | {valid_eps} ({valid_eps/total*100:.0f}%) |')
-          print(f'| Valid BVPS | {valid_bvps} ({valid_bvps/total*100:.0f}%) |')
-          " >> $GITHUB_STEP_SUMMARY
-          else
-            echo "⚠️ data/fundamentals.parquet not found after fetch." >> $GITHUB_STEP_SUMMARY
-          fi
+          python3 scripts/generate_summary.py >> $GITHUB_STEP_SUMMARY \
+            || echo "⚠️ data/fundamentals.parquet not found after fetch." >> $GITHUB_STEP_SUMMARY
