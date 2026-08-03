@@ -121,6 +121,17 @@ def load_fundamentals() -> pd.DataFrame:
         )
 
     df = pd.read_parquet(fund_path)
+    
+    # ── Chuẩn hóa tên cột EPS ──────────────────────────────────────────────
+    # Ưu tiên dùng eps_ttm nếu có; nếu chỉ có eps_annual thì đổi tên
+    if 'eps_annual' in df.columns and 'eps_ttm' not in df.columns:
+        df.rename(columns={'eps_annual': 'eps_ttm'}, inplace=True)
+        log.info("Đã đổi tên cột 'eps_annual' thành 'eps_ttm'.")
+    elif 'eps_ttm' not in df.columns and 'eps_annual' not in df.columns:
+        log.error("Không tìm thấy cột EPS (eps_annual hay eps_ttm).")
+        sys.exit(1)
+    # -----------------------------------------------------------------------
+    
     if "ticker" not in df.columns:
         df = df.reset_index()
     df["ticker"] = df["ticker"].str.upper()
@@ -128,7 +139,6 @@ def load_fundamentals() -> pd.DataFrame:
     df = df.drop_duplicates(subset=["ticker"], keep="first")
     log.info(f"Fundamentals loaded: {len(df)} tickers  (cache age: {age} days)")
     return df.set_index("ticker")
-
 
 # ── Fetch close prices ────────────────────────────────────────────────────────
 def fetch_close_prices(tickers: list[str]) -> pd.Series:
