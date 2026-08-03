@@ -221,10 +221,22 @@ def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
     df = close.rename("close").reset_index()
     df.columns = ["ticker", "close"]
 
-    fund_cols = ["eps_ttm", "bvps", "sector", "industry", "group"]
-    if "shares" in fundamentals.columns:
-        fund_cols.append("shares")
-    fund = fundamentals[fund_cols].copy()
+    # Defensive handling: ensure fundamentals has ticker as column and expected cols
+    fund = fundamentals.copy()
+    # If ticker is the index, bring it back as a column for a clean merge
+    if fund.index.name == "ticker" or "ticker" not in fund.columns:
+        fund = fund.reset_index()
+
+    expected = ["eps_ttm", "bvps", "sector", "industry", "group"]
+    # create missing expected columns with NaN instead of letting selection raise KeyError
+    for c in expected:
+        if c not in fund.columns:
+            fund[c] = np.nan
+
+    # keep shares if present
+    keep_cols = expected + (["shares"] if "shares" in fund.columns else [])
+    fund = fund[["ticker"] + [c for c in keep_cols if c != "ticker"]].copy()
+
     df = df.merge(fund, on="ticker", how="left")
 
     # Fill missing group for non-fundamentals tickers
@@ -232,29 +244,24 @@ def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
     df["industry"] = df["industry"].fillna("Unknown")
     df["group"]    = df["group"].fillna("Unknown")
 
-    # Separate major independent sectors
-    mask_bds = df["industry"].astype(str).str.lower().str.contains("bất động|real estate")
-    df.loc[mask_bds, "sector"] = "Bất động sản"
-    df.loc[mask_bds, "group"]  = "Bất động sản"
-
-    mask_xd = df["industry"].astype(str).str.lower().str.contains("xây dựng và vật liệu|construction & materials|construction and materials")
-    df.loc[mask_xd, "sector"] = "Xây dựng và Vật liệu"
-    df.loc[mask_xd, "group"]  = "Xây dựng và Vật liệu"
-
-    mask_hc = df["industry"].astype(str).str.lower().str.contains("hóa chất|chemical")
-    df.loc[mask_hc, "sector"] = "Hóa chất"
-    df.loc[mask_hc, "group"]  = "Hóa chất"
-
-    mask_tp = df["industry"].astype(str).str.lower().str.contains("sản xuất thực phẩm|food producer")
-    df.loc[mask_tp, "sector"] = "Sản xuất thực phẩm"
-    df.loc[mask_tp, "group"]  = "Sản xuất thực phẩm"
+    # Sector mapping (same logic as before; keeps safe .astype(str))
+    mask_bds = df["industry"].astype(str).str.lower().str.contains("bất động|real estate", na=False)
+    df.loc[mask_bds, ["sector", "group"]] = "Bất động sản"
+    mask_xd = df["industry"].astype(str).str.lower().str.contains("xây dựng và vật liệu|construction & materials|construction and materials", na=False)
+    df.loc[mask_xd, ["sector", "group"]] = "Xây dựng và Vật liệu"
+    mask_hc = df["industry"].astype(str).str.lower().str.contains("hóa chất|chemical", na=False)
+    df.loc[mask_hc, ["sector", "group"]] = "Hóa chất"
+    mask_tp = df["industry"].astype(str).str.lower().str.contains("sản xuất thực phẩm|food producer", na=False)
+    df.loc[mask_tp, ["sector", "group"]] = "Sản xuất thực phẩm"
 
     # Vingroup override (in case sector map was stale)
-    mask = df["ticker"].isin(VINGROUP_TICKERS)
-    df.loc[mask, "group"] = VINGROUP_GROUP
+    df.loc[df["ticker"].isin(VINGROUP_TICKERS), "group"] = VINGROUP_GROUP
 
-    df["eps_ttm"] = pd.to_numeric(df["eps_ttm"], errors="coerce")
-    df["bvps"]       = pd.to_numeric(df["bvps"],       errors="coerce")
+    # Safe numeric conversion (use .get to avoid KeyError)
+    df["eps_ttm"] = pd.to_numeric(df.get("eps_ttm"), errors="coerce")
+    df["bvps"]    = pd.to_numeric(df.get("bvps"), errors="coerce")
+    if "shares" in df.columns:
+        df["shares"] = pd.to_numeric(df["shares"], errors="coerce")
 
     # Normalize close price to full VND if KBS or VCI returned prices in thousands
     df["close"] = np.where((df["close"] > 0) & (df["close"] < 1000), df["close"] * 1000, df["close"])
@@ -264,7 +271,7 @@ def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
     # PB = Price / BVPS
     df["pb"] = np.where(df["bvps"] > 0, df["close"] / df["bvps"], np.nan)
 
-    # Outlier filter (exempt Vingroup Ecosystem from PE_MAX/PB_MAX upper limits so VIC/VPL stay included)
+    # Outlier filter (exempt Vingroup Ecosystem from PE_MAX/PB_MAX upper limits)
     is_vin = df["group"] == VINGROUP_GROUP
     df.loc[~is_vin & ((df["pe"] < PE_MIN) | (df["pe"] > PE_MAX)), "pe"] = np.nan
     df.loc[~is_vin & ((df["pb"] < PB_MIN) | (df["pb"] > PB_MAX)), "pb"] = np.nan
