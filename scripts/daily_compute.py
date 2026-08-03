@@ -121,17 +121,48 @@ def load_fundamentals() -> pd.DataFrame:
         )
 
     df = pd.read_parquet(fund_path)
-    
-    # ── Chuẩn hóa tên cột EPS ──────────────────────────────────────────────
-    # Ưu tiên dùng eps_ttm nếu có; nếu chỉ có eps_annual thì đổi tên
-    if 'eps_annual' in df.columns and 'eps_ttm' not in df.columns:
-        df.rename(columns={'eps_annual': 'eps_ttm'}, inplace=True)
-        log.info("Đã đổi tên cột 'eps_annual' thành 'eps_ttm'.")
-    elif 'eps_ttm' not in df.columns and 'eps_annual' not in df.columns:
-        log.error("Không tìm thấy cột EPS (eps_annual hay eps_ttm).")
+
+    # Diagnostic: log columns and a small sample so CI output shows what we actually got
+    log.info(f"Fundamentals columns: {list(df.columns)}")
+    try:
+        log.info(f"Fundamentals sample:\n{df.head(3).to_string(index=False)}")
+    except Exception:
+        # head().to_string may fail if weird types; ignore
+        pass
+
+    # --- Robust EPS / BVPS normalization (case-insensitive) ---
+    cols_lower = {c.lower(): c for c in df.columns}
+
+    # EPS candidates in order of preference
+    eps_candidates = ["eps_ttm", "eps", "eps_annual", "eps_basic", "eps_diluted", "eps_basic_diluted"]
+    for cand in eps_candidates:
+        if cand in cols_lower:
+            if cols_lower[cand] != "eps_ttm":
+                df = df.rename(columns={cols_lower[cand]: "eps_ttm"})
+                log.info(f"Renamed '{cols_lower[cand]}' -> 'eps_ttm'")
+            break
+    else:
+        # no eps-like column found
+        log.error(
+            "Không tìm thấy cột EPS (các biến thử: eps_ttm, eps, eps_annual, eps_basic, eps_diluted). "
+            "Inspect fundamentals.parquet (logged columns above)."
+        )
         sys.exit(1)
+
+    # BVPS candidates
+    bvps_candidates = ["bvps", "book_value_per_share", "bookvaluepershare", "book_value"]
+    for cand in bvps_candidates:
+        if cand in cols_lower:
+            if cols_lower[cand] != "bvps":
+                df = df.rename(columns={cols_lower[cand]: "bvps"})
+                log.info(f"Renamed '{cols_lower[cand]}' -> 'bvps'")
+            break
+    # bvps is optional in your pipeline; we don't exit if missing but we log
+    if "bvps" not in df.columns:
+        log.warning("BVPS column not found (no 'bvps' or 'book_value_per_share'). PB will be NaN for all tickers.")
+
     # -----------------------------------------------------------------------
-    
+
     if "ticker" not in df.columns:
         df = df.reset_index()
     df["ticker"] = df["ticker"].str.upper()
@@ -139,71 +170,6 @@ def load_fundamentals() -> pd.DataFrame:
     df = df.drop_duplicates(subset=["ticker"], keep="first")
     log.info(f"Fundamentals loaded: {len(df)} tickers  (cache age: {age} days)")
     return df.set_index("ticker")
-
-# ── Fetch close prices ────────────────────────────────────────────────────────
-def fetch_close_prices(tickers: list[str]) -> pd.Series:
-    """
-    Fetch today's close price for all tickers via KBS price_board.
-    Returns pd.Series indexed by ticker.
-
-    KBS price_board columns (29 total, verified from vnstock docs):
-      symbol, exchange, reference_price, price_change, percent_change,
-      open_price, high_price, low_price, close_price, average_price,
-      total_trades, total_volume, total_value,
-      bid_price_1/2/3, bid_vol_1/2/3, ask_price_1/2/3, ask_vol_1/2/3,
-      foreign_buy_volume, foreign_sell_volume
-
-    We target 'close_price'; fall back to 'match_price' or 'reference_price'.
-    """
-    from vnstock import Trading
-
-    all_rows = []
-    n_batches = (len(tickers) + PRICE_BOARD_BATCH - 1) // PRICE_BOARD_BATCH
-
-    for i in range(0, len(tickers), PRICE_BOARD_BATCH):
-        batch = tickers[i : i + PRICE_BOARD_BATCH]
-        batch_no = i // PRICE_BOARD_BATCH + 1
-        try:
-            df = Trading(source="KBS").price_board(symbols_list=batch)
-            all_rows.append(df)
-            log.info(f"  price_board batch {batch_no}/{n_batches}: {len(df)} rows")
-        except Exception as exc:
-            log.warning(f"  price_board batch {batch_no}/{n_batches} failed: {exc}")
-        if batch_no < n_batches:
-            time.sleep(1.0)
-
-    if not all_rows:
-        log.error("All price_board batches failed. Aborting.")
-        sys.exit(1)
-
-    board = pd.concat(all_rows, ignore_index=True)
-
-    # --- Detect ticker column ---
-    ticker_col = next(
-        (c for c in board.columns if c.lower() in ("symbol", "ticker", "code")),
-        board.columns[0],
-    )
-    board = board.rename(columns={ticker_col: "ticker"})
-    board["ticker"] = board["ticker"].str.upper()
-    board = board[board["ticker"].astype(str).str.len() == 3]
-
-    # --- Detect price column (priority order) ---
-    cols_l = {c.lower(): c for c in board.columns}
-    for candidate in ("close_price", "match_price", "close", "matchedprice",
-                       "average_price", "reference_price"):
-        if candidate in cols_l:
-            price_col = cols_l[candidate]
-            break
-    else:
-        # last resort: first numeric column that is not the ticker col
-        price_col = next(
-            c for c in board.columns if c != "ticker" and pd.api.types.is_numeric_dtype(board[c])
-        )
-
-    board["close"] = pd.to_numeric(board[price_col], errors="coerce")
-    log.info(f"Close price column: '{price_col}'  | valid prices: {board['close'].notna().sum()}/{len(board)}")
-
-    return board.set_index("ticker")["close"].dropna()
 
 
 # ── Compute PE / PB ───────────────────────────────────────────────────────────
