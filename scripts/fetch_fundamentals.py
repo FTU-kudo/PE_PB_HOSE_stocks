@@ -205,127 +205,41 @@ def get_sector_map(tickers: list[str]) -> pd.DataFrame:
     return base
 
 
-# ── Period-column parser ──────────────────────────────────────────────────────
-def _parse_period_cols(columns) -> list[tuple]:
-    """
-    Returns sorted list of (col_name, year, quarter) tuples.
-    quarter=0  → annual row
-    quarter=1–4 → Q1–Q4 cumulative YTD
-
-    Handles column formats:
-      '2024'      → annual
-      '2024/1'    → Q1-2024 cumulative
-      '2024/Q1'   → same
-      'Q1/2024'   → same
-      '20241'     → same (5-digit)
-    """
-    result = []
-    for col in columns:
-        s = str(col).strip()
-        if re.fullmatch(r"\d{4}", s):
-            result.append((col, int(s), 0))
-        elif m := re.fullmatch(r"(\d{4})[/\-_]Q?(\d)", s):
-            result.append((col, int(m[1]), int(m[2])))
-        elif m := re.fullmatch(r"Q(\d)[/\-_](\d{4})", s):
-            result.append((col, int(m[2]), int(m[1])))
-        elif re.fullmatch(r"\d{5}", s) and 1 <= int(s[-1]) <= 4:
-            result.append((col, int(s[:4]), int(s[-1])))
-    return sorted(result, key=lambda x: (x[1], x[2]))
-
-
 # ── TTM EPS + latest BVPS extractor ──────────────────────────────────────────
 def _extract_ttm(ratio_df: pd.DataFrame, ticker: str) -> dict:
     """
-    From a quarterly ratio DataFrame (orient='report'), extract:
-      eps_ttm  — TTM EPS via VAS cumulative formula
-      bvps     — most recent quarterly BVPS
+    Extract TTM EPS and BVPS from Fundamental().equity(ticker).ratio().
 
-    Returns dict with eps_ttm, bvps, eps_method (for auditability).
+    vnstock already computes trailing EPS (TTM) — no manual VAS
+    deaccumulation formula needed.
+
+    Expected columns (long format, one row per period):
+      period | trailing_eps | book_value_per_share | pe | pb | dividend_yield | beta
+
+    We sort by period descending and read the most recent row.
     """
     null = {"ticker": ticker, "eps_ttm": np.nan, "bvps": np.nan,
             "eps_method": "no_data", "fetched_date": str(date.today())}
     if ratio_df is None or ratio_df.empty:
         return null
 
-    # ── Detect metric-name column ─────────────────────────────────────────────
-    name_col = next(
-        (c for c in ("item_en", "item", "name", "metric") if c in ratio_df.columns),
-        None)
-    if name_col is None:
-        return null
+    # Sort by period descending (format "2026-Q2" sorts lexicographically ✓)
+    if "period" in ratio_df.columns:
+        try:
+            ratio_df = ratio_df.sort_values("period", ascending=False).reset_index(drop=True)
+        except Exception:
+            pass
 
-    # ── Parse all time-period columns ─────────────────────────────────────────
-    periods   = _parse_period_cols(ratio_df.columns)
-    annuals   = [(c, y, q) for c, y, q in periods if q == 0]
-    quarters  = [(c, y, q) for c, y, q in periods if q > 0]
+    latest = ratio_df.iloc[0]
 
-    def val(row, col):
-        return pd.to_numeric(row[col], errors="coerce") if col in row.index else np.nan
+    eps_ttm = pd.to_numeric(latest.get("trailing_eps",       np.nan), errors="coerce")
+    bvps    = pd.to_numeric(latest.get("book_value_per_share", np.nan), errors="coerce")
 
-    # ── Find EPS and BVPS rows ────────────────────────────────────────────────
-    eps_row  = ratio_df[ratio_df[name_col].str.contains(
-                   r"EPS|Earnings Per Share", case=False, na=False)]
-    bvps_row = ratio_df[ratio_df[name_col].str.contains(
-                   r"BVPS|Book Value Per Share", case=False, na=False)]
-
-    # ── BVPS: most recent quarter, fall back to most recent annual ────────────
-    bvps = np.nan
-    if not bvps_row.empty:
-        row = bvps_row.iloc[0]
-        for col, y, q in reversed(quarters + annuals):   # prefer newer / quarterly
-            v = val(row, col)
-            if not np.isnan(v) and v > 0:
-                bvps = v
-                break
-
-    # ── TTM EPS ───────────────────────────────────────────────────────────────
-    eps_ttm    = np.nan
-    eps_method = "no_data"
-
-    if eps_row.empty:
-        return {**null, "bvps": bvps}
-
-    row = eps_row.iloc[0]
-
-    if quarters:
-        mr_col, mr_year, mr_q = quarters[-1]       # most recent quarter filed
-        mr_eps = val(row, mr_col)
-
-        if mr_q == 4:
-            # Q4 cumulative = full year — use directly
-            if not np.isnan(mr_eps) and mr_eps > 0:
-                eps_ttm, eps_method = mr_eps, "q4_annual"
-
-        elif not np.isnan(mr_eps):
-            # Find same quarter prior year (YTD comparison)
-            pq_col = next(
-                (c for c, y, q in quarters if y == mr_year - 1 and q == mr_q),
-                None)
-            # Find last complete annual (prior year preferred)
-            ann_col = next(
-                (c for c, y, q in reversed(annuals) if y == mr_year - 1),
-                next((c for c, y, q in reversed(annuals) if y < mr_year), None))
-
-            if pq_col and ann_col:
-                pq_eps  = val(row, pq_col)
-                ann_eps = val(row, ann_col)
-                if not np.isnan(pq_eps) and not np.isnan(ann_eps):
-                    ttm = ann_eps + mr_eps - pq_eps
-                    if ttm > 0:
-                        eps_ttm, eps_method = ttm, "ttm_formula"
-                    # else: negative TTM → loss-making, leave as NaN
-
-            elif ann_col:
-                # Prior-year same-quarter missing → fall back to annual
-                ann_eps = val(row, ann_col)
-                if not np.isnan(ann_eps) and ann_eps > 0:
-                    eps_ttm, eps_method = ann_eps, "annual_fallback"
-
-    if np.isnan(eps_ttm) and annuals:
-        # No usable quarterly data → use most recent annual
-        ann_eps = val(row, annuals[-1][0])
-        if not np.isnan(ann_eps) and ann_eps > 0:
-            eps_ttm, eps_method = ann_eps, "annual_only"
+    if pd.isna(eps_ttm) or eps_ttm <= 0:
+        eps_method = "no_eps" if pd.isna(eps_ttm) else "negative_eps"
+        eps_ttm    = np.nan
+    else:
+        eps_method = "trailing_eps"
 
     return {"ticker": ticker, "eps_ttm": eps_ttm, "bvps": bvps,
             "eps_method": eps_method, "fetched_date": str(date.today())}
