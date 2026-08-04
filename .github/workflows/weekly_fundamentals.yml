@@ -2,7 +2,7 @@ name: 🔄 Weekly Fundamentals Refresh
 
 on:
   schedule:
-    - cron: '0 15 * * 6'   # Every Saturday 15:00 UTC
+    - cron: '10 10 * * 6'   # Every Saturday 10:10 UTC
   workflow_dispatch:
     inputs:
       reason:
