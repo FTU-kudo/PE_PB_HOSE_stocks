@@ -1,5 +1,5 @@
 """
-Daily P/E & P/B pipeline  (runs weekdays ~16:05 ICT = 09:05 UTC).
+Daily P/E & P/B pipeline.
 """
 
 import os, sys, time, logging, warnings
@@ -124,8 +124,8 @@ def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
     df = close.rename("close").reset_index()
     df.columns = ["ticker", "close"]
 
-    # ── eps_annual is the column name saved by fetch_fundamentals.py ──────────
-    fund_cols = ["eps_annual", "bvps", "sector", "industry", "group"]
+    # ── eps_ttm is the column name saved by fetch_fundamentals.py ──────────
+    fund_cols = ["eps_ttm", "bvps", "sector", "industry", "group"]
     if "shares" in fundamentals.columns:
         fund_cols.append("shares")
     fund = fundamentals[[c for c in fund_cols if c in fundamentals.columns]].copy()
@@ -137,7 +137,7 @@ def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
     mask_vin = df["ticker"].isin(VINGROUP_TICKERS)
     df.loc[mask_vin, "group"] = VINGROUP_GROUP
 
-    df["eps_annual"] = pd.to_numeric(df["eps_annual"], errors="coerce")
+    df["eps_ttm"] = pd.to_numeric(df["eps_ttm"], errors="coerce")
     df["bvps"]       = pd.to_numeric(df["bvps"],       errors="coerce")
 
     # Normalise price if returned in thousands
@@ -145,7 +145,7 @@ def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
         (df["close"] > 0) & (df["close"] < 1000),
         df["close"] * 1000, df["close"])
 
-    df["pe"] = np.where(df["eps_annual"] > 0, df["close"] / df["eps_annual"], np.nan)
+    df["pe"] = np.where(df["eps_ttm"] > 0, df["close"] / df["eps_ttm"], np.nan)
     df["pb"] = np.where(df["bvps"]       > 0, df["close"] / df["bvps"],       np.nan)
 
     is_vin = df["group"] == VINGROUP_GROUP
@@ -162,7 +162,7 @@ def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
     log.info(f"PE/PB computed | valid PE: {n_pe}/{len(df)} | valid PB: {n_pb}/{len(df)}")
 
     ret_cols = ["date", "ticker", "close", "pe", "pb", "sector", "industry", "group"]
-    for col in ("shares", "eps_annual", "bvps"):
+    for col in ("shares", "eps_ttm", "bvps"):
         if col in df.columns:
             ret_cols.append(col)
     return df[ret_cols]
@@ -175,8 +175,8 @@ def aggregate_sectors(snapshot: pd.DataFrame) -> pd.DataFrame:
     snapshot["shares"] = pd.to_numeric(snapshot["shares"], errors="coerce").fillna(0)
 
     def _w_pe(grp):
-        v = grp[grp["pe"].notna() & (grp["shares"] > 0) & (grp["eps_annual"] > 0)]
-        denom = (v["eps_annual"] * v["shares"]).sum()
+        v = grp[grp["pe"].notna() & (grp["shares"] > 0) & (grp["eps_ttm"] > 0)]
+        denom = (v["eps_ttm"] * v["shares"]).sum()
         return (v["close"] * v["shares"]).sum() / denom if denom > 0 else np.nan
 
     def _w_pb(grp):
@@ -197,7 +197,7 @@ def aggregate_sectors(snapshot: pd.DataFrame) -> pd.DataFrame:
             "median_pb":   pb.median()      if len(pb) else np.nan,
             "mean_pe":     pe.mean()        if len(pe) else np.nan,
             "mean_pb":     pb.mean()        if len(pb) else np.nan,
-            "weighted_pe": _w_pe(grp)       if "eps_annual" in grp.columns else np.nan,
+            "weighted_pe": _w_pe(grp)       if "eps_ttm" in grp.columns else np.nan,
             "weighted_pb": _w_pb(grp)       if "bvps" in grp.columns else np.nan,
             "p25_pe":      pe.quantile(.25) if len(pe) else np.nan,
             "p75_pe":      pe.quantile(.75) if len(pe) else np.nan,
