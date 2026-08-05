@@ -35,20 +35,212 @@
   ],
   "sectors": [
     {
-      "group": "Unknown",
-      "count": 399,
-      "valid_pe": 341,
-      "valid_pb": 367,
-      "median_pe": 10.33,
-      "median_pb": 0.93,
-      "mean_pe": 15.91,
-      "mean_pb": 1.19,
+      "group": "Tài chính khác",
+      "count": 1,
+      "valid_pe": 1,
+      "valid_pb": 1,
+      "median_pe": 3.87,
+      "median_pb": 0.36,
+      "mean_pe": 3.87,
+      "mean_pb": 0.36,
       "weighted_pe": null,
       "weighted_pb": null,
-      "p25_pe": 6.86,
-      "p75_pe": 16.04,
-      "p25_pb": 0.58,
-      "p75_pb": 1.45
+      "p25_pe": 3.87,
+      "p75_pe": 3.87,
+      "p25_pb": 0.36,
+      "p75_pb": 0.36
+    },
+    {
+      "group": "Ngân hàng",
+      "count": 23,
+      "valid_pe": 23,
+      "valid_pb": 23,
+      "median_pe": 6.59,
+      "median_pb": 1.11,
+      "mean_pe": 8.02,
+      "mean_pb": 1.3,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 5.94,
+      "p75_pe": 10.37,
+      "p25_pb": 0.98,
+      "p75_pb": 1.32
+    },
+    {
+      "group": "Thiết bị điện",
+      "count": 8,
+      "valid_pe": 7,
+      "valid_pb": 8,
+      "median_pe": 6.86,
+      "median_pb": 0.66,
+      "mean_pe": 11.11,
+      "mean_pb": 0.93,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 5.63,
+      "p75_pe": 11.12,
+      "p25_pb": 0.44,
+      "p75_pb": 0.88
+    },
+    {
+      "group": "Xây dựng",
+      "count": 27,
+      "valid_pe": 24,
+      "valid_pb": 25,
+      "median_pe": 7.75,
+      "median_pb": 0.63,
+      "mean_pe": 17.91,
+      "mean_pb": 0.69,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 6.69,
+      "p75_pe": 13.29,
+      "p25_pb": 0.52,
+      "p75_pb": 0.81
+    },
+    {
+      "group": "Chế biến Thủy sản",
+      "count": 10,
+      "valid_pe": 10,
+      "valid_pb": 10,
+      "median_pe": 8.15,
+      "median_pb": 0.66,
+      "mean_pe": 20.42,
+      "mean_pb": 0.69,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 6.08,
+      "p75_pe": 22.21,
+      "p25_pb": 0.37,
+      "p75_pb": 0.92
+    },
+    {
+      "group": "Bảo hiểm",
+      "count": 5,
+      "valid_pe": 5,
+      "valid_pb": 5,
+      "median_pe": 8.27,
+      "median_pb": 1.3,
+      "mean_pe": 9.49,
+      "mean_pb": 1.18,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 5.92,
+      "p75_pe": 10.99,
+      "p25_pb": 0.76,
+      "p75_pb": 1.35
+    },
+    {
+      "group": "Sản phẩm cao su",
+      "count": 4,
+      "valid_pe": 3,
+      "valid_pb": 3,
+      "median_pe": 9.1,
+      "median_pb": 0.85,
+      "mean_pe": 11.75,
+      "mean_pb": 0.88,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 8.32,
+      "p75_pe": 13.85,
+      "p25_pb": 0.78,
+      "p75_pb": 0.97
+    },
+    {
+      "group": "Vận tải - kho bãi",
+      "count": 35,
+      "valid_pe": 31,
+      "valid_pb": 31,
+      "median_pe": 9.17,
+      "median_pb": 0.92,
+      "mean_pe": 10.89,
+      "mean_pb": 1.7,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 6.67,
+      "p75_pe": 11.2,
+      "p25_pb": 0.73,
+      "p75_pb": 2.29
+    },
+    {
+      "group": "SX Hàng gia dụng",
+      "count": 17,
+      "valid_pe": 14,
+      "valid_pb": 15,
+      "median_pe": 9.44,
+      "median_pb": 0.53,
+      "mean_pe": 11.18,
+      "mean_pb": 0.72,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 6.28,
+      "p75_pe": 13.38,
+      "p25_pb": 0.35,
+      "p75_pb": 1.01
+    },
+    {
+      "group": "Unknown",
+      "count": 3,
+      "valid_pe": 3,
+      "valid_pb": 3,
+      "median_pe": 9.47,
+      "median_pb": 0.69,
+      "mean_pe": 9.88,
+      "mean_pb": 0.87,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 9.03,
+      "p75_pe": 10.52,
+      "p25_pb": 0.57,
+      "p75_pb": 1.09
+    },
+    {
+      "group": "Tiện ích",
+      "count": 33,
+      "valid_pe": 30,
+      "valid_pb": 30,
+      "median_pe": 9.74,
+      "median_pb": 1.38,
+      "mean_pe": 11.3,
+      "mean_pb": 1.48,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 8.25,
+      "p75_pe": 11.7,
+      "p25_pb": 0.89,
+      "p75_pb": 2.05
+    },
+    {
+      "group": "Nông - Lâm - Ngư",
+      "count": 6,
+      "valid_pe": 6,
+      "valid_pb": 6,
+      "median_pe": 10.0,
+      "median_pb": 0.91,
+      "mean_pe": 35.11,
+      "mean_pb": 1.06,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 9.2,
+      "p75_pe": 22.09,
+      "p25_pb": 0.76,
+      "p75_pb": 1.11
+    },
+    {
+      "group": "SX Nhựa - Hóa chất",
+      "count": 25,
+      "valid_pe": 22,
+      "valid_pb": 23,
+      "median_pe": 10.07,
+      "median_pb": 1.09,
+      "mean_pe": 10.78,
+      "mean_pb": 1.28,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 8.16,
+      "p75_pe": 11.46,
+      "p25_pb": 0.68,
+      "p75_pb": 1.72
     },
     {
       "group": "VN-Index",
@@ -65,6 +257,214 @@
       "p75_pe": 16.22,
       "p25_pb": 0.58,
       "p75_pb": 1.46
+    },
+    {
+      "group": "Vật liệu xây dựng",
+      "count": 18,
+      "valid_pe": 14,
+      "valid_pb": 15,
+      "median_pe": 11.27,
+      "median_pb": 0.65,
+      "mean_pe": 21.83,
+      "mean_pb": 0.83,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 7.6,
+      "p75_pe": 18.16,
+      "p25_pb": 0.48,
+      "p75_pb": 1.09
+    },
+    {
+      "group": "Khai khoáng",
+      "count": 9,
+      "valid_pe": 9,
+      "valid_pb": 9,
+      "median_pe": 11.29,
+      "median_pb": 0.62,
+      "mean_pe": 27.21,
+      "mean_pb": 1.06,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 8.24,
+      "p75_pe": 17.58,
+      "p25_pb": 0.58,
+      "p75_pb": 1.5
+    },
+    {
+      "group": "SX Thiết bị, máy móc",
+      "count": 2,
+      "valid_pe": 2,
+      "valid_pb": 2,
+      "median_pe": 11.6,
+      "median_pb": 0.79,
+      "mean_pe": 11.6,
+      "mean_pb": 0.79,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 8.73,
+      "p75_pe": 14.47,
+      "p25_pb": 0.69,
+      "p75_pb": 0.9
+    },
+    {
+      "group": "Công nghệ và thông tin",
+      "count": 8,
+      "valid_pe": 7,
+      "valid_pb": 7,
+      "median_pe": 11.74,
+      "median_pb": 1.17,
+      "mean_pe": 10.7,
+      "mean_pb": 1.64,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 7.96,
+      "p75_pe": 13.92,
+      "p25_pb": 0.82,
+      "p75_pb": 2.05
+    },
+    {
+      "group": "Bán lẻ",
+      "count": 12,
+      "valid_pe": 6,
+      "valid_pb": 7,
+      "median_pe": 12.02,
+      "median_pb": 1.07,
+      "mean_pe": 17.76,
+      "mean_pb": 2.06,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 5.54,
+      "p75_pe": 27.7,
+      "p25_pb": 0.84,
+      "p75_pb": 2.48
+    },
+    {
+      "group": "SX Phụ trợ",
+      "count": 18,
+      "valid_pe": 14,
+      "valid_pb": 17,
+      "median_pe": 12.29,
+      "median_pb": 0.94,
+      "mean_pe": 18.48,
+      "mean_pb": 1.06,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 9.68,
+      "p75_pe": 30.62,
+      "p25_pb": 0.69,
+      "p75_pb": 1.36
+    },
+    {
+      "group": "Bán buôn",
+      "count": 23,
+      "valid_pe": 15,
+      "valid_pb": 20,
+      "median_pe": 12.59,
+      "median_pb": 0.63,
+      "mean_pe": 17.28,
+      "mean_pb": 0.99,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 8.15,
+      "p75_pe": 16.56,
+      "p25_pb": 0.29,
+      "p75_pb": 1.31
+    },
+    {
+      "group": "Chứng khoán",
+      "count": 20,
+      "valid_pe": 19,
+      "valid_pb": 20,
+      "median_pe": 13.22,
+      "median_pb": 1.24,
+      "mean_pe": 14.75,
+      "mean_pb": 1.29,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 9.28,
+      "p75_pe": 16.57,
+      "p25_pb": 1.0,
+      "p75_pb": 1.7
+    },
+    {
+      "group": "Thực phẩm - Đồ uống",
+      "count": 18,
+      "valid_pe": 18,
+      "valid_pb": 18,
+      "median_pe": 13.33,
+      "median_pb": 1.61,
+      "mean_pe": 19.77,
+      "mean_pb": 2.1,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 7.07,
+      "p75_pe": 18.44,
+      "p25_pb": 1.11,
+      "p75_pb": 2.36
+    },
+    {
+      "group": "Chăm sóc sức khỏe",
+      "count": 12,
+      "valid_pe": 10,
+      "valid_pb": 11,
+      "median_pe": 14.32,
+      "median_pb": 1.1,
+      "mean_pe": 21.07,
+      "mean_pb": 1.46,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 12.32,
+      "p75_pe": 15.76,
+      "p25_pb": 0.81,
+      "p75_pb": 2.35
+    },
+    {
+      "group": "Bất động sản",
+      "count": 57,
+      "valid_pe": 43,
+      "valid_pb": 53,
+      "median_pe": 14.47,
+      "median_pb": 0.6,
+      "mean_pe": 18.75,
+      "mean_pb": 0.91,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 5.95,
+      "p75_pe": 25.58,
+      "p25_pb": 0.39,
+      "p75_pb": 1.0
+    },
+    {
+      "group": "Dịch vụ tư vấn, hỗ trợ",
+      "count": 1,
+      "valid_pe": 1,
+      "valid_pb": 1,
+      "median_pe": 33.86,
+      "median_pb": 1.39,
+      "mean_pe": 33.86,
+      "mean_pb": 1.39,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 33.86,
+      "p75_pe": 33.86,
+      "p25_pb": 1.39,
+      "p75_pb": 1.39
+    },
+    {
+      "group": "Dịch vụ lưu trú, ăn uống, giải trí",
+      "count": 4,
+      "valid_pe": 4,
+      "valid_pb": 4,
+      "median_pe": 47.83,
+      "median_pb": 0.91,
+      "mean_pe": 43.38,
+      "mean_pb": 0.84,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 22.3,
+      "p75_pe": 68.92,
+      "p25_pb": 0.55,
+      "p75_pb": 1.2
     },
     {
       "group": "Vingroup Ecosystem",
@@ -158,152 +558,81 @@
         0.94
       ]
     },
-    "Unknown": {
+    "Bất động sản": {
       "dates": [
-        "2026-07-06",
-        "2026-07-07",
-        "2026-07-08",
-        "2026-07-09",
-        "2026-07-10",
-        "2026-07-13",
-        "2026-07-14",
-        "2026-07-15",
-        "2026-07-16",
-        "2026-07-17",
-        "2026-07-20",
-        "2026-07-21",
-        "2026-07-22",
-        "2026-07-23",
-        "2026-07-24",
-        "2026-07-27",
-        "2026-07-28",
-        "2026-07-29",
-        "2026-07-30",
-        "2026-07-31",
-        "2026-08-04",
         "2026-08-05"
       ],
       "pe": [
-        10.78,
-        10.74,
-        10.74,
-        10.87,
-        10.76,
-        10.48,
-        10.65,
-        10.27,
-        10.33,
-        10.28,
-        10.15,
-        10.11,
-        10.12,
-        10.03,
-        10.08,
-        10.08,
-        9.97,
-        10.17,
-        10.14,
-        10.04,
-        null,
-        10.33
+        14.47
       ],
       "pb": [
-        0.98,
-        0.97,
-        0.97,
-        0.98,
-        0.97,
-        0.97,
-        0.96,
-        0.95,
-        0.94,
-        0.96,
-        0.92,
-        0.91,
-        0.9,
-        0.92,
-        0.91,
-        0.88,
-        0.89,
-        0.89,
-        0.89,
-        0.91,
-        null,
-        0.93
+        0.6
       ]
     },
-    "Vingroup Ecosystem": {
+    "Vận tải - kho bãi": {
       "dates": [
-        "2026-07-06",
-        "2026-07-07",
-        "2026-07-08",
-        "2026-07-09",
-        "2026-07-10",
-        "2026-07-13",
-        "2026-07-14",
-        "2026-07-15",
-        "2026-07-16",
-        "2026-07-17",
-        "2026-07-20",
-        "2026-07-21",
-        "2026-07-22",
-        "2026-07-23",
-        "2026-07-24",
-        "2026-07-27",
-        "2026-07-28",
-        "2026-07-29",
-        "2026-07-30",
-        "2026-07-31",
-        "2026-08-04",
         "2026-08-05"
       ],
       "pe": [
-        9.77,
-        9.52,
-        9.51,
-        9.43,
-        9.32,
-        9.07,
-        8.93,
-        8.63,
-        9.06,
-        8.91,
-        8.68,
-        8.65,
-        8.18,
-        8.37,
-        8.25,
-        8.31,
-        8.37,
-        8.88,
-        9.38,
-        9.39,
-        null,
-        59.32
+        9.17
       ],
       "pb": [
-        2.54,
-        2.47,
-        2.47,
-        2.45,
-        2.42,
-        2.36,
-        2.32,
-        2.24,
-        2.35,
-        2.32,
-        2.26,
-        2.25,
-        2.13,
-        2.18,
-        2.14,
-        2.16,
-        2.17,
-        2.31,
-        2.44,
-        2.44,
-        null,
-        3.36
+        0.92
+      ]
+    },
+    "Tiện ích": {
+      "dates": [
+        "2026-08-05"
+      ],
+      "pe": [
+        9.74
+      ],
+      "pb": [
+        1.38
+      ]
+    },
+    "Xây dựng": {
+      "dates": [
+        "2026-08-05"
+      ],
+      "pe": [
+        7.75
+      ],
+      "pb": [
+        0.63
+      ]
+    },
+    "SX Nhựa - Hóa chất": {
+      "dates": [
+        "2026-08-05"
+      ],
+      "pe": [
+        10.07
+      ],
+      "pb": [
+        1.09
+      ]
+    },
+    "Ngân hàng": {
+      "dates": [
+        "2026-08-05"
+      ],
+      "pe": [
+        6.59
+      ],
+      "pb": [
+        1.11
+      ]
+    },
+    "Bán buôn": {
+      "dates": [
+        "2026-08-05"
+      ],
+      "pe": [
+        12.59
+      ],
+      "pb": [
+        0.63
       ]
     }
   },
@@ -313,1143 +642,1143 @@
       "close": 9950.0,
       "pe": 1.05,
       "pb": 0.26,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "TDC",
       "close": 7120.0,
       "pe": 1.64,
       "pb": 0.57,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "BCE",
       "close": 5550.0,
       "pe": 2.35,
       "pb": 0.5,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "VCG",
       "close": 15800.0,
       "pe": 2.38,
       "pb": 0.84,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "MHC",
       "close": 8310.0,
       "pe": 2.39,
       "pb": 0.52,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "SVC",
       "close": 17500.0,
       "pe": 2.48,
       "pb": 0.39,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán lẻ",
+      "industry": "Bán lẻ",
+      "group": "Bán lẻ"
     },
     {
       "ticker": "D2D",
       "close": 27200.0,
       "pe": 2.54,
       "pb": 1.15,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "DLG",
       "close": 2270.0,
       "pe": 2.61,
       "pb": 0.75,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ"
     },
     {
       "ticker": "CIG",
       "close": 7170.0,
       "pe": 2.92,
       "pb": 1.18,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "DC4",
       "close": 6690.0,
       "pe": 3.03,
       "pb": 0.54,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "KLB",
       "close": 12750.0,
       "pe": 3.05,
       "pb": 0.6,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "SGT",
       "close": 9630.0,
       "pe": 3.06,
       "pb": 0.58,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Công nghệ và thông tin",
+      "industry": "Công nghệ và thông tin",
+      "group": "Công nghệ và thông tin"
     },
     {
       "ticker": "HTI",
       "close": 18950.0,
       "pe": 3.37,
       "pb": 0.81,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "HTG",
       "close": 34300.0,
       "pe": 3.47,
       "pb": 1.07,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Hàng gia dụng",
+      "industry": "SX Hàng gia dụng",
+      "group": "SX Hàng gia dụng"
     },
     {
       "ticker": "TYA",
       "close": 17000.0,
       "pe": 3.47,
       "pb": 0.17,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thiết bị điện",
+      "industry": "Thiết bị điện",
+      "group": "Thiết bị điện"
     },
     {
       "ticker": "HDC",
       "close": 11900.0,
       "pe": 3.48,
       "pb": 0.74,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "DBC",
       "close": 16750.0,
       "pe": 3.57,
       "pb": 0.81,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống"
     },
     {
       "ticker": "ABT",
       "close": 50600.0,
       "pe": 3.68,
       "pb": 0.93,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chế biến Thủy sản",
+      "industry": "Chế biến Thủy sản",
+      "group": "Chế biến Thủy sản"
     },
     {
       "ticker": "ANT",
       "close": 21200.0,
       "pe": 3.69,
       "pb": 1.08,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống"
     },
     {
       "ticker": "OGC",
       "close": 2220.0,
       "pe": 3.87,
       "pb": 0.36,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tài chính khác",
+      "industry": "Tài chính khác",
+      "group": "Tài chính khác"
     },
     {
       "ticker": "SHB",
       "close": 11800.0,
       "pe": 3.94,
       "pb": 0.82,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "PTC",
       "close": 6000.0,
       "pe": 4.07,
       "pb": 0.46,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "MSH",
       "close": 30850.0,
       "pe": 4.13,
       "pb": 1.4,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Hàng gia dụng",
+      "industry": "SX Hàng gia dụng",
+      "group": "SX Hàng gia dụng"
     },
     {
       "ticker": "NAB",
       "close": 11950.0,
       "pe": 4.19,
       "pb": 0.92,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "NHA",
       "close": 8200.0,
       "pe": 4.3,
       "pb": 0.67,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "RAL",
       "close": 81200.0,
       "pe": 4.4,
       "pb": 0.58,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thiết bị điện",
+      "industry": "Thiết bị điện",
+      "group": "Thiết bị điện"
     },
     {
       "ticker": "BIC",
       "close": 21300.0,
       "pe": 4.4,
       "pb": 0.76,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bảo hiểm",
+      "industry": "Bảo hiểm",
+      "group": "Bảo hiểm"
     },
     {
       "ticker": "THG",
       "close": 29500.0,
       "pe": 4.66,
       "pb": 1.18,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng"
     },
     {
       "ticker": "ITD",
       "close": 13600.0,
       "pe": 4.71,
       "pb": 0.78,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Công nghệ và thông tin",
+      "industry": "Công nghệ và thông tin",
+      "group": "Công nghệ và thông tin"
     },
     {
       "ticker": "LHG",
       "close": 27650.0,
       "pe": 4.76,
       "pb": 0.77,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "IJC",
       "close": 7350.0,
       "pe": 4.76,
       "pb": 0.52,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "PTB",
       "close": 33500.0,
       "pe": 4.78,
       "pb": 0.69,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ"
     },
     {
       "ticker": "DGC",
       "close": 40550.0,
       "pe": 4.87,
       "pb": 0.96,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "CMX",
       "close": 4770.0,
       "pe": 4.87,
       "pb": 0.28,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chế biến Thủy sản",
+      "industry": "Chế biến Thủy sản",
+      "group": "Chế biến Thủy sản"
     },
     {
       "ticker": "VIX",
       "close": 14000.0,
       "pe": 4.88,
       "pb": 1.06,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "HID",
       "close": 3480.0,
       "pe": 4.88,
       "pb": 0.25,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "HUB",
       "close": 12100.0,
       "pe": 4.88,
       "pb": 0.55,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "HAH",
       "close": 45200.0,
       "pe": 4.98,
       "pb": 1.52,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "JVC",
       "close": 3050.0,
       "pe": 5.04,
       "pb": 0.59,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "VAB",
       "close": 10050.0,
       "pe": 5.09,
       "pb": 0.85,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "SGR",
       "close": 11850.0,
       "pe": 5.11,
       "pb": 0.57,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "UIC",
       "close": 55500.0,
       "pe": 5.13,
       "pb": 0.86,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "CTG",
       "close": 31850.0,
       "pe": 5.13,
       "pb": 1.01,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "VCK",
       "close": 30800.0,
       "pe": 5.16,
       "pb": 1.26,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "ILB",
       "close": 19650.0,
       "pe": 5.18,
       "pb": 0.9,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "GDT",
       "close": 16050.0,
       "pe": 5.43,
       "pb": 1.18,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Hàng gia dụng",
+      "industry": "SX Hàng gia dụng",
+      "group": "SX Hàng gia dụng"
     },
     {
       "ticker": "PNJ",
       "close": 37900.0,
       "pe": 5.46,
       "pb": 1.07,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán lẻ",
+      "industry": "Bán lẻ",
+      "group": "Bán lẻ"
     },
     {
       "ticker": "TCL",
       "close": 29600.0,
       "pe": 5.46,
       "pb": 1.33,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "TN1",
       "close": 14600.0,
       "pe": 5.47,
       "pb": 0.85,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "CRC",
       "close": 5700.0,
       "pe": 5.56,
       "pb": 0.45,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng"
     },
     {
       "ticker": "VFG",
       "close": 45950.0,
       "pe": 5.59,
       "pb": 1.19,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "NSC",
       "close": 68800.0,
       "pe": 5.64,
       "pb": 0.77,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Nông - Lâm - Ngư",
+      "industry": "Nông - Lâm - Ngư",
+      "group": "Nông - Lâm - Ngư"
     },
     {
       "ticker": "TCO",
       "close": 10550.0,
       "pe": 5.66,
       "pb": 0.88,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "SJD",
       "close": 13950.0,
       "pe": 5.78,
       "pb": 0.91,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "ANV",
       "close": 17500.0,
       "pe": 5.78,
       "pb": 1.32,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chế biến Thủy sản",
+      "industry": "Chế biến Thủy sản",
+      "group": "Chế biến Thủy sản"
     },
     {
       "ticker": "CCI",
       "close": 15700.0,
       "pe": 5.79,
       "pb": 0.96,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán lẻ",
+      "industry": "Bán lẻ",
+      "group": "Bán lẻ"
     },
     {
       "ticker": "NHH",
       "close": 9500.0,
       "pe": 5.85,
       "pb": 0.59,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Thiết bị, máy móc",
+      "industry": "SX Thiết bị, máy móc",
+      "group": "SX Thiết bị, máy móc"
     },
     {
       "ticker": "TIP",
       "close": 16850.0,
       "pe": 5.86,
       "pb": 0.6,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "VIP",
       "close": 9900.0,
       "pe": 5.91,
       "pb": 0.53,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "BMI",
       "close": 13450.0,
       "pe": 5.92,
       "pb": 0.61,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bảo hiểm",
+      "industry": "Bảo hiểm",
+      "group": "Bảo hiểm"
     },
     {
       "ticker": "VIB",
       "close": 14800.0,
       "pe": 5.93,
       "pb": 1.11,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "CTS",
       "close": 22250.0,
       "pe": 5.95,
       "pb": 1.68,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "TPB",
       "close": 14750.0,
       "pe": 5.96,
       "pb": 0.97,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "TVS",
       "close": 13700.0,
       "pe": 6.0,
       "pb": 0.88,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "MBB",
       "close": 24300.0,
       "pe": 6.0,
       "pb": 1.47,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "SC5",
       "close": 14050.0,
       "pe": 6.0,
       "pb": 0.52,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "GHC",
       "close": 24300.0,
       "pe": 6.02,
       "pb": 1.0,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "ACB",
       "close": 22450.0,
       "pe": 6.02,
       "pb": 1.26,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "CCL",
       "close": 3690.0,
       "pe": 6.05,
       "pb": 0.3,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "TRA",
       "close": 37900.0,
       "pe": 6.08,
       "pb": 0.97,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chăm sóc sức khỏe",
+      "industry": "Chăm sóc sức khỏe",
+      "group": "Chăm sóc sức khỏe"
     },
     {
       "ticker": "CKG",
       "close": 5740.0,
       "pe": 6.1,
       "pb": 0.46,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "TCM",
       "close": 16800.0,
       "pe": 6.16,
       "pb": 0.78,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Hàng gia dụng",
+      "industry": "SX Hàng gia dụng",
+      "group": "SX Hàng gia dụng"
     },
     {
       "ticker": "HDB",
       "close": 26550.0,
       "pe": 6.17,
       "pb": 1.36,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "SMB",
       "close": 39000.0,
       "pe": 6.21,
       "pb": 1.77,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống"
     },
     {
       "ticker": "SCS",
       "close": 44650.0,
       "pe": 6.22,
       "pb": 2.8,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "DSN",
       "close": 36800.0,
       "pe": 6.27,
       "pb": 1.29,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Dịch vụ lưu trú, ăn uống, giải trí",
+      "industry": "Dịch vụ lưu trú, ăn uống, giải trí",
+      "group": "Dịch vụ lưu trú, ăn uống, giải trí"
     },
     {
       "ticker": "LSS",
       "close": 7990.0,
       "pe": 6.3,
       "pb": 0.38,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống"
     },
     {
       "ticker": "NCT",
       "close": 82500.0,
       "pe": 6.32,
       "pb": 2.71,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "SPM",
       "close": 10350.0,
       "pe": 6.33,
       "pb": 0.18,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chăm sóc sức khỏe",
+      "industry": "Chăm sóc sức khỏe",
+      "group": "Chăm sóc sức khỏe"
     },
     {
       "ticker": "TRC",
       "close": 74500.0,
       "pe": 6.34,
       "pb": 1.09,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "YBM",
       "close": 9400.0,
       "pe": 6.36,
       "pb": 0.65,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng"
     },
     {
       "ticker": "SSB",
       "close": 15350.0,
       "pe": 6.51,
       "pb": 1.08,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "NO1",
       "close": 4750.0,
       "pe": 6.52,
       "pb": 0.34,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "OCB",
       "close": 10350.0,
       "pe": 6.59,
       "pb": 0.84,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "ADS",
       "close": 8070.0,
       "pe": 6.64,
       "pb": 0.62,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Hàng gia dụng",
+      "industry": "SX Hàng gia dụng",
+      "group": "SX Hàng gia dụng"
     },
     {
       "ticker": "PAC",
       "close": 15800.0,
       "pe": 6.86,
       "pb": 1.11,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thiết bị điện",
+      "industry": "Thiết bị điện",
+      "group": "Thiết bị điện"
     },
     {
       "ticker": "GEE",
       "close": 69900.0,
       "pe": 6.86,
       "pb": 3.18,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thiết bị điện",
+      "industry": "Thiết bị điện",
+      "group": "Thiết bị điện"
     },
     {
       "ticker": "LM8",
       "close": 12600.0,
       "pe": 6.92,
       "pb": 0.39,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "PAN",
       "close": 21150.0,
       "pe": 6.96,
       "pb": 0.51,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống"
     },
     {
       "ticker": "FMC",
       "close": 33900.0,
       "pe": 6.99,
       "pb": 0.89,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chế biến Thủy sản",
+      "industry": "Chế biến Thủy sản",
+      "group": "Chế biến Thủy sản"
     },
     {
       "ticker": "HVN",
       "close": 24850.0,
       "pe": 7.03,
       "pb": 8.64,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "PVT",
       "close": 18300.0,
       "pe": 7.05,
       "pb": 0.77,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "CTI",
       "close": 19150.0,
       "pe": 7.05,
       "pb": 0.66,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "VSI",
       "close": 17150.0,
       "pe": 7.18,
       "pb": 1.11,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "DHA",
       "close": 48000.0,
       "pe": 7.18,
       "pb": 1.5,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Khai khoáng",
+      "industry": "Khai khoáng",
+      "group": "Khai khoáng"
     },
     {
       "ticker": "ADP",
       "close": 23000.0,
       "pe": 7.19,
       "pb": 1.89,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "CCC",
       "close": 7490.0,
       "pe": 7.22,
       "pb": 0.49,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "DPG",
       "close": 30600.0,
       "pe": 7.31,
       "pb": 1.1,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "SFI",
       "close": 28300.0,
       "pe": 7.34,
       "pb": 0.9,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "LAF",
       "close": 19550.0,
       "pe": 7.4,
       "pb": 1.23,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống"
     },
     {
       "ticker": "FCM",
       "close": 3080.0,
       "pe": 7.48,
       "pb": 0.26,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng"
     },
     {
       "ticker": "C47",
       "close": 9200.0,
       "pe": 7.5,
       "pb": 0.69,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "NTC",
       "close": 129200.0,
       "pe": 7.5,
       "pb": 2.47,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "BRC",
       "close": 12000.0,
       "pe": 7.54,
       "pb": 0.72,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Sản phẩm cao su",
+      "industry": "Sản phẩm cao su",
+      "group": "Sản phẩm cao su"
     },
     {
       "ticker": "AGG",
       "close": 11550.0,
       "pe": 7.57,
       "pb": 0.56,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "NNC",
       "close": 39850.0,
       "pe": 7.58,
       "pb": 1.8,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Khai khoáng",
+      "industry": "Khai khoáng",
+      "group": "Khai khoáng"
     },
     {
       "ticker": "PGC",
       "close": 13000.0,
       "pe": 7.73,
       "pb": 0.92,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "SGN",
       "close": 56000.0,
       "pe": 7.74,
       "pb": 1.42,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "VHC",
       "close": 53500.0,
       "pe": 7.75,
       "pb": 1.18,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chế biến Thủy sản",
+      "industry": "Chế biến Thủy sản",
+      "group": "Chế biến Thủy sản"
     },
     {
       "ticker": "AAA",
       "close": 7160.0,
       "pe": 7.75,
       "pb": 0.47,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "MSB",
       "close": 16150.0,
       "pe": 7.78,
       "pb": 1.04,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "VTO",
       "close": 10400.0,
       "pe": 7.84,
       "pb": 0.73,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "GEG",
       "close": 12200.0,
       "pe": 7.93,
       "pb": 0.78,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "LIX",
       "close": 24900.0,
       "pe": 7.97,
       "pb": 1.65,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "ACC",
       "close": 4250.0,
       "pe": 7.97,
       "pb": 0.32,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng"
     },
     {
       "ticker": "HHV",
       "close": 10100.0,
       "pe": 8.0,
       "pb": 0.63,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "DPR",
       "close": 35800.0,
       "pe": 8.07,
       "pb": 0.93,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "SIP",
       "close": 51000.0,
       "pe": 8.17,
       "pb": 2.17,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "BMC",
       "close": 11200.0,
       "pe": 8.24,
       "pb": 0.62,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Khai khoáng",
+      "industry": "Khai khoáng",
+      "group": "Khai khoáng"
     },
     {
       "ticker": "CHP",
       "close": 27500.0,
       "pe": 8.25,
       "pb": 2.07,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "DRL",
       "close": 41600.0,
       "pe": 8.26,
       "pb": 3.66,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "MIG",
       "close": 16850.0,
       "pe": 8.27,
       "pb": 1.3,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bảo hiểm",
+      "industry": "Bảo hiểm",
+      "group": "Bảo hiểm"
     },
     {
       "ticker": "SVT",
       "close": 10500.0,
       "pe": 8.29,
       "pb": 0.82,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ"
     },
     {
       "ticker": "KHP",
       "close": 9750.0,
       "pe": 8.31,
       "pb": 0.77,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "VPD",
       "close": 21000.0,
       "pe": 8.39,
       "pb": 1.42,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "HII",
       "close": 8670.0,
       "pe": 8.43,
       "pb": 0.68,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "DAT",
       "close": 7650.0,
       "pe": 8.55,
       "pb": 0.56,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chế biến Thủy sản",
+      "industry": "Chế biến Thủy sản",
+      "group": "Chế biến Thủy sản"
     },
     {
       "ticker": "CLC",
@@ -1465,198 +1794,198 @@
       "close": 10850.0,
       "pe": 8.6,
       "pb": 0.84,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "BFC",
       "close": 51600.0,
       "pe": 8.61,
       "pb": 1.81,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "CTD",
       "close": 63200.0,
       "pe": 8.67,
       "pb": 0.75,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "CNG",
       "close": 20350.0,
       "pe": 8.69,
       "pb": 1.11,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "LBM",
       "close": 27500.0,
       "pe": 8.74,
       "pb": 1.55,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng"
     },
     {
       "ticker": "CLL",
       "close": 27100.0,
       "pe": 8.81,
       "pb": 1.51,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "TTA",
       "close": 11700.0,
       "pe": 8.82,
       "pb": 0.85,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "VNS",
       "close": 7500.0,
       "pe": 8.86,
       "pb": 0.46,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "REE",
       "close": 47450.0,
       "pe": 8.89,
       "pb": 1.06,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "APH",
       "close": 5700.0,
       "pe": 9.03,
       "pb": 0.24,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "SHA",
       "close": 3970.0,
       "pe": 9.03,
       "pb": 0.3,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Hàng gia dụng",
+      "industry": "SX Hàng gia dụng",
+      "group": "SX Hàng gia dụng"
     },
     {
       "ticker": "DCM",
       "close": 31200.0,
       "pe": 9.05,
       "pb": 1.57,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "HPA",
       "close": 31700.0,
       "pe": 9.06,
       "pb": 1.91,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Nông - Lâm - Ngư",
+      "industry": "Nông - Lâm - Ngư",
+      "group": "Nông - Lâm - Ngư"
     },
     {
       "ticker": "DXS",
       "close": 5830.0,
       "pe": 9.08,
       "pb": 0.39,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "DRC",
       "close": 10450.0,
       "pe": 9.1,
       "pb": 0.85,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Sản phẩm cao su",
+      "industry": "Sản phẩm cao su",
+      "group": "Sản phẩm cao su"
     },
     {
       "ticker": "GSP",
       "close": 10850.0,
       "pe": 9.17,
       "pb": 0.84,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "PVP",
       "close": 16850.0,
       "pe": 9.23,
       "pb": 0.93,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "SHP",
       "close": 31000.0,
       "pe": 9.26,
       "pb": 2.45,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "TCT",
       "close": 17750.0,
       "pe": 9.3,
       "pb": 0.63,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "PDN",
       "close": 96000.0,
       "pe": 9.36,
       "pb": 3.86,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "VBB",
       "close": 12800.0,
       "pe": 9.36,
       "pb": 1.12,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "EVE",
       "close": 8500.0,
       "pe": 9.4,
       "pb": 0.37,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Hàng gia dụng",
+      "industry": "SX Hàng gia dụng",
+      "group": "SX Hàng gia dụng"
     },
     {
       "ticker": "YEG",
@@ -1672,423 +2001,423 @@
       "close": 4140.0,
       "pe": 9.48,
       "pb": 0.44,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Hàng gia dụng",
+      "industry": "SX Hàng gia dụng",
+      "group": "SX Hàng gia dụng"
     },
     {
       "ticker": "TCB",
       "close": 29650.0,
       "pe": 9.53,
       "pb": 1.17,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "NT2",
       "close": 21250.0,
       "pe": 9.54,
       "pb": 1.36,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "DHC",
       "close": 34650.0,
       "pe": 9.59,
       "pb": 1.54,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ"
     },
     {
       "ticker": "SSC",
       "close": 20650.0,
       "pe": 9.63,
       "pb": 0.74,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Nông - Lâm - Ngư",
+      "industry": "Nông - Lâm - Ngư",
+      "group": "Nông - Lâm - Ngư"
     },
     {
       "ticker": "BID",
       "close": 38000.0,
       "pe": 9.77,
       "pb": 1.59,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "ST8",
       "close": 2600.0,
       "pe": 9.77,
       "pb": 0.22,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "VPB",
       "close": 25500.0,
       "pe": 9.8,
       "pb": 1.27,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "NLG",
       "close": 21750.0,
       "pe": 9.85,
       "pb": 0.58,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "TLG",
       "close": 48600.0,
       "pe": 9.94,
       "pb": 1.65,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ"
     },
     {
       "ticker": "TMP",
       "close": 49700.0,
       "pe": 9.95,
       "pb": 2.06,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "TCI",
       "close": 9940.0,
       "pe": 9.97,
       "pb": 0.82,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "HCD",
       "close": 6140.0,
       "pe": 10.05,
       "pb": 0.45,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "DPM",
       "close": 21800.0,
       "pe": 10.09,
       "pb": 1.31,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "QNP",
       "close": 31950.0,
       "pe": 10.1,
       "pb": 1.45,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "HDG",
       "close": 16800.0,
       "pe": 10.16,
       "pb": 0.77,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "BMP",
       "close": 149200.0,
       "pe": 10.19,
       "pb": 3.88,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "HPG",
       "close": 22000.0,
       "pe": 10.2,
       "pb": 1.32,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng"
     },
     {
       "ticker": "VSC",
       "close": 14600.0,
       "pe": 10.28,
       "pb": 0.92,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "GEX",
       "close": 24700.0,
       "pe": 10.33,
       "pb": 0.81,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thiết bị điện",
+      "industry": "Thiết bị điện",
+      "group": "Thiết bị điện"
     },
     {
       "ticker": "SBA",
       "close": 25150.0,
       "pe": 10.36,
       "pb": 1.54,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "HAG",
       "close": 14100.0,
       "pe": 10.36,
       "pb": 1.12,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Nông - Lâm - Ngư",
+      "industry": "Nông - Lâm - Ngư",
+      "group": "Nông - Lâm - Ngư"
     },
     {
       "ticker": "AAT",
       "close": 2230.0,
       "pe": 10.38,
       "pb": 0.21,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Hàng gia dụng",
+      "industry": "SX Hàng gia dụng",
+      "group": "SX Hàng gia dụng"
     },
     {
       "ticker": "TBC",
       "close": 32000.0,
       "pe": 10.45,
       "pb": 1.34,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "TDG",
       "close": 2420.0,
       "pe": 10.46,
       "pb": 0.23,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "SZC",
       "close": 18450.0,
       "pe": 10.47,
       "pb": 1.06,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "DTT",
       "close": 18000.0,
       "pe": 10.49,
       "pb": 1.08,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "BCM",
       "close": 36600.0,
       "pe": 10.49,
       "pb": 1.72,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "TAL",
       "close": 25700.0,
       "pe": 10.57,
       "pb": 1.3,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "VSH",
       "close": 42600.0,
       "pe": 10.62,
       "pb": 2.03,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "ACG",
       "close": 31600.0,
       "pe": 10.63,
       "pb": 1.07,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ"
     },
     {
       "ticker": "BTP",
       "close": 7450.0,
       "pe": 10.69,
       "pb": 0.42,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "CSV",
       "close": 21800.0,
       "pe": 10.72,
       "pb": 1.5,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "LCG",
       "close": 7200.0,
       "pe": 10.81,
       "pb": 0.52,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "EVF",
       "close": 12550.0,
       "pe": 10.95,
       "pb": 0.98,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "PGI",
       "close": 23200.0,
       "pe": 10.99,
       "pb": 1.35,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bảo hiểm",
+      "industry": "Bảo hiểm",
+      "group": "Bảo hiểm"
     },
     {
       "ticker": "VPS",
       "close": 9430.0,
       "pe": 10.99,
       "pb": 0.69,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "PDV",
       "close": 8370.0,
       "pe": 11.01,
       "pb": 0.55,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "SKG",
       "close": 7670.0,
       "pe": 11.02,
       "pb": 0.56,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "EIB",
       "close": 18200.0,
       "pe": 11.13,
       "pb": 1.28,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "MZG",
       "close": 11900.0,
       "pe": 11.14,
       "pb": 0.94,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ"
     },
     {
       "ticker": "ELC",
       "close": 16450.0,
       "pe": 11.21,
       "pb": 1.17,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Công nghệ và thông tin",
+      "industry": "Công nghệ và thông tin",
+      "group": "Công nghệ và thông tin"
     },
     {
       "ticker": "PVD",
       "close": 17900.0,
       "pe": 11.22,
       "pb": 0.58,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Khai khoáng",
+      "industry": "Khai khoáng",
+      "group": "Khai khoáng"
     },
     {
       "ticker": "STB",
       "close": 73200.0,
       "pe": 11.23,
       "pb": 2.2,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "KSB",
       "close": 13450.0,
       "pe": 11.29,
       "pb": 0.56,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Khai khoáng",
+      "industry": "Khai khoáng",
+      "group": "Khai khoáng"
     },
     {
       "ticker": "BWE",
       "close": 43800.0,
       "pe": 11.3,
       "pb": 1.61,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "DVP",
       "close": 78100.0,
       "pe": 11.37,
       "pb": 2.33,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "ADG",
@@ -2104,107 +2433,107 @@
       "close": 58200.0,
       "pe": 11.62,
       "pb": 1.86,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "HNA",
       "close": 23400.0,
       "pe": 11.69,
       "pb": 1.63,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "CLW",
       "close": 40650.0,
       "pe": 11.7,
       "pb": 2.11,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "FPT",
       "close": 70300.0,
       "pe": 11.74,
       "pb": 2.8,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Công nghệ và thông tin",
+      "industry": "Công nghệ và thông tin",
+      "group": "Công nghệ và thông tin"
     },
     {
       "ticker": "RYG",
       "close": 9090.0,
       "pe": 11.74,
       "pb": 0.53,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Hàng gia dụng",
+      "industry": "SX Hàng gia dụng",
+      "group": "SX Hàng gia dụng"
     },
     {
       "ticker": "VCB",
       "close": 59300.0,
       "pe": 11.84,
       "pb": 2.22,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "VTB",
       "close": 12900.0,
       "pe": 11.91,
       "pb": 0.74,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thiết bị điện",
+      "industry": "Thiết bị điện",
+      "group": "Thiết bị điện"
     },
     {
       "ticker": "HRC",
       "close": 34450.0,
       "pe": 12.17,
       "pb": 1.68,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "VDP",
       "close": 37500.0,
       "pe": 12.23,
       "pb": 1.1,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chăm sóc sức khỏe",
+      "industry": "Chăm sóc sức khỏe",
+      "group": "Chăm sóc sức khỏe"
     },
     {
       "ticker": "MDG",
       "close": 37000.0,
       "pe": 12.33,
       "pb": 2.6,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Khai khoáng",
+      "industry": "Khai khoáng",
+      "group": "Khai khoáng"
     },
     {
       "ticker": "VDS",
       "close": 12000.0,
       "pe": 12.33,
       "pb": 1.03,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "VRE",
       "close": 26450.0,
       "pe": 12.34,
       "pb": 1.31,
-      "sector": "Unknown",
-      "industry": "Unknown",
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
       "group": "Vingroup Ecosystem"
     },
     {
@@ -2212,764 +2541,764 @@
       "close": 38150.0,
       "pe": 12.34,
       "pb": 1.58,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng"
     },
     {
       "ticker": "AFX",
       "close": 10650.0,
       "pe": 12.49,
       "pb": 0.75,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống"
     },
     {
       "ticker": "HTN",
       "close": 7110.0,
       "pe": 12.51,
       "pb": 0.4,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "VVS",
       "close": 102800.0,
       "pe": 12.52,
       "pb": 4.41,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "HTL",
       "close": 21200.0,
       "pe": 12.59,
       "pb": 1.32,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "OPC",
       "close": 21400.0,
       "pe": 12.6,
       "pb": 1.45,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chăm sóc sức khỏe",
+      "industry": "Chăm sóc sức khỏe",
+      "group": "Chăm sóc sức khỏe"
     },
     {
       "ticker": "AST",
       "close": 64000.0,
       "pe": 12.61,
       "pb": 3.77,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "SSI",
       "close": 24400.0,
       "pe": 12.76,
       "pb": 1.62,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "MCM",
       "close": 25900.0,
       "pe": 12.8,
       "pb": 1.22,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống"
     },
     {
       "ticker": "PPC",
       "close": 8830.0,
       "pe": 12.96,
       "pb": 0.63,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "BSI",
       "close": 28200.0,
       "pe": 13.14,
       "pb": 1.27,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "SAB",
       "close": 44400.0,
       "pe": 13.16,
       "pb": 2.32,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống"
     },
     {
       "ticker": "PMG",
       "close": 5860.0,
       "pe": 13.2,
       "pb": 0.4,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "VPX",
       "close": 25700.0,
       "pe": 13.22,
       "pb": 1.9,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "IDI",
       "close": 5010.0,
       "pe": 13.25,
       "pb": 0.38,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chế biến Thủy sản",
+      "industry": "Chế biến Thủy sản",
+      "group": "Chế biến Thủy sản"
     },
     {
       "ticker": "PC1",
       "close": 21000.0,
       "pe": 13.29,
       "pb": 0.9,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "HVH",
       "close": 10650.0,
       "pe": 13.3,
       "pb": 0.8,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "CMG",
       "close": 25300.0,
       "pe": 13.33,
       "pb": 1.31,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Công nghệ và thông tin",
+      "industry": "Công nghệ và thông tin",
+      "group": "Công nghệ và thông tin"
     },
     {
       "ticker": "VND",
       "close": 16950.0,
       "pe": 13.36,
       "pb": 1.25,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "BKG",
       "close": 2130.0,
       "pe": 13.45,
       "pb": 0.2,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ"
     },
     {
       "ticker": "DHG",
       "close": 94800.0,
       "pe": 13.46,
       "pb": 3.1,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chăm sóc sức khỏe",
+      "industry": "Chăm sóc sức khỏe",
+      "group": "Chăm sóc sức khỏe"
     },
     {
       "ticker": "VCI",
       "close": 21500.0,
       "pe": 13.49,
       "pb": 1.23,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "BHN",
       "close": 29500.0,
       "pe": 13.5,
       "pb": 1.28,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống"
     },
     {
       "ticker": "GAS",
       "close": 70500.0,
       "pe": 13.66,
       "pb": 2.56,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "BVB",
       "close": 12500.0,
       "pe": 13.85,
       "pb": 1.09,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "STK",
       "close": 8470.0,
       "pe": 13.92,
       "pb": 0.47,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Hàng gia dụng",
+      "industry": "SX Hàng gia dụng",
+      "group": "SX Hàng gia dụng"
     },
     {
       "ticker": "TVB",
       "close": 7190.0,
       "pe": 14.02,
       "pb": 0.68,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "TTF",
       "close": 1810.0,
       "pe": 14.08,
       "pb": 1.98,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Hàng gia dụng",
+      "industry": "SX Hàng gia dụng",
+      "group": "SX Hàng gia dụng"
     },
     {
       "ticker": "VNM",
       "close": 58600.0,
       "pe": 14.09,
       "pb": 3.23,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống"
     },
     {
       "ticker": "PLP",
       "close": 4360.0,
       "pe": 14.17,
       "pb": 0.37,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "PJT",
       "close": 8930.0,
       "pe": 14.25,
       "pb": 0.68,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "VID",
       "close": 4790.0,
       "pe": 14.36,
       "pb": 0.3,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "KBC",
       "close": 28250.0,
       "pe": 14.47,
       "pb": 1.02,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "CTR",
       "close": 75000.0,
       "pe": 14.51,
       "pb": 3.97,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Công nghệ và thông tin",
+      "industry": "Công nghệ và thông tin",
+      "group": "Công nghệ và thông tin"
     },
     {
       "ticker": "HSG",
       "close": 10800.0,
       "pe": 14.61,
       "pb": 0.6,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng"
     },
     {
       "ticker": "LPB",
       "close": 53000.0,
       "pe": 14.65,
       "pb": 3.64,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng"
     },
     {
       "ticker": "VCF",
       "close": 291100.0,
       "pe": 14.86,
       "pb": 3.43,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống"
     },
     {
       "ticker": "NHT",
       "close": 11500.0,
       "pe": 15.03,
       "pb": 0.75,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ"
     },
     {
       "ticker": "DBT",
       "close": 13500.0,
       "pe": 15.19,
       "pb": 0.94,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chăm sóc sức khỏe",
+      "industry": "Chăm sóc sức khỏe",
+      "group": "Chăm sóc sức khỏe"
     },
     {
       "ticker": "ASP",
       "close": 11700.0,
       "pe": 15.31,
       "pb": 1.35,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "IMP",
       "close": 36800.0,
       "pe": 15.64,
       "pb": 2.58,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chăm sóc sức khỏe",
+      "industry": "Chăm sóc sức khỏe",
+      "group": "Chăm sóc sức khỏe"
     },
     {
       "ticker": "HAR",
       "close": 2970.0,
       "pe": 15.71,
       "pb": 0.26,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "DBD",
       "close": 49300.0,
       "pe": 15.8,
       "pb": 2.73,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chăm sóc sức khỏe",
+      "industry": "Chăm sóc sức khỏe",
+      "group": "Chăm sóc sức khỏe"
     },
     {
       "ticker": "SFG",
       "close": 10800.0,
       "pe": 15.94,
       "pb": 0.8,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "ITC",
       "close": 10400.0,
       "pe": 16.02,
       "pb": 0.36,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "POW",
       "close": 13800.0,
       "pe": 16.04,
       "pb": 0.89,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "DGW",
       "close": 39150.0,
       "pe": 16.21,
       "pb": 2.61,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "FTS",
       "close": 22000.0,
       "pe": 16.22,
       "pb": 1.78,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "VTP",
       "close": 51500.0,
       "pe": 16.3,
       "pb": 3.59,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "ICT",
       "close": 17000.0,
       "pe": 16.31,
       "pb": 0.86,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Công nghệ và thông tin",
+      "industry": "Công nghệ và thông tin",
+      "group": "Công nghệ và thông tin"
     },
     {
       "ticker": "CVT",
       "close": 26200.0,
       "pe": 16.32,
       "pb": 0.94,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng"
     },
     {
       "ticker": "CDC",
       "close": 18700.0,
       "pe": 16.39,
       "pb": 1.13,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "PGD",
       "close": 22600.0,
       "pe": 16.41,
       "pb": 1.4,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "PLX",
       "close": 34250.0,
       "pe": 16.91,
       "pb": 1.51,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "HCM",
       "close": 25550.0,
       "pe": 16.91,
       "pb": 1.73,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "PET",
       "close": 40000.0,
       "pe": 17.32,
       "pb": 1.66,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "SBG",
       "close": 12000.0,
       "pe": 17.35,
       "pb": 1.0,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Thiết bị, máy móc",
+      "industry": "SX Thiết bị, máy móc",
+      "group": "SX Thiết bị, máy móc"
     },
     {
       "ticker": "MCH",
       "close": 137000.0,
       "pe": 17.41,
       "pb": 8.68,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống"
     },
     {
       "ticker": "GVR",
       "close": 28150.0,
       "pe": 17.43,
       "pb": 1.76,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "C32",
       "close": 15900.0,
       "pe": 17.58,
       "pb": 0.43,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Khai khoáng",
+      "industry": "Khai khoáng",
+      "group": "Khai khoáng"
     },
     {
       "ticker": "BVH",
       "close": 63900.0,
       "pe": 17.86,
       "pb": 1.86,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bảo hiểm",
+      "industry": "Bảo hiểm",
+      "group": "Bảo hiểm"
     },
     {
       "ticker": "MWG",
       "close": 72200.0,
       "pe": 18.25,
       "pb": 3.36,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán lẻ",
+      "industry": "Bán lẻ",
+      "group": "Bán lẻ"
     },
     {
       "ticker": "PHC",
       "close": 4090.0,
       "pe": 18.5,
       "pb": 0.31,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "AGR",
       "close": 13200.0,
       "pe": 18.54,
       "pb": 1.19,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "CSM",
       "close": 14450.0,
       "pe": 18.6,
       "pb": 1.08,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Sản phẩm cao su",
+      "industry": "Sản phẩm cao su",
+      "group": "Sản phẩm cao su"
     },
     {
       "ticker": "NKG",
       "close": 11100.0,
       "pe": 18.78,
       "pb": 0.65,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng"
     },
     {
       "ticker": "BAF",
       "close": 31500.0,
       "pe": 18.78,
       "pb": 2.23,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống"
     },
     {
       "ticker": "PDR",
       "close": 12000.0,
       "pe": 18.87,
       "pb": 0.98,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "TCX",
       "close": 39600.0,
       "pe": 19.08,
       "pb": 2.15,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "TSA",
       "close": 15600.0,
       "pe": 19.25,
       "pb": 1.47,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "KDH",
       "close": 18150.0,
       "pe": 19.4,
       "pb": 1.0,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "VOS",
       "close": 11000.0,
       "pe": 19.46,
       "pb": 0.81,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "FIT",
       "close": 3120.0,
       "pe": 20.97,
       "pb": 0.18,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chăm sóc sức khỏe",
+      "industry": "Chăm sóc sức khỏe",
+      "group": "Chăm sóc sức khỏe"
     },
     {
       "ticker": "DIG",
       "close": 10700.0,
       "pe": 21.19,
       "pb": 0.84,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "SJS",
       "close": 47100.0,
       "pe": 21.43,
       "pb": 4.3,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "NAF",
       "close": 48300.0,
       "pe": 21.45,
       "pb": 3.04,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống"
     },
     {
       "ticker": "GMD",
       "close": 76200.0,
       "pe": 21.84,
       "pb": 2.26,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "SBT",
       "close": 20650.0,
       "pe": 22.26,
       "pb": 1.46,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống"
     },
     {
       "ticker": "SAV",
       "close": 12850.0,
       "pe": 22.6,
       "pb": 0.95,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Hàng gia dụng",
+      "industry": "SX Hàng gia dụng",
+      "group": "SX Hàng gia dụng"
     },
     {
       "ticker": "EVG",
       "close": 4470.0,
       "pe": 22.96,
       "pb": 0.34,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "HPX",
       "close": 4380.0,
       "pe": 22.98,
       "pb": 0.36,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "ASG",
       "close": 16850.0,
       "pe": 23.56,
       "pb": 0.72,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "DXG",
       "close": 10800.0,
       "pe": 23.84,
       "pb": 0.58,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "HT1",
       "close": 13200.0,
       "pe": 23.98,
       "pb": 1.01,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng"
     },
     {
       "ticker": "VHM",
       "close": 153000.0,
       "pe": 24.44,
       "pb": 2.67,
-      "sector": "Unknown",
-      "industry": "Unknown",
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
       "group": "Vingroup Ecosystem"
     },
     {
@@ -2977,386 +3306,386 @@
       "close": 22500.0,
       "pe": 25.16,
       "pb": 1.78,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "ACL",
       "close": 12400.0,
       "pe": 25.19,
       "pb": 0.75,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chế biến Thủy sản",
+      "industry": "Chế biến Thủy sản",
+      "group": "Chế biến Thủy sản"
     },
     {
       "ticker": "TDM",
       "close": 60300.0,
       "pe": 25.83,
       "pb": 2.6,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "AAN",
       "close": 15300.0,
       "pe": 26.0,
       "pb": 1.06,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Nông - Lâm - Ngư",
+      "industry": "Nông - Lâm - Ngư",
+      "group": "Nông - Lâm - Ngư"
     },
     {
       "ticker": "TDP",
       "close": 28300.0,
       "pe": 26.04,
       "pb": 2.28,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "FDC",
       "close": 25100.0,
       "pe": 27.33,
       "pb": 2.01,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "NVT",
       "close": 7200.0,
       "pe": 27.64,
       "pb": 1.18,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Dịch vụ lưu trú, ăn uống, giải trí",
+      "industry": "Dịch vụ lưu trú, ăn uống, giải trí",
+      "group": "Dịch vụ lưu trú, ăn uống, giải trí"
     },
     {
       "ticker": "QCG",
       "close": 10350.0,
       "pe": 27.67,
       "pb": 0.62,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "FIR",
       "close": 4400.0,
       "pe": 27.84,
       "pb": 0.37,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "HHP",
       "close": 15100.0,
       "pe": 28.85,
       "pb": 1.16,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ"
     },
     {
       "ticker": "MSN",
       "close": 67200.0,
       "pe": 29.68,
       "pb": 2.38,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống"
     },
     {
       "ticker": "KMR",
       "close": 2340.0,
       "pe": 30.08,
       "pb": 0.21,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Hàng gia dụng",
+      "industry": "SX Hàng gia dụng",
+      "group": "SX Hàng gia dụng"
     },
     {
       "ticker": "FRT",
       "close": 135000.0,
       "pe": 30.85,
       "pb": 6.31,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán lẻ",
+      "industry": "Bán lẻ",
+      "group": "Bán lẻ"
     },
     {
       "ticker": "MCP",
       "close": 27550.0,
       "pe": 31.2,
       "pb": 1.98,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ"
     },
     {
       "ticker": "KHG",
       "close": 4740.0,
       "pe": 31.74,
       "pb": 0.4,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "DHM",
       "close": 6300.0,
       "pe": 33.43,
       "pb": 0.61,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Khai khoáng",
+      "industry": "Khai khoáng",
+      "group": "Khai khoáng"
     },
     {
       "ticker": "TV2",
       "close": 26550.0,
       "pe": 33.86,
       "pb": 1.39,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Dịch vụ tư vấn, hỗ trợ",
+      "industry": "Dịch vụ tư vấn, hỗ trợ",
+      "group": "Dịch vụ tư vấn, hỗ trợ"
     },
     {
       "ticker": "SAM",
       "close": 5810.0,
       "pe": 33.96,
       "pb": 0.47,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thiết bị điện",
+      "industry": "Thiết bị điện",
+      "group": "Thiết bị điện"
     },
     {
       "ticker": "TLD",
       "close": 8350.0,
       "pe": 35.97,
       "pb": 0.65,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ"
     },
     {
       "ticker": "PGV",
       "close": 23050.0,
       "pe": 36.92,
       "pb": 1.65,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "BSR",
       "close": 25150.0,
       "pe": 37.81,
       "pb": 1.36,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ"
     },
     {
       "ticker": "DTA",
       "close": 3550.0,
       "pe": 38.49,
       "pb": 0.31,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "SHI",
       "close": 13950.0,
       "pe": 39.37,
       "pb": 1.1,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ"
     },
     {
       "ticker": "VJC",
       "close": 126100.0,
       "pe": 41.99,
       "pb": 3.06,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "CRE",
       "close": 7100.0,
       "pe": 42.73,
       "pb": 0.55,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "CTF",
       "close": 18950.0,
       "pe": 43.75,
       "pb": 1.61,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán lẻ",
+      "industry": "Bán lẻ",
+      "group": "Bán lẻ"
     },
     {
       "ticker": "TCH",
       "close": 12250.0,
       "pe": 45.22,
       "pb": 0.78,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "HQC",
       "close": 2190.0,
       "pe": 51.04,
       "pb": 0.23,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "ORS",
       "close": 14050.0,
       "pe": 51.47,
       "pb": 1.2,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "GEL",
       "close": 30100.0,
       "pe": 53.03,
       "pb": 1.31,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "AAM",
       "close": 7050.0,
       "pe": 53.22,
       "pb": 0.37,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chế biến Thủy sản",
+      "industry": "Chế biến Thủy sản",
+      "group": "Chế biến Thủy sản"
     },
     {
       "ticker": "VRC",
       "close": 11900.0,
       "pe": 55.16,
       "pb": 0.47,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "VPI",
       "close": 65000.0,
       "pe": 55.75,
       "pb": 3.89,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "SCR",
       "close": 4610.0,
       "pe": 58.95,
       "pb": 0.36,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "FCN",
       "close": 10950.0,
       "pe": 62.21,
       "pb": 0.51,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "TSC",
       "close": 2080.0,
       "pe": 64.62,
       "pb": 0.16,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "DAH",
       "close": 2510.0,
       "pe": 68.02,
       "pb": 0.23,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Dịch vụ lưu trú, ăn uống, giải trí",
+      "industry": "Dịch vụ lưu trú, ăn uống, giải trí",
+      "group": "Dịch vụ lưu trú, ăn uống, giải trí"
     },
     {
       "ticker": "VNG",
       "close": 7300.0,
       "pe": 71.6,
       "pb": 0.65,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Dịch vụ lưu trú, ăn uống, giải trí",
+      "industry": "Dịch vụ lưu trú, ăn uống, giải trí",
+      "group": "Dịch vụ lưu trú, ăn uống, giải trí"
     },
     {
       "ticker": "TEG",
       "close": 6100.0,
       "pe": 74.29,
       "pb": 0.48,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng"
     },
     {
       "ticker": "ASM",
       "close": 5940.0,
       "pe": 74.89,
       "pb": 0.27,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chế biến Thủy sản",
+      "industry": "Chế biến Thủy sản",
+      "group": "Chế biến Thủy sản"
     },
     {
       "ticker": "DCL",
       "close": 44000.0,
       "pe": 92.39,
       "pb": 2.12,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chăm sóc sức khỏe",
+      "industry": "Chăm sóc sức khỏe",
+      "group": "Chăm sóc sức khỏe"
     },
     {
       "ticker": "SRF",
       "close": 7980.0,
       "pe": 92.54,
       "pb": 0.59,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "VIC",
       "close": 220000.0,
       "pe": 94.2,
       "pb": 5.27,
-      "sector": "Unknown",
-      "industry": "Unknown",
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
       "group": "Vingroup Ecosystem"
     },
     {
@@ -3364,53 +3693,53 @@
       "close": 6030.0,
       "pe": 94.4,
       "pb": 0.48,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng"
     },
     {
       "ticker": "CII",
       "close": 14150.0,
       "pe": 94.85,
       "pb": 0.74,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "KDC",
       "close": 51800.0,
       "pe": 131.17,
       "pb": 2.06,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống"
     },
     {
       "ticker": "TNT",
       "close": 9970.0,
       "pe": 136.05,
       "pb": 0.8,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Khai khoáng",
+      "industry": "Khai khoáng",
+      "group": "Khai khoáng"
     },
     {
       "ticker": "HSL",
       "close": 8710.0,
       "pe": 149.97,
       "pb": 0.76,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Nông - Lâm - Ngư",
+      "industry": "Nông - Lâm - Ngư",
+      "group": "Nông - Lâm - Ngư"
     },
     {
       "ticker": "VPL",
       "close": 81000.0,
       "pe": 340.75,
       "pb": 4.04,
-      "sector": "Unknown",
-      "industry": "Unknown",
+      "sector": "Dịch vụ lưu trú, ăn uống, giải trí",
+      "industry": "Dịch vụ lưu trú, ăn uống, giải trí",
       "group": "Vingroup Ecosystem"
     },
     {
@@ -3418,522 +3747,522 @@
       "close": 10800.0,
       "pe": null,
       "pb": 1.22,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "HAP",
       "close": 7050.0,
       "pe": null,
       "pb": 0.55,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ"
     },
     {
       "ticker": "GMH",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng"
     },
     {
       "ticker": "L10",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "TNI",
       "close": 6400.0,
       "pe": null,
       "pb": 0.67,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "NVL",
       "close": 13900.0,
       "pe": null,
       "pb": 0.53,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "BTT",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán lẻ",
+      "industry": "Bán lẻ",
+      "group": "Bán lẻ"
     },
     {
       "ticker": "VPH",
       "close": 3120.0,
       "pe": null,
       "pb": 0.29,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "VPG",
       "close": 1870.0,
       "pe": null,
       "pb": 0.12,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "STG",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "APG",
       "close": 4780.0,
       "pe": null,
       "pb": 0.44,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán"
     },
     {
       "ticker": "SBV",
       "close": 6110.0,
       "pe": null,
       "pb": 0.39,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ"
     },
     {
       "ticker": "TTE",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "TVT",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Hàng gia dụng",
+      "industry": "SX Hàng gia dụng",
+      "group": "SX Hàng gia dụng"
     },
     {
       "ticker": "CMV",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán lẻ",
+      "industry": "Bán lẻ",
+      "group": "Bán lẻ"
     },
     {
       "ticker": "PTL",
       "close": 1820.0,
       "pe": null,
       "pb": 0.37,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "KOS",
       "close": 34500.0,
       "pe": null,
       "pb": 3.2,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "SRC",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Sản phẩm cao su",
+      "industry": "Sản phẩm cao su",
+      "group": "Sản phẩm cao su"
     },
     {
       "ticker": "ABS",
       "close": 3090.0,
       "pe": null,
       "pb": 0.4,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "HAX",
       "close": 9060.0,
       "pe": null,
       "pb": 0.72,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán lẻ",
+      "industry": "Bán lẻ",
+      "group": "Bán lẻ"
     },
     {
       "ticker": "TIX",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "TNH",
       "close": 8400.0,
       "pe": null,
       "pb": 0.68,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chăm sóc sức khỏe",
+      "industry": "Chăm sóc sức khỏe",
+      "group": "Chăm sóc sức khỏe"
     },
     {
       "ticker": "NAV",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Hàng gia dụng",
+      "industry": "SX Hàng gia dụng",
+      "group": "SX Hàng gia dụng"
     },
     {
       "ticker": "ABR",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Công nghệ và thông tin",
+      "industry": "Công nghệ và thông tin",
+      "group": "Công nghệ và thông tin"
     },
     {
       "ticker": "DTL",
       "close": 10200.0,
       "pe": null,
       "pb": 0.94,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng"
     },
     {
       "ticker": "SFC",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán lẻ",
+      "industry": "Bán lẻ",
+      "group": "Bán lẻ"
     },
     {
       "ticker": "DRH",
       "close": 1560.0,
       "pe": null,
       "pb": 0.16,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "SMA",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "VNL",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "HAS",
       "close": 8560.0,
       "pe": null,
       "pb": 0.52,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "HMC",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "CRV",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "TMT",
       "close": 11000.0,
       "pe": null,
       "pb": 2.4,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ"
     },
     {
       "ticker": "TPC",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "TMS",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "S4A",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     },
     {
       "ticker": "GTA",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ"
     },
     {
       "ticker": "NBB",
       "close": 17150.0,
       "pe": null,
       "pb": 0.94,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "LGC",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng"
     },
     {
       "ticker": "PIT",
       "close": 7760.0,
       "pe": null,
       "pb": 0.98,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "TDH",
       "close": 3340.0,
       "pe": null,
       "pb": 2.14,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "TCR",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng"
     },
     {
       "ticker": "TLH",
       "close": 3980.0,
       "pe": null,
       "pb": 0.35,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "LDG",
       "close": 2890.0,
       "pe": null,
       "pb": 0.6,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "DXV",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng"
     },
     {
       "ticker": "VMD",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán buôn",
+      "industry": "Bán buôn",
+      "group": "Bán buôn"
     },
     {
       "ticker": "DMC",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Chăm sóc sức khỏe",
+      "industry": "Chăm sóc sức khỏe",
+      "group": "Chăm sóc sức khỏe"
     },
     {
       "ticker": "LGL",
       "close": 4990.0,
       "pe": null,
       "pb": 0.38,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "HU1",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "COM",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán lẻ",
+      "industry": "Bán lẻ",
+      "group": "Bán lẻ"
     },
     {
       "ticker": "HTV",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi"
     },
     {
       "ticker": "SZL",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "PNC",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bán lẻ",
+      "industry": "Bán lẻ",
+      "group": "Bán lẻ"
     },
     {
       "ticker": "DQC",
       "close": 9800.0,
       "pe": null,
       "pb": 0.35,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Thiết bị điện",
+      "industry": "Thiết bị điện",
+      "group": "Thiết bị điện"
     },
     {
       "ticker": "TNC",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất"
     },
     {
       "ticker": "GIL",
       "close": 7890.0,
       "pe": null,
       "pb": 0.33,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "SX Hàng gia dụng",
+      "industry": "SX Hàng gia dụng",
+      "group": "SX Hàng gia dụng"
     },
     {
       "ticker": "NTL",
       "close": 13700.0,
       "pe": null,
       "pb": 0.96,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản"
     },
     {
       "ticker": "TDW",
       "close": 0.0,
       "pe": null,
       "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích"
     }
   ]
 }
