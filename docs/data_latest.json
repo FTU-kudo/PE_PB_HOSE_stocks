@@ -36,17 +36,17 @@
   "sectors": [
     {
       "group": "Unknown",
-      "count": 400,
-      "valid_pe": 342,
-      "valid_pb": 368,
-      "median_pe": 10.34,
+      "count": 399,
+      "valid_pe": 341,
+      "valid_pb": 367,
+      "median_pe": 10.33,
       "median_pb": 0.93,
-      "mean_pe": 16.86,
-      "mean_pb": 1.2,
+      "mean_pe": 15.91,
+      "mean_pb": 1.19,
       "weighted_pe": null,
       "weighted_pb": null,
       "p25_pe": 6.86,
-      "p75_pe": 16.17,
+      "p75_pe": 16.04,
       "p25_pb": 0.58,
       "p75_pb": 1.45
     },
@@ -68,19 +68,19 @@
     },
     {
       "group": "Vingroup Ecosystem",
-      "count": 3,
-      "valid_pe": 3,
-      "valid_pb": 3,
-      "median_pe": 24.44,
-      "median_pb": 2.67,
-      "mean_pe": 43.66,
-      "mean_pb": 3.09,
+      "count": 4,
+      "valid_pe": 4,
+      "valid_pb": 4,
+      "median_pe": 59.32,
+      "median_pb": 3.36,
+      "mean_pe": 117.93,
+      "mean_pb": 3.33,
       "weighted_pe": null,
       "weighted_pb": null,
-      "p25_pe": 18.39,
-      "p75_pe": 59.32,
-      "p25_pb": 1.99,
-      "p75_pb": 3.97
+      "p25_pe": 21.42,
+      "p75_pe": 155.84,
+      "p25_pb": 2.33,
+      "p75_pb": 4.35
     }
   ],
   "trend": {
@@ -205,7 +205,7 @@
         10.14,
         10.04,
         null,
-        10.34
+        10.33
       ],
       "pb": [
         0.98,
@@ -279,7 +279,7 @@
         9.38,
         9.39,
         null,
-        24.44
+        59.32
       ],
       "pb": [
         2.54,
@@ -303,7 +303,7 @@
         2.44,
         2.44,
         null,
-        2.67
+        3.36
       ]
     }
   },
@@ -3411,7 +3411,7 @@
       "pb": 4.04,
       "sector": "Unknown",
       "industry": "Unknown",
-      "group": "Unknown"
+      "group": "Vingroup Ecosystem"
     },
     {
       "ticker": "SMC",
