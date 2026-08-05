@@ -1,86 +1,86 @@
 {
   "market": {
     "date": "2026-08-05",
-    "median_pe": null,
-    "median_pb": null,
+    "median_pe": 10.36,
+    "median_pb": 0.94,
     "total": 403,
-    "valid_pe": 0,
-    "valid_pb": 0
+    "valid_pe": 345,
+    "valid_pb": 371
   },
   "vingroup": [
     {
       "ticker": "VRE",
-      "close": 26550.0,
-      "pe": null,
-      "pb": null
+      "close": 26450.0,
+      "pe": 12.34,
+      "pb": 1.31
     },
     {
       "ticker": "VPL",
-      "close": 81100.0,
-      "pe": null,
-      "pb": null
+      "close": 81000.0,
+      "pe": 340.75,
+      "pb": 4.04
     },
     {
       "ticker": "VIC",
-      "close": 220200.0,
-      "pe": null,
-      "pb": null
+      "close": 220000.0,
+      "pe": 94.2,
+      "pb": 5.27
     },
     {
       "ticker": "VHM",
-      "close": 157100.0,
-      "pe": null,
-      "pb": null
+      "close": 153000.0,
+      "pe": 24.44,
+      "pb": 2.67
     }
   ],
   "sectors": [
     {
-      "group": "VN-Index",
-      "count": 403,
-      "valid_pe": 0,
-      "valid_pb": 0,
-      "median_pe": null,
-      "median_pb": null,
-      "mean_pe": null,
-      "mean_pb": null,
-      "weighted_pe": null,
-      "weighted_pb": null,
-      "p25_pe": null,
-      "p75_pe": null,
-      "p25_pb": null,
-      "p75_pb": null
-    },
-    {
       "group": "Unknown",
       "count": 399,
-      "valid_pe": 0,
-      "valid_pb": 0,
-      "median_pe": null,
-      "median_pb": null,
-      "mean_pe": null,
-      "mean_pb": null,
+      "valid_pe": 341,
+      "valid_pb": 367,
+      "median_pe": 10.33,
+      "median_pb": 0.93,
+      "mean_pe": 15.91,
+      "mean_pb": 1.19,
       "weighted_pe": null,
       "weighted_pb": null,
-      "p25_pe": null,
-      "p75_pe": null,
-      "p25_pb": null,
-      "p75_pb": null
+      "p25_pe": 6.86,
+      "p75_pe": 16.04,
+      "p25_pb": 0.58,
+      "p75_pb": 1.45
+    },
+    {
+      "group": "VN-Index",
+      "count": 403,
+      "valid_pe": 345,
+      "valid_pb": 371,
+      "median_pe": 10.36,
+      "median_pb": 0.94,
+      "mean_pe": 17.1,
+      "mean_pb": 1.21,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 6.86,
+      "p75_pe": 16.22,
+      "p25_pb": 0.58,
+      "p75_pb": 1.46
     },
     {
       "group": "Vingroup Ecosystem",
       "count": 4,
-      "valid_pe": 0,
-      "valid_pb": 0,
-      "median_pe": null,
-      "median_pb": null,
-      "mean_pe": null,
-      "mean_pb": null,
+      "valid_pe": 4,
+      "valid_pb": 4,
+      "median_pe": 59.32,
+      "median_pb": 3.36,
+      "mean_pe": 117.93,
+      "mean_pb": 3.33,
       "weighted_pe": null,
       "weighted_pb": null,
-      "p25_pe": null,
-      "p75_pe": null,
-      "p25_pb": null,
-      "p75_pb": null
+      "p25_pe": 21.42,
+      "p75_pe": 155.84,
+      "p25_pb": 2.33,
+      "p75_pb": 4.35
     }
   ],
   "trend": {
@@ -131,7 +131,7 @@
         10.13,
         9.97,
         null,
-        null
+        10.36
       ],
       "pb": [
         0.98,
@@ -155,7 +155,7 @@
         0.91,
         0.91,
         null,
-        null
+        0.94
       ]
     },
     "Unknown": {
@@ -165,11 +165,11 @@
       ],
       "pe": [
         null,
-        null
+        10.33
       ],
       "pb": [
         null,
-        null
+        0.93
       ]
     },
     "Vingroup Ecosystem": {
@@ -219,7 +219,7 @@
         32.99,
         33.03,
         null,
-        null
+        59.32
       ],
       "pb": [
         3.3,
@@ -243,140 +243,3137 @@
         3.17,
         3.17,
         null,
-        null
+        3.36
       ]
     }
   },
   "tickers": [
     {
-      "ticker": "SMC",
-      "close": 10800.0,
-      "pe": null,
-      "pb": null,
+      "ticker": "HHS",
+      "close": 9950.0,
+      "pe": 1.05,
+      "pb": 0.26,
       "sector": "Unknown",
       "industry": "1.0",
       "group": "Unknown"
     },
     {
-      "ticker": "GEG",
-      "close": 12250.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SAM",
-      "close": 5830.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "27.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DAH",
-      "close": 2610.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "25.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "EIB",
-      "close": 18450.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TCX",
-      "close": 40300.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "5.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "FTS",
-      "close": 22350.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "5.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VPI",
-      "close": 65000.0,
-      "pe": null,
-      "pb": null,
+      "ticker": "TDC",
+      "close": 7120.0,
+      "pe": 1.64,
+      "pb": 0.57,
       "sector": "Unknown",
       "industry": "3.0",
       "group": "Unknown"
     },
     {
-      "ticker": "VCI",
-      "close": 21950.0,
-      "pe": null,
-      "pb": null,
+      "ticker": "BCE",
+      "close": 5550.0,
+      "pe": 2.35,
+      "pb": 0.5,
       "sector": "Unknown",
-      "industry": "5.0",
+      "industry": "3.0",
       "group": "Unknown"
     },
     {
-      "ticker": "HAP",
-      "close": 7150.0,
-      "pe": null,
-      "pb": null,
+      "ticker": "VCG",
+      "close": 15800.0,
+      "pe": 2.38,
+      "pb": 0.84,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "MHC",
+      "close": 8310.0,
+      "pe": 2.39,
+      "pb": 0.52,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SVC",
+      "close": 17500.0,
+      "pe": 2.48,
+      "pb": 0.39,
+      "sector": "Unknown",
+      "industry": "7.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "D2D",
+      "close": 27200.0,
+      "pe": 2.54,
+      "pb": 1.15,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DLG",
+      "close": 2270.0,
+      "pe": 2.61,
+      "pb": 0.75,
       "sector": "Unknown",
       "industry": "26.0",
       "group": "Unknown"
     },
     {
-      "ticker": "HTL",
+      "ticker": "CIG",
+      "close": 7170.0,
+      "pe": 2.92,
+      "pb": 1.18,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DC4",
+      "close": 6690.0,
+      "pe": 3.03,
+      "pb": 0.54,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "KLB",
+      "close": 12750.0,
+      "pe": 3.05,
+      "pb": 0.6,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SGT",
+      "close": 9630.0,
+      "pe": 3.06,
+      "pb": 0.58,
+      "sector": "Unknown",
+      "industry": "6.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HTI",
+      "close": 18950.0,
+      "pe": 3.37,
+      "pb": 0.81,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HTG",
+      "close": 34300.0,
+      "pe": 3.47,
+      "pb": 1.07,
+      "sector": "Unknown",
+      "industry": "16.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TYA",
+      "close": 17000.0,
+      "pe": 3.47,
+      "pb": 0.17,
+      "sector": "Unknown",
+      "industry": "27.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HDC",
+      "close": 11900.0,
+      "pe": 3.48,
+      "pb": 0.74,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DBC",
+      "close": 16750.0,
+      "pe": 3.57,
+      "pb": 0.81,
+      "sector": "Unknown",
+      "industry": "19.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ABT",
+      "close": 50600.0,
+      "pe": 3.68,
+      "pb": 0.93,
+      "sector": "Unknown",
+      "industry": "20.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ANT",
       "close": 21200.0,
-      "pe": null,
-      "pb": null,
+      "pe": 3.69,
+      "pb": 1.08,
       "sector": "Unknown",
-      "industry": "1.0",
+      "industry": "19.0",
       "group": "Unknown"
     },
     {
-      "ticker": "DBT",
-      "close": 13750.0,
-      "pe": null,
-      "pb": null,
+      "ticker": "OGC",
+      "close": 2220.0,
+      "pe": 3.87,
+      "pb": 0.36,
       "sector": "Unknown",
-      "industry": "8.0",
+      "industry": "29.0",
       "group": "Unknown"
     },
     {
-      "ticker": "AAN",
-      "close": 15250.0,
-      "pe": null,
-      "pb": null,
+      "ticker": "SHB",
+      "close": 11800.0,
+      "pe": 3.94,
+      "pb": 0.82,
       "sector": "Unknown",
-      "industry": "12.0",
+      "industry": "11.0",
       "group": "Unknown"
     },
     {
-      "ticker": "GMH",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
+      "ticker": "PTC",
+      "close": 6000.0,
+      "pe": 4.07,
+      "pb": 0.46,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "MSH",
+      "close": 30850.0,
+      "pe": 4.13,
+      "pb": 1.4,
+      "sector": "Unknown",
+      "industry": "16.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "NAB",
+      "close": 11950.0,
+      "pe": 4.19,
+      "pb": 0.92,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "NHA",
+      "close": 8200.0,
+      "pe": 4.3,
+      "pb": 0.67,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "RAL",
+      "close": 81200.0,
+      "pe": 4.4,
+      "pb": 0.58,
+      "sector": "Unknown",
+      "industry": "27.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "BIC",
+      "close": 21300.0,
+      "pe": 4.4,
+      "pb": 0.76,
+      "sector": "Unknown",
+      "industry": "2.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "THG",
+      "close": 29500.0,
+      "pe": 4.66,
+      "pb": 1.18,
       "sector": "Unknown",
       "industry": "21.0",
       "group": "Unknown"
     },
     {
+      "ticker": "ITD",
+      "close": 13600.0,
+      "pe": 4.71,
+      "pb": 0.78,
+      "sector": "Unknown",
+      "industry": "6.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "LHG",
+      "close": 27650.0,
+      "pe": 4.76,
+      "pb": 0.77,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "IJC",
+      "close": 7350.0,
+      "pe": 4.76,
+      "pb": 0.52,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PTB",
+      "close": 33500.0,
+      "pe": 4.78,
+      "pb": 0.69,
+      "sector": "Unknown",
+      "industry": "26.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DGC",
+      "close": 40550.0,
+      "pe": 4.87,
+      "pb": 0.96,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CMX",
+      "close": 4770.0,
+      "pe": 4.87,
+      "pb": 0.28,
+      "sector": "Unknown",
+      "industry": "20.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VIX",
+      "close": 14000.0,
+      "pe": 4.88,
+      "pb": 1.06,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HID",
+      "close": 3480.0,
+      "pe": 4.88,
+      "pb": 0.25,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HUB",
+      "close": 12100.0,
+      "pe": 4.88,
+      "pb": 0.55,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HAH",
+      "close": 45200.0,
+      "pe": 4.98,
+      "pb": 1.52,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "JVC",
+      "close": 3050.0,
+      "pe": 5.04,
+      "pb": 0.59,
+      "sector": "Unknown",
+      "industry": "1.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VAB",
+      "close": 10050.0,
+      "pe": 5.09,
+      "pb": 0.85,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SGR",
+      "close": 11850.0,
+      "pe": 5.11,
+      "pb": 0.57,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "UIC",
+      "close": 55500.0,
+      "pe": 5.13,
+      "pb": 0.86,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CTG",
+      "close": 31850.0,
+      "pe": 5.13,
+      "pb": 1.01,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VCK",
+      "close": 30800.0,
+      "pe": 5.16,
+      "pb": 1.26,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ILB",
+      "close": 19650.0,
+      "pe": 5.18,
+      "pb": 0.9,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "GDT",
+      "close": 16050.0,
+      "pe": 5.43,
+      "pb": 1.18,
+      "sector": "Unknown",
+      "industry": "16.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PNJ",
+      "close": 37900.0,
+      "pe": 5.46,
+      "pb": 1.07,
+      "sector": "Unknown",
+      "industry": "7.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TCL",
+      "close": 29600.0,
+      "pe": 5.46,
+      "pb": 1.33,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TN1",
+      "close": 14600.0,
+      "pe": 5.47,
+      "pb": 0.85,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CRC",
+      "close": 5700.0,
+      "pe": 5.56,
+      "pb": 0.45,
+      "sector": "Unknown",
+      "industry": "21.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VFG",
+      "close": 45950.0,
+      "pe": 5.59,
+      "pb": 1.19,
+      "sector": "Unknown",
+      "industry": "1.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "NSC",
+      "close": 68800.0,
+      "pe": 5.64,
+      "pb": 0.77,
+      "sector": "Unknown",
+      "industry": "12.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TCO",
+      "close": 10550.0,
+      "pe": 5.66,
+      "pb": 0.88,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SJD",
+      "close": 13950.0,
+      "pe": 5.78,
+      "pb": 0.91,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ANV",
+      "close": 17500.0,
+      "pe": 5.78,
+      "pb": 1.32,
+      "sector": "Unknown",
+      "industry": "20.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CCI",
+      "close": 15700.0,
+      "pe": 5.79,
+      "pb": 0.96,
+      "sector": "Unknown",
+      "industry": "7.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "NHH",
+      "close": 9500.0,
+      "pe": 5.85,
+      "pb": 0.59,
+      "sector": "Unknown",
+      "industry": "15.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TIP",
+      "close": 16850.0,
+      "pe": 5.86,
+      "pb": 0.6,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VIP",
+      "close": 9900.0,
+      "pe": 5.91,
+      "pb": 0.53,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "BMI",
+      "close": 13450.0,
+      "pe": 5.92,
+      "pb": 0.61,
+      "sector": "Unknown",
+      "industry": "2.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VIB",
+      "close": 14800.0,
+      "pe": 5.93,
+      "pb": 1.11,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CTS",
+      "close": 22250.0,
+      "pe": 5.95,
+      "pb": 1.68,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TPB",
+      "close": 14750.0,
+      "pe": 5.96,
+      "pb": 0.97,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TVS",
+      "close": 13700.0,
+      "pe": 6.0,
+      "pb": 0.88,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "MBB",
+      "close": 24300.0,
+      "pe": 6.0,
+      "pb": 1.47,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SC5",
+      "close": 14050.0,
+      "pe": 6.0,
+      "pb": 0.52,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "GHC",
+      "close": 24300.0,
+      "pe": 6.02,
+      "pb": 1.0,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ACB",
+      "close": 22450.0,
+      "pe": 6.02,
+      "pb": 1.26,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CCL",
+      "close": 3690.0,
+      "pe": 6.05,
+      "pb": 0.3,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TRA",
+      "close": 37900.0,
+      "pe": 6.08,
+      "pb": 0.97,
+      "sector": "Unknown",
+      "industry": "8.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CKG",
+      "close": 5740.0,
+      "pe": 6.1,
+      "pb": 0.46,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TCM",
+      "close": 16800.0,
+      "pe": 6.16,
+      "pb": 0.78,
+      "sector": "Unknown",
+      "industry": "16.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HDB",
+      "close": 26550.0,
+      "pe": 6.17,
+      "pb": 1.36,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SMB",
+      "close": 39000.0,
+      "pe": 6.21,
+      "pb": 1.77,
+      "sector": "Unknown",
+      "industry": "19.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SCS",
+      "close": 44650.0,
+      "pe": 6.22,
+      "pb": 2.8,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DSN",
+      "close": 36800.0,
+      "pe": 6.27,
+      "pb": 1.29,
+      "sector": "Unknown",
+      "industry": "25.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "LSS",
+      "close": 7990.0,
+      "pe": 6.3,
+      "pb": 0.38,
+      "sector": "Unknown",
+      "industry": "19.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "NCT",
+      "close": 82500.0,
+      "pe": 6.32,
+      "pb": 2.71,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SPM",
+      "close": 10350.0,
+      "pe": 6.33,
+      "pb": 0.18,
+      "sector": "Unknown",
+      "industry": "8.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TRC",
+      "close": 74500.0,
+      "pe": 6.34,
+      "pb": 1.09,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "YBM",
+      "close": 9400.0,
+      "pe": 6.36,
+      "pb": 0.65,
+      "sector": "Unknown",
+      "industry": "21.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SSB",
+      "close": 15350.0,
+      "pe": 6.51,
+      "pb": 1.08,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "NO1",
+      "close": 4750.0,
+      "pe": 6.52,
+      "pb": 0.34,
+      "sector": "Unknown",
+      "industry": "1.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "OCB",
+      "close": 10350.0,
+      "pe": 6.59,
+      "pb": 0.84,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ADS",
+      "close": 8070.0,
+      "pe": 6.64,
+      "pb": 0.62,
+      "sector": "Unknown",
+      "industry": "16.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PAC",
+      "close": 15800.0,
+      "pe": 6.86,
+      "pb": 1.11,
+      "sector": "Unknown",
+      "industry": "27.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "GEE",
+      "close": 69900.0,
+      "pe": 6.86,
+      "pb": 3.18,
+      "sector": "Unknown",
+      "industry": "27.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "LM8",
+      "close": 12600.0,
+      "pe": 6.92,
+      "pb": 0.39,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PAN",
+      "close": 21150.0,
+      "pe": 6.96,
+      "pb": 0.51,
+      "sector": "Unknown",
+      "industry": "19.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "FMC",
+      "close": 33900.0,
+      "pe": 6.99,
+      "pb": 0.89,
+      "sector": "Unknown",
+      "industry": "20.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HVN",
+      "close": 24850.0,
+      "pe": 7.03,
+      "pb": 8.64,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PVT",
+      "close": 18300.0,
+      "pe": 7.05,
+      "pb": 0.77,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CTI",
+      "close": 19150.0,
+      "pe": 7.05,
+      "pb": 0.66,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VSI",
+      "close": 17150.0,
+      "pe": 7.18,
+      "pb": 1.11,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DHA",
+      "close": 48000.0,
+      "pe": 7.18,
+      "pb": 1.5,
+      "sector": "Unknown",
+      "industry": "10.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ADP",
+      "close": 23000.0,
+      "pe": 7.19,
+      "pb": 1.89,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CCC",
+      "close": 7490.0,
+      "pe": 7.22,
+      "pb": 0.49,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DPG",
+      "close": 30600.0,
+      "pe": 7.31,
+      "pb": 1.1,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SFI",
+      "close": 28300.0,
+      "pe": 7.34,
+      "pb": 0.9,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "LAF",
+      "close": 19550.0,
+      "pe": 7.4,
+      "pb": 1.23,
+      "sector": "Unknown",
+      "industry": "19.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "FCM",
+      "close": 3080.0,
+      "pe": 7.48,
+      "pb": 0.26,
+      "sector": "Unknown",
+      "industry": "21.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "C47",
+      "close": 9200.0,
+      "pe": 7.5,
+      "pb": 0.69,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "NTC",
+      "close": 129200.0,
+      "pe": 7.5,
+      "pb": 2.47,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "BRC",
+      "close": 12000.0,
+      "pe": 7.54,
+      "pb": 0.72,
+      "sector": "Unknown",
+      "industry": "17.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "AGG",
+      "close": 11550.0,
+      "pe": 7.57,
+      "pb": 0.56,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "NNC",
+      "close": 39850.0,
+      "pe": 7.58,
+      "pb": 1.8,
+      "sector": "Unknown",
+      "industry": "10.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PGC",
+      "close": 13000.0,
+      "pe": 7.73,
+      "pb": 0.92,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SGN",
+      "close": 56000.0,
+      "pe": 7.74,
+      "pb": 1.42,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VHC",
+      "close": 53500.0,
+      "pe": 7.75,
+      "pb": 1.18,
+      "sector": "Unknown",
+      "industry": "20.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "AAA",
+      "close": 7160.0,
+      "pe": 7.75,
+      "pb": 0.47,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "MSB",
+      "close": 16150.0,
+      "pe": 7.78,
+      "pb": 1.04,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VTO",
+      "close": 10400.0,
+      "pe": 7.84,
+      "pb": 0.73,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "GEG",
+      "close": 12200.0,
+      "pe": 7.93,
+      "pb": 0.78,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "LIX",
+      "close": 24900.0,
+      "pe": 7.97,
+      "pb": 1.65,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ACC",
+      "close": 4250.0,
+      "pe": 7.97,
+      "pb": 0.32,
+      "sector": "Unknown",
+      "industry": "21.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HHV",
+      "close": 10100.0,
+      "pe": 8.0,
+      "pb": 0.63,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DPR",
+      "close": 35800.0,
+      "pe": 8.07,
+      "pb": 0.93,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SIP",
+      "close": 51000.0,
+      "pe": 8.17,
+      "pb": 2.17,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "BMC",
+      "close": 11200.0,
+      "pe": 8.24,
+      "pb": 0.62,
+      "sector": "Unknown",
+      "industry": "10.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CHP",
+      "close": 27500.0,
+      "pe": 8.25,
+      "pb": 2.07,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DRL",
+      "close": 41600.0,
+      "pe": 8.26,
+      "pb": 3.66,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "MIG",
+      "close": 16850.0,
+      "pe": 8.27,
+      "pb": 1.3,
+      "sector": "Unknown",
+      "industry": "2.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SVT",
+      "close": 10500.0,
+      "pe": 8.29,
+      "pb": 0.82,
+      "sector": "Unknown",
+      "industry": "26.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "KHP",
+      "close": 9750.0,
+      "pe": 8.31,
+      "pb": 0.77,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VPD",
+      "close": 21000.0,
+      "pe": 8.39,
+      "pb": 1.42,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HII",
+      "close": 8670.0,
+      "pe": 8.43,
+      "pb": 0.68,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DAT",
+      "close": 7650.0,
+      "pe": 8.55,
+      "pb": 0.56,
+      "sector": "Unknown",
+      "industry": "20.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CLC",
+      "close": 51400.0,
+      "pe": 8.59,
+      "pb": 1.48,
+      "sector": "Unknown",
+      "industry": "Unknown",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DSC",
+      "close": 10850.0,
+      "pe": 8.6,
+      "pb": 0.84,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "BFC",
+      "close": 51600.0,
+      "pe": 8.61,
+      "pb": 1.81,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CTD",
+      "close": 63200.0,
+      "pe": 8.67,
+      "pb": 0.75,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CNG",
+      "close": 20350.0,
+      "pe": 8.69,
+      "pb": 1.11,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "LBM",
+      "close": 27500.0,
+      "pe": 8.74,
+      "pb": 1.55,
+      "sector": "Unknown",
+      "industry": "21.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CLL",
+      "close": 27100.0,
+      "pe": 8.81,
+      "pb": 1.51,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TTA",
+      "close": 11700.0,
+      "pe": 8.82,
+      "pb": 0.85,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VNS",
+      "close": 7500.0,
+      "pe": 8.86,
+      "pb": 0.46,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "REE",
+      "close": 47450.0,
+      "pe": 8.89,
+      "pb": 1.06,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "APH",
+      "close": 5700.0,
+      "pe": 9.03,
+      "pb": 0.24,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SHA",
+      "close": 3970.0,
+      "pe": 9.03,
+      "pb": 0.3,
+      "sector": "Unknown",
+      "industry": "16.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DCM",
+      "close": 31200.0,
+      "pe": 9.05,
+      "pb": 1.57,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HPA",
+      "close": 31700.0,
+      "pe": 9.06,
+      "pb": 1.91,
+      "sector": "Unknown",
+      "industry": "12.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DXS",
+      "close": 5830.0,
+      "pe": 9.08,
+      "pb": 0.39,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DRC",
+      "close": 10450.0,
+      "pe": 9.1,
+      "pb": 0.85,
+      "sector": "Unknown",
+      "industry": "17.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "GSP",
+      "close": 10850.0,
+      "pe": 9.17,
+      "pb": 0.84,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PVP",
+      "close": 16850.0,
+      "pe": 9.23,
+      "pb": 0.93,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SHP",
+      "close": 31000.0,
+      "pe": 9.26,
+      "pb": 2.45,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TCT",
+      "close": 17750.0,
+      "pe": 9.3,
+      "pb": 0.63,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PDN",
+      "close": 96000.0,
+      "pe": 9.36,
+      "pb": 3.86,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VBB",
+      "close": 12800.0,
+      "pe": 9.36,
+      "pb": 1.12,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "EVE",
+      "close": 8500.0,
+      "pe": 9.4,
+      "pb": 0.37,
+      "sector": "Unknown",
+      "industry": "16.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "YEG",
+      "close": 7620.0,
+      "pe": 9.47,
+      "pb": 0.69,
+      "sector": "Unknown",
+      "industry": "Unknown",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SVD",
+      "close": 4140.0,
+      "pe": 9.48,
+      "pb": 0.44,
+      "sector": "Unknown",
+      "industry": "16.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TCB",
+      "close": 29650.0,
+      "pe": 9.53,
+      "pb": 1.17,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "NT2",
+      "close": 21250.0,
+      "pe": 9.54,
+      "pb": 1.36,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DHC",
+      "close": 34650.0,
+      "pe": 9.59,
+      "pb": 1.54,
+      "sector": "Unknown",
+      "industry": "26.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SSC",
+      "close": 20650.0,
+      "pe": 9.63,
+      "pb": 0.74,
+      "sector": "Unknown",
+      "industry": "12.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "BID",
+      "close": 38000.0,
+      "pe": 9.77,
+      "pb": 1.59,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ST8",
+      "close": 2600.0,
+      "pe": 9.77,
+      "pb": 0.22,
+      "sector": "Unknown",
+      "industry": "1.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VPB",
+      "close": 25500.0,
+      "pe": 9.8,
+      "pb": 1.27,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "NLG",
+      "close": 21750.0,
+      "pe": 9.85,
+      "pb": 0.58,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TLG",
+      "close": 48600.0,
+      "pe": 9.94,
+      "pb": 1.65,
+      "sector": "Unknown",
+      "industry": "26.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TMP",
+      "close": 49700.0,
+      "pe": 9.95,
+      "pb": 2.06,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TCI",
+      "close": 9940.0,
+      "pe": 9.97,
+      "pb": 0.82,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HCD",
+      "close": 6140.0,
+      "pe": 10.05,
+      "pb": 0.45,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DPM",
+      "close": 21800.0,
+      "pe": 10.09,
+      "pb": 1.31,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "QNP",
+      "close": 31950.0,
+      "pe": 10.1,
+      "pb": 1.45,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HDG",
+      "close": 16800.0,
+      "pe": 10.16,
+      "pb": 0.77,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "BMP",
+      "close": 149200.0,
+      "pe": 10.19,
+      "pb": 3.88,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HPG",
+      "close": 22000.0,
+      "pe": 10.2,
+      "pb": 1.32,
+      "sector": "Unknown",
+      "industry": "21.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VSC",
+      "close": 14600.0,
+      "pe": 10.28,
+      "pb": 0.92,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "GEX",
+      "close": 24700.0,
+      "pe": 10.33,
+      "pb": 0.81,
+      "sector": "Unknown",
+      "industry": "27.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SBA",
+      "close": 25150.0,
+      "pe": 10.36,
+      "pb": 1.54,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HAG",
+      "close": 14100.0,
+      "pe": 10.36,
+      "pb": 1.12,
+      "sector": "Unknown",
+      "industry": "12.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "AAT",
+      "close": 2230.0,
+      "pe": 10.38,
+      "pb": 0.21,
+      "sector": "Unknown",
+      "industry": "16.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TBC",
+      "close": 32000.0,
+      "pe": 10.45,
+      "pb": 1.34,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TDG",
+      "close": 2420.0,
+      "pe": 10.46,
+      "pb": 0.23,
+      "sector": "Unknown",
+      "industry": "1.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SZC",
+      "close": 18450.0,
+      "pe": 10.47,
+      "pb": 1.06,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DTT",
+      "close": 18000.0,
+      "pe": 10.49,
+      "pb": 1.08,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "BCM",
+      "close": 36600.0,
+      "pe": 10.49,
+      "pb": 1.72,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TAL",
+      "close": 25700.0,
+      "pe": 10.57,
+      "pb": 1.3,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VSH",
+      "close": 42600.0,
+      "pe": 10.62,
+      "pb": 2.03,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ACG",
+      "close": 31600.0,
+      "pe": 10.63,
+      "pb": 1.07,
+      "sector": "Unknown",
+      "industry": "26.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "BTP",
+      "close": 7450.0,
+      "pe": 10.69,
+      "pb": 0.42,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CSV",
+      "close": 21800.0,
+      "pe": 10.72,
+      "pb": 1.5,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "LCG",
+      "close": 7200.0,
+      "pe": 10.81,
+      "pb": 0.52,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "EVF",
+      "close": 12550.0,
+      "pe": 10.95,
+      "pb": 0.98,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PGI",
+      "close": 23200.0,
+      "pe": 10.99,
+      "pb": 1.35,
+      "sector": "Unknown",
+      "industry": "2.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VPS",
+      "close": 9430.0,
+      "pe": 10.99,
+      "pb": 0.69,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PDV",
+      "close": 8370.0,
+      "pe": 11.01,
+      "pb": 0.55,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SKG",
+      "close": 7670.0,
+      "pe": 11.02,
+      "pb": 0.56,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "EIB",
+      "close": 18200.0,
+      "pe": 11.13,
+      "pb": 1.28,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "MZG",
+      "close": 11900.0,
+      "pe": 11.14,
+      "pb": 0.94,
+      "sector": "Unknown",
+      "industry": "26.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ELC",
+      "close": 16450.0,
+      "pe": 11.21,
+      "pb": 1.17,
+      "sector": "Unknown",
+      "industry": "6.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PVD",
+      "close": 17900.0,
+      "pe": 11.22,
+      "pb": 0.58,
+      "sector": "Unknown",
+      "industry": "10.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "STB",
+      "close": 73200.0,
+      "pe": 11.23,
+      "pb": 2.2,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "KSB",
+      "close": 13450.0,
+      "pe": 11.29,
+      "pb": 0.56,
+      "sector": "Unknown",
+      "industry": "10.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "BWE",
+      "close": 43800.0,
+      "pe": 11.3,
+      "pb": 1.61,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DVP",
+      "close": 78100.0,
+      "pe": 11.37,
+      "pb": 2.33,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ADG",
+      "close": 8060.0,
+      "pe": 11.58,
+      "pb": 0.45,
+      "sector": "Unknown",
+      "industry": "Unknown",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PHR",
+      "close": 58200.0,
+      "pe": 11.62,
+      "pb": 1.86,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HNA",
+      "close": 23400.0,
+      "pe": 11.69,
+      "pb": 1.63,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CLW",
+      "close": 40650.0,
+      "pe": 11.7,
+      "pb": 2.11,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "FPT",
+      "close": 70300.0,
+      "pe": 11.74,
+      "pb": 2.8,
+      "sector": "Unknown",
+      "industry": "6.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "RYG",
+      "close": 9090.0,
+      "pe": 11.74,
+      "pb": 0.53,
+      "sector": "Unknown",
+      "industry": "16.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VCB",
+      "close": 59300.0,
+      "pe": 11.84,
+      "pb": 2.22,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VTB",
+      "close": 12900.0,
+      "pe": 11.91,
+      "pb": 0.74,
+      "sector": "Unknown",
+      "industry": "27.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HRC",
+      "close": 34450.0,
+      "pe": 12.17,
+      "pb": 1.68,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VDP",
+      "close": 37500.0,
+      "pe": 12.23,
+      "pb": 1.1,
+      "sector": "Unknown",
+      "industry": "8.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "MDG",
+      "close": 37000.0,
+      "pe": 12.33,
+      "pb": 2.6,
+      "sector": "Unknown",
+      "industry": "10.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VDS",
+      "close": 12000.0,
+      "pe": 12.33,
+      "pb": 1.03,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VRE",
+      "close": 26450.0,
+      "pe": 12.34,
+      "pb": 1.31,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Vingroup Ecosystem"
+    },
+    {
+      "ticker": "VGC",
+      "close": 38150.0,
+      "pe": 12.34,
+      "pb": 1.58,
+      "sector": "Unknown",
+      "industry": "21.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "AFX",
+      "close": 10650.0,
+      "pe": 12.49,
+      "pb": 0.75,
+      "sector": "Unknown",
+      "industry": "19.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HTN",
+      "close": 7110.0,
+      "pe": 12.51,
+      "pb": 0.4,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VVS",
+      "close": 102800.0,
+      "pe": 12.52,
+      "pb": 4.41,
+      "sector": "Unknown",
+      "industry": "1.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HTL",
+      "close": 21200.0,
+      "pe": 12.59,
+      "pb": 1.32,
+      "sector": "Unknown",
+      "industry": "1.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "OPC",
+      "close": 21400.0,
+      "pe": 12.6,
+      "pb": 1.45,
+      "sector": "Unknown",
+      "industry": "8.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "AST",
+      "close": 64000.0,
+      "pe": 12.61,
+      "pb": 3.77,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SSI",
+      "close": 24400.0,
+      "pe": 12.76,
+      "pb": 1.62,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "MCM",
+      "close": 25900.0,
+      "pe": 12.8,
+      "pb": 1.22,
+      "sector": "Unknown",
+      "industry": "19.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PPC",
+      "close": 8830.0,
+      "pe": 12.96,
+      "pb": 0.63,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "BSI",
+      "close": 28200.0,
+      "pe": 13.14,
+      "pb": 1.27,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SAB",
+      "close": 44400.0,
+      "pe": 13.16,
+      "pb": 2.32,
+      "sector": "Unknown",
+      "industry": "19.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PMG",
+      "close": 5860.0,
+      "pe": 13.2,
+      "pb": 0.4,
+      "sector": "Unknown",
+      "industry": "1.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VPX",
+      "close": 25700.0,
+      "pe": 13.22,
+      "pb": 1.9,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "IDI",
+      "close": 5010.0,
+      "pe": 13.25,
+      "pb": 0.38,
+      "sector": "Unknown",
+      "industry": "20.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PC1",
+      "close": 21000.0,
+      "pe": 13.29,
+      "pb": 0.9,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HVH",
+      "close": 10650.0,
+      "pe": 13.3,
+      "pb": 0.8,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CMG",
+      "close": 25300.0,
+      "pe": 13.33,
+      "pb": 1.31,
+      "sector": "Unknown",
+      "industry": "6.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VND",
+      "close": 16950.0,
+      "pe": 13.36,
+      "pb": 1.25,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "BKG",
+      "close": 2130.0,
+      "pe": 13.45,
+      "pb": 0.2,
+      "sector": "Unknown",
+      "industry": "26.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DHG",
+      "close": 94800.0,
+      "pe": 13.46,
+      "pb": 3.1,
+      "sector": "Unknown",
+      "industry": "8.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VCI",
+      "close": 21500.0,
+      "pe": 13.49,
+      "pb": 1.23,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "BHN",
+      "close": 29500.0,
+      "pe": 13.5,
+      "pb": 1.28,
+      "sector": "Unknown",
+      "industry": "19.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "GAS",
+      "close": 70500.0,
+      "pe": 13.66,
+      "pb": 2.56,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "BVB",
+      "close": 12500.0,
+      "pe": 13.85,
+      "pb": 1.09,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "STK",
+      "close": 8470.0,
+      "pe": 13.92,
+      "pb": 0.47,
+      "sector": "Unknown",
+      "industry": "16.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TVB",
+      "close": 7190.0,
+      "pe": 14.02,
+      "pb": 0.68,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TTF",
+      "close": 1810.0,
+      "pe": 14.08,
+      "pb": 1.98,
+      "sector": "Unknown",
+      "industry": "16.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VNM",
+      "close": 58600.0,
+      "pe": 14.09,
+      "pb": 3.23,
+      "sector": "Unknown",
+      "industry": "19.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PLP",
+      "close": 4360.0,
+      "pe": 14.17,
+      "pb": 0.37,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PJT",
+      "close": 8930.0,
+      "pe": 14.25,
+      "pb": 0.68,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VID",
+      "close": 4790.0,
+      "pe": 14.36,
+      "pb": 0.3,
+      "sector": "Unknown",
+      "industry": "1.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "KBC",
+      "close": 28250.0,
+      "pe": 14.47,
+      "pb": 1.02,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CTR",
+      "close": 75000.0,
+      "pe": 14.51,
+      "pb": 3.97,
+      "sector": "Unknown",
+      "industry": "6.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HSG",
+      "close": 10800.0,
+      "pe": 14.61,
+      "pb": 0.6,
+      "sector": "Unknown",
+      "industry": "21.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "LPB",
+      "close": 53000.0,
+      "pe": 14.65,
+      "pb": 3.64,
+      "sector": "Unknown",
+      "industry": "11.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VCF",
+      "close": 291100.0,
+      "pe": 14.86,
+      "pb": 3.43,
+      "sector": "Unknown",
+      "industry": "19.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "NHT",
+      "close": 11500.0,
+      "pe": 15.03,
+      "pb": 0.75,
+      "sector": "Unknown",
+      "industry": "26.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DBT",
+      "close": 13500.0,
+      "pe": 15.19,
+      "pb": 0.94,
+      "sector": "Unknown",
+      "industry": "8.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ASP",
+      "close": 11700.0,
+      "pe": 15.31,
+      "pb": 1.35,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "IMP",
+      "close": 36800.0,
+      "pe": 15.64,
+      "pb": 2.58,
+      "sector": "Unknown",
+      "industry": "8.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HAR",
+      "close": 2970.0,
+      "pe": 15.71,
+      "pb": 0.26,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DBD",
+      "close": 49300.0,
+      "pe": 15.8,
+      "pb": 2.73,
+      "sector": "Unknown",
+      "industry": "8.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SFG",
+      "close": 10800.0,
+      "pe": 15.94,
+      "pb": 0.8,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ITC",
+      "close": 10400.0,
+      "pe": 16.02,
+      "pb": 0.36,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "POW",
+      "close": 13800.0,
+      "pe": 16.04,
+      "pb": 0.89,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DGW",
+      "close": 39150.0,
+      "pe": 16.21,
+      "pb": 2.61,
+      "sector": "Unknown",
+      "industry": "1.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "FTS",
+      "close": 22000.0,
+      "pe": 16.22,
+      "pb": 1.78,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VTP",
+      "close": 51500.0,
+      "pe": 16.3,
+      "pb": 3.59,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ICT",
+      "close": 17000.0,
+      "pe": 16.31,
+      "pb": 0.86,
+      "sector": "Unknown",
+      "industry": "6.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CVT",
+      "close": 26200.0,
+      "pe": 16.32,
+      "pb": 0.94,
+      "sector": "Unknown",
+      "industry": "21.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CDC",
+      "close": 18700.0,
+      "pe": 16.39,
+      "pb": 1.13,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PGD",
+      "close": 22600.0,
+      "pe": 16.41,
+      "pb": 1.4,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PLX",
+      "close": 34250.0,
+      "pe": 16.91,
+      "pb": 1.51,
+      "sector": "Unknown",
+      "industry": "1.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HCM",
+      "close": 25550.0,
+      "pe": 16.91,
+      "pb": 1.73,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PET",
+      "close": 40000.0,
+      "pe": 17.32,
+      "pb": 1.66,
+      "sector": "Unknown",
+      "industry": "1.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SBG",
+      "close": 12000.0,
+      "pe": 17.35,
+      "pb": 1.0,
+      "sector": "Unknown",
+      "industry": "15.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "MCH",
+      "close": 137000.0,
+      "pe": 17.41,
+      "pb": 8.68,
+      "sector": "Unknown",
+      "industry": "19.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "GVR",
+      "close": 28150.0,
+      "pe": 17.43,
+      "pb": 1.76,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "C32",
+      "close": 15900.0,
+      "pe": 17.58,
+      "pb": 0.43,
+      "sector": "Unknown",
+      "industry": "10.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "BVH",
+      "close": 63900.0,
+      "pe": 17.86,
+      "pb": 1.86,
+      "sector": "Unknown",
+      "industry": "2.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "MWG",
+      "close": 72200.0,
+      "pe": 18.25,
+      "pb": 3.36,
+      "sector": "Unknown",
+      "industry": "7.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PHC",
+      "close": 4090.0,
+      "pe": 18.5,
+      "pb": 0.31,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "AGR",
+      "close": 13200.0,
+      "pe": 18.54,
+      "pb": 1.19,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CSM",
+      "close": 14450.0,
+      "pe": 18.6,
+      "pb": 1.08,
+      "sector": "Unknown",
+      "industry": "17.0",
+      "group": "Unknown"
+    },
+    {
       "ticker": "NKG",
-      "close": 11150.0,
+      "close": 11100.0,
+      "pe": 18.78,
+      "pb": 0.65,
+      "sector": "Unknown",
+      "industry": "21.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "BAF",
+      "close": 31500.0,
+      "pe": 18.78,
+      "pb": 2.23,
+      "sector": "Unknown",
+      "industry": "19.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PDR",
+      "close": 12000.0,
+      "pe": 18.87,
+      "pb": 0.98,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TCX",
+      "close": 39600.0,
+      "pe": 19.08,
+      "pb": 2.15,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TSA",
+      "close": 15600.0,
+      "pe": 19.25,
+      "pb": 1.47,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "KDH",
+      "close": 18150.0,
+      "pe": 19.4,
+      "pb": 1.0,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VOS",
+      "close": 11000.0,
+      "pe": 19.46,
+      "pb": 0.81,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "FIT",
+      "close": 3120.0,
+      "pe": 20.97,
+      "pb": 0.18,
+      "sector": "Unknown",
+      "industry": "8.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DIG",
+      "close": 10700.0,
+      "pe": 21.19,
+      "pb": 0.84,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SJS",
+      "close": 47100.0,
+      "pe": 21.43,
+      "pb": 4.3,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "NAF",
+      "close": 48300.0,
+      "pe": 21.45,
+      "pb": 3.04,
+      "sector": "Unknown",
+      "industry": "19.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "GMD",
+      "close": 76200.0,
+      "pe": 21.84,
+      "pb": 2.26,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SBT",
+      "close": 20650.0,
+      "pe": 22.26,
+      "pb": 1.46,
+      "sector": "Unknown",
+      "industry": "19.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SAV",
+      "close": 12850.0,
+      "pe": 22.6,
+      "pb": 0.95,
+      "sector": "Unknown",
+      "industry": "16.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "EVG",
+      "close": 4470.0,
+      "pe": 22.96,
+      "pb": 0.34,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HPX",
+      "close": 4380.0,
+      "pe": 22.98,
+      "pb": 0.36,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ASG",
+      "close": 16850.0,
+      "pe": 23.56,
+      "pb": 0.72,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DXG",
+      "close": 10800.0,
+      "pe": 23.84,
+      "pb": 0.58,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HT1",
+      "close": 13200.0,
+      "pe": 23.98,
+      "pb": 1.01,
+      "sector": "Unknown",
+      "industry": "21.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VHM",
+      "close": 153000.0,
+      "pe": 24.44,
+      "pb": 2.67,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Vingroup Ecosystem"
+    },
+    {
+      "ticker": "DSE",
+      "close": 22500.0,
+      "pe": 25.16,
+      "pb": 1.78,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ACL",
+      "close": 12400.0,
+      "pe": 25.19,
+      "pb": 0.75,
+      "sector": "Unknown",
+      "industry": "20.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TDM",
+      "close": 60300.0,
+      "pe": 25.83,
+      "pb": 2.6,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "AAN",
+      "close": 15300.0,
+      "pe": 26.0,
+      "pb": 1.06,
+      "sector": "Unknown",
+      "industry": "12.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TDP",
+      "close": 28300.0,
+      "pe": 26.04,
+      "pb": 2.28,
+      "sector": "Unknown",
+      "industry": "18.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "FDC",
+      "close": 25100.0,
+      "pe": 27.33,
+      "pb": 2.01,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "NVT",
+      "close": 7200.0,
+      "pe": 27.64,
+      "pb": 1.18,
+      "sector": "Unknown",
+      "industry": "25.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "QCG",
+      "close": 10350.0,
+      "pe": 27.67,
+      "pb": 0.62,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "FIR",
+      "close": 4400.0,
+      "pe": 27.84,
+      "pb": 0.37,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HHP",
+      "close": 15100.0,
+      "pe": 28.85,
+      "pb": 1.16,
+      "sector": "Unknown",
+      "industry": "26.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "MSN",
+      "close": 67200.0,
+      "pe": 29.68,
+      "pb": 2.38,
+      "sector": "Unknown",
+      "industry": "19.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "KMR",
+      "close": 2340.0,
+      "pe": 30.08,
+      "pb": 0.21,
+      "sector": "Unknown",
+      "industry": "16.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "FRT",
+      "close": 135000.0,
+      "pe": 30.85,
+      "pb": 6.31,
+      "sector": "Unknown",
+      "industry": "7.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "MCP",
+      "close": 27550.0,
+      "pe": 31.2,
+      "pb": 1.98,
+      "sector": "Unknown",
+      "industry": "26.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "KHG",
+      "close": 4740.0,
+      "pe": 31.74,
+      "pb": 0.4,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DHM",
+      "close": 6300.0,
+      "pe": 33.43,
+      "pb": 0.61,
+      "sector": "Unknown",
+      "industry": "10.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TV2",
+      "close": 26550.0,
+      "pe": 33.86,
+      "pb": 1.39,
+      "sector": "Unknown",
+      "industry": "28.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SAM",
+      "close": 5810.0,
+      "pe": 33.96,
+      "pb": 0.47,
+      "sector": "Unknown",
+      "industry": "27.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TLD",
+      "close": 8350.0,
+      "pe": 35.97,
+      "pb": 0.65,
+      "sector": "Unknown",
+      "industry": "26.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "PGV",
+      "close": 23050.0,
+      "pe": 36.92,
+      "pb": 1.65,
+      "sector": "Unknown",
+      "industry": "22.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "BSR",
+      "close": 25150.0,
+      "pe": 37.81,
+      "pb": 1.36,
+      "sector": "Unknown",
+      "industry": "26.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DTA",
+      "close": 3550.0,
+      "pe": 38.49,
+      "pb": 0.31,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SHI",
+      "close": 13950.0,
+      "pe": 39.37,
+      "pb": 1.1,
+      "sector": "Unknown",
+      "industry": "26.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VJC",
+      "close": 126100.0,
+      "pe": 41.99,
+      "pb": 3.06,
+      "sector": "Unknown",
+      "industry": "23.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CRE",
+      "close": 7100.0,
+      "pe": 42.73,
+      "pb": 0.55,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CTF",
+      "close": 18950.0,
+      "pe": 43.75,
+      "pb": 1.61,
+      "sector": "Unknown",
+      "industry": "7.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TCH",
+      "close": 12250.0,
+      "pe": 45.22,
+      "pb": 0.78,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HQC",
+      "close": 2190.0,
+      "pe": 51.04,
+      "pb": 0.23,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ORS",
+      "close": 14050.0,
+      "pe": 51.47,
+      "pb": 1.2,
+      "sector": "Unknown",
+      "industry": "5.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "GEL",
+      "close": 30100.0,
+      "pe": 53.03,
+      "pb": 1.31,
+      "sector": "Unknown",
+      "industry": "1.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "AAM",
+      "close": 7050.0,
+      "pe": 53.22,
+      "pb": 0.37,
+      "sector": "Unknown",
+      "industry": "20.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VRC",
+      "close": 11900.0,
+      "pe": 55.16,
+      "pb": 0.47,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VPI",
+      "close": 65000.0,
+      "pe": 55.75,
+      "pb": 3.89,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SCR",
+      "close": 4610.0,
+      "pe": 58.95,
+      "pb": 0.36,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "FCN",
+      "close": 10950.0,
+      "pe": 62.21,
+      "pb": 0.51,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TSC",
+      "close": 2080.0,
+      "pe": 64.62,
+      "pb": 0.16,
+      "sector": "Unknown",
+      "industry": "1.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DAH",
+      "close": 2510.0,
+      "pe": 68.02,
+      "pb": 0.23,
+      "sector": "Unknown",
+      "industry": "25.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VNG",
+      "close": 7300.0,
+      "pe": 71.6,
+      "pb": 0.65,
+      "sector": "Unknown",
+      "industry": "25.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TEG",
+      "close": 6100.0,
+      "pe": 74.29,
+      "pb": 0.48,
+      "sector": "Unknown",
+      "industry": "21.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "ASM",
+      "close": 5940.0,
+      "pe": 74.89,
+      "pb": 0.27,
+      "sector": "Unknown",
+      "industry": "20.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "DCL",
+      "close": 44000.0,
+      "pe": 92.39,
+      "pb": 2.12,
+      "sector": "Unknown",
+      "industry": "8.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "SRF",
+      "close": 7980.0,
+      "pe": 92.54,
+      "pb": 0.59,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VIC",
+      "close": 220000.0,
+      "pe": 94.2,
+      "pb": 5.27,
+      "sector": "Unknown",
+      "industry": "3.0",
+      "group": "Vingroup Ecosystem"
+    },
+    {
+      "ticker": "VCA",
+      "close": 6030.0,
+      "pe": 94.4,
+      "pb": 0.48,
+      "sector": "Unknown",
+      "industry": "21.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "CII",
+      "close": 14150.0,
+      "pe": 94.85,
+      "pb": 0.74,
+      "sector": "Unknown",
+      "industry": "24.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "KDC",
+      "close": 51800.0,
+      "pe": 131.17,
+      "pb": 2.06,
+      "sector": "Unknown",
+      "industry": "19.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "TNT",
+      "close": 9970.0,
+      "pe": 136.05,
+      "pb": 0.8,
+      "sector": "Unknown",
+      "industry": "10.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HSL",
+      "close": 8710.0,
+      "pe": 149.97,
+      "pb": 0.76,
+      "sector": "Unknown",
+      "industry": "12.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "VPL",
+      "close": 81000.0,
+      "pe": 340.75,
+      "pb": 4.04,
+      "sector": "Unknown",
+      "industry": "25.0",
+      "group": "Vingroup Ecosystem"
+    },
+    {
+      "ticker": "SMC",
+      "close": 10800.0,
+      "pe": null,
+      "pb": 1.22,
+      "sector": "Unknown",
+      "industry": "1.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "HAP",
+      "close": 7050.0,
+      "pe": null,
+      "pb": 0.55,
+      "sector": "Unknown",
+      "industry": "26.0",
+      "group": "Unknown"
+    },
+    {
+      "ticker": "GMH",
+      "close": 0.0,
       "pe": null,
       "pb": null,
       "sector": "Unknown",
@@ -393,37 +3390,19 @@
       "group": "Unknown"
     },
     {
-      "ticker": "BMC",
-      "close": 11200.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "10.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PDR",
-      "close": 12250.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "TNI",
-      "close": 6500.0,
+      "close": 6400.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.67,
       "sector": "Unknown",
       "industry": "1.0",
       "group": "Unknown"
     },
     {
       "ticker": "NVL",
-      "close": 13950.0,
+      "close": 13900.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.53,
       "sector": "Unknown",
       "industry": "3.0",
       "group": "Unknown"
@@ -438,273 +3417,21 @@
       "group": "Unknown"
     },
     {
-      "ticker": "VRC",
-      "close": 12000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SFG",
-      "close": 10850.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VCB",
-      "close": 60000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DSN",
-      "close": 36800.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "25.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CTS",
-      "close": 22500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "5.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "VPH",
       "close": 3120.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.29,
       "sector": "Unknown",
       "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "MWG",
-      "close": 72100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "7.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SBG",
-      "close": 11800.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "15.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "KLB",
-      "close": 12000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VRE",
-      "close": 26550.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Vingroup Ecosystem"
-    },
-    {
-      "ticker": "VTB",
-      "close": 12900.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "27.0",
       "group": "Unknown"
     },
     {
       "ticker": "VPG",
-      "close": 1860.0,
+      "close": 1870.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.12,
       "sector": "Unknown",
       "industry": "1.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SMB",
-      "close": 38600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "19.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VPL",
-      "close": 81100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "25.0",
-      "group": "Vingroup Ecosystem"
-    },
-    {
-      "ticker": "QNP",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TCT",
-      "close": 18000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "LAF",
-      "close": 19600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "19.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "BMP",
-      "close": 149900.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HPG",
-      "close": 22200.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "21.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "MSB",
-      "close": 16200.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VGC",
-      "close": 38300.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "21.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "BFC",
-      "close": 51600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "ICT",
-      "close": 17000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "6.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "FDC",
-      "close": 25100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HT1",
-      "close": 13200.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "21.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "OCB",
-      "close": 10450.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HTG",
-      "close": 34700.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "16.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HCD",
-      "close": 6290.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CLW",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DHA",
-      "close": 47950.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "10.0",
       "group": "Unknown"
     },
     {
@@ -718,65 +3445,20 @@
     },
     {
       "ticker": "APG",
-      "close": 4810.0,
+      "close": 4780.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.44,
       "sector": "Unknown",
       "industry": "5.0",
       "group": "Unknown"
     },
     {
-      "ticker": "BMI",
-      "close": 13550.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "2.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "MHC",
-      "close": 8390.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "SBV",
-      "close": 5700.0,
+      "close": 6110.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.39,
       "sector": "Unknown",
       "industry": "26.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "GMD",
-      "close": 76200.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "YEG",
-      "close": 7650.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "C32",
-      "close": 15250.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "10.0",
       "group": "Unknown"
     },
     {
@@ -789,102 +3471,12 @@
       "group": "Unknown"
     },
     {
-      "ticker": "NO1",
-      "close": 4750.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "1.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "TVT",
       "close": 0.0,
       "pe": null,
       "pb": null,
       "sector": "Unknown",
       "industry": "16.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VIX",
-      "close": 14050.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "5.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "ITC",
-      "close": 10550.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TTA",
-      "close": 11750.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PGV",
-      "close": 23400.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CKG",
-      "close": 5850.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PC1",
-      "close": 21350.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DGW",
-      "close": 39650.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "1.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TLG",
-      "close": 48500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "26.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "JVC",
-      "close": 3070.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "1.0",
       "group": "Unknown"
     },
     {
@@ -897,759 +3489,21 @@
       "group": "Unknown"
     },
     {
-      "ticker": "HQC",
-      "close": 2200.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VCA",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "21.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TSA",
-      "close": 15550.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SHA",
-      "close": 3940.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "16.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HAG",
-      "close": 14050.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "12.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "BVB",
-      "close": 12500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "C47",
-      "close": 9230.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "NCT",
-      "close": 82600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HHS",
-      "close": 10200.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "1.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SSI",
-      "close": 24650.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "5.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DIG",
-      "close": 10850.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "LPB",
-      "close": 53900.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HDB",
-      "close": 26450.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "BVH",
-      "close": 62000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "2.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "PTL",
-      "close": 1800.0,
+      "close": 1820.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.37,
       "sector": "Unknown",
       "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PHC",
-      "close": 4090.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
       "group": "Unknown"
     },
     {
       "ticker": "KOS",
-      "close": 34200.0,
+      "close": 34500.0,
       "pe": null,
-      "pb": null,
+      "pb": 3.2,
       "sector": "Unknown",
       "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VIC",
-      "close": 220200.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Vingroup Ecosystem"
-    },
-    {
-      "ticker": "VIP",
-      "close": 9950.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TCL",
-      "close": 29650.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HHP",
-      "close": 15250.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "26.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VCK",
-      "close": 31300.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "5.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "NSC",
-      "close": 68800.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "12.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VTO",
-      "close": 10550.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SKG",
-      "close": 7550.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VAB",
-      "close": 10050.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PHR",
-      "close": 58500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "FIT",
-      "close": 3200.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "8.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "MSH",
-      "close": 31100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "16.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "MCH",
-      "close": 137100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "19.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "IMP",
-      "close": 37000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "8.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SJD",
-      "close": 14000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PGD",
-      "close": 22600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VID",
-      "close": 4600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "1.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DTT",
-      "close": 18000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "ASM",
-      "close": 6020.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "20.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TAL",
-      "close": 26250.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VCF",
-      "close": 291100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "19.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TCH",
-      "close": 12350.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TCM",
-      "close": 16850.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "16.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PVT",
-      "close": 18150.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TCI",
-      "close": 9990.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "5.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CDC",
-      "close": 18600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HVN",
-      "close": 25050.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "FPT",
-      "close": 71400.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "6.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TSC",
-      "close": 2080.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "1.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "ASG",
-      "close": 16850.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DBD",
-      "close": 49300.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "8.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TDC",
-      "close": 7170.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TNT",
-      "close": 9600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "10.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CCI",
-      "close": 15700.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "7.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "KHP",
-      "close": 9750.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VPD",
-      "close": 21000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TVS",
-      "close": 13800.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "5.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "ANT",
-      "close": 21000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "19.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PJT",
-      "close": 8020.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DTA",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "STK",
-      "close": 8600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "16.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "THG",
-      "close": 29550.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "21.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "FMC",
-      "close": 33950.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "20.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "BHN",
-      "close": 29500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "19.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DRL",
-      "close": 41500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "D2D",
-      "close": 27700.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "ANV",
-      "close": 17600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "20.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "UIC",
-      "close": 55500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "BAF",
-      "close": 31700.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "19.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "KBC",
-      "close": 28300.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VPS",
-      "close": 9430.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "BCM",
-      "close": 37250.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "NAF",
-      "close": 48150.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "19.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "MSN",
-      "close": 67700.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "19.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VNG",
-      "close": 6840.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "25.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "QCG",
-      "close": 10400.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TN1",
-      "close": 15000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PGC",
-      "close": 12900.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "YBM",
-      "close": 9400.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "21.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SJS",
-      "close": 46100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HSL",
-      "close": 8820.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "12.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SPM",
-      "close": 10350.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "8.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "NHA",
-      "close": 8460.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SBT",
-      "close": 21350.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "19.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CLC",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "AAM",
-      "close": 7050.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "20.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DGC",
-      "close": 40350.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
       "group": "Unknown"
     },
     {
@@ -1662,93 +3516,21 @@
       "group": "Unknown"
     },
     {
-      "ticker": "DPR",
-      "close": 35950.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "AGR",
-      "close": 13300.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "5.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "FIR",
-      "close": 4500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HII",
-      "close": 8670.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "ABS",
-      "close": 3120.0,
+      "close": 3090.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.4,
       "sector": "Unknown",
       "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PMG",
-      "close": 5810.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "1.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "AAT",
-      "close": 2310.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "16.0",
       "group": "Unknown"
     },
     {
       "ticker": "HAX",
-      "close": 8920.0,
+      "close": 9060.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.72,
       "sector": "Unknown",
       "industry": "7.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CTI",
-      "close": 19250.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VDS",
-      "close": 12100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "5.0",
       "group": "Unknown"
     },
     {
@@ -1762,47 +3544,11 @@
     },
     {
       "ticker": "TNH",
-      "close": 8450.0,
+      "close": 8400.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.68,
       "sector": "Unknown",
       "industry": "8.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TRC",
-      "close": 75500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DPM",
-      "close": 21750.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CVT",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "21.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VND",
-      "close": 17100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "5.0",
       "group": "Unknown"
     },
     {
@@ -1815,42 +3561,6 @@
       "group": "Unknown"
     },
     {
-      "ticker": "ASP",
-      "close": 11900.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CMG",
-      "close": 25150.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "6.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SHI",
-      "close": 13950.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "26.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "MCP",
-      "close": 27400.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "26.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "ABR",
       "close": 0.0,
       "pe": null,
@@ -1860,136 +3570,10 @@
       "group": "Unknown"
     },
     {
-      "ticker": "HHV",
+      "ticker": "DTL",
       "close": 10200.0,
       "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TMP",
-      "close": 49700.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VHM",
-      "close": 157100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Vingroup Ecosystem"
-    },
-    {
-      "ticker": "VJC",
-      "close": 126000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DHM",
-      "close": 6380.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "10.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VPB",
-      "close": 25850.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "IDI",
-      "close": 5030.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "20.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TCB",
-      "close": 29800.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VPX",
-      "close": 25900.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "5.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DC4",
-      "close": 6700.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SZC",
-      "close": 18750.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CIG",
-      "close": 7100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "ST8",
-      "close": 2600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "1.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TDP",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DTL",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
+      "pb": 0.94,
       "sector": "Unknown",
       "industry": "21.0",
       "group": "Unknown"
@@ -2004,57 +3588,12 @@
       "group": "Unknown"
     },
     {
-      "ticker": "DBC",
-      "close": 17000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "19.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "KHG",
-      "close": 4770.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VSI",
-      "close": 17150.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SSC",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "12.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "DRH",
-      "close": 1610.0,
+      "close": 1560.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.16,
       "sector": "Unknown",
       "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TDG",
-      "close": 2460.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "1.0",
       "group": "Unknown"
     },
     {
@@ -2067,24 +3606,6 @@
       "group": "Unknown"
     },
     {
-      "ticker": "FRT",
-      "close": 135100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "7.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "GEE",
-      "close": 70500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "27.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "VNL",
       "close": 0.0,
       "pe": null,
@@ -2094,156 +3615,12 @@
       "group": "Unknown"
     },
     {
-      "ticker": "VHC",
-      "close": 53600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "20.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CTD",
-      "close": 64000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SGT",
-      "close": 9900.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "6.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DLG",
-      "close": 2270.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "26.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "STB",
-      "close": 74500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "BSI",
-      "close": 28600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "5.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PAN",
-      "close": 21300.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "19.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "APH",
-      "close": 5670.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "ADG",
-      "close": 8340.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HID",
-      "close": 3600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TBC",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SHP",
-      "close": 30700.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SHB",
-      "close": 11800.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TIP",
-      "close": 17000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "FCN",
-      "close": 10750.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "HAS",
-      "close": 7610.0,
+      "close": 8560.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.52,
       "sector": "Unknown",
       "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "GAS",
-      "close": 69200.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
       "group": "Unknown"
     },
     {
@@ -2256,42 +3633,6 @@
       "group": "Unknown"
     },
     {
-      "ticker": "VSH",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "GDT",
-      "close": 16100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "16.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DCM",
-      "close": 30750.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "ACL",
-      "close": 11750.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "20.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "CRV",
       "close": 0.0,
       "pe": null,
@@ -2301,183 +3642,12 @@
       "group": "Unknown"
     },
     {
-      "ticker": "BRC",
-      "close": 12000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "17.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "ACG",
-      "close": 31600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "26.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "NLG",
-      "close": 22200.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "KSB",
-      "close": 13650.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "10.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PNJ",
-      "close": 37700.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "7.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "IJC",
-      "close": 7380.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SFI",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DSE",
-      "close": 22650.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "5.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "ELC",
-      "close": 16450.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "6.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "NAB",
-      "close": 12100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VVS",
-      "close": 103400.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "1.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HSG",
-      "close": 10850.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "21.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "NVT",
-      "close": 7090.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "25.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "TMT",
-      "close": 10950.0,
+      "close": 11000.0,
       "pe": null,
-      "pb": null,
+      "pb": 2.4,
       "sector": "Unknown",
       "industry": "26.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CNG",
-      "close": 19000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DCL",
-      "close": 44000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "8.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "FCM",
-      "close": 3150.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "21.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SIP",
-      "close": 51400.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "ADS",
-      "close": 8050.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "16.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CCL",
-      "close": 3670.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
       "group": "Unknown"
     },
     {
@@ -2490,66 +3660,12 @@
       "group": "Unknown"
     },
     {
-      "ticker": "PGI",
-      "close": 23300.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "2.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "MDG",
-      "close": 37000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "10.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "TMS",
       "close": 0.0,
       "pe": null,
       "pb": null,
       "sector": "Unknown",
       "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TPB",
-      "close": 14750.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "NHH",
-      "close": 10100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "15.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PLX",
-      "close": 33350.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "1.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "LM8",
-      "close": 13000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
       "group": "Unknown"
     },
     {
@@ -2562,15 +3678,6 @@
       "group": "Unknown"
     },
     {
-      "ticker": "SAV",
-      "close": 12850.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "16.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "GTA",
       "close": 0.0,
       "pe": null,
@@ -2580,147 +3687,12 @@
       "group": "Unknown"
     },
     {
-      "ticker": "CMX",
-      "close": 4770.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "20.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "NHT",
-      "close": 11500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "26.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PDV",
-      "close": 8200.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VCG",
-      "close": 16050.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PVD",
-      "close": 17900.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "10.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DXG",
-      "close": 11050.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CSV",
-      "close": 21650.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "NNC",
-      "close": 40250.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "10.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TRA",
-      "close": 37900.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "8.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PTB",
-      "close": 33950.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "26.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "GEX",
-      "close": 24950.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "27.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HPX",
-      "close": 4460.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SC5",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "NBB",
-      "close": 17100.0,
+      "close": 17150.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.94,
       "sector": "Unknown",
       "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SGR",
-      "close": 11850.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "RAL",
-      "close": 80700.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "27.0",
       "group": "Unknown"
     },
     {
@@ -2734,155 +3706,20 @@
     },
     {
       "ticker": "PIT",
-      "close": 7700.0,
+      "close": 7760.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.98,
       "sector": "Unknown",
       "industry": "1.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "BIC",
-      "close": 21300.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "2.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SVT",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "26.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PET",
-      "close": 40050.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "1.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HDG",
-      "close": 16800.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "NT2",
-      "close": 21350.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "BCE",
-      "close": 5430.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "REE",
-      "close": 47650.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "AST",
-      "close": 63600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "MBB",
-      "close": 24350.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SGN",
-      "close": 55500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VFG",
-      "close": 45600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "1.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "MCM",
-      "close": 26000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "19.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "GVR",
-      "close": 28250.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
       "group": "Unknown"
     },
     {
       "ticker": "TDH",
-      "close": 3350.0,
+      "close": 3340.0,
       "pe": null,
-      "pb": null,
+      "pb": 2.14,
       "sector": "Unknown",
       "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CCC",
-      "close": 7380.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CLL",
-      "close": 27200.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
       "group": "Unknown"
     },
     {
@@ -2895,201 +3732,21 @@
       "group": "Unknown"
     },
     {
-      "ticker": "LCG",
-      "close": 7270.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HCM",
-      "close": 25900.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "5.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VSC",
-      "close": 14650.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "KMR",
-      "close": 2360.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "16.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DRC",
-      "close": 10450.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "17.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HRC",
-      "close": 34550.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SBA",
-      "close": 25150.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "EVF",
-      "close": 12550.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "ORS",
-      "close": 14150.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "5.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TYA",
-      "close": 17000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "27.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "ADP",
-      "close": 23050.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VBB",
-      "close": 12800.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "LIX",
-      "close": 24500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HVH",
-      "close": 10650.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PAC",
-      "close": 16000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "27.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HTI",
-      "close": 18900.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PDN",
-      "close": 96000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "TLH",
-      "close": 4020.0,
+      "close": 3980.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.35,
       "sector": "Unknown",
       "industry": "1.0",
       "group": "Unknown"
     },
     {
-      "ticker": "VIB",
-      "close": 14900.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "MIG",
-      "close": 16800.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "2.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "LDG",
-      "close": 2940.0,
+      "close": 2890.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.6,
       "sector": "Unknown",
       "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "AAA",
-      "close": 7230.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
       "group": "Unknown"
     },
     {
@@ -3102,111 +3759,12 @@
       "group": "Unknown"
     },
     {
-      "ticker": "VTP",
-      "close": 50900.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "GEL",
-      "close": 29500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "1.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SVD",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "16.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SRF",
-      "close": 7980.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SVC",
-      "close": 17500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "7.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DXS",
-      "close": 5900.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TEG",
-      "close": 6200.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "21.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HAH",
-      "close": 46050.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "VMD",
       "close": 0.0,
       "pe": null,
       "pb": null,
       "sector": "Unknown",
       "industry": "1.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VNS",
-      "close": 7500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "RYG",
-      "close": 9000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "16.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HPA",
-      "close": 31900.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "12.0",
       "group": "Unknown"
     },
     {
@@ -3219,102 +3777,12 @@
       "group": "Unknown"
     },
     {
-      "ticker": "ITD",
-      "close": 13900.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "6.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "KDH",
-      "close": 18450.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TVB",
-      "close": 7180.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "5.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SCR",
-      "close": 4650.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HUB",
-      "close": 12100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CHP",
-      "close": 27500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PTC",
-      "close": 6000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "EVG",
-      "close": 4500.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "LGL",
-      "close": 5000.0,
+      "close": 4990.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.38,
       "sector": "Unknown",
       "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DHC",
-      "close": 34800.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "26.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HTN",
-      "close": 7100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
       "group": "Unknown"
     },
     {
@@ -3327,39 +3795,12 @@
       "group": "Unknown"
     },
     {
-      "ticker": "BSR",
-      "close": 24450.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "26.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CRC",
-      "close": 5680.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "21.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "COM",
       "close": 0.0,
       "pe": null,
       "pb": null,
       "sector": "Unknown",
       "industry": "7.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HDC",
-      "close": 12100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
       "group": "Unknown"
     },
     {
@@ -3372,120 +3813,12 @@
       "group": "Unknown"
     },
     {
-      "ticker": "TTF",
-      "close": 1850.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "16.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "KDC",
-      "close": 51900.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "19.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TCO",
-      "close": 10550.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CTR",
-      "close": 74200.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "6.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "SZL",
       "close": 0.0,
       "pe": null,
       "pb": null,
       "sector": "Unknown",
       "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CTG",
-      "close": 32150.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "EVE",
-      "close": 8450.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "16.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "LBM",
-      "close": 27100.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "21.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "BKG",
-      "close": 2160.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "26.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CII",
-      "close": 14250.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TDM",
-      "close": 60300.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "ACC",
-      "close": 4320.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "21.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DVP",
-      "close": 78200.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
       "group": "Unknown"
     },
     {
@@ -3498,57 +3831,12 @@
       "group": "Unknown"
     },
     {
-      "ticker": "BTP",
-      "close": 7450.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "DQC",
-      "close": 9600.0,
+      "close": 9800.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.35,
       "sector": "Unknown",
       "industry": "27.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SAB",
-      "close": 44600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "19.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PPC",
-      "close": 8890.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SSB",
-      "close": 15400.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TV2",
-      "close": 26400.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "28.0",
       "group": "Unknown"
     },
     {
@@ -3561,264 +3849,21 @@
       "group": "Unknown"
     },
     {
-      "ticker": "GSP",
-      "close": 10850.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "BWE",
-      "close": 43800.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CTF",
-      "close": 18550.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "7.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DAT",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "20.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "OPC",
-      "close": 21450.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "8.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PVP",
-      "close": 16750.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "GHC",
-      "close": 24150.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "POW",
-      "close": 13750.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VDP",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "8.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "CRE",
-      "close": 7150.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "LSS",
-      "close": 7990.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "19.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "GIL",
       "close": 7890.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.33,
       "sector": "Unknown",
       "industry": "16.0",
       "group": "Unknown"
     },
     {
-      "ticker": "CSM",
-      "close": 14600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "17.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VNM",
-      "close": 59000.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "19.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "TLD",
-      "close": 8290.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "26.0",
-      "group": "Unknown"
-    },
-    {
       "ticker": "NTL",
-      "close": 13850.0,
+      "close": 13700.0,
       "pe": null,
-      "pb": null,
+      "pb": 0.96,
       "sector": "Unknown",
       "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "NTC",
-      "close": 129400.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "SCS",
-      "close": 44650.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "LHG",
-      "close": 27550.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "AGG",
-      "close": 11600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "BID",
-      "close": 38250.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HNA",
-      "close": 23400.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "MZG",
-      "close": 11900.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "26.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DPG",
-      "close": 31400.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "24.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "ABT",
-      "close": 50400.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "20.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "AFX",
-      "close": 10800.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "19.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DSC",
-      "close": 10800.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "5.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "HAR",
-      "close": 2990.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "3.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "DHG",
-      "close": 94600.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "8.0",
       "group": "Unknown"
     },
     {
@@ -3828,51 +3873,6 @@
       "pb": null,
       "sector": "Unknown",
       "industry": "22.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "OGC",
-      "close": 2230.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "29.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "PLP",
-      "close": 4370.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "18.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "ACB",
-      "close": 22400.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "11.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "ILB",
-      "close": 19750.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "VOS",
-      "close": 11150.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "23.0",
       "group": "Unknown"
     }
   ]
