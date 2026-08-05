@@ -1,8 +1,8 @@
 name: 🔄 Weekly Fundamentals Refresh
 
 on:
-  schedule:
-    - cron: '10 10 * * 6'   # Every Saturday 10:10 UTC
+  # schedule:
+  #   - cron: '0 1 * * 0'
   workflow_dispatch:
     inputs:
       reason:
@@ -14,7 +14,7 @@ jobs:
   refresh-fundamentals:
     name: Fetch EPS & BVPS for all HOSE tickers
     runs-on: ubuntu-latest
-    timeout-minutes: 120   # ~400 tickers × ~7 s avg = ~47 min; 120 min is safe
+    timeout-minutes: 120
 
     permissions:
       contents: write
@@ -36,43 +36,47 @@ jobs:
       - name: Install dependencies
         run: pip install --upgrade pip && pip install -r requirements.txt
 
-      # ── Diagnostics ────────────────────────────────────────────────────────
       - name: Diagnose environment
         run: |
-          echo "=== Python version ==="
+          echo "=== Python & vnstock ==="
           python --version
+          pip show vnstock | grep -E "Name|Version" || echo "vnstock not found"
 
-          echo "=== vnstock version ==="
-          pip show vnstock | grep -E "Name|Version|Location" || echo "vnstock not found!"
-
-          echo "=== Test vnstock top-level imports ==="
+          echo "=== vnstock imports ==="
           python -c "
-          for cls in ['Reference', 'Finance', 'Trading']:
+          for cls in ['Reference', 'Fundamental', 'Trading']:
               try:
                   exec(f'from vnstock import {cls}; print(f\"  {cls} OK\")')
               except Exception as e:
                   print(f'  {cls} FAILED: {e}')
           "
 
-          echo "=== Test scripts.config import ==="
+          echo "=== Test ratio() column format ==="
           python -c "
-          import sys, os
-          sys.path.insert(0, os.getcwd())
-          from scripts.config import EXCHANGE, VINGROUP_TICKERS, FUND_BATCH_SLEEP, FUND_BATCH_EVERY
-          print(f'  config OK — EXCHANGE={EXCHANGE}')
-          print(f'  rate-limit settings: sleep={FUND_BATCH_SLEEP}s, batch_every={FUND_BATCH_EVERY}')
-          " || echo "  scripts.config import FAILED"
+          import sys; sys.path.insert(0, '.')
+          try:
+              from vnstock import Fundamental
+              df = Fundamental().equity('VCB').ratio(lang='en')
+              print(f'  ratio() columns: {list(df.columns)}')
+              print(f'  Sample period: {df[\"period\"].iloc[0] if \"period\" in df.columns else \"N/A\"}')
+              print(f'  trailing_eps present: {\"trailing_eps\" in df.columns}')
+              print(f'  book_value_per_share present: {\"book_value_per_share\" in df.columns}')
+          except Exception as e:
+              print(f'  ratio() test FAILED: {e}')
+          "
 
-          echo "=== Workspace files ==="
-          find . -not -path './.git/*' -type f | sort
+          echo "=== scripts.config import ==="
+          python -c "
+          import sys; sys.path.insert(0, '.')
+          from scripts.config import EXCHANGE, FUND_BATCH_SLEEP, FUND_BATCH_EVERY
+          print(f'  OK — EXCHANGE={EXCHANGE}, sleep={FUND_BATCH_SLEEP}s, every={FUND_BATCH_EVERY}')
+          " || echo "  scripts.config FAILED"
 
-      # ── Main script ────────────────────────────────────────────────────────
-      - name: Fetch Finance.ratio() for all HOSE tickers
+      - name: Fetch TTM EPS & BVPS for all HOSE tickers
         env:
           VNSTOCK_API_KEY: ${{ secrets.VNSTOCK_API_KEY }}
         run: python scripts/fetch_fundamentals.py
 
-      # ── Commit results ──────────────────────────────────────────────────────
       - name: Commit and push fundamentals cache
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -86,12 +90,11 @@ jobs:
             git commit -m "🔄 Weekly fundamentals refresh ${DATE} (${COUNT} tickers) [skip ci]"
             for i in 1 2 3; do
               git pull --rebase origin main && git push origin main && break
-              echo "Push attempt $i failed. Waiting 10s before retry..."
+              echo "Push attempt $i failed. Waiting 10s..."
               sleep 10
             done
           fi
 
-      # ── Job summary ────────────────────────────────────────────────────────
       - name: Write job summary
         if: always()
         run: |
@@ -99,4 +102,4 @@ jobs:
           echo "### 🔄 Weekly Fundamentals — ${DATE}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           python3 scripts/generate_summary.py >> $GITHUB_STEP_SUMMARY \
-            || echo "⚠️ data/fundamentals.parquet not found after fetch." >> $GITHUB_STEP_SUMMARY
+            || echo "⚠️ data/fundamentals.parquet not found." >> $GITHUB_STEP_SUMMARY
