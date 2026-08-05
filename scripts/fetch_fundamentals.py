@@ -159,34 +159,47 @@ def get_sector_map(tickers: list[str]) -> pd.DataFrame:
         except Exception as exc:
             log.warning(f"Sector '{label}' failed: {exc}")
 
-    if raw is None:
+    if raw is None or raw.empty:
         log.warning("No sector data — all tickers will be 'Unknown'.")
         base["group"] = "Unknown"
         mask = base["ticker"].isin(VINGROUP_TICKERS)
         base.loc[mask, "group"] = VINGROUP_GROUP
         return base
 
-    cols = list(raw.columns)
-    cl   = [c.lower() for c in cols]
-    ticker_col   = next((cols[i] for i, c in enumerate(cl) if c in
-                         ("ticker", "symbol", "code", "stockcode")), None)
-    sector_col   = next((cols[i] for i, c in enumerate(cl) if any(p in c for p in
-                         ("sector", "linh_vuc", "icbname", "groupname"))), None)
-    industry_col = next((cols[i] for i, c in enumerate(cl) if any(p in c for p in
-                         ("industry", "nganh", "industryname"))), None)
-    log.info(f"  Detected → ticker='{ticker_col}' sector='{sector_col}' industry='{industry_col}'")
+    # New vnstock4 format (icb_level and icb_name)
+    if "icb_level" in raw.columns and "icb_name" in raw.columns and "symbol" in raw.columns:
+        lookup = pd.DataFrame({"ticker": raw["symbol"].astype(str).str.upper().str.strip()}).drop_duplicates()
+        
+        sectors = raw[raw["icb_level"] == 2][["symbol", "icb_name"]].rename(columns={"symbol": "ticker", "icb_name": "sector"})
+        sectors["ticker"] = sectors["ticker"].astype(str).str.upper().str.strip()
+        
+        industries = raw[raw["icb_level"] == 4][["symbol", "icb_name"]].rename(columns={"symbol": "ticker", "icb_name": "industry"})
+        industries["ticker"] = industries["ticker"].astype(str).str.upper().str.strip()
+        
+        lookup = lookup.merge(sectors, on="ticker", how="left").merge(industries, on="ticker", how="left")
+    else:
+        # Fallback for old flat format
+        cols = list(raw.columns)
+        cl   = [c.lower() for c in cols]
+        ticker_col   = next((cols[i] for i, c in enumerate(cl) if c in
+                             ("ticker", "symbol", "code", "stockcode")), None)
+        sector_col   = next((cols[i] for i, c in enumerate(cl) if any(p in c for p in
+                             ("sector", "linh_vuc", "icbname", "groupname", "icb_name"))), None)
+        industry_col = next((cols[i] for i, c in enumerate(cl) if any(p in c for p in
+                             ("industry", "nganh", "industryname"))), None)
+        log.info(f"  Detected fallback columns → ticker='{ticker_col}' sector='{sector_col}' industry='{industry_col}'")
 
-    if ticker_col is None:
-        log.warning("Cannot detect ticker column. Sector map skipped.")
-        base["group"] = "Unknown"
-        mask = base["ticker"].isin(VINGROUP_TICKERS)
-        base.loc[mask, "group"] = VINGROUP_GROUP
-        return base
+        if ticker_col is None:
+            log.warning("Cannot detect ticker column. Sector map skipped.")
+            base["group"] = "Unknown"
+            mask = base["ticker"].isin(VINGROUP_TICKERS)
+            base.loc[mask, "group"] = VINGROUP_GROUP
+            return base
 
-    lookup = pd.DataFrame({"ticker": raw[ticker_col].astype(str).str.upper().str.strip()})
-    if sector_col:   lookup["sector"]   = raw[sector_col].values
-    if industry_col: lookup["industry"] = raw[industry_col].values
-    lookup = lookup.drop_duplicates(subset="ticker", keep="first")
+        lookup = pd.DataFrame({"ticker": raw[ticker_col].astype(str).str.upper().str.strip()})
+        if sector_col:   lookup["sector"]   = raw[sector_col].values
+        if industry_col: lookup["industry"] = raw[industry_col].values
+        lookup = lookup.drop_duplicates(subset="ticker", keep="first")
 
     base = base.drop(columns=["sector", "industry"], errors="ignore")
     base = base.merge(lookup, on="ticker", how="left")

@@ -6,6 +6,9 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
@@ -128,7 +131,7 @@ table.dataTable tbody tr:hover td{background:var(--hover)!important}
 <div class="page">
   <header class="hdr">
     <div>
-      <h1>🇻🇳 VN-HOSE P/E &amp; P/B</h1>
+      <h1>📊 VN-HOSE P/E &amp; P/B</h1>
       <p>As of <span class="hl" id="hdr-date"></span> &nbsp;·&nbsp; PE = Close / TTM EPS &nbsp; PB = Close / BVPS</p>
     </div>
     <button class="theme-btn" onclick="toggleTheme()">
