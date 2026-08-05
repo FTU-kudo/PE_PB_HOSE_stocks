@@ -1,8 +1,8 @@
 name: 📊 Daily P/E & P/B Update
 
 on:
-  schedule:
-    - cron: '5 9 * * 1-5'   # 09:05 UTC = 16:05 ICT, Mon–Fri
+  # schedule:
+  #   - cron: '5 9 * * 1-5'
   workflow_dispatch:
     inputs:
       force_run:
@@ -35,7 +35,6 @@ jobs:
       - name: Install dependencies
         run: pip install --upgrade pip && pip install -r requirements.txt
 
-      # ── Diagnostics ──────────────────────────────────────────────────────────
       - name: Diagnose environment
         run: |
           echo "=== Python & vnstock ==="
@@ -44,7 +43,7 @@ jobs:
 
           echo "=== vnstock imports ==="
           python -c "
-          for cls in ['Reference', 'Finance', 'Trading']:
+          for cls in ['Reference', 'Trading']:
               try:
                   exec(f'from vnstock import {cls}; print(f\"  {cls} OK\")')
               except Exception as e:
@@ -58,23 +57,22 @@ jobs:
           df    = pd.read_parquet('data/fundamentals.parquet')
           mtime = datetime.date.fromtimestamp(os.path.getmtime('data/fundamentals.parquet'))
           print(f'  {len(df)} tickers | cache date: {mtime}')
-          print(f'  EPS valid: {df[\"eps_ttm\"].notna().sum()} | BVPS valid: {df[\"bvps\"].notna().sum()}')
+          print(f'  Columns: {list(df.columns)}')
+          print(f'  TTM EPS valid: {df[\"eps_ttm\"].notna().sum()} | BVPS valid: {df[\"bvps\"].notna().sum()}')
           "
           else
             echo "  WARNING: data/fundamentals.parquet not found — run Weekly Fundamentals first."
           fi
 
-      # ── Self-healing fallback: ensure fundamentals exist ─────────────────────
       - name: Ensure fundamentals cache exists
         env:
           VNSTOCK_API_KEY: ${{ secrets.VNSTOCK_API_KEY }}
         run: |
           if [ ! -f data/fundamentals.parquet ]; then
-            echo "Fundamentals cache missing. Auto-running weekly fundamentals fetch..."
+            echo "Fundamentals missing. Auto-running fetch..."
             python scripts/fetch_fundamentals.py
           fi
 
-      # ── Main scripts ─────────────────────────────────────────────────────────
       - name: Compute daily PE/PB
         env:
           VNSTOCK_API_KEY: ${{ secrets.VNSTOCK_API_KEY }}
@@ -83,7 +81,6 @@ jobs:
       - name: Build GitHub Pages dashboard
         run: python scripts/build_dashboard.py
 
-      # ── Commit & push ─────────────────────────────────────────────────────────
       - name: Commit and push data + dashboard
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -96,12 +93,11 @@ jobs:
             git commit -m "📊 P/E P/B daily update ${DATE} [skip ci]"
             for i in 1 2 3; do
               git pull --rebase origin main && git push origin main && break
-              echo "Push attempt $i failed. Waiting 10s before retry..."
+              echo "Push attempt $i failed. Waiting 10s..."
               sleep 10
             done
           fi
 
-      # ── Job summary ───────────────────────────────────────────────────────────
       - name: Write job summary
         if: always()
         run: |
