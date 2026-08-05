@@ -186,7 +186,7 @@ def get_sector_map(tickers: list[str]) -> pd.DataFrame:
         sector_col   = next((cols[i] for i, c in enumerate(cl) if any(p in c for p in
                              ("sector", "linh_vuc", "icbname", "groupname", "icb_name"))), None)
         industry_col = next((cols[i] for i, c in enumerate(cl) if any(p in c for p in
-                             ("industry", "nganh", "industryname"))), None)
+                             ("industryname", "industry_name", "nganh", "industry")) and "code" not in c), None)
         log.info(f"  Detected fallback columns → ticker='{ticker_col}' sector='{sector_col}' industry='{industry_col}'")
 
         if ticker_col is None:
@@ -197,8 +197,14 @@ def get_sector_map(tickers: list[str]) -> pd.DataFrame:
             return base
 
         lookup = pd.DataFrame({"ticker": raw[ticker_col].astype(str).str.upper().str.strip()})
-        if sector_col:   lookup["sector"]   = raw[sector_col].values
-        if industry_col: lookup["industry"] = raw[industry_col].values
+        if sector_col:
+            lookup["sector"] = raw[sector_col].values
+        elif industry_col:
+            lookup["sector"] = raw[industry_col].values
+            
+        if industry_col:
+            lookup["industry"] = raw[industry_col].values
+            
         lookup = lookup.drop_duplicates(subset="ticker", keep="first")
 
     base = base.drop(columns=["sector", "industry"], errors="ignore")
