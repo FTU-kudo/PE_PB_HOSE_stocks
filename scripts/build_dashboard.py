@@ -52,7 +52,7 @@ def load_data():
 
 def build_payload(tl, t30, sl, s30, ld):
     all_pe = tl["pe"].dropna(); all_pb = tl["pb"].dropna()
-    vn_idx = sl[sl["group"] == "VN-Index"].iloc[0] if not sl[sl["group"] == "VN-Index"].empty else None
+    vn_idx = sl[sl["group"] == "VN-Index"].iloc[-1] if not sl[sl["group"] == "VN-Index"].empty else None
     
     m_pe = _safe(vn_idx["median_pe"]) if vn_idx is not None else _safe(all_pe.median())
     m_pb = _safe(vn_idx["median_pb"]) if vn_idx is not None else _safe(all_pb.median())
@@ -64,28 +64,6 @@ def build_payload(tl, t30, sl, s30, ld):
               "weighted_pe": w_pe, "weighted_pb": w_pb,
               "total": len(tl), "valid_pe": int(all_pe.notna().sum()),
               "valid_pb": int(all_pb.notna().sum())}
-
-    tl_ex = tl[tl["group"] != VINGROUP_GROUP].copy()
-    pe_ex = tl_ex["pe"].dropna()
-    pb_ex = tl_ex["pb"].dropna()
-    
-    if "shares" not in tl_ex.columns: tl_ex["shares"] = 0
-    pe_ex_valid = tl_ex[tl_ex["pe"].notna() & (tl_ex["shares"] > 0)].copy()
-    pe_ex_valid["eps_ttm"] = pe_ex_valid["close"] / pe_ex_valid["pe"]
-    s_mc_pe = (pe_ex_valid["close"] * pe_ex_valid["shares"]).sum()
-    s_er_pe = (pe_ex_valid["eps_ttm"] * pe_ex_valid["shares"]).sum()
-    w_pe_ex = _safe(s_mc_pe / s_er_pe) if len(pe_ex_valid) > 0 and s_er_pe > 0 else None
-    
-    pb_ex_valid = tl_ex[tl_ex["pb"].notna() & (tl_ex["shares"] > 0)].copy()
-    pb_ex_valid["bvps"] = pb_ex_valid["close"] / pb_ex_valid["pb"]
-    s_mc_pb = (pb_ex_valid["close"] * pb_ex_valid["shares"]).sum()
-    s_bv_pb = (pb_ex_valid["bvps"] * pb_ex_valid["shares"]).sum()
-    w_pb_ex = _safe(s_mc_pb / s_bv_pb) if len(pb_ex_valid) > 0 and s_bv_pb > 0 else None
-
-    market_ex = {
-        "median_pe": _safe(pe_ex.median()), "median_pb": _safe(pb_ex.median()),
-        "weighted_pe": w_pe_ex, "weighted_pb": w_pb_ex
-    }
 
     vg = tl[tl["ticker"].isin(VINGROUP_TICKERS)][["ticker","close","pe","pb"]].copy()
     vingroup = _records(vg)
@@ -105,9 +83,10 @@ def build_payload(tl, t30, sl, s30, ld):
                       "pe": [_safe(v) for v in sub["median_pe"]],
                       "pb": [_safe(v) for v in sub["median_pb"]]}
 
-    tbl = ["ticker","close","pe","pb","sector","industry","group"]
+    tbl = ["ticker","close","pe","pb","sector","industry","group","shares"]
+    if "shares" not in tl.columns: tl["shares"] = 0
     tickers = _records(tl[[c for c in tbl if c in tl.columns]].sort_values("pe", na_position="last"))
-    return {"market": market, "market_ex": market_ex, "vingroup": vingroup, "sectors": sectors,
+    return {"market": market, "vingroup": vingroup, "sectors": sectors,
             "trend": trend, "tickers": tickers}
 
 
@@ -185,9 +164,15 @@ table.dataTable tbody tr:hover td{background:var(--hover)!important}
       <div class="gvg" id="vg-cards" style="grid-template-columns: repeat(2, 1fr);"></div>
     </div>
     <div class="card mb8">
-      <div class="sec">⚖️ Market Valuation (Excl. Vingroup)</div>
-      <div class="sec-sub">Impact of Vingroup Ecosystem on VN-Index</div>
-      <canvas id="chart-ex-vin" height="200"></canvas>
+      <div class="sec">⚖️ Market Valuation</div>
+      <div class="sec-sub">Select sectors to exclude from VN-Index calculation (Ctrl/Cmd+Click to select multiple):</div>
+      <div style="margin-bottom: 12px">
+        <select id="sector-select" multiple style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--border); background: var(--card2); color: var(--text); height: 90px; outline: none; font-size: 0.85rem;" onchange="updateMarketExChart()">
+        </select>
+      </div>
+      <div style="position: relative; height: 260px; width: 100%;">
+        <canvas id="chart-ex-vin"></canvas>
+      </div>
     </div>
   </div>
 
@@ -230,7 +215,7 @@ function fmt(v,dp=2){return v==null?'—':(+v).toFixed(dp);}
 function fmtK(v){return v==null?'—':(v/1000).toFixed(1)+'K';}
 document.addEventListener('DOMContentLoaded',()=>{
   const dk=_it==='dark';document.getElementById('theme-icon').textContent=dk?'☀️':'🌙';document.getElementById('theme-label').textContent=dk?'Light mode':'Dark mode';
-  const m=D.market; const m_ex=D.market_ex;
+  const m=D.market;
   document.getElementById('hdr-date').textContent=m.date;
   document.getElementById('mkt-wpe').textContent=fmt(m.weighted_pe);
   document.getElementById('mkt-pe').textContent=fmt(m.median_pe);
@@ -247,8 +232,50 @@ document.addEventListener('DOMContentLoaded',()=>{
   charts.pe=new Chart(document.getElementById('chart-pe'),{type:'bar',data:{labels:sects.map(s=>s.group),datasets:[{data:sects.map(s=>s.median_pe),backgroundColor:sects.map(s=>peCol(s.median_pe)),borderRadius:5}]},options:{...barOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` P/E: ${ctx.parsed.x.toFixed(1)}`}}}}});
   const sectsB=D.sectors.filter(s=>s.median_pb!=null);
   charts.pb=new Chart(document.getElementById('chart-pb'),{type:'bar',data:{labels:sectsB.map(s=>s.group),datasets:[{data:sectsB.map(s=>s.median_pb),backgroundColor:'#818cf8',borderRadius:5}]},options:{...barOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` P/B: ${ctx.parsed.x.toFixed(2)}`}}}}});
-  
-  charts.ex_vin=new Chart(document.getElementById('chart-ex-vin'),{type:'bar',data:{labels:['Weighted P/E','Median P/E','Weighted P/B','Median P/B'],datasets:[{label:'VN-Index',data:[m.weighted_pe,m.median_pe,m.weighted_pb,m.median_pb],backgroundColor:'#38bdf8',borderRadius:4},{label:'VN-Index (Excl. Vingroup)',data:[m_ex.weighted_pe,m_ex.median_pe,m_ex.weighted_pb,m_ex.median_pb],backgroundColor:'#818cf8',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:tc.leg,font:{size:11},boxWidth:14}}},scales:{x:{grid:{display:false},ticks:{color:tc.ticks}},y:{grid:{color:tc.grid},ticks:{color:tc.ticks}}}}});
+  charts.ex_vin=new Chart(document.getElementById('chart-ex-vin'),{type:'bar',data:{labels:['Weighted P/E','Median P/E','Weighted P/B','Median P/B'],datasets:[{label:'VN-Index',data:[m.weighted_pe,m.median_pe,m.weighted_pb,m.median_pb],backgroundColor:'#38bdf8',borderRadius:4},{label:'VN-Index (Excl. Selected)',data:[0,0,0,0],backgroundColor:'#818cf8',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:tc.leg,font:{size:11},boxWidth:14}}},scales:{x:{grid:{display:false},ticks:{color:tc.ticks}},y:{grid:{color:tc.grid},ticks:{color:tc.ticks}}}}});
+
+  const groups = [...new Set(D.tickers.map(t=>t.group).filter(Boolean))].sort();
+  const sel = document.getElementById('sector-select');
+  groups.forEach(g => {
+    const opt = document.createElement('option');
+    opt.value = g; opt.textContent = g;
+    if (g === 'Vingroup Ecosystem') opt.selected = true;
+    sel.appendChild(opt);
+  });
+
+  window.updateMarketExChart = function() {
+    const excluded = Array.from(sel.selectedOptions).map(o => o.value);
+    const tl_ex = D.tickers.filter(t => !excluded.includes(t.group));
+    
+    let s_mc_pe = 0, s_er_pe = 0; const pe_arr = [];
+    let s_mc_pb = 0, s_bv_pb = 0; const pb_arr = [];
+    
+    tl_ex.forEach(t => {
+      if (t.pe != null) {
+        if (t.shares > 0) { s_mc_pe += t.close * t.shares; s_er_pe += (t.close / t.pe) * t.shares; }
+        pe_arr.push(t.pe);
+      }
+      if (t.pb != null) {
+        if (t.shares > 0) { s_mc_pb += t.close * t.shares; s_bv_pb += (t.close / t.pb) * t.shares; }
+        pb_arr.push(t.pb);
+      }
+    });
+    
+    const w_pe_ex = s_er_pe > 0 ? (s_mc_pe / s_er_pe) : null;
+    pe_arr.sort((a,b)=>a-b);
+    const m_pe_ex = pe_arr.length > 0 ? (pe_arr.length%2===0 ? (pe_arr[pe_arr.length/2-1]+pe_arr[pe_arr.length/2])/2 : pe_arr[Math.floor(pe_arr.length/2)]) : null;
+    
+    const w_pb_ex = s_bv_pb > 0 ? (s_mc_pb / s_bv_pb) : null;
+    pb_arr.sort((a,b)=>a-b);
+    const m_pb_ex = pb_arr.length > 0 ? (pb_arr.length%2===0 ? (pb_arr[pb_arr.length/2-1]+pb_arr[pb_arr.length/2])/2 : pb_arr[Math.floor(pb_arr.length/2)]) : null;
+    
+    if (charts.ex_vin) {
+      charts.ex_vin.data.datasets[1].data = [w_pe_ex, m_pe_ex, w_pb_ex, m_pb_ex];
+      charts.ex_vin.data.datasets[1].label = excluded.length > 0 ? 'VN-Index (Excl. Selected)' : 'VN-Index (No Exclusions)';
+      charts.ex_vin.update();
+    }
+  };
+  window.updateMarketExChart();
 
   const tG=Object.keys(D.trend);
   if(tG.length>0){charts.trend=new Chart(document.getElementById('chart-trend'),{type:'line',data:{datasets:tG.map((g,i)=>({label:g,data:D.trend[g].dates.map((d,j)=>({x:d,y:D.trend[g].pe[j]})),borderColor:PAL[i%PAL.length],backgroundColor:'transparent',tension:.35,pointRadius:0,borderWidth:2}))},options:{responsive:true,scales:{x:{type:'category',ticks:{color:tc.ticks,maxRotation:45,autoSkip:true,maxTicksLimit:15},grid:{color:tc.grid}},y:{title:{display:true,text:'Median P/E',color:tc.ticks},grid:{color:tc.grid},ticks:{color:tc.ticks}}},plugins:{legend:{labels:{color:tc.leg,font:{size:11},boxWidth:14}}}}});}else{document.getElementById('trend-msg').textContent='Trend appears after the second trading day.';}
