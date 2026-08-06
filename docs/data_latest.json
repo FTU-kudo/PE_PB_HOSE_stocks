@@ -1,32 +1,26 @@
 {
   "market": {
     "date": "2026-08-06",
-    "median_pe": 10.29,
-    "median_pb": 0.97,
+    "median_pe": 10.31,
+    "median_pb": 0.96,
     "weighted_pe": null,
     "weighted_pb": null,
     "total": 403,
-    "valid_pe": 319,
-    "valid_pb": 343
-  },
-  "market_ex": {
-    "median_pe": 10.15,
-    "median_pb": 0.96,
-    "weighted_pe": null,
-    "weighted_pb": null
+    "valid_pe": 324,
+    "valid_pb": 348
   },
   "vingroup": [
     {
       "ticker": "VRE",
-      "close": 25500.0,
-      "pe": 11.89,
+      "close": 25550.0,
+      "pe": 11.92,
       "pb": 1.27
     },
     {
       "ticker": "VPL",
-      "close": 79200.0,
-      "pe": 333.18,
-      "pb": 3.95
+      "close": 79000.0,
+      "pe": 332.34,
+      "pb": 3.94
     },
     {
       "ticker": "VIC",
@@ -36,9 +30,9 @@
     },
     {
       "ticker": "VHM",
-      "close": 78400.0,
-      "pe": 12.53,
-      "pb": 1.37
+      "close": 78000.0,
+      "pe": 12.46,
+      "pb": 1.36
     }
   ],
   "sectors": [
@@ -47,14 +41,14 @@
       "count": 1,
       "valid_pe": 1,
       "valid_pb": 1,
-      "median_pe": 3.83,
+      "median_pe": 3.85,
       "median_pb": 0.35,
-      "mean_pe": 3.83,
+      "mean_pe": 3.85,
       "mean_pb": 0.35,
       "weighted_pe": null,
       "weighted_pb": null,
-      "p25_pe": 3.83,
-      "p75_pe": 3.83,
+      "p25_pe": 3.85,
+      "p75_pe": 3.85,
       "p25_pb": 0.35,
       "p75_pb": 0.35
     },
@@ -63,7 +57,7 @@
       "count": 23,
       "valid_pe": 23,
       "valid_pb": 23,
-      "median_pe": 6.56,
+      "median_pe": 6.59,
       "median_pb": 1.1,
       "mean_pe": 7.96,
       "mean_pb": 1.29,
@@ -85,7 +79,7 @@
       "mean_pb": 1.07,
       "weighted_pe": null,
       "weighted_pb": null,
-      "p25_pe": 6.71,
+      "p25_pe": 6.69,
       "p75_pe": 10.27,
       "p25_pb": 0.49,
       "p75_pb": 1.04
@@ -95,14 +89,14 @@
       "count": 10,
       "valid_pe": 9,
       "valid_pb": 9,
-      "median_pe": 7.65,
+      "median_pe": 7.66,
       "median_pb": 0.56,
-      "mean_pe": 20.02,
+      "mean_pe": 20.04,
       "mean_pb": 0.69,
       "weighted_pe": null,
       "weighted_pb": null,
       "p25_pe": 5.72,
-      "p75_pe": 13.17,
+      "p75_pe": 13.23,
       "p25_pb": 0.38,
       "p75_pb": 0.94
     },
@@ -111,9 +105,9 @@
       "count": 5,
       "valid_pe": 5,
       "valid_pb": 5,
-      "median_pe": 8.27,
+      "median_pe": 8.29,
       "median_pb": 1.3,
-      "mean_pe": 9.36,
+      "mean_pe": 9.35,
       "mean_pb": 1.16,
       "weighted_pe": null,
       "weighted_pb": null,
@@ -129,30 +123,30 @@
       "valid_pb": 19,
       "median_pe": 8.53,
       "median_pb": 0.73,
-      "mean_pe": 20.1,
+      "mean_pe": 20.09,
       "mean_pb": 0.77,
       "weighted_pe": null,
       "weighted_pb": null,
-      "p25_pe": 7.09,
-      "p75_pe": 13.0,
+      "p25_pe": 7.11,
+      "p75_pe": 13.01,
       "p25_pb": 0.57,
       "p75_pb": 0.86
     },
     {
       "group": "Vận tải - kho bãi",
       "count": 35,
-      "valid_pe": 26,
-      "valid_pb": 26,
-      "median_pe": 8.59,
-      "median_pb": 1.12,
-      "mean_pe": 10.47,
-      "mean_pb": 1.85,
+      "valid_pe": 27,
+      "valid_pb": 27,
+      "median_pe": 8.73,
+      "median_pb": 0.93,
+      "mean_pe": 10.96,
+      "mean_pb": 1.81,
       "weighted_pe": null,
       "weighted_pb": null,
-      "p25_pe": 6.24,
-      "p75_pe": 10.99,
-      "p25_pb": 0.76,
-      "p75_pb": 2.62
+      "p25_pe": 6.26,
+      "p75_pe": 11.22,
+      "p25_pb": 0.75,
+      "p75_pb": 2.52
     },
     {
       "group": "SX Hàng gia dụng",
@@ -175,16 +169,16 @@
       "count": 4,
       "valid_pe": 3,
       "valid_pb": 3,
-      "median_pe": 9.06,
-      "median_pb": 0.84,
-      "mean_pe": 11.73,
+      "median_pe": 9.1,
+      "median_pb": 0.85,
+      "mean_pe": 11.75,
       "mean_pb": 0.88,
       "weighted_pe": null,
       "weighted_pb": null,
-      "p25_pe": 8.3,
-      "p75_pe": 13.83,
+      "p25_pe": 8.32,
+      "p75_pe": 13.85,
       "p25_pb": 0.78,
-      "p75_pb": 0.96
+      "p75_pb": 0.97
     },
     {
       "group": "Vật liệu xây dựng",
@@ -192,7 +186,7 @@
       "valid_pe": 12,
       "valid_pb": 12,
       "median_pe": 9.4,
-      "median_pb": 0.8,
+      "median_pb": 0.81,
       "mean_pe": 11.49,
       "mean_pb": 0.87,
       "weighted_pe": null,
@@ -203,20 +197,36 @@
       "p75_pb": 1.2
     },
     {
-      "group": "SX Nhựa - Hóa chất",
-      "count": 25,
-      "valid_pe": 20,
-      "valid_pb": 21,
-      "median_pe": 9.51,
-      "median_pb": 1.29,
-      "mean_pe": 10.52,
-      "mean_pb": 1.3,
+      "group": "Tiện ích",
+      "count": 33,
+      "valid_pe": 29,
+      "valid_pb": 29,
+      "median_pe": 9.49,
+      "median_pb": 1.35,
+      "mean_pe": 11.27,
+      "mean_pb": 1.46,
       "weighted_pe": null,
       "weighted_pb": null,
-      "p25_pe": 7.99,
-      "p75_pe": 11.38,
+      "p25_pe": 8.22,
+      "p75_pe": 11.49,
+      "p25_pb": 0.87,
+      "p75_pb": 2.02
+    },
+    {
+      "group": "SX Nhựa - Hóa chất",
+      "count": 25,
+      "valid_pe": 21,
+      "valid_pb": 22,
+      "median_pe": 9.95,
+      "median_pb": 1.19,
+      "mean_pe": 10.51,
+      "mean_pb": 1.29,
+      "weighted_pe": null,
+      "weighted_pb": null,
+      "p25_pe": 8.02,
+      "p75_pe": 11.31,
       "p25_pb": 0.71,
-      "p75_pb": 1.75
+      "p75_pb": 1.72
     },
     {
       "group": "Nông - Lâm - Ngư",
@@ -224,40 +234,24 @@
       "valid_pe": 6,
       "valid_pb": 6,
       "median_pe": 9.97,
-      "median_pb": 0.91,
+      "median_pb": 0.9,
       "mean_pe": 34.77,
       "mean_pb": 1.05,
       "weighted_pe": null,
       "weighted_pb": null,
       "p25_pe": 9.13,
       "p75_pe": 22.08,
-      "p25_pb": 0.76,
+      "p25_pb": 0.75,
       "p75_pb": 1.1
-    },
-    {
-      "group": "Tiện ích",
-      "count": 33,
-      "valid_pe": 27,
-      "valid_pb": 27,
-      "median_pe": 9.97,
-      "median_pb": 1.36,
-      "mean_pe": 11.68,
-      "mean_pb": 1.49,
-      "weighted_pe": null,
-      "weighted_pb": null,
-      "p25_pe": 8.23,
-      "p75_pe": 12.24,
-      "p25_pb": 0.89,
-      "p75_pb": 2.04
     },
     {
       "group": "Khai khoáng",
       "count": 9,
       "valid_pe": 8,
       "valid_pb": 8,
-      "median_pe": 11.19,
+      "median_pe": 11.17,
       "median_pb": 0.61,
-      "mean_pe": 28.26,
+      "mean_pe": 28.25,
       "mean_pb": 0.86,
       "weighted_pe": null,
       "weighted_pb": null,
@@ -271,14 +265,14 @@
       "count": 2,
       "valid_pe": 2,
       "valid_pb": 2,
-      "median_pe": 11.5,
+      "median_pe": 11.49,
       "median_pb": 0.79,
-      "mean_pe": 11.5,
+      "mean_pe": 11.49,
       "mean_pb": 0.79,
       "weighted_pe": null,
       "weighted_pb": null,
-      "p25_pe": 8.79,
-      "p75_pe": 14.21,
+      "p25_pe": 8.78,
+      "p75_pe": 14.2,
       "p25_pb": 0.7,
       "p75_pb": 0.88
     },
@@ -287,14 +281,14 @@
       "count": 8,
       "valid_pe": 7,
       "valid_pb": 7,
-      "median_pe": 11.82,
-      "median_pb": 1.14,
-      "mean_pe": 10.53,
+      "median_pe": 11.84,
+      "median_pb": 1.13,
+      "mean_pe": 10.56,
       "mean_pb": 1.62,
       "weighted_pe": null,
       "weighted_pb": null,
-      "p25_pe": 7.5,
-      "p75_pe": 13.71,
+      "p25_pe": 7.48,
+      "p75_pe": 13.86,
       "p25_pb": 0.77,
       "p75_pb": 2.05
     },
@@ -303,14 +297,14 @@
       "count": 23,
       "valid_pe": 16,
       "valid_pb": 21,
-      "median_pe": 12.62,
-      "median_pb": 0.65,
-      "mean_pe": 16.62,
+      "median_pe": 12.56,
+      "median_pb": 0.67,
+      "mean_pe": 16.64,
       "mean_pb": 0.97,
       "weighted_pe": null,
       "weighted_pb": null,
       "p25_pe": 8.03,
-      "p75_pe": 16.37,
+      "p75_pe": 16.36,
       "p25_pb": 0.28,
       "p75_pb": 1.28
     },
@@ -319,14 +313,14 @@
       "count": 57,
       "valid_pe": 42,
       "valid_pb": 52,
-      "median_pe": 12.71,
+      "median_pe": 12.7,
       "median_pb": 0.59,
-      "mean_pe": 18.53,
+      "mean_pe": 18.54,
       "mean_pb": 0.93,
       "weighted_pe": null,
       "weighted_pb": null,
       "p25_pe": 5.98,
-      "p75_pe": 23.52,
+      "p75_pe": 23.6,
       "p25_pb": 0.39,
       "p75_pb": 0.99
     },
@@ -336,13 +330,13 @@
       "valid_pe": 19,
       "valid_pb": 20,
       "median_pe": 13.07,
-      "median_pb": 1.25,
-      "mean_pe": 14.68,
+      "median_pb": 1.24,
+      "mean_pe": 14.67,
       "mean_pb": 1.28,
       "weighted_pe": null,
       "weighted_pb": null,
       "p25_pe": 9.21,
-      "p75_pe": 16.58,
+      "p75_pe": 16.6,
       "p25_pb": 0.99,
       "p75_pb": 1.69
     },
@@ -351,16 +345,16 @@
       "count": 18,
       "valid_pe": 13,
       "valid_pb": 16,
-      "median_pe": 13.26,
+      "median_pe": 13.32,
       "median_pb": 0.88,
-      "mean_pe": 19.08,
+      "mean_pe": 19.1,
       "mean_pb": 1.06,
       "weighted_pe": null,
       "weighted_pb": null,
-      "p25_pe": 9.48,
+      "p25_pe": 9.49,
       "p75_pe": 31.32,
       "p25_pb": 0.69,
-      "p75_pb": 1.4
+      "p75_pb": 1.41
     },
     {
       "group": "Thực phẩm - Đồ uống",
@@ -369,13 +363,13 @@
       "valid_pb": 18,
       "median_pe": 13.61,
       "median_pb": 1.61,
-      "mean_pe": 19.73,
+      "mean_pe": 19.74,
       "mean_pb": 2.1,
       "weighted_pe": null,
       "weighted_pb": null,
-      "p25_pe": 7.03,
-      "p75_pe": 18.32,
-      "p25_pb": 1.1,
+      "p25_pe": 7.02,
+      "p75_pe": 18.31,
+      "p25_pb": 1.11,
       "p75_pb": 2.35
     },
     {
@@ -385,30 +379,30 @@
       "valid_pb": 10,
       "median_pe": 15.19,
       "median_pb": 1.21,
-      "mean_pe": 21.35,
+      "mean_pe": 21.77,
       "mean_pb": 1.48,
       "weighted_pe": null,
       "weighted_pb": null,
       "p25_pe": 12.54,
       "p75_pe": 15.8,
       "p25_pb": 0.74,
-      "p75_pb": 2.43
+      "p75_pb": 2.45
     },
     {
       "group": "Bán lẻ",
       "count": 12,
       "valid_pe": 4,
       "valid_pb": 5,
-      "median_pe": 24.0,
-      "median_pb": 1.65,
-      "mean_pe": 24.58,
+      "median_pe": 24.02,
+      "median_pb": 1.66,
+      "mean_pe": 24.62,
       "mean_pb": 2.58,
       "weighted_pe": null,
       "weighted_pb": null,
-      "p25_pe": 14.74,
-      "p75_pe": 33.84,
+      "p25_pe": 14.76,
+      "p75_pe": 33.88,
       "p25_pb": 1.06,
-      "p75_pb": 3.28
+      "p75_pb": 3.29
     },
     {
       "group": "Dịch vụ lưu trú, ăn uống, giải trí",
@@ -447,14 +441,14 @@
       "count": 4,
       "valid_pe": 4,
       "valid_pb": 4,
-      "median_pe": 53.38,
-      "median_pb": 2.66,
-      "mean_pe": 112.96,
-      "mean_pb": 2.97,
+      "median_pe": 53.35,
+      "median_pb": 2.65,
+      "mean_pe": 112.74,
+      "mean_pb": 2.96,
       "weighted_pe": null,
       "weighted_pb": null,
-      "p25_pe": 12.37,
-      "p75_pe": 153.98,
+      "p25_pe": 12.33,
+      "p75_pe": 153.77,
       "p25_pb": 1.34,
       "p75_pb": 4.28
     }
@@ -507,7 +501,7 @@
         9.39,
         null,
         59.32,
-        53.38
+        53.35
       ],
       "pb": [
         2.47,
@@ -531,7 +525,7 @@
         2.44,
         null,
         3.36,
-        2.66
+        2.65
       ]
     },
     "Tài chính khác": {
@@ -541,7 +535,7 @@
       ],
       "pe": [
         3.87,
-        3.83
+        3.85
       ],
       "pb": [
         0.36,
@@ -555,7 +549,7 @@
       ],
       "pe": [
         6.59,
-        6.56
+        6.59
       ],
       "pb": [
         1.11,
@@ -597,7 +591,7 @@
       ],
       "pe": [
         8.15,
-        7.65
+        7.66
       ],
       "pb": [
         0.66,
@@ -611,7 +605,7 @@
       ],
       "pe": [
         8.27,
-        8.27
+        8.29
       ],
       "pb": [
         1.3,
@@ -625,11 +619,11 @@
       ],
       "pe": [
         9.1,
-        9.06
+        9.1
       ],
       "pb": [
         0.85,
-        0.84
+        0.85
       ]
     },
     "Vận tải - kho bãi": {
@@ -639,11 +633,11 @@
       ],
       "pe": [
         9.17,
-        8.59
+        8.73
       ],
       "pb": [
         0.92,
-        1.12
+        0.93
       ]
     },
     "SX Hàng gia dụng": {
@@ -667,11 +661,11 @@
       ],
       "pe": [
         9.74,
-        9.97
+        9.49
       ],
       "pb": [
         1.38,
-        1.36
+        1.35
       ]
     },
     "Nông - Lâm - Ngư": {
@@ -685,7 +679,7 @@
       ],
       "pb": [
         0.91,
-        0.91
+        0.9
       ]
     },
     "SX Nhựa - Hóa chất": {
@@ -695,11 +689,11 @@
       ],
       "pe": [
         10.07,
-        9.51
+        9.95
       ],
       "pb": [
         1.09,
-        1.29
+        1.19
       ]
     },
     "Vật liệu xây dựng": {
@@ -713,7 +707,7 @@
       ],
       "pb": [
         0.65,
-        0.8
+        0.81
       ]
     },
     "Khai khoáng": {
@@ -723,7 +717,7 @@
       ],
       "pe": [
         11.29,
-        11.19
+        11.17
       ],
       "pb": [
         0.62,
@@ -737,7 +731,7 @@
       ],
       "pe": [
         11.6,
-        11.5
+        11.49
       ],
       "pb": [
         0.79,
@@ -751,11 +745,11 @@
       ],
       "pe": [
         11.74,
-        11.82
+        11.84
       ],
       "pb": [
         1.17,
-        1.14
+        1.13
       ]
     },
     "Bán lẻ": {
@@ -765,11 +759,11 @@
       ],
       "pe": [
         12.02,
-        24.0
+        24.02
       ],
       "pb": [
         1.07,
-        1.65
+        1.66
       ]
     },
     "SX Phụ trợ": {
@@ -779,7 +773,7 @@
       ],
       "pe": [
         12.29,
-        13.26
+        13.32
       ],
       "pb": [
         0.94,
@@ -793,11 +787,11 @@
       ],
       "pe": [
         12.59,
-        12.62
+        12.56
       ],
       "pb": [
         0.63,
-        0.65
+        0.67
       ]
     },
     "Chứng khoán": {
@@ -811,7 +805,7 @@
       ],
       "pb": [
         1.24,
-        1.25
+        1.24
       ]
     },
     "Thực phẩm - Đồ uống": {
@@ -849,7 +843,7 @@
       ],
       "pe": [
         14.47,
-        12.71
+        12.7
       ],
       "pb": [
         0.6,
@@ -888,12 +882,13 @@
   "tickers": [
     {
       "ticker": "HHS",
-      "close": 9820.0,
-      "pe": 1.04,
+      "close": 9800.0,
+      "pe": 1.03,
       "pb": 0.26,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "TDC",
@@ -902,7 +897,8 @@
       "pb": 0.57,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "BCE",
@@ -911,7 +907,8 @@
       "pb": 0.5,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "VCG",
@@ -920,7 +917,8 @@
       "pb": 0.84,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "MHC",
@@ -929,7 +927,8 @@
       "pb": 0.52,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "D2D",
@@ -938,16 +937,18 @@
       "pb": 1.15,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "DLG",
-      "close": 2270.0,
-      "pe": 2.61,
-      "pb": 0.75,
+      "close": 2300.0,
+      "pe": 2.65,
+      "pb": 0.76,
       "sector": "SX Phụ trợ",
       "industry": "SX Phụ trợ",
-      "group": "SX Phụ trợ"
+      "group": "SX Phụ trợ",
+      "shares": null
     },
     {
       "ticker": "KLB",
@@ -956,34 +957,38 @@
       "pb": 0.58,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
     },
     {
       "ticker": "DC4",
-      "close": 6670.0,
+      "close": 6680.0,
       "pe": 3.02,
-      "pb": 0.53,
+      "pb": 0.54,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "SGT",
-      "close": 9990.0,
-      "pe": 3.18,
-      "pb": 0.6,
+      "close": 9650.0,
+      "pe": 3.07,
+      "pb": 0.58,
       "sector": "Công nghệ và thông tin",
       "industry": "Công nghệ và thông tin",
-      "group": "Công nghệ và thông tin"
+      "group": "Công nghệ và thông tin",
+      "shares": null
     },
     {
       "ticker": "HTI",
-      "close": 18800.0,
-      "pe": 3.34,
-      "pb": 0.81,
+      "close": 18700.0,
+      "pe": 3.32,
+      "pb": 0.8,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "HDC",
@@ -992,7 +997,8 @@
       "pb": 0.72,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "HTG",
@@ -1001,25 +1007,28 @@
       "pb": 1.06,
       "sector": "SX Hàng gia dụng",
       "industry": "SX Hàng gia dụng",
-      "group": "SX Hàng gia dụng"
+      "group": "SX Hàng gia dụng",
+      "shares": null
     },
     {
       "ticker": "DBC",
-      "close": 16750.0,
-      "pe": 3.57,
-      "pb": 0.81,
+      "close": 16800.0,
+      "pe": 3.58,
+      "pb": 0.82,
       "sector": "Thực phẩm - Đồ uống",
       "industry": "Thực phẩm - Đồ uống",
-      "group": "Thực phẩm - Đồ uống"
+      "group": "Thực phẩm - Đồ uống",
+      "shares": null
     },
     {
       "ticker": "ANT",
-      "close": 20800.0,
-      "pe": 3.62,
-      "pb": 1.06,
+      "close": 21000.0,
+      "pe": 3.66,
+      "pb": 1.07,
       "sector": "Thực phẩm - Đồ uống",
       "industry": "Thực phẩm - Đồ uống",
-      "group": "Thực phẩm - Đồ uống"
+      "group": "Thực phẩm - Đồ uống",
+      "shares": null
     },
     {
       "ticker": "ABT",
@@ -1028,16 +1037,18 @@
       "pb": 0.94,
       "sector": "Chế biến Thủy sản",
       "industry": "Chế biến Thủy sản",
-      "group": "Chế biến Thủy sản"
+      "group": "Chế biến Thủy sản",
+      "shares": null
     },
     {
       "ticker": "OGC",
-      "close": 2200.0,
-      "pe": 3.83,
+      "close": 2210.0,
+      "pe": 3.85,
       "pb": 0.35,
       "sector": "Tài chính khác",
       "industry": "Tài chính khác",
-      "group": "Tài chính khác"
+      "group": "Tài chính khác",
+      "shares": null
     },
     {
       "ticker": "SHB",
@@ -1046,7 +1057,8 @@
       "pb": 0.82,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
     },
     {
       "ticker": "ITD",
@@ -1055,7 +1067,8 @@
       "pb": 0.68,
       "sector": "Công nghệ và thông tin",
       "industry": "Công nghệ và thông tin",
-      "group": "Công nghệ và thông tin"
+      "group": "Công nghệ và thông tin",
+      "shares": null
     },
     {
       "ticker": "MSH",
@@ -1064,16 +1077,18 @@
       "pb": 1.41,
       "sector": "SX Hàng gia dụng",
       "industry": "SX Hàng gia dụng",
-      "group": "SX Hàng gia dụng"
+      "group": "SX Hàng gia dụng",
+      "shares": null
     },
     {
       "ticker": "NAB",
-      "close": 11950.0,
-      "pe": 4.19,
+      "close": 11900.0,
+      "pe": 4.17,
       "pb": 0.92,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
     },
     {
       "ticker": "NHA",
@@ -1082,7 +1097,8 @@
       "pb": 0.67,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "RAL",
@@ -1091,25 +1107,28 @@
       "pb": 0.57,
       "sector": "Thiết bị điện",
       "industry": "Thiết bị điện",
-      "group": "Thiết bị điện"
+      "group": "Thiết bị điện",
+      "shares": null
     },
     {
       "ticker": "BIC",
-      "close": 21300.0,
-      "pe": 4.4,
+      "close": 21200.0,
+      "pe": 4.38,
       "pb": 0.76,
       "sector": "Bảo hiểm",
       "industry": "Bảo hiểm",
-      "group": "Bảo hiểm"
+      "group": "Bảo hiểm",
+      "shares": null
     },
     {
       "ticker": "THG",
-      "close": 29200.0,
-      "pe": 4.61,
+      "close": 29000.0,
+      "pe": 4.58,
       "pb": 1.16,
       "sector": "Vật liệu xây dựng",
       "industry": "Vật liệu xây dựng",
-      "group": "Vật liệu xây dựng"
+      "group": "Vật liệu xây dựng",
+      "shares": null
     },
     {
       "ticker": "IJC",
@@ -1118,7 +1137,8 @@
       "pb": 0.51,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "LHG",
@@ -1127,7 +1147,8 @@
       "pb": 0.77,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "VIX",
@@ -1136,7 +1157,8 @@
       "pb": 1.05,
       "sector": "Chứng khoán",
       "industry": "Chứng khoán",
-      "group": "Chứng khoán"
+      "group": "Chứng khoán",
+      "shares": null
     },
     {
       "ticker": "PTB",
@@ -1145,7 +1167,8 @@
       "pb": 0.7,
       "sector": "SX Phụ trợ",
       "industry": "SX Phụ trợ",
-      "group": "SX Phụ trợ"
+      "group": "SX Phụ trợ",
+      "shares": null
     },
     {
       "ticker": "CMX",
@@ -1154,7 +1177,8 @@
       "pb": 0.28,
       "sector": "Chế biến Thủy sản",
       "industry": "Chế biến Thủy sản",
-      "group": "Chế biến Thủy sản"
+      "group": "Chế biến Thủy sản",
+      "shares": null
     },
     {
       "ticker": "HUB",
@@ -1163,7 +1187,18 @@
       "pb": 0.56,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
+    },
+    {
+      "ticker": "HID",
+      "close": 3550.0,
+      "pe": 4.98,
+      "pb": 0.26,
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "HAH",
@@ -1172,16 +1207,8 @@
       "pb": 1.53,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
-    },
-    {
-      "ticker": "HID",
-      "close": 3580.0,
-      "pe": 5.02,
-      "pb": 0.26,
-      "sector": "Tiện ích",
-      "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "JVC",
@@ -1190,7 +1217,8 @@
       "pb": 0.59,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "VAB",
@@ -1199,7 +1227,18 @@
       "pb": 0.84,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
+    },
+    {
+      "ticker": "SGR",
+      "close": 11800.0,
+      "pe": 5.08,
+      "pb": 0.57,
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "CTG",
@@ -1208,16 +1247,18 @@
       "pb": 1.0,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
     },
     {
-      "ticker": "SGR",
-      "close": 11900.0,
-      "pe": 5.13,
-      "pb": 0.57,
-      "sector": "Bất động sản",
-      "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "ticker": "UIC",
+      "close": 55300.0,
+      "pe": 5.11,
+      "pb": 0.86,
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "VCK",
@@ -1226,7 +1267,8 @@
       "pb": 1.26,
       "sector": "Chứng khoán",
       "industry": "Chứng khoán",
-      "group": "Chứng khoán"
+      "group": "Chứng khoán",
+      "shares": null
     },
     {
       "ticker": "ILB",
@@ -1235,7 +1277,8 @@
       "pb": 0.9,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "DGC",
@@ -1244,7 +1287,8 @@
       "pb": 1.03,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "TCL",
@@ -1253,7 +1297,8 @@
       "pb": 1.31,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "CRC",
@@ -1262,7 +1307,8 @@
       "pb": 0.44,
       "sector": "Vật liệu xây dựng",
       "industry": "Vật liệu xây dựng",
-      "group": "Vật liệu xây dựng"
+      "group": "Vật liệu xây dựng",
+      "shares": null
     },
     {
       "ticker": "GDT",
@@ -1271,16 +1317,28 @@
       "pb": 1.18,
       "sector": "SX Hàng gia dụng",
       "industry": "SX Hàng gia dụng",
-      "group": "SX Hàng gia dụng"
+      "group": "SX Hàng gia dụng",
+      "shares": null
     },
     {
       "ticker": "PNJ",
-      "close": 37750.0,
-      "pe": 5.43,
+      "close": 37650.0,
+      "pe": 5.42,
       "pb": 1.06,
       "sector": "Bán lẻ",
       "industry": "Bán lẻ",
-      "group": "Bán lẻ"
+      "group": "Bán lẻ",
+      "shares": null
+    },
+    {
+      "ticker": "NSC",
+      "close": 66700.0,
+      "pe": 5.47,
+      "pb": 0.75,
+      "sector": "Nông - Lâm - Ngư",
+      "industry": "Nông - Lâm - Ngư",
+      "group": "Nông - Lâm - Ngư",
+      "shares": null
     },
     {
       "ticker": "TN1",
@@ -1289,16 +1347,18 @@
       "pb": 0.85,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "VFG",
-      "close": 45650.0,
-      "pe": 5.55,
+      "close": 45600.0,
+      "pe": 5.54,
       "pb": 1.18,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "TCO",
@@ -1307,16 +1367,8 @@
       "pb": 0.87,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
-    },
-    {
-      "ticker": "NSC",
-      "close": 68700.0,
-      "pe": 5.64,
-      "pb": 0.77,
-      "sector": "Nông - Lâm - Ngư",
-      "industry": "Nông - Lâm - Ngư",
-      "group": "Nông - Lâm - Ngư"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "ANV",
@@ -1325,16 +1377,18 @@
       "pb": 1.3,
       "sector": "Chế biến Thủy sản",
       "industry": "Chế biến Thủy sản",
-      "group": "Chế biến Thủy sản"
+      "group": "Chế biến Thủy sản",
+      "shares": null
     },
     {
       "ticker": "SJD",
-      "close": 13900.0,
-      "pe": 5.76,
+      "close": 13950.0,
+      "pe": 5.78,
       "pb": 0.91,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "VIB",
@@ -1343,7 +1397,8 @@
       "pb": 1.1,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
     },
     {
       "ticker": "TPB",
@@ -1352,7 +1407,18 @@
       "pb": 0.96,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
+    },
+    {
+      "ticker": "CTS",
+      "close": 22050.0,
+      "pe": 5.89,
+      "pb": 1.67,
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán",
+      "shares": null
     },
     {
       "ticker": "TIP",
@@ -1361,7 +1427,8 @@
       "pb": 0.6,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "BMI",
@@ -1370,16 +1437,8 @@
       "pb": 0.61,
       "sector": "Bảo hiểm",
       "industry": "Bảo hiểm",
-      "group": "Bảo hiểm"
-    },
-    {
-      "ticker": "CTS",
-      "close": 22100.0,
-      "pe": 5.91,
-      "pb": 1.67,
-      "sector": "Chứng khoán",
-      "industry": "Chứng khoán",
-      "group": "Chứng khoán"
+      "group": "Bảo hiểm",
+      "shares": null
     },
     {
       "ticker": "VIP",
@@ -1388,7 +1447,8 @@
       "pb": 0.53,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "CCL",
@@ -1397,25 +1457,28 @@
       "pb": 0.3,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "TVS",
-      "close": 13600.0,
-      "pe": 5.95,
+      "close": 13550.0,
+      "pe": 5.93,
       "pb": 0.87,
       "sector": "Chứng khoán",
       "industry": "Chứng khoán",
-      "group": "Chứng khoán"
+      "group": "Chứng khoán",
+      "shares": null
     },
     {
       "ticker": "MBB",
-      "close": 24150.0,
-      "pe": 5.96,
+      "close": 24100.0,
+      "pe": 5.95,
       "pb": 1.46,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
     },
     {
       "ticker": "ACB",
@@ -1424,16 +1487,28 @@
       "pb": 1.25,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
+    },
+    {
+      "ticker": "GHC",
+      "close": 24300.0,
+      "pe": 6.02,
+      "pb": 1.0,
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "NHH",
-      "close": 9880.0,
-      "pe": 6.09,
+      "close": 9850.0,
+      "pe": 6.07,
       "pb": 0.61,
       "sector": "SX Thiết bị, máy móc",
       "industry": "SX Thiết bị, máy móc",
-      "group": "SX Thiết bị, máy móc"
+      "group": "SX Thiết bị, máy móc",
+      "shares": null
     },
     {
       "ticker": "TRA",
@@ -1442,7 +1517,8 @@
       "pb": 0.97,
       "sector": "Chăm sóc sức khỏe",
       "industry": "Chăm sóc sức khỏe",
-      "group": "Chăm sóc sức khỏe"
+      "group": "Chăm sóc sức khỏe",
+      "shares": null
     },
     {
       "ticker": "CKG",
@@ -1451,7 +1527,8 @@
       "pb": 0.46,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "TCM",
@@ -1460,34 +1537,38 @@
       "pb": 0.78,
       "sector": "SX Hàng gia dụng",
       "industry": "SX Hàng gia dụng",
-      "group": "SX Hàng gia dụng"
+      "group": "SX Hàng gia dụng",
+      "shares": null
     },
     {
       "ticker": "HDB",
-      "close": 26450.0,
-      "pe": 6.14,
+      "close": 26500.0,
+      "pe": 6.16,
       "pb": 1.35,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
     },
     {
       "ticker": "SMB",
-      "close": 38950.0,
+      "close": 39000.0,
       "pe": 6.21,
-      "pb": 1.76,
+      "pb": 1.77,
       "sector": "Thực phẩm - Đồ uống",
       "industry": "Thực phẩm - Đồ uống",
-      "group": "Thực phẩm - Đồ uống"
+      "group": "Thực phẩm - Đồ uống",
+      "shares": null
     },
     {
       "ticker": "SCS",
-      "close": 44600.0,
-      "pe": 6.21,
-      "pb": 2.79,
+      "close": 44650.0,
+      "pe": 6.22,
+      "pb": 2.8,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "SPM",
@@ -1496,7 +1577,8 @@
       "pb": 0.17,
       "sector": "Chăm sóc sức khỏe",
       "industry": "Chăm sóc sức khỏe",
-      "group": "Chăm sóc sức khỏe"
+      "group": "Chăm sóc sức khỏe",
+      "shares": null
     },
     {
       "ticker": "DSN",
@@ -1505,7 +1587,8 @@
       "pb": 1.29,
       "sector": "Dịch vụ lưu trú, ăn uống, giải trí",
       "industry": "Dịch vụ lưu trú, ăn uống, giải trí",
-      "group": "Dịch vụ lưu trú, ăn uống, giải trí"
+      "group": "Dịch vụ lưu trú, ăn uống, giải trí",
+      "shares": null
     },
     {
       "ticker": "LSS",
@@ -1514,7 +1597,8 @@
       "pb": 0.38,
       "sector": "Thực phẩm - Đồ uống",
       "industry": "Thực phẩm - Đồ uống",
-      "group": "Thực phẩm - Đồ uống"
+      "group": "Thực phẩm - Đồ uống",
+      "shares": null
     },
     {
       "ticker": "NAV",
@@ -1523,7 +1607,18 @@
       "pb": 1.19,
       "sector": "SX Hàng gia dụng",
       "industry": "SX Hàng gia dụng",
-      "group": "SX Hàng gia dụng"
+      "group": "SX Hàng gia dụng",
+      "shares": null
+    },
+    {
+      "ticker": "NCT",
+      "close": 82300.0,
+      "pe": 6.31,
+      "pb": 2.7,
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "TRC",
@@ -1532,34 +1627,18 @@
       "pb": 1.08,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
-    },
-    {
-      "ticker": "NCT",
-      "close": 82400.0,
-      "pe": 6.32,
-      "pb": 2.71,
-      "sector": "Vận tải - kho bãi",
-      "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "SSB",
-      "close": 15150.0,
-      "pe": 6.42,
+      "close": 15200.0,
+      "pe": 6.45,
       "pb": 1.07,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
-    },
-    {
-      "ticker": "OCB",
-      "close": 10300.0,
-      "pe": 6.56,
-      "pb": 0.84,
-      "sector": "Ngân hàng",
-      "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
     },
     {
       "ticker": "NO1",
@@ -1568,7 +1647,18 @@
       "pb": 0.35,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
+    },
+    {
+      "ticker": "OCB",
+      "close": 10350.0,
+      "pe": 6.59,
+      "pb": 0.84,
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng",
+      "shares": null
     },
     {
       "ticker": "ADS",
@@ -1577,16 +1667,18 @@
       "pb": 0.62,
       "sector": "SX Hàng gia dụng",
       "industry": "SX Hàng gia dụng",
-      "group": "SX Hàng gia dụng"
+      "group": "SX Hàng gia dụng",
+      "shares": null
     },
     {
       "ticker": "GEE",
-      "close": 68400.0,
-      "pe": 6.71,
+      "close": 68200.0,
+      "pe": 6.69,
       "pb": 3.11,
       "sector": "Thiết bị điện",
       "industry": "Thiết bị điện",
-      "group": "Thiết bị điện"
+      "group": "Thiết bị điện",
+      "shares": null
     },
     {
       "ticker": "TVT",
@@ -1595,7 +1687,18 @@
       "pb": 0.56,
       "sector": "SX Hàng gia dụng",
       "industry": "SX Hàng gia dụng",
-      "group": "SX Hàng gia dụng"
+      "group": "SX Hàng gia dụng",
+      "shares": null
+    },
+    {
+      "ticker": "HVN",
+      "close": 24300.0,
+      "pe": 6.87,
+      "pb": 8.45,
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "PAC",
@@ -1604,25 +1707,18 @@
       "pb": 1.11,
       "sector": "Thiết bị điện",
       "industry": "Thiết bị điện",
-      "group": "Thiết bị điện"
-    },
-    {
-      "ticker": "HVN",
-      "close": 24350.0,
-      "pe": 6.88,
-      "pb": 8.47,
-      "sector": "Vận tải - kho bãi",
-      "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Thiết bị điện",
+      "shares": null
     },
     {
       "ticker": "PAN",
-      "close": 21000.0,
-      "pe": 6.91,
+      "close": 20950.0,
+      "pe": 6.89,
       "pb": 0.51,
       "sector": "Thực phẩm - Đồ uống",
       "industry": "Thực phẩm - Đồ uống",
-      "group": "Thực phẩm - Đồ uống"
+      "group": "Thực phẩm - Đồ uống",
+      "shares": null
     },
     {
       "ticker": "PVT",
@@ -1631,7 +1727,8 @@
       "pb": 0.76,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "FMC",
@@ -1640,7 +1737,8 @@
       "pb": 0.89,
       "sector": "Chế biến Thủy sản",
       "industry": "Chế biến Thủy sản",
-      "group": "Chế biến Thủy sản"
+      "group": "Chế biến Thủy sản",
+      "shares": null
     },
     {
       "ticker": "ADP",
@@ -1649,25 +1747,18 @@
       "pb": 1.84,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "CTI",
-      "close": 19050.0,
-      "pe": 7.02,
+      "close": 19100.0,
+      "pe": 7.04,
       "pb": 0.66,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
-    },
-    {
-      "ticker": "DPG",
-      "close": 29950.0,
-      "pe": 7.15,
-      "pb": 1.08,
-      "sector": "Xây dựng",
-      "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "DHA",
@@ -1676,7 +1767,28 @@
       "pb": 1.5,
       "sector": "Khai khoáng",
       "industry": "Khai khoáng",
-      "group": "Khai khoáng"
+      "group": "Khai khoáng",
+      "shares": null
+    },
+    {
+      "ticker": "DPG",
+      "close": 30100.0,
+      "pe": 7.19,
+      "pb": 1.08,
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng",
+      "shares": null
+    },
+    {
+      "ticker": "C47",
+      "close": 8900.0,
+      "pe": 7.25,
+      "pb": 0.67,
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "LAF",
@@ -1685,7 +1797,8 @@
       "pb": 1.23,
       "sector": "Thực phẩm - Đồ uống",
       "industry": "Thực phẩm - Đồ uống",
-      "group": "Thực phẩm - Đồ uống"
+      "group": "Thực phẩm - Đồ uống",
+      "shares": null
     },
     {
       "ticker": "GMH",
@@ -1694,7 +1807,8 @@
       "pb": 0.62,
       "sector": "Vật liệu xây dựng",
       "industry": "Vật liệu xây dựng",
-      "group": "Vật liệu xây dựng"
+      "group": "Vật liệu xây dựng",
+      "shares": null
     },
     {
       "ticker": "AGG",
@@ -1703,7 +1817,8 @@
       "pb": 0.56,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "FCM",
@@ -1712,7 +1827,8 @@
       "pb": 0.26,
       "sector": "Vật liệu xây dựng",
       "industry": "Vật liệu xây dựng",
-      "group": "Vật liệu xây dựng"
+      "group": "Vật liệu xây dựng",
+      "shares": null
     },
     {
       "ticker": "VSI",
@@ -1721,16 +1837,8 @@
       "pb": 1.16,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
-    },
-    {
-      "ticker": "C47",
-      "close": 9200.0,
-      "pe": 7.5,
-      "pb": 0.69,
-      "sector": "Xây dựng",
-      "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "NTC",
@@ -1739,7 +1847,8 @@
       "pb": 2.47,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "BRC",
@@ -1748,7 +1857,8 @@
       "pb": 0.72,
       "sector": "Sản phẩm cao su",
       "industry": "Sản phẩm cao su",
-      "group": "Sản phẩm cao su"
+      "group": "Sản phẩm cao su",
+      "shares": null
     },
     {
       "ticker": "NNC",
@@ -1757,25 +1867,28 @@
       "pb": 1.8,
       "sector": "Khai khoáng",
       "industry": "Khai khoáng",
-      "group": "Khai khoáng"
+      "group": "Khai khoáng",
+      "shares": null
     },
     {
       "ticker": "VHC",
-      "close": 52800.0,
-      "pe": 7.65,
+      "close": 52900.0,
+      "pe": 7.66,
       "pb": 1.17,
       "sector": "Chế biến Thủy sản",
       "industry": "Chế biến Thủy sản",
-      "group": "Chế biến Thủy sản"
+      "group": "Chế biến Thủy sản",
+      "shares": null
     },
     {
-      "ticker": "PGC",
-      "close": 12900.0,
-      "pe": 7.67,
-      "pb": 0.91,
-      "sector": "Tiện ích",
-      "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "ticker": "AAA",
+      "close": 7120.0,
+      "pe": 7.7,
+      "pb": 0.47,
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "MSB",
@@ -1784,16 +1897,18 @@
       "pb": 1.03,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
     },
     {
-      "ticker": "AAA",
-      "close": 7140.0,
+      "ticker": "PGC",
+      "close": 13000.0,
       "pe": 7.73,
-      "pb": 0.47,
-      "sector": "SX Nhựa - Hóa chất",
-      "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "pb": 0.92,
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "SGN",
@@ -1802,16 +1917,8 @@
       "pb": 1.42,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
-    },
-    {
-      "ticker": "GEG",
-      "close": 12050.0,
-      "pe": 7.84,
-      "pb": 0.77,
-      "sector": "Tiện ích",
-      "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "LIX",
@@ -1820,7 +1927,18 @@
       "pb": 1.62,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
+    },
+    {
+      "ticker": "GEG",
+      "close": 12150.0,
+      "pe": 7.9,
+      "pb": 0.78,
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "VTO",
@@ -1829,7 +1947,8 @@
       "pb": 0.73,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "HHV",
@@ -1838,25 +1957,28 @@
       "pb": 0.62,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "DPR",
-      "close": 35700.0,
-      "pe": 8.04,
+      "close": 35600.0,
+      "pe": 8.02,
       "pb": 0.93,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "SIP",
-      "close": 50600.0,
-      "pe": 8.11,
-      "pb": 2.15,
+      "close": 50800.0,
+      "pe": 8.14,
+      "pb": 2.16,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "CHP",
@@ -1865,7 +1987,8 @@
       "pb": 2.06,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "KHP",
@@ -1874,7 +1997,8 @@
       "pb": 0.76,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "DRL",
@@ -1883,16 +2007,8 @@
       "pb": 3.65,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
-    },
-    {
-      "ticker": "MIG",
-      "close": 16850.0,
-      "pe": 8.27,
-      "pb": 1.3,
-      "sector": "Bảo hiểm",
-      "industry": "Bảo hiểm",
-      "group": "Bảo hiểm"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "BMC",
@@ -1901,7 +2017,18 @@
       "pb": 0.62,
       "sector": "Khai khoáng",
       "industry": "Khai khoáng",
-      "group": "Khai khoáng"
+      "group": "Khai khoáng",
+      "shares": null
+    },
+    {
+      "ticker": "MIG",
+      "close": 16900.0,
+      "pe": 8.29,
+      "pb": 1.3,
+      "sector": "Bảo hiểm",
+      "industry": "Bảo hiểm",
+      "group": "Bảo hiểm",
+      "shares": null
     },
     {
       "ticker": "VPD",
@@ -1910,7 +2037,8 @@
       "pb": 1.41,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "SVT",
@@ -1919,7 +2047,8 @@
       "pb": 0.82,
       "sector": "SX Phụ trợ",
       "industry": "SX Phụ trợ",
-      "group": "SX Phụ trợ"
+      "group": "SX Phụ trợ",
+      "shares": null
     },
     {
       "ticker": "GSP",
@@ -1928,7 +2057,8 @@
       "pb": 0.77,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "ACC",
@@ -1937,7 +2067,8 @@
       "pb": 0.35,
       "sector": "Vật liệu xây dựng",
       "industry": "Vật liệu xây dựng",
-      "group": "Vật liệu xây dựng"
+      "group": "Vật liệu xây dựng",
+      "shares": null
     },
     {
       "ticker": "HMC",
@@ -1946,7 +2077,8 @@
       "pb": 0.72,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "CLC",
@@ -1955,7 +2087,8 @@
       "pb": 1.47,
       "sector": "Unknown",
       "industry": "Unknown",
-      "group": "Unknown"
+      "group": "Unknown",
+      "shares": null
     },
     {
       "ticker": "CTD",
@@ -1964,7 +2097,8 @@
       "pb": 0.73,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "DAT",
@@ -1973,7 +2107,8 @@
       "pb": 0.56,
       "sector": "Chế biến Thủy sản",
       "industry": "Chế biến Thủy sản",
-      "group": "Chế biến Thủy sản"
+      "group": "Chế biến Thủy sản",
+      "shares": null
     },
     {
       "ticker": "BFC",
@@ -1982,7 +2117,8 @@
       "pb": 1.8,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "DSC",
@@ -1991,7 +2127,18 @@
       "pb": 0.84,
       "sector": "Chứng khoán",
       "industry": "Chứng khoán",
-      "group": "Chứng khoán"
+      "group": "Chứng khoán",
+      "shares": null
+    },
+    {
+      "ticker": "LBM",
+      "close": 27150.0,
+      "pe": 8.62,
+      "pb": 1.53,
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng",
+      "shares": null
     },
     {
       "ticker": "TTA",
@@ -2000,16 +2147,8 @@
       "pb": 0.84,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
-    },
-    {
-      "ticker": "LBM",
-      "close": 27200.0,
-      "pe": 8.64,
-      "pb": 1.54,
-      "sector": "Vật liệu xây dựng",
-      "industry": "Vật liệu xây dựng",
-      "group": "Vật liệu xây dựng"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "CLL",
@@ -2018,7 +2157,18 @@
       "pb": 1.49,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
+    },
+    {
+      "ticker": "HII",
+      "close": 9020.0,
+      "pe": 8.77,
+      "pb": 0.71,
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "REE",
@@ -2027,16 +2177,18 @@
       "pb": 1.06,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
-      "ticker": "HII",
-      "close": 9130.0,
-      "pe": 8.88,
-      "pb": 0.71,
+      "ticker": "DCM",
+      "close": 30750.0,
+      "pe": 8.91,
+      "pb": 1.54,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "CNG",
@@ -2045,16 +2197,8 @@
       "pb": 1.14,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
-    },
-    {
-      "ticker": "DCM",
-      "close": 30850.0,
-      "pe": 8.94,
-      "pb": 1.55,
-      "sector": "SX Nhựa - Hóa chất",
-      "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "HPA",
@@ -2063,7 +2207,8 @@
       "pb": 1.89,
       "sector": "Nông - Lâm - Ngư",
       "industry": "Nông - Lâm - Ngư",
-      "group": "Nông - Lâm - Ngư"
+      "group": "Nông - Lâm - Ngư",
+      "shares": null
     },
     {
       "ticker": "SHA",
@@ -2072,25 +2217,28 @@
       "pb": 0.3,
       "sector": "SX Hàng gia dụng",
       "industry": "SX Hàng gia dụng",
-      "group": "SX Hàng gia dụng"
-    },
-    {
-      "ticker": "DRC",
-      "close": 10400.0,
-      "pe": 9.06,
-      "pb": 0.84,
-      "sector": "Sản phẩm cao su",
-      "industry": "Sản phẩm cao su",
-      "group": "Sản phẩm cao su"
+      "group": "SX Hàng gia dụng",
+      "shares": null
     },
     {
       "ticker": "APH",
-      "close": 5720.0,
-      "pe": 9.06,
+      "close": 5740.0,
+      "pe": 9.09,
       "pb": 0.24,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
+    },
+    {
+      "ticker": "DRC",
+      "close": 10450.0,
+      "pe": 9.1,
+      "pb": 0.85,
+      "sector": "Sản phẩm cao su",
+      "industry": "Sản phẩm cao su",
+      "group": "Sản phẩm cao su",
+      "shares": null
     },
     {
       "ticker": "DXS",
@@ -2099,7 +2247,8 @@
       "pb": 0.39,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "PVP",
@@ -2108,7 +2257,8 @@
       "pb": 0.92,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "SHP",
@@ -2117,7 +2267,8 @@
       "pb": 2.45,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "VBB",
@@ -2126,7 +2277,8 @@
       "pb": 1.11,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
     },
     {
       "ticker": "TCT",
@@ -2135,7 +2287,8 @@
       "pb": 0.63,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "PDN",
@@ -2144,25 +2297,48 @@
       "pb": 3.86,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
-    },
-    {
-      "ticker": "DHC",
-      "close": 34250.0,
-      "pe": 9.48,
-      "pb": 1.52,
-      "sector": "SX Phụ trợ",
-      "industry": "SX Phụ trợ",
-      "group": "SX Phụ trợ"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "TCB",
-      "close": 29500.0,
-      "pe": 9.48,
-      "pb": 1.17,
+      "close": 29450.0,
+      "pe": 9.46,
+      "pb": 1.16,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
+    },
+    {
+      "ticker": "DHC",
+      "close": 34300.0,
+      "pe": 9.49,
+      "pb": 1.52,
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ",
+      "shares": null
+    },
+    {
+      "ticker": "YEG",
+      "close": 7640.0,
+      "pe": 9.49,
+      "pb": 0.69,
+      "sector": "Unknown",
+      "industry": "Unknown",
+      "group": "Unknown",
+      "shares": null
+    },
+    {
+      "ticker": "NT2",
+      "close": 21150.0,
+      "pe": 9.49,
+      "pb": 1.35,
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "SVD",
@@ -2171,25 +2347,8 @@
       "pb": 0.44,
       "sector": "SX Hàng gia dụng",
       "industry": "SX Hàng gia dụng",
-      "group": "SX Hàng gia dụng"
-    },
-    {
-      "ticker": "YEG",
-      "close": 7650.0,
-      "pe": 9.5,
-      "pb": 0.7,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
-    },
-    {
-      "ticker": "NT2",
-      "close": 21200.0,
-      "pe": 9.51,
-      "pb": 1.35,
-      "sector": "Tiện ích",
-      "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "SX Hàng gia dụng",
+      "shares": null
     },
     {
       "ticker": "SSC",
@@ -2198,25 +2357,28 @@
       "pb": 0.74,
       "sector": "Nông - Lâm - Ngư",
       "industry": "Nông - Lâm - Ngư",
-      "group": "Nông - Lâm - Ngư"
+      "group": "Nông - Lâm - Ngư",
+      "shares": null
     },
     {
       "ticker": "VPB",
-      "close": 25250.0,
-      "pe": 9.7,
-      "pb": 1.26,
+      "close": 25200.0,
+      "pe": 9.68,
+      "pb": 1.25,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
     },
     {
       "ticker": "BID",
-      "close": 38000.0,
-      "pe": 9.77,
+      "close": 37950.0,
+      "pe": 9.76,
       "pb": 1.59,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
     },
     {
       "ticker": "ST8",
@@ -2225,7 +2387,8 @@
       "pb": 0.22,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "TCI",
@@ -2234,7 +2397,8 @@
       "pb": 0.8,
       "sector": "Chứng khoán",
       "industry": "Chứng khoán",
-      "group": "Chứng khoán"
+      "group": "Chứng khoán",
+      "shares": null
     },
     {
       "ticker": "NLG",
@@ -2243,16 +2407,18 @@
       "pb": 0.58,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "TLG",
-      "close": 48500.0,
-      "pe": 9.92,
-      "pb": 1.64,
+      "close": 48600.0,
+      "pe": 9.94,
+      "pb": 1.65,
       "sector": "SX Phụ trợ",
       "industry": "SX Phụ trợ",
-      "group": "SX Phụ trợ"
+      "group": "SX Phụ trợ",
+      "shares": null
     },
     {
       "ticker": "DPM",
@@ -2261,7 +2427,8 @@
       "pb": 1.29,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "TMP",
@@ -2270,7 +2437,8 @@
       "pb": 2.07,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "HCD",
@@ -2279,16 +2447,18 @@
       "pb": 0.45,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "BMP",
-      "close": 147600.0,
-      "pe": 10.08,
-      "pb": 3.84,
+      "close": 147300.0,
+      "pe": 10.06,
+      "pb": 3.83,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "HDG",
@@ -2297,16 +2467,18 @@
       "pb": 0.77,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "HPG",
-      "close": 21900.0,
-      "pe": 10.15,
+      "close": 21950.0,
+      "pe": 10.18,
       "pb": 1.32,
       "sector": "Vật liệu xây dựng",
       "industry": "Vật liệu xây dựng",
-      "group": "Vật liệu xây dựng"
+      "group": "Vật liệu xây dựng",
+      "shares": null
     },
     {
       "ticker": "GEX",
@@ -2315,7 +2487,8 @@
       "pb": 0.8,
       "sector": "Thiết bị điện",
       "industry": "Thiết bị điện",
-      "group": "Thiết bị điện"
+      "group": "Thiết bị điện",
+      "shares": null
     },
     {
       "ticker": "SBA",
@@ -2324,16 +2497,8 @@
       "pb": 1.54,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
-    },
-    {
-      "ticker": "TAL",
-      "close": 25050.0,
-      "pe": 10.3,
-      "pb": 1.27,
-      "sector": "Bất động sản",
-      "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "HAG",
@@ -2342,7 +2507,18 @@
       "pb": 1.12,
       "sector": "Nông - Lâm - Ngư",
       "industry": "Nông - Lâm - Ngư",
-      "group": "Nông - Lâm - Ngư"
+      "group": "Nông - Lâm - Ngư",
+      "shares": null
+    },
+    {
+      "ticker": "TAL",
+      "close": 25100.0,
+      "pe": 10.32,
+      "pb": 1.27,
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "VSC",
@@ -2351,7 +2527,8 @@
       "pb": 0.93,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "SZC",
@@ -2360,16 +2537,18 @@
       "pb": 1.05,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "BCM",
-      "close": 36250.0,
-      "pe": 10.39,
-      "pb": 1.7,
+      "close": 36400.0,
+      "pe": 10.44,
+      "pb": 1.71,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "TBC",
@@ -2378,7 +2557,8 @@
       "pb": 1.34,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "TDG",
@@ -2387,7 +2567,8 @@
       "pb": 0.23,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "VSH",
@@ -2396,7 +2577,18 @@
       "pb": 2.02,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
+    },
+    {
+      "ticker": "DTT",
+      "close": 18200.0,
+      "pe": 10.61,
+      "pb": 1.09,
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "PGI",
@@ -2405,7 +2597,8 @@
       "pb": 1.31,
       "sector": "Bảo hiểm",
       "industry": "Bảo hiểm",
-      "group": "Bảo hiểm"
+      "group": "Bảo hiểm",
+      "shares": null
     },
     {
       "ticker": "BTP",
@@ -2414,7 +2607,8 @@
       "pb": 0.42,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "AAT",
@@ -2423,7 +2617,18 @@
       "pb": 0.22,
       "sector": "SX Hàng gia dụng",
       "industry": "SX Hàng gia dụng",
-      "group": "SX Hàng gia dụng"
+      "group": "SX Hàng gia dụng",
+      "shares": null
+    },
+    {
+      "ticker": "LCG",
+      "close": 7200.0,
+      "pe": 10.81,
+      "pb": 0.52,
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "EVF",
@@ -2432,25 +2637,28 @@
       "pb": 0.97,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
-    },
-    {
-      "ticker": "LCG",
-      "close": 7210.0,
-      "pe": 10.82,
-      "pb": 0.52,
-      "sector": "Xây dựng",
-      "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Ngân hàng",
+      "shares": null
     },
     {
       "ticker": "ELC",
-      "close": 15950.0,
-      "pe": 10.87,
-      "pb": 1.14,
+      "close": 15900.0,
+      "pe": 10.84,
+      "pb": 1.13,
       "sector": "Công nghệ và thông tin",
       "industry": "Công nghệ và thông tin",
-      "group": "Công nghệ và thông tin"
+      "group": "Công nghệ và thông tin",
+      "shares": null
+    },
+    {
+      "ticker": "CSV",
+      "close": 22150.0,
+      "pe": 10.89,
+      "pb": 1.53,
+      "sector": "SX Nhựa - Hóa chất",
+      "industry": "SX Nhựa - Hóa chất",
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "SKG",
@@ -2459,16 +2667,8 @@
       "pb": 0.56,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
-    },
-    {
-      "ticker": "CSV",
-      "close": 22250.0,
-      "pe": 10.94,
-      "pb": 1.54,
-      "sector": "SX Nhựa - Hóa chất",
-      "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "PDV",
@@ -2477,7 +2677,8 @@
       "pb": 0.55,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "SZL",
@@ -2486,25 +2687,38 @@
       "pb": 2.02,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
-    },
-    {
-      "ticker": "EIB",
-      "close": 18250.0,
-      "pe": 11.16,
-      "pb": 1.28,
-      "sector": "Ngân hàng",
-      "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "KSB",
-      "close": 13300.0,
-      "pe": 11.16,
+      "close": 13250.0,
+      "pe": 11.12,
       "pb": 0.55,
       "sector": "Khai khoáng",
       "industry": "Khai khoáng",
-      "group": "Khai khoáng"
+      "group": "Khai khoáng",
+      "shares": null
+    },
+    {
+      "ticker": "EIB",
+      "close": 18200.0,
+      "pe": 11.13,
+      "pb": 1.28,
+      "sector": "Ngân hàng",
+      "industry": "Ngân hàng",
+      "group": "Ngân hàng",
+      "shares": null
+    },
+    {
+      "ticker": "MZG",
+      "close": 11950.0,
+      "pe": 11.18,
+      "pb": 0.94,
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ",
+      "shares": null
     },
     {
       "ticker": "PVD",
@@ -2513,16 +2727,8 @@
       "pb": 0.58,
       "sector": "Khai khoáng",
       "industry": "Khai khoáng",
-      "group": "Khai khoáng"
-    },
-    {
-      "ticker": "MZG",
-      "close": 12000.0,
-      "pe": 11.23,
-      "pb": 0.94,
-      "sector": "SX Phụ trợ",
-      "industry": "SX Phụ trợ",
-      "group": "SX Phụ trợ"
+      "group": "Khai khoáng",
+      "shares": null
     },
     {
       "ticker": "STB",
@@ -2531,7 +2737,8 @@
       "pb": 2.2,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
     },
     {
       "ticker": "BWE",
@@ -2540,7 +2747,8 @@
       "pb": 1.61,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "VPS",
@@ -2549,16 +2757,18 @@
       "pb": 0.71,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "DVP",
-      "close": 78500.0,
-      "pe": 11.43,
+      "close": 78400.0,
+      "pe": 11.41,
       "pb": 2.34,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "HNA",
@@ -2567,7 +2777,8 @@
       "pb": 1.61,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "RYG",
@@ -2576,7 +2787,18 @@
       "pb": 0.52,
       "sector": "SX Hàng gia dụng",
       "industry": "SX Hàng gia dụng",
-      "group": "SX Hàng gia dụng"
+      "group": "SX Hàng gia dụng",
+      "shares": null
+    },
+    {
+      "ticker": "ADG",
+      "close": 8060.0,
+      "pe": 11.58,
+      "pb": 0.45,
+      "sector": "Unknown",
+      "industry": "Unknown",
+      "group": "Unknown",
+      "shares": null
     },
     {
       "ticker": "PHR",
@@ -2585,7 +2807,8 @@
       "pb": 1.86,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "HRC",
@@ -2594,34 +2817,38 @@
       "pb": 1.62,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "VCB",
-      "close": 58800.0,
-      "pe": 11.74,
+      "close": 59000.0,
+      "pe": 11.78,
       "pb": 2.21,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
     },
     {
       "ticker": "FPT",
-      "close": 70800.0,
-      "pe": 11.82,
+      "close": 70900.0,
+      "pe": 11.84,
       "pb": 2.82,
       "sector": "Công nghệ và thông tin",
       "industry": "Công nghệ và thông tin",
-      "group": "Công nghệ và thông tin"
+      "group": "Công nghệ và thông tin",
+      "shares": null
     },
     {
       "ticker": "VRE",
-      "close": 25500.0,
-      "pe": 11.89,
+      "close": 25550.0,
+      "pe": 11.92,
       "pb": 1.27,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Vingroup Ecosystem"
+      "group": "Vingroup Ecosystem",
+      "shares": null
     },
     {
       "ticker": "VGC",
@@ -2630,43 +2857,48 @@
       "pb": 1.56,
       "sector": "Vật liệu xây dựng",
       "industry": "Vật liệu xây dựng",
-      "group": "Vật liệu xây dựng"
+      "group": "Vật liệu xây dựng",
+      "shares": null
     },
     {
       "ticker": "VDS",
-      "close": 11950.0,
-      "pe": 12.27,
+      "close": 11900.0,
+      "pe": 12.22,
       "pb": 1.03,
       "sector": "Chứng khoán",
       "industry": "Chứng khoán",
-      "group": "Chứng khoán"
-    },
-    {
-      "ticker": "AFX",
-      "close": 10500.0,
-      "pe": 12.31,
-      "pb": 0.74,
-      "sector": "Thực phẩm - Đồ uống",
-      "industry": "Thực phẩm - Đồ uống",
-      "group": "Thực phẩm - Đồ uống"
+      "group": "Chứng khoán",
+      "shares": null
     },
     {
       "ticker": "VVS",
-      "close": 101900.0,
-      "pe": 12.41,
-      "pb": 4.38,
+      "close": 101000.0,
+      "pe": 12.3,
+      "pb": 4.34,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
+    },
+    {
+      "ticker": "AFX",
+      "close": 10600.0,
+      "pe": 12.43,
+      "pb": 0.75,
+      "sector": "Thực phẩm - Đồ uống",
+      "industry": "Thực phẩm - Đồ uống",
+      "group": "Thực phẩm - Đồ uống",
+      "shares": null
     },
     {
       "ticker": "VHM",
-      "close": 78400.0,
-      "pe": 12.53,
-      "pb": 1.37,
+      "close": 78000.0,
+      "pe": 12.46,
+      "pb": 1.36,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Vingroup Ecosystem"
+      "group": "Vingroup Ecosystem",
+      "shares": null
     },
     {
       "ticker": "OPC",
@@ -2675,7 +2907,8 @@
       "pb": 1.44,
       "sector": "Chăm sóc sức khỏe",
       "industry": "Chăm sóc sức khỏe",
-      "group": "Chăm sóc sức khỏe"
+      "group": "Chăm sóc sức khỏe",
+      "shares": null
     },
     {
       "ticker": "HTN",
@@ -2684,7 +2917,8 @@
       "pb": 0.4,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "AST",
@@ -2693,7 +2927,8 @@
       "pb": 3.76,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "SSI",
@@ -2702,7 +2937,8 @@
       "pb": 1.62,
       "sector": "Chứng khoán",
       "industry": "Chứng khoán",
-      "group": "Chứng khoán"
+      "group": "Chứng khoán",
+      "shares": null
     },
     {
       "ticker": "MCM",
@@ -2711,7 +2947,8 @@
       "pb": 1.22,
       "sector": "Thực phẩm - Đồ uống",
       "industry": "Thực phẩm - Đồ uống",
-      "group": "Thực phẩm - Đồ uống"
+      "group": "Thực phẩm - Đồ uống",
+      "shares": null
     },
     {
       "ticker": "HTL",
@@ -2720,7 +2957,8 @@
       "pb": 1.34,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "HVH",
@@ -2729,7 +2967,8 @@
       "pb": 0.79,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "PPC",
@@ -2738,16 +2977,8 @@
       "pb": 0.63,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
-    },
-    {
-      "ticker": "PC1",
-      "close": 20550.0,
-      "pe": 13.0,
-      "pb": 0.88,
-      "sector": "Xây dựng",
-      "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "CMG",
@@ -2756,16 +2987,18 @@
       "pb": 1.28,
       "sector": "Công nghệ và thông tin",
       "industry": "Công nghệ và thông tin",
-      "group": "Công nghệ và thông tin"
+      "group": "Công nghệ và thông tin",
+      "shares": null
     },
     {
-      "ticker": "VPX",
-      "close": 25350.0,
+      "ticker": "PC1",
+      "close": 20600.0,
       "pe": 13.04,
-      "pb": 1.88,
-      "sector": "Chứng khoán",
-      "industry": "Chứng khoán",
-      "group": "Chứng khoán"
+      "pb": 0.88,
+      "sector": "Xây dựng",
+      "industry": "Xây dựng",
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "SAB",
@@ -2774,7 +3007,18 @@
       "pb": 2.3,
       "sector": "Thực phẩm - Đồ uống",
       "industry": "Thực phẩm - Đồ uống",
-      "group": "Thực phẩm - Đồ uống"
+      "group": "Thực phẩm - Đồ uống",
+      "shares": null
+    },
+    {
+      "ticker": "VPX",
+      "close": 25400.0,
+      "pe": 13.06,
+      "pb": 1.88,
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán",
+      "shares": null
     },
     {
       "ticker": "BSI",
@@ -2783,25 +3027,18 @@
       "pb": 1.27,
       "sector": "Chứng khoán",
       "industry": "Chứng khoán",
-      "group": "Chứng khoán"
+      "group": "Chứng khoán",
+      "shares": null
     },
     {
       "ticker": "IDI",
-      "close": 4980.0,
-      "pe": 13.17,
+      "close": 5000.0,
+      "pe": 13.23,
       "pb": 0.38,
       "sector": "Chế biến Thủy sản",
       "industry": "Chế biến Thủy sản",
-      "group": "Chế biến Thủy sản"
-    },
-    {
-      "ticker": "BKG",
-      "close": 2100.0,
-      "pe": 13.26,
-      "pb": 0.2,
-      "sector": "SX Phụ trợ",
-      "industry": "SX Phụ trợ",
-      "group": "SX Phụ trợ"
+      "group": "Chế biến Thủy sản",
+      "shares": null
     },
     {
       "ticker": "VND",
@@ -2810,7 +3047,28 @@
       "pb": 1.25,
       "sector": "Chứng khoán",
       "industry": "Chứng khoán",
-      "group": "Chứng khoán"
+      "group": "Chứng khoán",
+      "shares": null
+    },
+    {
+      "ticker": "BKG",
+      "close": 2110.0,
+      "pe": 13.32,
+      "pb": 0.2,
+      "sector": "SX Phụ trợ",
+      "industry": "SX Phụ trợ",
+      "group": "SX Phụ trợ",
+      "shares": null
+    },
+    {
+      "ticker": "DHG",
+      "close": 94800.0,
+      "pe": 13.46,
+      "pb": 3.1,
+      "sector": "Chăm sóc sức khỏe",
+      "industry": "Chăm sóc sức khỏe",
+      "group": "Chăm sóc sức khỏe",
+      "shares": null
     },
     {
       "ticker": "VID",
@@ -2819,7 +3077,8 @@
       "pb": 0.28,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "PMG",
@@ -2828,43 +3087,38 @@
       "pb": 0.41,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
-    },
-    {
-      "ticker": "DHG",
-      "close": 95500.0,
-      "pe": 13.56,
-      "pb": 3.12,
-      "sector": "Chăm sóc sức khỏe",
-      "industry": "Chăm sóc sức khỏe",
-      "group": "Chăm sóc sức khỏe"
-    },
-    {
-      "ticker": "GAS",
-      "close": 70300.0,
-      "pe": 13.62,
-      "pb": 2.56,
-      "sector": "Tiện ích",
-      "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "BVB",
-      "close": 12300.0,
-      "pe": 13.63,
-      "pb": 1.07,
+      "close": 12250.0,
+      "pe": 13.58,
+      "pb": 1.06,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
     },
     {
       "ticker": "VCI",
-      "close": 21800.0,
-      "pe": 13.68,
+      "close": 21750.0,
+      "pe": 13.65,
       "pb": 1.24,
       "sector": "Chứng khoán",
       "industry": "Chứng khoán",
-      "group": "Chứng khoán"
+      "group": "Chứng khoán",
+      "shares": null
+    },
+    {
+      "ticker": "GAS",
+      "close": 70700.0,
+      "pe": 13.69,
+      "pb": 2.57,
+      "sector": "Tiện ích",
+      "industry": "Tiện ích",
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "PLP",
@@ -2873,7 +3127,8 @@
       "pb": 0.36,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "STK",
@@ -2882,7 +3137,8 @@
       "pb": 0.47,
       "sector": "SX Hàng gia dụng",
       "industry": "SX Hàng gia dụng",
-      "group": "SX Hàng gia dụng"
+      "group": "SX Hàng gia dụng",
+      "shares": null
     },
     {
       "ticker": "TVB",
@@ -2891,7 +3147,18 @@
       "pb": 0.68,
       "sector": "Chứng khoán",
       "industry": "Chứng khoán",
-      "group": "Chứng khoán"
+      "group": "Chứng khoán",
+      "shares": null
+    },
+    {
+      "ticker": "TTF",
+      "close": 1820.0,
+      "pe": 14.16,
+      "pb": 1.99,
+      "sector": "SX Hàng gia dụng",
+      "industry": "SX Hàng gia dụng",
+      "group": "SX Hàng gia dụng",
+      "shares": null
     },
     {
       "ticker": "BHN",
@@ -2900,7 +3167,8 @@
       "pb": 1.35,
       "sector": "Thực phẩm - Đồ uống",
       "industry": "Thực phẩm - Đồ uống",
-      "group": "Thực phẩm - Đồ uống"
+      "group": "Thực phẩm - Đồ uống",
+      "shares": null
     },
     {
       "ticker": "VNM",
@@ -2909,43 +3177,28 @@
       "pb": 3.25,
       "sector": "Thực phẩm - Đồ uống",
       "industry": "Thực phẩm - Đồ uống",
-      "group": "Thực phẩm - Đồ uống"
-    },
-    {
-      "ticker": "TTF",
-      "close": 1830.0,
-      "pe": 14.23,
-      "pb": 2.0,
-      "sector": "SX Hàng gia dụng",
-      "industry": "SX Hàng gia dụng",
-      "group": "SX Hàng gia dụng"
+      "group": "Thực phẩm - Đồ uống",
+      "shares": null
     },
     {
       "ticker": "KBC",
-      "close": 28000.0,
-      "pe": 14.34,
+      "close": 27950.0,
+      "pe": 14.32,
       "pb": 1.01,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
-    },
-    {
-      "ticker": "CTR",
-      "close": 74500.0,
-      "pe": 14.41,
-      "pb": 3.95,
-      "sector": "Công nghệ và thông tin",
-      "industry": "Công nghệ và thông tin",
-      "group": "Công nghệ và thông tin"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "LPB",
-      "close": 52600.0,
-      "pe": 14.54,
+      "close": 52700.0,
+      "pe": 14.57,
       "pb": 3.62,
       "sector": "Ngân hàng",
       "industry": "Ngân hàng",
-      "group": "Ngân hàng"
+      "group": "Ngân hàng",
+      "shares": null
     },
     {
       "ticker": "HSG",
@@ -2954,7 +3207,18 @@
       "pb": 0.6,
       "sector": "Vật liệu xây dựng",
       "industry": "Vật liệu xây dựng",
-      "group": "Vật liệu xây dựng"
+      "group": "Vật liệu xây dựng",
+      "shares": null
+    },
+    {
+      "ticker": "CTR",
+      "close": 76000.0,
+      "pe": 14.7,
+      "pb": 4.03,
+      "sector": "Công nghệ và thông tin",
+      "industry": "Công nghệ và thông tin",
+      "group": "Công nghệ và thông tin",
+      "shares": null
     },
     {
       "ticker": "VCF",
@@ -2963,7 +3227,8 @@
       "pb": 3.43,
       "sector": "Thực phẩm - Đồ uống",
       "industry": "Thực phẩm - Đồ uống",
-      "group": "Thực phẩm - Đồ uống"
+      "group": "Thực phẩm - Đồ uống",
+      "shares": null
     },
     {
       "ticker": "NHT",
@@ -2972,7 +3237,8 @@
       "pb": 0.75,
       "sector": "SX Phụ trợ",
       "industry": "SX Phụ trợ",
-      "group": "SX Phụ trợ"
+      "group": "SX Phụ trợ",
+      "shares": null
     },
     {
       "ticker": "DBT",
@@ -2981,7 +3247,8 @@
       "pb": 0.94,
       "sector": "Chăm sóc sức khỏe",
       "industry": "Chăm sóc sức khỏe",
-      "group": "Chăm sóc sức khỏe"
+      "group": "Chăm sóc sức khỏe",
+      "shares": null
     },
     {
       "ticker": "ASP",
@@ -2990,7 +3257,8 @@
       "pb": 1.35,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "HAR",
@@ -2999,16 +3267,18 @@
       "pb": 0.26,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "IMP",
-      "close": 36850.0,
-      "pe": 15.67,
+      "close": 36800.0,
+      "pe": 15.64,
       "pb": 2.58,
       "sector": "Chăm sóc sức khỏe",
       "industry": "Chăm sóc sức khỏe",
-      "group": "Chăm sóc sức khỏe"
+      "group": "Chăm sóc sức khỏe",
+      "shares": null
     },
     {
       "ticker": "ITC",
@@ -3017,7 +3287,8 @@
       "pb": 0.36,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "POW",
@@ -3026,7 +3297,8 @@
       "pb": 0.87,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "DBD",
@@ -3035,7 +3307,8 @@
       "pb": 2.73,
       "sector": "Chăm sóc sức khỏe",
       "industry": "Chăm sóc sức khỏe",
-      "group": "Chăm sóc sức khỏe"
+      "group": "Chăm sóc sức khỏe",
+      "shares": null
     },
     {
       "ticker": "PGD",
@@ -3044,34 +3317,38 @@
       "pb": 1.36,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "VTP",
-      "close": 50600.0,
-      "pe": 16.01,
-      "pb": 3.53,
+      "close": 50500.0,
+      "pe": 15.98,
+      "pb": 3.52,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "FTS",
-      "close": 22000.0,
-      "pe": 16.22,
-      "pb": 1.78,
+      "close": 21950.0,
+      "pe": 16.19,
+      "pb": 1.77,
       "sector": "Chứng khoán",
       "industry": "Chứng khoán",
-      "group": "Chứng khoán"
+      "group": "Chứng khoán",
+      "shares": null
     },
     {
       "ticker": "DGW",
-      "close": 39250.0,
-      "pe": 16.25,
+      "close": 39150.0,
+      "pe": 16.21,
       "pb": 2.61,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "CDC",
@@ -3080,7 +3357,8 @@
       "pb": 1.13,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "ICT",
@@ -3089,7 +3367,8 @@
       "pb": 0.86,
       "sector": "Công nghệ và thông tin",
       "industry": "Công nghệ và thông tin",
-      "group": "Công nghệ và thông tin"
+      "group": "Công nghệ và thông tin",
+      "shares": null
     },
     {
       "ticker": "CVT",
@@ -3098,16 +3377,18 @@
       "pb": 0.97,
       "sector": "Vật liệu xây dựng",
       "industry": "Vật liệu xây dựng",
-      "group": "Vật liệu xây dựng"
+      "group": "Vật liệu xây dựng",
+      "shares": null
     },
     {
       "ticker": "PLX",
-      "close": 33900.0,
-      "pe": 16.74,
-      "pb": 1.49,
+      "close": 34050.0,
+      "pe": 16.81,
+      "pb": 1.5,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "SBG",
@@ -3116,43 +3397,58 @@
       "pb": 0.98,
       "sector": "SX Thiết bị, máy móc",
       "industry": "SX Thiết bị, máy móc",
-      "group": "SX Thiết bị, máy móc"
+      "group": "SX Thiết bị, máy móc",
+      "shares": null
     },
     {
       "ticker": "HCM",
-      "close": 25600.0,
-      "pe": 16.95,
-      "pb": 1.73,
+      "close": 25700.0,
+      "pe": 17.01,
+      "pb": 1.74,
       "sector": "Chứng khoán",
       "industry": "Chứng khoán",
-      "group": "Chứng khoán"
+      "group": "Chứng khoán",
+      "shares": null
     },
     {
       "ticker": "PET",
-      "close": 39650.0,
-      "pe": 17.17,
+      "close": 39600.0,
+      "pe": 17.15,
       "pb": 1.64,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "GVR",
-      "close": 27950.0,
-      "pe": 17.31,
+      "close": 28000.0,
+      "pe": 17.34,
       "pb": 1.75,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "MCH",
-      "close": 136800.0,
-      "pe": 17.38,
-      "pb": 8.67,
+      "close": 137200.0,
+      "pe": 17.43,
+      "pb": 8.69,
       "sector": "Thực phẩm - Đồ uống",
       "industry": "Thực phẩm - Đồ uống",
-      "group": "Thực phẩm - Đồ uống"
+      "group": "Thực phẩm - Đồ uống",
+      "shares": null
+    },
+    {
+      "ticker": "BVH",
+      "close": 62700.0,
+      "pe": 17.52,
+      "pb": 1.82,
+      "sector": "Bảo hiểm",
+      "industry": "Bảo hiểm",
+      "group": "Bảo hiểm",
+      "shares": null
     },
     {
       "ticker": "C32",
@@ -3161,52 +3457,28 @@
       "pb": 0.43,
       "sector": "Khai khoáng",
       "industry": "Khai khoáng",
-      "group": "Khai khoáng"
-    },
-    {
-      "ticker": "BVH",
-      "close": 62900.0,
-      "pe": 17.58,
-      "pb": 1.83,
-      "sector": "Bảo hiểm",
-      "industry": "Bảo hiểm",
-      "group": "Bảo hiểm"
+      "group": "Khai khoáng",
+      "shares": null
     },
     {
       "ticker": "MWG",
-      "close": 70600.0,
-      "pe": 17.85,
-      "pb": 3.28,
+      "close": 70700.0,
+      "pe": 17.87,
+      "pb": 3.29,
       "sector": "Bán lẻ",
       "industry": "Bán lẻ",
-      "group": "Bán lẻ"
+      "group": "Bán lẻ",
+      "shares": null
     },
     {
       "ticker": "AGR",
-      "close": 13100.0,
-      "pe": 18.4,
+      "close": 13150.0,
+      "pe": 18.47,
       "pb": 1.18,
       "sector": "Chứng khoán",
       "industry": "Chứng khoán",
-      "group": "Chứng khoán"
-    },
-    {
-      "ticker": "NKG",
-      "close": 10950.0,
-      "pe": 18.52,
-      "pb": 0.64,
-      "sector": "Vật liệu xây dựng",
-      "industry": "Vật liệu xây dựng",
-      "group": "Vật liệu xây dựng"
-    },
-    {
-      "ticker": "PDR",
-      "close": 11800.0,
-      "pe": 18.56,
-      "pb": 0.97,
-      "sector": "Bất động sản",
-      "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Chứng khoán",
+      "shares": null
     },
     {
       "ticker": "CSM",
@@ -3215,34 +3487,58 @@
       "pb": 1.08,
       "sector": "Sản phẩm cao su",
       "industry": "Sản phẩm cao su",
-      "group": "Sản phẩm cao su"
+      "group": "Sản phẩm cao su",
+      "shares": null
     },
     {
       "ticker": "BAF",
-      "close": 31250.0,
-      "pe": 18.63,
-      "pb": 2.21,
+      "close": 31200.0,
+      "pe": 18.6,
+      "pb": 2.2,
       "sector": "Thực phẩm - Đồ uống",
       "industry": "Thực phẩm - Đồ uống",
-      "group": "Thực phẩm - Đồ uống"
+      "group": "Thực phẩm - Đồ uống",
+      "shares": null
     },
     {
-      "ticker": "TCX",
-      "close": 39450.0,
-      "pe": 19.01,
-      "pb": 2.15,
-      "sector": "Chứng khoán",
-      "industry": "Chứng khoán",
-      "group": "Chứng khoán"
+      "ticker": "NKG",
+      "close": 11000.0,
+      "pe": 18.61,
+      "pb": 0.64,
+      "sector": "Vật liệu xây dựng",
+      "industry": "Vật liệu xây dựng",
+      "group": "Vật liệu xây dựng",
+      "shares": null
+    },
+    {
+      "ticker": "PDR",
+      "close": 11850.0,
+      "pe": 18.64,
+      "pb": 0.97,
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "KDH",
-      "close": 17800.0,
-      "pe": 19.03,
+      "close": 17750.0,
+      "pe": 18.98,
       "pb": 0.98,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
+    },
+    {
+      "ticker": "TCX",
+      "close": 39500.0,
+      "pe": 19.03,
+      "pb": 2.15,
+      "sector": "Chứng khoán",
+      "industry": "Chứng khoán",
+      "group": "Chứng khoán",
+      "shares": null
     },
     {
       "ticker": "TSA",
@@ -3251,34 +3547,28 @@
       "pb": 1.47,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "VOS",
-      "close": 10950.0,
-      "pe": 19.37,
-      "pb": 0.81,
+      "close": 10900.0,
+      "pe": 19.28,
+      "pb": 0.8,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "SJS",
-      "close": 46150.0,
-      "pe": 21.0,
+      "close": 46200.0,
+      "pe": 21.02,
       "pb": 4.22,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
-    },
-    {
-      "ticker": "DIG",
-      "close": 10650.0,
-      "pe": 21.09,
-      "pb": 0.84,
-      "sector": "Bất động sản",
-      "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "FIT",
@@ -3287,7 +3577,18 @@
       "pb": 0.18,
       "sector": "Chăm sóc sức khỏe",
       "industry": "Chăm sóc sức khỏe",
-      "group": "Chăm sóc sức khỏe"
+      "group": "Chăm sóc sức khỏe",
+      "shares": null
+    },
+    {
+      "ticker": "DIG",
+      "close": 10700.0,
+      "pe": 21.19,
+      "pb": 0.84,
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "NAF",
@@ -3296,16 +3597,18 @@
       "pb": 3.02,
       "sector": "Thực phẩm - Đồ uống",
       "industry": "Thực phẩm - Đồ uống",
-      "group": "Thực phẩm - Đồ uống"
+      "group": "Thực phẩm - Đồ uống",
+      "shares": null
     },
     {
       "ticker": "GMD",
-      "close": 77900.0,
-      "pe": 22.33,
-      "pb": 2.31,
+      "close": 77800.0,
+      "pe": 22.3,
+      "pb": 2.3,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "SBT",
@@ -3314,16 +3617,18 @@
       "pb": 1.46,
       "sector": "Thực phẩm - Đồ uống",
       "industry": "Thực phẩm - Đồ uống",
-      "group": "Thực phẩm - Đồ uống"
+      "group": "Thực phẩm - Đồ uống",
+      "shares": null
     },
     {
       "ticker": "EVG",
-      "close": 4420.0,
-      "pe": 22.71,
+      "close": 4410.0,
+      "pe": 22.65,
       "pb": 0.33,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "SAV",
@@ -3332,7 +3637,8 @@
       "pb": 0.96,
       "sector": "SX Hàng gia dụng",
       "industry": "SX Hàng gia dụng",
-      "group": "SX Hàng gia dụng"
+      "group": "SX Hàng gia dụng",
+      "shares": null
     },
     {
       "ticker": "HPX",
@@ -3341,7 +3647,8 @@
       "pb": 0.36,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "HT1",
@@ -3350,16 +3657,28 @@
       "pb": 0.98,
       "sector": "Vật liệu xây dựng",
       "industry": "Vật liệu xây dựng",
-      "group": "Vật liệu xây dựng"
+      "group": "Vật liệu xây dựng",
+      "shares": null
+    },
+    {
+      "ticker": "ASG",
+      "close": 16800.0,
+      "pe": 23.49,
+      "pb": 0.72,
+      "sector": "Vận tải - kho bãi",
+      "industry": "Vận tải - kho bãi",
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "DXG",
-      "close": 10750.0,
-      "pe": 23.73,
+      "close": 10800.0,
+      "pe": 23.84,
       "pb": 0.58,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "DSE",
@@ -3368,7 +3687,8 @@
       "pb": 1.75,
       "sector": "Chứng khoán",
       "industry": "Chứng khoán",
-      "group": "Chứng khoán"
+      "group": "Chứng khoán",
+      "shares": null
     },
     {
       "ticker": "TDM",
@@ -3377,7 +3697,8 @@
       "pb": 2.6,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "AAN",
@@ -3386,7 +3707,8 @@
       "pb": 1.06,
       "sector": "Nông - Lâm - Ngư",
       "industry": "Nông - Lâm - Ngư",
-      "group": "Nông - Lâm - Ngư"
+      "group": "Nông - Lâm - Ngư",
+      "shares": null
     },
     {
       "ticker": "TDP",
@@ -3395,7 +3717,8 @@
       "pb": 2.29,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "NVT",
@@ -3404,16 +3727,18 @@
       "pb": 1.14,
       "sector": "Dịch vụ lưu trú, ăn uống, giải trí",
       "industry": "Dịch vụ lưu trú, ăn uống, giải trí",
-      "group": "Dịch vụ lưu trú, ăn uống, giải trí"
+      "group": "Dịch vụ lưu trú, ăn uống, giải trí",
+      "shares": null
     },
     {
       "ticker": "QCG",
-      "close": 10400.0,
-      "pe": 27.8,
+      "close": 10350.0,
+      "pe": 27.67,
       "pb": 0.62,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "FIR",
@@ -3422,7 +3747,8 @@
       "pb": 0.37,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "HHP",
@@ -3431,7 +3757,8 @@
       "pb": 1.16,
       "sector": "SX Phụ trợ",
       "industry": "SX Phụ trợ",
-      "group": "SX Phụ trợ"
+      "group": "SX Phụ trợ",
+      "shares": null
     },
     {
       "ticker": "MSN",
@@ -3440,25 +3767,28 @@
       "pb": 2.36,
       "sector": "Thực phẩm - Đồ uống",
       "industry": "Thực phẩm - Đồ uống",
-      "group": "Thực phẩm - Đồ uống"
+      "group": "Thực phẩm - Đồ uống",
+      "shares": null
     },
     {
       "ticker": "KMR",
-      "close": 2330.0,
-      "pe": 29.95,
-      "pb": 0.2,
+      "close": 2340.0,
+      "pe": 30.08,
+      "pb": 0.21,
       "sector": "SX Hàng gia dụng",
       "industry": "SX Hàng gia dụng",
-      "group": "SX Hàng gia dụng"
+      "group": "SX Hàng gia dụng",
+      "shares": null
     },
     {
       "ticker": "FRT",
-      "close": 131900.0,
-      "pe": 30.15,
+      "close": 132000.0,
+      "pe": 30.17,
       "pb": 6.17,
       "sector": "Bán lẻ",
       "industry": "Bán lẻ",
-      "group": "Bán lẻ"
+      "group": "Bán lẻ",
+      "shares": null
     },
     {
       "ticker": "MCP",
@@ -3467,16 +3797,18 @@
       "pb": 1.98,
       "sector": "SX Phụ trợ",
       "industry": "SX Phụ trợ",
-      "group": "SX Phụ trợ"
+      "group": "SX Phụ trợ",
+      "shares": null
     },
     {
       "ticker": "KHG",
-      "close": 4720.0,
-      "pe": 31.61,
+      "close": 4730.0,
+      "pe": 31.67,
       "pb": 0.4,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "TV2",
@@ -3485,7 +3817,8 @@
       "pb": 1.37,
       "sector": "Dịch vụ tư vấn, hỗ trợ",
       "industry": "Dịch vụ tư vấn, hỗ trợ",
-      "group": "Dịch vụ tư vấn, hỗ trợ"
+      "group": "Dịch vụ tư vấn, hỗ trợ",
+      "shares": null
     },
     {
       "ticker": "DHM",
@@ -3494,7 +3827,8 @@
       "pb": 0.61,
       "sector": "Khai khoáng",
       "industry": "Khai khoáng",
-      "group": "Khai khoáng"
+      "group": "Khai khoáng",
+      "shares": null
     },
     {
       "ticker": "SAM",
@@ -3503,7 +3837,8 @@
       "pb": 0.47,
       "sector": "Thiết bị điện",
       "industry": "Thiết bị điện",
-      "group": "Thiết bị điện"
+      "group": "Thiết bị điện",
+      "shares": null
     },
     {
       "ticker": "TLD",
@@ -3512,7 +3847,8 @@
       "pb": 0.65,
       "sector": "SX Phụ trợ",
       "industry": "SX Phụ trợ",
-      "group": "SX Phụ trợ"
+      "group": "SX Phụ trợ",
+      "shares": null
     },
     {
       "ticker": "PGV",
@@ -3521,16 +3857,18 @@
       "pb": 1.67,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "BSR",
-      "close": 25200.0,
-      "pe": 37.89,
-      "pb": 1.36,
+      "close": 25300.0,
+      "pe": 38.04,
+      "pb": 1.37,
       "sector": "SX Phụ trợ",
       "industry": "SX Phụ trợ",
-      "group": "SX Phụ trợ"
+      "group": "SX Phụ trợ",
+      "shares": null
     },
     {
       "ticker": "DTA",
@@ -3539,7 +3877,8 @@
       "pb": 0.31,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "SHI",
@@ -3548,16 +3887,18 @@
       "pb": 1.11,
       "sector": "SX Phụ trợ",
       "industry": "SX Phụ trợ",
-      "group": "SX Phụ trợ"
+      "group": "SX Phụ trợ",
+      "shares": null
     },
     {
       "ticker": "VJC",
-      "close": 125500.0,
-      "pe": 41.79,
-      "pb": 3.04,
+      "close": 126100.0,
+      "pe": 41.99,
+      "pb": 3.06,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "CRE",
@@ -3566,52 +3907,58 @@
       "pb": 0.55,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "TCH",
-      "close": 12050.0,
-      "pe": 44.48,
-      "pb": 0.77,
+      "close": 11950.0,
+      "pe": 44.11,
+      "pb": 0.76,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "CTF",
-      "close": 19450.0,
-      "pe": 44.91,
-      "pb": 1.65,
+      "close": 19500.0,
+      "pe": 45.02,
+      "pb": 1.66,
       "sector": "Bán lẻ",
       "industry": "Bán lẻ",
-      "group": "Bán lẻ"
-    },
-    {
-      "ticker": "HQC",
-      "close": 2180.0,
-      "pe": 50.8,
-      "pb": 0.23,
-      "sector": "Bất động sản",
-      "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bán lẻ",
+      "shares": null
     },
     {
       "ticker": "ORS",
-      "close": 14000.0,
-      "pe": 51.28,
+      "close": 13950.0,
+      "pe": 51.1,
       "pb": 1.19,
       "sector": "Chứng khoán",
       "industry": "Chứng khoán",
-      "group": "Chứng khoán"
+      "group": "Chứng khoán",
+      "shares": null
+    },
+    {
+      "ticker": "HQC",
+      "close": 2200.0,
+      "pe": 51.27,
+      "pb": 0.23,
+      "sector": "Bất động sản",
+      "industry": "Bất động sản",
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "GEL",
-      "close": 29500.0,
-      "pe": 51.98,
+      "close": 29550.0,
+      "pe": 52.06,
       "pb": 1.28,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "VRC",
@@ -3620,16 +3967,18 @@
       "pb": 0.45,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "VPI",
-      "close": 63100.0,
-      "pe": 54.12,
-      "pb": 3.77,
+      "close": 63200.0,
+      "pe": 54.21,
+      "pb": 3.78,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "AAM",
@@ -3638,7 +3987,8 @@
       "pb": 0.38,
       "sector": "Chế biến Thủy sản",
       "industry": "Chế biến Thủy sản",
-      "group": "Chế biến Thủy sản"
+      "group": "Chế biến Thủy sản",
+      "shares": null
     },
     {
       "ticker": "SCR",
@@ -3647,7 +3997,8 @@
       "pb": 0.36,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "FCN",
@@ -3656,16 +4007,18 @@
       "pb": 0.5,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "TSC",
-      "close": 2080.0,
-      "pe": 64.62,
+      "close": 2090.0,
+      "pe": 64.93,
       "pb": 0.16,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "DAH",
@@ -3674,25 +4027,28 @@
       "pb": 0.23,
       "sector": "Dịch vụ lưu trú, ăn uống, giải trí",
       "industry": "Dịch vụ lưu trú, ăn uống, giải trí",
-      "group": "Dịch vụ lưu trú, ăn uống, giải trí"
+      "group": "Dịch vụ lưu trú, ăn uống, giải trí",
+      "shares": null
     },
     {
       "ticker": "ASM",
-      "close": 5960.0,
-      "pe": 75.14,
+      "close": 5970.0,
+      "pe": 75.26,
       "pb": 0.27,
       "sector": "Chế biến Thủy sản",
       "industry": "Chế biến Thủy sản",
-      "group": "Chế biến Thủy sản"
+      "group": "Chế biến Thủy sản",
+      "shares": null
     },
     {
       "ticker": "DCL",
-      "close": 40950.0,
-      "pe": 85.99,
-      "pb": 1.97,
+      "close": 42800.0,
+      "pe": 89.87,
+      "pb": 2.06,
       "sector": "Chăm sóc sức khỏe",
       "industry": "Chăm sóc sức khỏe",
-      "group": "Chăm sóc sức khỏe"
+      "group": "Chăm sóc sức khỏe",
+      "shares": null
     },
     {
       "ticker": "SRF",
@@ -3701,7 +4057,8 @@
       "pb": 0.58,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "CII",
@@ -3710,7 +4067,8 @@
       "pb": 0.73,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "VIC",
@@ -3719,7 +4077,8 @@
       "pb": 5.28,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Vingroup Ecosystem"
+      "group": "Vingroup Ecosystem",
+      "shares": null
     },
     {
       "ticker": "TNT",
@@ -3728,7 +4087,8 @@
       "pb": 0.76,
       "sector": "Khai khoáng",
       "industry": "Khai khoáng",
-      "group": "Khai khoáng"
+      "group": "Khai khoáng",
+      "shares": null
     },
     {
       "ticker": "KDC",
@@ -3737,25 +4097,28 @@
       "pb": 2.05,
       "sector": "Thực phẩm - Đồ uống",
       "industry": "Thực phẩm - Đồ uống",
-      "group": "Thực phẩm - Đồ uống"
+      "group": "Thực phẩm - Đồ uống",
+      "shares": null
     },
     {
       "ticker": "HSL",
-      "close": 8600.0,
-      "pe": 148.07,
+      "close": 8610.0,
+      "pe": 148.24,
       "pb": 0.75,
       "sector": "Nông - Lâm - Ngư",
       "industry": "Nông - Lâm - Ngư",
-      "group": "Nông - Lâm - Ngư"
+      "group": "Nông - Lâm - Ngư",
+      "shares": null
     },
     {
       "ticker": "VPL",
-      "close": 79200.0,
-      "pe": 333.18,
-      "pb": 3.95,
+      "close": 79000.0,
+      "pe": 332.34,
+      "pb": 3.94,
       "sector": "Dịch vụ lưu trú, ăn uống, giải trí",
       "industry": "Dịch vụ lưu trú, ăn uống, giải trí",
-      "group": "Vingroup Ecosystem"
+      "group": "Vingroup Ecosystem",
+      "shares": null
     },
     {
       "ticker": "SMC",
@@ -3764,7 +4127,8 @@
       "pb": 1.21,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "HAP",
@@ -3773,7 +4137,8 @@
       "pb": 0.54,
       "sector": "SX Phụ trợ",
       "industry": "SX Phụ trợ",
-      "group": "SX Phụ trợ"
+      "group": "SX Phụ trợ",
+      "shares": null
     },
     {
       "ticker": "L10",
@@ -3782,25 +4147,28 @@
       "pb": null,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "TNI",
-      "close": 6200.0,
+      "close": 6350.0,
       "pe": null,
-      "pb": 0.65,
+      "pb": 0.67,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "NVL",
-      "close": 13950.0,
+      "close": 14000.0,
       "pe": null,
       "pb": 0.54,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "BTT",
@@ -3809,7 +4177,8 @@
       "pb": null,
       "sector": "Bán lẻ",
       "industry": "Bán lẻ",
-      "group": "Bán lẻ"
+      "group": "Bán lẻ",
+      "shares": null
     },
     {
       "ticker": "SFG",
@@ -3818,7 +4187,8 @@
       "pb": null,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "VPH",
@@ -3827,7 +4197,8 @@
       "pb": 0.29,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "VTB",
@@ -3836,7 +4207,8 @@
       "pb": null,
       "sector": "Thiết bị điện",
       "industry": "Thiết bị điện",
-      "group": "Thiết bị điện"
+      "group": "Thiết bị điện",
+      "shares": null
     },
     {
       "ticker": "VPG",
@@ -3845,7 +4217,8 @@
       "pb": 0.12,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "QNP",
@@ -3854,7 +4227,8 @@
       "pb": null,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "FDC",
@@ -3863,7 +4237,8 @@
       "pb": null,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "CLW",
@@ -3872,7 +4247,8 @@
       "pb": null,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "STG",
@@ -3881,7 +4257,8 @@
       "pb": null,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "APG",
@@ -3890,7 +4267,8 @@
       "pb": 0.44,
       "sector": "Chứng khoán",
       "industry": "Chứng khoán",
-      "group": "Chứng khoán"
+      "group": "Chứng khoán",
+      "shares": null
     },
     {
       "ticker": "SBV",
@@ -3899,7 +4277,8 @@
       "pb": 0.39,
       "sector": "SX Phụ trợ",
       "industry": "SX Phụ trợ",
-      "group": "SX Phụ trợ"
+      "group": "SX Phụ trợ",
+      "shares": null
     },
     {
       "ticker": "TTE",
@@ -3908,7 +4287,8 @@
       "pb": null,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "CMV",
@@ -3917,7 +4297,8 @@
       "pb": null,
       "sector": "Bán lẻ",
       "industry": "Bán lẻ",
-      "group": "Bán lẻ"
+      "group": "Bán lẻ",
+      "shares": null
     },
     {
       "ticker": "VCA",
@@ -3926,7 +4307,8 @@
       "pb": null,
       "sector": "Vật liệu xây dựng",
       "industry": "Vật liệu xây dựng",
-      "group": "Vật liệu xây dựng"
+      "group": "Vật liệu xây dựng",
+      "shares": null
     },
     {
       "ticker": "PTL",
@@ -3935,7 +4317,8 @@
       "pb": 0.36,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "PHC",
@@ -3944,34 +4327,18 @@
       "pb": null,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "KOS",
-      "close": 34650.0,
+      "close": 34500.0,
       "pe": null,
-      "pb": 3.21,
+      "pb": 3.2,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
-    },
-    {
-      "ticker": "DTT",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "SX Nhựa - Hóa chất",
-      "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
-    },
-    {
-      "ticker": "ASG",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Vận tải - kho bãi",
-      "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "CCI",
@@ -3980,7 +4347,8 @@
       "pb": null,
       "sector": "Bán lẻ",
       "industry": "Bán lẻ",
-      "group": "Bán lẻ"
+      "group": "Bán lẻ",
+      "shares": null
     },
     {
       "ticker": "PJT",
@@ -3989,16 +4357,8 @@
       "pb": null,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
-    },
-    {
-      "ticker": "UIC",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Tiện ích",
-      "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "VNG",
@@ -4007,7 +4367,8 @@
       "pb": null,
       "sector": "Dịch vụ lưu trú, ăn uống, giải trí",
       "industry": "Dịch vụ lưu trú, ăn uống, giải trí",
-      "group": "Dịch vụ lưu trú, ăn uống, giải trí"
+      "group": "Dịch vụ lưu trú, ăn uống, giải trí",
+      "shares": null
     },
     {
       "ticker": "YBM",
@@ -4016,7 +4377,8 @@
       "pb": null,
       "sector": "Vật liệu xây dựng",
       "industry": "Vật liệu xây dựng",
-      "group": "Vật liệu xây dựng"
+      "group": "Vật liệu xây dựng",
+      "shares": null
     },
     {
       "ticker": "SRC",
@@ -4025,16 +4387,18 @@
       "pb": null,
       "sector": "Sản phẩm cao su",
       "industry": "Sản phẩm cao su",
-      "group": "Sản phẩm cao su"
+      "group": "Sản phẩm cao su",
+      "shares": null
     },
     {
       "ticker": "ABS",
-      "close": 3060.0,
+      "close": 3050.0,
       "pe": null,
       "pb": 0.39,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "HAX",
@@ -4043,7 +4407,8 @@
       "pb": 0.72,
       "sector": "Bán lẻ",
       "industry": "Bán lẻ",
-      "group": "Bán lẻ"
+      "group": "Bán lẻ",
+      "shares": null
     },
     {
       "ticker": "TIX",
@@ -4052,16 +4417,18 @@
       "pb": null,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "TNH",
-      "close": 8380.0,
+      "close": 8350.0,
       "pe": null,
       "pb": 0.68,
       "sector": "Chăm sóc sức khỏe",
       "industry": "Chăm sóc sức khỏe",
-      "group": "Chăm sóc sức khỏe"
+      "group": "Chăm sóc sức khỏe",
+      "shares": null
     },
     {
       "ticker": "ABR",
@@ -4070,7 +4437,8 @@
       "pb": null,
       "sector": "Công nghệ và thông tin",
       "industry": "Công nghệ và thông tin",
-      "group": "Công nghệ và thông tin"
+      "group": "Công nghệ và thông tin",
+      "shares": null
     },
     {
       "ticker": "CIG",
@@ -4079,7 +4447,8 @@
       "pb": null,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "DTL",
@@ -4088,7 +4457,8 @@
       "pb": null,
       "sector": "Vật liệu xây dựng",
       "industry": "Vật liệu xây dựng",
-      "group": "Vật liệu xây dựng"
+      "group": "Vật liệu xây dựng",
+      "shares": null
     },
     {
       "ticker": "SFC",
@@ -4097,7 +4467,8 @@
       "pb": null,
       "sector": "Bán lẻ",
       "industry": "Bán lẻ",
-      "group": "Bán lẻ"
+      "group": "Bán lẻ",
+      "shares": null
     },
     {
       "ticker": "DRH",
@@ -4106,7 +4477,8 @@
       "pb": 0.16,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "SMA",
@@ -4115,7 +4487,8 @@
       "pb": null,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "VNL",
@@ -4124,16 +4497,8 @@
       "pb": null,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
-    },
-    {
-      "ticker": "ADG",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Unknown",
-      "industry": "Unknown",
-      "group": "Unknown"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "HAS",
@@ -4142,7 +4507,8 @@
       "pb": null,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "ACL",
@@ -4151,16 +4517,18 @@
       "pb": null,
       "sector": "Chế biến Thủy sản",
       "industry": "Chế biến Thủy sản",
-      "group": "Chế biến Thủy sản"
+      "group": "Chế biến Thủy sản",
+      "shares": null
     },
     {
       "ticker": "CRV",
-      "close": 25000.0,
+      "close": 24950.0,
       "pe": null,
-      "pb": 2.22,
+      "pb": 2.21,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "ACG",
@@ -4169,7 +4537,8 @@
       "pb": null,
       "sector": "SX Phụ trợ",
       "industry": "SX Phụ trợ",
-      "group": "SX Phụ trợ"
+      "group": "SX Phụ trợ",
+      "shares": null
     },
     {
       "ticker": "SFI",
@@ -4178,7 +4547,8 @@
       "pb": null,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "TMT",
@@ -4187,7 +4557,8 @@
       "pb": 2.46,
       "sector": "SX Phụ trợ",
       "industry": "SX Phụ trợ",
-      "group": "SX Phụ trợ"
+      "group": "SX Phụ trợ",
+      "shares": null
     },
     {
       "ticker": "TPC",
@@ -4196,7 +4567,8 @@
       "pb": null,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "MDG",
@@ -4205,7 +4577,8 @@
       "pb": null,
       "sector": "Khai khoáng",
       "industry": "Khai khoáng",
-      "group": "Khai khoáng"
+      "group": "Khai khoáng",
+      "shares": null
     },
     {
       "ticker": "TMS",
@@ -4214,7 +4587,8 @@
       "pb": null,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "LM8",
@@ -4223,7 +4597,8 @@
       "pb": null,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "S4A",
@@ -4232,7 +4607,8 @@
       "pb": null,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     },
     {
       "ticker": "GTA",
@@ -4241,7 +4617,8 @@
       "pb": null,
       "sector": "SX Phụ trợ",
       "industry": "SX Phụ trợ",
-      "group": "SX Phụ trợ"
+      "group": "SX Phụ trợ",
+      "shares": null
     },
     {
       "ticker": "SC5",
@@ -4250,7 +4627,8 @@
       "pb": null,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "NBB",
@@ -4259,7 +4637,8 @@
       "pb": null,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "LGC",
@@ -4268,7 +4647,8 @@
       "pb": null,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "PIT",
@@ -4277,7 +4657,8 @@
       "pb": 0.98,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "TDH",
@@ -4286,7 +4667,8 @@
       "pb": 2.1,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "CCC",
@@ -4295,7 +4677,8 @@
       "pb": null,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "TCR",
@@ -4304,7 +4687,8 @@
       "pb": null,
       "sector": "Vật liệu xây dựng",
       "industry": "Vật liệu xây dựng",
-      "group": "Vật liệu xây dựng"
+      "group": "Vật liệu xây dựng",
+      "shares": null
     },
     {
       "ticker": "TYA",
@@ -4313,7 +4697,8 @@
       "pb": null,
       "sector": "Thiết bị điện",
       "industry": "Thiết bị điện",
-      "group": "Thiết bị điện"
+      "group": "Thiết bị điện",
+      "shares": null
     },
     {
       "ticker": "TLH",
@@ -4322,7 +4707,8 @@
       "pb": 0.35,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "LDG",
@@ -4331,7 +4717,8 @@
       "pb": 0.59,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "DXV",
@@ -4340,7 +4727,8 @@
       "pb": null,
       "sector": "Vật liệu xây dựng",
       "industry": "Vật liệu xây dựng",
-      "group": "Vật liệu xây dựng"
+      "group": "Vật liệu xây dựng",
+      "shares": null
     },
     {
       "ticker": "SVC",
@@ -4349,7 +4737,8 @@
       "pb": null,
       "sector": "Bán lẻ",
       "industry": "Bán lẻ",
-      "group": "Bán lẻ"
+      "group": "Bán lẻ",
+      "shares": null
     },
     {
       "ticker": "TEG",
@@ -4358,7 +4747,8 @@
       "pb": null,
       "sector": "Vật liệu xây dựng",
       "industry": "Vật liệu xây dựng",
-      "group": "Vật liệu xây dựng"
+      "group": "Vật liệu xây dựng",
+      "shares": null
     },
     {
       "ticker": "VMD",
@@ -4367,7 +4757,8 @@
       "pb": null,
       "sector": "Bán buôn",
       "industry": "Bán buôn",
-      "group": "Bán buôn"
+      "group": "Bán buôn",
+      "shares": null
     },
     {
       "ticker": "VNS",
@@ -4376,7 +4767,8 @@
       "pb": null,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "DMC",
@@ -4385,7 +4777,8 @@
       "pb": null,
       "sector": "Chăm sóc sức khỏe",
       "industry": "Chăm sóc sức khỏe",
-      "group": "Chăm sóc sức khỏe"
+      "group": "Chăm sóc sức khỏe",
+      "shares": null
     },
     {
       "ticker": "PTC",
@@ -4394,7 +4787,8 @@
       "pb": null,
       "sector": "Xây dựng",
       "industry": "Xây dựng",
-      "group": "Xây dựng"
+      "group": "Xây dựng",
+      "shares": null
     },
     {
       "ticker": "LGL",
@@ -4403,7 +4797,8 @@
       "pb": 0.38,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "HU1",
@@ -4412,7 +4807,8 @@
       "pb": null,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "COM",
@@ -4421,7 +4817,8 @@
       "pb": null,
       "sector": "Bán lẻ",
       "industry": "Bán lẻ",
-      "group": "Bán lẻ"
+      "group": "Bán lẻ",
+      "shares": null
     },
     {
       "ticker": "HTV",
@@ -4430,7 +4827,8 @@
       "pb": null,
       "sector": "Vận tải - kho bãi",
       "industry": "Vận tải - kho bãi",
-      "group": "Vận tải - kho bãi"
+      "group": "Vận tải - kho bãi",
+      "shares": null
     },
     {
       "ticker": "EVE",
@@ -4439,7 +4837,8 @@
       "pb": null,
       "sector": "SX Hàng gia dụng",
       "industry": "SX Hàng gia dụng",
-      "group": "SX Hàng gia dụng"
+      "group": "SX Hàng gia dụng",
+      "shares": null
     },
     {
       "ticker": "PNC",
@@ -4448,7 +4847,8 @@
       "pb": null,
       "sector": "Bán lẻ",
       "industry": "Bán lẻ",
-      "group": "Bán lẻ"
+      "group": "Bán lẻ",
+      "shares": null
     },
     {
       "ticker": "DQC",
@@ -4457,7 +4857,8 @@
       "pb": 0.35,
       "sector": "Thiết bị điện",
       "industry": "Thiết bị điện",
-      "group": "Thiết bị điện"
+      "group": "Thiết bị điện",
+      "shares": null
     },
     {
       "ticker": "TNC",
@@ -4466,16 +4867,8 @@
       "pb": null,
       "sector": "SX Nhựa - Hóa chất",
       "industry": "SX Nhựa - Hóa chất",
-      "group": "SX Nhựa - Hóa chất"
-    },
-    {
-      "ticker": "GHC",
-      "close": 0.0,
-      "pe": null,
-      "pb": null,
-      "sector": "Tiện ích",
-      "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "SX Nhựa - Hóa chất",
+      "shares": null
     },
     {
       "ticker": "VDP",
@@ -4484,16 +4877,18 @@
       "pb": null,
       "sector": "Chăm sóc sức khỏe",
       "industry": "Chăm sóc sức khỏe",
-      "group": "Chăm sóc sức khỏe"
+      "group": "Chăm sóc sức khỏe",
+      "shares": null
     },
     {
       "ticker": "GIL",
-      "close": 7700.0,
+      "close": 7720.0,
       "pe": null,
       "pb": 0.32,
       "sector": "SX Hàng gia dụng",
       "industry": "SX Hàng gia dụng",
-      "group": "SX Hàng gia dụng"
+      "group": "SX Hàng gia dụng",
+      "shares": null
     },
     {
       "ticker": "NTL",
@@ -4502,7 +4897,8 @@
       "pb": 0.95,
       "sector": "Bất động sản",
       "industry": "Bất động sản",
-      "group": "Bất động sản"
+      "group": "Bất động sản",
+      "shares": null
     },
     {
       "ticker": "TDW",
@@ -4511,7 +4907,8 @@
       "pb": null,
       "sector": "Tiện ích",
       "industry": "Tiện ích",
-      "group": "Tiện ích"
+      "group": "Tiện ích",
+      "shares": null
     }
   ]
 }
