@@ -278,7 +278,12 @@ document.addEventListener('DOMContentLoaded',()=>{
   window.updateMarketExChart();
 
   const tG=Object.keys(D.trend);
-  if(tG.length>0){charts.trend=new Chart(document.getElementById('chart-trend'),{type:'line',data:{datasets:tG.map((g,i)=>({label:g,data:D.trend[g].dates.map((d,j)=>({x:d,y:D.trend[g].pe[j]})),borderColor:PAL[i%PAL.length],backgroundColor:'transparent',tension:.35,pointRadius:0,borderWidth:2}))},options:{responsive:true,scales:{x:{type:'category',ticks:{color:tc.ticks,maxRotation:45,autoSkip:true,maxTicksLimit:15},grid:{color:tc.grid}},y:{title:{display:true,text:'Median P/E',color:tc.ticks},grid:{color:tc.grid},ticks:{color:tc.ticks}}},plugins:{legend:{labels:{color:tc.leg,font:{size:11},boxWidth:14}}}}});}else{document.getElementById('trend-msg').textContent='Trend appears after the second trading day.';}
+  if(tG.length>0){
+    const allDates = [...new Set(tG.flatMap(g => D.trend[g].dates))].sort();
+    charts.trend=new Chart(document.getElementById('chart-trend'),{type:'line',data:{labels:allDates, datasets:tG.map((g,i)=>({label:g,data:allDates.map(d=>{const idx = D.trend[g].dates.indexOf(d); return idx>=0 ? D.trend[g].pe[idx] : null;}),borderColor:PAL[i%PAL.length],backgroundColor:'transparent',tension:.35,pointRadius:0,borderWidth:2}))},options:{responsive:true,scales:{x:{type:'category',ticks:{color:tc.ticks,maxRotation:45,autoSkip:true,maxTicksLimit:15},grid:{color:tc.grid}},y:{title:{display:true,text:'Median P/E',color:tc.ticks},grid:{color:tc.grid},ticks:{color:tc.ticks}}},plugins:{legend:{labels:{color:tc.leg,font:{size:11},boxWidth:14}}}}});
+  }else{
+    document.getElementById('trend-msg').textContent='Trend appears after the second trading day.';
+  }
   const tbody=document.getElementById('tbl-body');
   D.tickers.forEach(t=>{const isVG=['VIC','VHM','VRE','VPL'].includes(t.ticker);const tr=document.createElement('tr');tr.innerHTML=`<td>${isVG?`<span style="color:var(--accent);font-weight:700">${t.ticker}</span> <span style="color:#3b82f6;font-size:.65rem">VG</span>`:`<span style="font-weight:600">${t.ticker}</span>`}</td><td>${fmtK(t.close)}</td><td>${t.pe==null?'—':`<span style="color:${peCol(t.pe)};font-weight:700">${fmt(t.pe)}</span>`}</td><td>${t.pb==null?'—':`<span style="color:var(--accent2);font-weight:700">${fmt(t.pb)}</span>`}</td><td style="color:var(--muted)">${t.sector||'—'}</td><td style="color:var(--dim);font-size:.8rem">${t.industry||'—'}</td><td style="color:var(--muted)">${t.group||'—'}</td>`;tbody.appendChild(tr);});
   $('#tbl').DataTable({pageLength:25,order:[[2,'asc']],columnDefs:[{targets:[1,2,3],type:'num'}],language:{search:'Filter:',lengthMenu:'Show _MENU_ stocks'}});
