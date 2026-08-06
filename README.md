@@ -41,19 +41,6 @@ flowchart TD
 
 ---
 
-## Why annual EPS and not TTM?
-
-Vietnamese Accounting Standards (VAS) quarterly income statements are
-**year-to-date cumulative** — Q2 IS shows Jan–Jun revenue, not Apr–Jun alone.
-Computing a true TTM EPS requires deaccumulating four consecutive quarters before summing,
-which is complex and error-prone in a fully-automated pipeline.
-Using the **last audited annual EPS** is safer for market-level P/E analysis.
-
-> TTM mode can be added later by wiring in the quarterly IS pipeline
-> from `vn-quant-master` (with proper VAS deaccumulation).
-
----
-
 ## Does vnstock provide daily PE/PB?
 
 **No.** After checking the vnstock v4 source:
@@ -62,10 +49,10 @@ Using the **last audited annual EPS** is safer for market-level P/E analysis.
 |--------|---------|----------|
 | KBS `price_board` | 29 (price · volume · bid-ask · foreign) | ❌ |
 | VCI `price_board` | 77 (LISTING · MATCH · BID_ASK) | ❌ |
-| `Finance.ratio(period='year')` | ratios per fiscal year | EPS + BVPS ✅ |
+| `Finance.ratio()` | financial ratios | TTM EPS + BVPS ✅ |
 
 We compute `PE = close / eps_ttm` and `PB = close / bvps` ourselves.
-This also gives us full control over the denominator (annual vs TTM, adjustments, etc.).
+This gives us full control over the denominator (we extract `trailing_eps` and `book_value_per_share`).
 
 ---
 
@@ -125,8 +112,8 @@ VINGROUP_GROUP   = "Vingroup Ecosystem"
 |------|-------------|-----------|--------|
 | Ticker universe | `Reference().equity.list_by_exchange('HOSE')` [KBS] | Weekly | `fetch_fundamentals.py` |
 | Sector / ICB | `Reference().equity.list_by_industry()` [VCI → KBS fallback] | Weekly | `fetch_fundamentals.py` |
-| EPS (annual) | `Finance(ticker, KBS).ratio(period='year')` | Weekly | `fetch_fundamentals.py` |
-| BVPS (annual) | same call as EPS | Weekly | `fetch_fundamentals.py` |
+| EPS (TTM) | `Finance(ticker, KBS).ratio()` | Weekly | `fetch_fundamentals.py` |
+| BVPS (latest) | same call as EPS | Weekly | `fetch_fundamentals.py` |
 | Daily close price | `Trading(KBS).price_board(tickers)` | Daily | `daily_compute.py` |
 
 ---
@@ -221,7 +208,6 @@ open docs/index.html
 
 | Goal | How |
 |------|-----|
-| **TTM EPS** | Wire quarterly IS pipeline from `vn-quant-master` with VAS deaccumulation; replace `eps_ttm` in `daily_compute.py` |
 | **Market-cap weighted PE/PB** | Fetch `shares_outstanding` weekly; add weighted columns to sector aggregation |
 | **Telegram alert** | Add a post-build step in `daily_pe_pb.yml` that sends the sector summary table via the existing bot |
 | **Google Sheets export** | Add `gspread` to requirements; write `data_latest.json` into a named sheet after dashboard build |

@@ -41,3 +41,6 @@ Thumbs.db
 # The daily CSV snapshots accumulate; git-track them (small ~30KB each)
 # but if repo grows too large you can uncomment the next line:
 # /data/daily/
+
+# Ignore HANDOFF document
+HANDOFF.md
