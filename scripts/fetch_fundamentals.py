@@ -223,17 +223,18 @@ def get_sector_map(tickers: list[str]) -> pd.DataFrame:
 # ── TTM EPS + BVPS extractor ─────────────────────────────────────────────────
 def _extract_ttm(ratio_df: pd.DataFrame, ticker: str) -> dict:
     """
-    Extract trailing_eps and book_value_per_share from the ratio() format.
+    Extract trailing_eps, book_value_per_share, and shares from the ratio() format.
     Handles both the new vnstock 4.0+ format (rows are items, columns are periods)
     and the old format (rows are periods).
     """
-    null = {"ticker": ticker, "eps_ttm": np.nan, "bvps": np.nan,
+    null = {"ticker": ticker, "eps_ttm": np.nan, "bvps": np.nan, "shares": np.nan,
             "eps_method": "no_data", "fetched_date": str(date.today())}
     if ratio_df is None or ratio_df.empty:
         return null
 
     eps_ttm = np.nan
     bvps = np.nan
+    shares = np.nan
 
     if "item_id" in ratio_df.columns:
         # NEW vnstock format: rows are items, columns are periods (e.g. '2026-Q2')
@@ -249,6 +250,12 @@ def _extract_ttm(ratio_df: pd.DataFrame, ticker: str) -> dict:
             bvps_row = ratio_df[ratio_df["item_id"].isin(["book_value_per_share_bvps", "book_value_per_share"])]
             if not bvps_row.empty:
                 bvps = pd.to_numeric(bvps_row[latest_period].iloc[0], errors="coerce")
+            
+            cap_row = ratio_df[ratio_df["item_id"] == "charter_capital"]
+            if not cap_row.empty:
+                cap_val = pd.to_numeric(cap_row[latest_period].iloc[0], errors="coerce")
+                if pd.notna(cap_val):
+                    shares = cap_val * 100_000_000
     else:
         # OLD vnstock format: rows are periods
         if "period" in ratio_df.columns:
@@ -262,6 +269,9 @@ def _extract_ttm(ratio_df: pd.DataFrame, ticker: str) -> dict:
         latest = ratio_df.iloc[0]
         eps_ttm = pd.to_numeric(latest.get("trailing_eps", np.nan), errors="coerce")
         bvps    = pd.to_numeric(latest.get("book_value_per_share", np.nan), errors="coerce")
+        cap_val = pd.to_numeric(latest.get("charter_capital", np.nan), errors="coerce")
+        if pd.notna(cap_val):
+            shares = cap_val * 100_000_000
 
     if pd.isna(eps_ttm) or eps_ttm <= 0:
         eps_method = "no_eps" if pd.isna(eps_ttm) else "negative_eps"
@@ -269,7 +279,7 @@ def _extract_ttm(ratio_df: pd.DataFrame, ticker: str) -> dict:
     else:
         eps_method = "trailing_eps"
 
-    return {"ticker": ticker, "eps_ttm": eps_ttm, "bvps": bvps,
+    return {"ticker": ticker, "eps_ttm": eps_ttm, "bvps": bvps, "shares": shares,
             "eps_method": eps_method, "fetched_date": str(date.today())}
 
 

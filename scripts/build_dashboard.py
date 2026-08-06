@@ -52,10 +52,40 @@ def load_data():
 
 def build_payload(tl, t30, sl, s30, ld):
     all_pe = tl["pe"].dropna(); all_pb = tl["pb"].dropna()
+    vn_idx = sl[sl["group"] == "VN-Index"].iloc[0] if not sl[sl["group"] == "VN-Index"].empty else None
+    
+    m_pe = _safe(vn_idx["median_pe"]) if vn_idx is not None else _safe(all_pe.median())
+    m_pb = _safe(vn_idx["median_pb"]) if vn_idx is not None else _safe(all_pb.median())
+    w_pe = _safe(vn_idx["weighted_pe"]) if vn_idx is not None else None
+    w_pb = _safe(vn_idx["weighted_pb"]) if vn_idx is not None else None
+
     market = {"date": ld.strftime("%Y-%m-%d"),
-              "median_pe": _safe(all_pe.median()), "median_pb": _safe(all_pb.median()),
+              "median_pe": m_pe, "median_pb": m_pb,
+              "weighted_pe": w_pe, "weighted_pb": w_pb,
               "total": len(tl), "valid_pe": int(all_pe.notna().sum()),
               "valid_pb": int(all_pb.notna().sum())}
+
+    tl_ex = tl[tl["group"] != VINGROUP_GROUP].copy()
+    pe_ex = tl_ex["pe"].dropna()
+    pb_ex = tl_ex["pb"].dropna()
+    
+    if "shares" not in tl_ex.columns: tl_ex["shares"] = 0
+    pe_ex_valid = tl_ex[tl_ex["pe"].notna() & (tl_ex["shares"] > 0)].copy()
+    pe_ex_valid["eps_ttm"] = pe_ex_valid["close"] / pe_ex_valid["pe"]
+    s_mc_pe = (pe_ex_valid["close"] * pe_ex_valid["shares"]).sum()
+    s_er_pe = (pe_ex_valid["eps_ttm"] * pe_ex_valid["shares"]).sum()
+    w_pe_ex = _safe(s_mc_pe / s_er_pe) if len(pe_ex_valid) > 0 and s_er_pe > 0 else None
+    
+    pb_ex_valid = tl_ex[tl_ex["pb"].notna() & (tl_ex["shares"] > 0)].copy()
+    pb_ex_valid["bvps"] = pb_ex_valid["close"] / pb_ex_valid["pb"]
+    s_mc_pb = (pb_ex_valid["close"] * pb_ex_valid["shares"]).sum()
+    s_bv_pb = (pb_ex_valid["bvps"] * pb_ex_valid["shares"]).sum()
+    w_pb_ex = _safe(s_mc_pb / s_bv_pb) if len(pb_ex_valid) > 0 and s_bv_pb > 0 else None
+
+    market_ex = {
+        "median_pe": _safe(pe_ex.median()), "median_pb": _safe(pb_ex.median()),
+        "weighted_pe": w_pe_ex, "weighted_pb": w_pb_ex
+    }
 
     vg = tl[tl["ticker"].isin(VINGROUP_TICKERS)][["ticker","close","pe","pb"]].copy()
     vingroup = _records(vg)
@@ -63,12 +93,13 @@ def build_payload(tl, t30, sl, s30, ld):
     sect_cols = ["group","count","valid_pe","valid_pb",
                  "median_pe","median_pb","mean_pe","mean_pb",
                  "weighted_pe","weighted_pb","p25_pe","p75_pe","p25_pb","p75_pb"]
-    avail = [c for c in sect_cols if c in sl.columns]
-    sectors = _records(sl[avail].sort_values("median_pe", na_position="last"))
+    sl_sectors = sl[~sl["group"].isin(["VN-Index", "Unknown"])]
+    avail = [c for c in sect_cols if c in sl_sectors.columns]
+    sectors = _records(sl_sectors[avail].sort_values("median_pe", na_position="last"))
 
-    top_groups = sl.nlargest(8,"count")["group"].tolist() if not sl.empty else []
+    trend_groups = s30[~s30["group"].isin(["VN-Index", "Unknown"])]["group"].unique().tolist()
     trend = {}
-    for grp in top_groups:
+    for grp in trend_groups:
         sub = s30[s30["group"]==grp].sort_values("date")[["date","median_pe","median_pb"]]
         trend[grp] = {"dates": sub["date"].dt.strftime("%Y-%m-%d").tolist(),
                       "pe": [_safe(v) for v in sub["median_pe"]],
@@ -76,7 +107,7 @@ def build_payload(tl, t30, sl, s30, ld):
 
     tbl = ["ticker","close","pe","pb","sector","industry","group"]
     tickers = _records(tl[[c for c in tbl if c in tl.columns]].sort_values("pe", na_position="last"))
-    return {"market": market, "vingroup": vingroup, "sectors": sectors,
+    return {"market": market, "market_ex": market_ex, "vingroup": vingroup, "sectors": sectors,
             "trend": trend, "tickers": tickers}
 
 
@@ -98,7 +129,7 @@ body{background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,
 .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:0 2px 8px var(--shadow);transition:background .25s,border-color .25s}
 .hdr{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:28px}
 .hdr h1{font-size:1.75rem;font-weight:800}
-.hdr p{color:var(--muted);font-size:.8rem;margin-top:4px}
+.hdr p{color:var(--muted);font-size:.85rem;margin-top:6px}
 .hl{color:var(--accent);font-weight:600}
 .theme-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--btn-border);border-radius:8px;background:var(--btn-bg);color:var(--text);font-size:.8rem;font-weight:600;cursor:pointer;transition:background .2s,border-color .2s}
 .theme-btn:hover{border-color:var(--accent);color:var(--accent)}
@@ -132,7 +163,7 @@ table.dataTable tbody tr:hover td{background:var(--hover)!important}
   <header class="hdr">
     <div>
       <h1>📊 VN-HOSE P/E &amp; P/B</h1>
-      <p>As of <span class="hl" id="hdr-date"></span> &nbsp;·&nbsp; PE = Close / TTM EPS &nbsp; PB = Close / BVPS</p>
+      <p>As of <span class="hl" id="hdr-date"></span> &nbsp;·&nbsp; PE = Close / TTM EPS &nbsp; PB = Close / BVPS &nbsp;·&nbsp; Valid Stocks: <span class="hl" id="mkt-npe"></span> PE / <span class="hl" id="mkt-npb"></span> PB out of <span id="mkt-tot"></span></p>
     </div>
     <button class="theme-btn" onclick="toggleTheme()">
       <span id="theme-icon">☀️</span><span id="theme-label">Light mode</span>
@@ -140,17 +171,24 @@ table.dataTable tbody tr:hover td{background:var(--hover)!important}
   </header>
 
   <div class="g4">
+    <div class="card"><div class="lbl">HOSE Weighted P/E</div><div class="big" id="mkt-wpe">—</div><div class="sub">Capitalization-weighted</div></div>
     <div class="card"><div class="lbl">HOSE Median P/E</div><div class="big" id="mkt-pe">—</div><div class="sub">All HOSE stocks</div></div>
+    <div class="card"><div class="lbl">HOSE Weighted P/B</div><div class="big" id="mkt-wpb">—</div><div class="sub">Capitalization-weighted</div></div>
     <div class="card"><div class="lbl">HOSE Median P/B</div><div class="big" id="mkt-pb">—</div><div class="sub">All HOSE stocks</div></div>
-    <div class="card"><div class="lbl">Stocks with P/E</div><div class="big" style="color:var(--text)" id="mkt-npe">—</div><div class="sub" id="mkt-tot"></div></div>
-    <div class="card"><div class="lbl">Stocks with P/B</div><div class="big" style="color:var(--text)" id="mkt-npb">—</div><div class="sub">Valid values</div></div>
   </div>
 
-  <div class="card mb8">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
-      <span class="sec">🏙️ Vingroup Ecosystem</span><span class="vg-badge">Special Group</span>
+  <div class="g2">
+    <div class="card mb8">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+        <span class="sec">🏙️ Vingroup Ecosystem</span><span class="vg-badge">Special Group</span>
+      </div>
+      <div class="gvg" id="vg-cards" style="grid-template-columns: repeat(2, 1fr);"></div>
     </div>
-    <div class="gvg" id="vg-cards"></div>
+    <div class="card mb8">
+      <div class="sec">⚖️ Market Valuation (Excl. Vingroup)</div>
+      <div class="sec-sub">Impact of Vingroup Ecosystem on VN-Index</div>
+      <canvas id="chart-ex-vin" height="200"></canvas>
+    </div>
   </div>
 
   <div class="g2">
@@ -160,7 +198,7 @@ table.dataTable tbody tr:hover td{background:var(--hover)!important}
 
   <div class="card mb8">
     <div class="sec">📈 30-Day Sector P/E Trend</div>
-    <div class="sec-sub">Top 8 sectors by stock count</div>
+    <div class="sec-sub">All sectors excluding VN-Index</div>
     <canvas id="chart-trend" height="220"></canvas>
     <p id="trend-msg" style="color:var(--dim);font-size:.75rem;margin-top:8px"></p>
   </div>
@@ -192,13 +230,15 @@ function fmt(v,dp=2){return v==null?'—':(+v).toFixed(dp);}
 function fmtK(v){return v==null?'—':(v/1000).toFixed(1)+'K';}
 document.addEventListener('DOMContentLoaded',()=>{
   const dk=_it==='dark';document.getElementById('theme-icon').textContent=dk?'☀️':'🌙';document.getElementById('theme-label').textContent=dk?'Light mode':'Dark mode';
-  const m=D.market;
+  const m=D.market; const m_ex=D.market_ex;
   document.getElementById('hdr-date').textContent=m.date;
+  document.getElementById('mkt-wpe').textContent=fmt(m.weighted_pe);
   document.getElementById('mkt-pe').textContent=fmt(m.median_pe);
+  document.getElementById('mkt-wpb').textContent=fmt(m.weighted_pb);
   document.getElementById('mkt-pb').textContent=fmt(m.median_pb);
   document.getElementById('mkt-npe').textContent=m.valid_pe;
   document.getElementById('mkt-npb').textContent=m.valid_pb;
-  document.getElementById('mkt-tot').textContent=`of ${m.total} listed`;
+  document.getElementById('mkt-tot').textContent=`${m.total}`;
   const vgEl=document.getElementById('vg-cards');
   D.vingroup.forEach(v=>{const d=document.createElement('div');d.className='vg-card';d.innerHTML=`<div style="color:var(--accent);font-size:1.2rem;font-weight:800">${v.ticker}</div><div style="color:var(--muted);font-size:.8rem;margin-top:5px">Close: <span style="color:var(--text);font-weight:700">${fmtK(v.close)}</span></div><div style="color:var(--muted);font-size:.8rem">P/E: <span style="color:${peCol(v.pe)};font-weight:700">${fmt(v.pe)}</span></div><div style="color:var(--muted);font-size:.8rem">P/B: <span style="color:var(--accent2);font-weight:700">${fmt(v.pb)}</span></div>`;vgEl.appendChild(d);});
   const tc=themeC(_it);
@@ -207,8 +247,11 @@ document.addEventListener('DOMContentLoaded',()=>{
   charts.pe=new Chart(document.getElementById('chart-pe'),{type:'bar',data:{labels:sects.map(s=>s.group),datasets:[{data:sects.map(s=>s.median_pe),backgroundColor:sects.map(s=>peCol(s.median_pe)),borderRadius:5}]},options:{...barOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` P/E: ${ctx.parsed.x.toFixed(1)}`}}}}});
   const sectsB=D.sectors.filter(s=>s.median_pb!=null);
   charts.pb=new Chart(document.getElementById('chart-pb'),{type:'bar',data:{labels:sectsB.map(s=>s.group),datasets:[{data:sectsB.map(s=>s.median_pb),backgroundColor:'#818cf8',borderRadius:5}]},options:{...barOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` P/B: ${ctx.parsed.x.toFixed(2)}`}}}}});
+  
+  charts.ex_vin=new Chart(document.getElementById('chart-ex-vin'),{type:'bar',data:{labels:['Weighted P/E','Median P/E','Weighted P/B','Median P/B'],datasets:[{label:'VN-Index',data:[m.weighted_pe,m.median_pe,m.weighted_pb,m.median_pb],backgroundColor:'#38bdf8',borderRadius:4},{label:'VN-Index (Excl. Vingroup)',data:[m_ex.weighted_pe,m_ex.median_pe,m_ex.weighted_pb,m_ex.median_pb],backgroundColor:'#818cf8',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:tc.leg,font:{size:11},boxWidth:14}}},scales:{x:{grid:{display:false},ticks:{color:tc.ticks}},y:{grid:{color:tc.grid},ticks:{color:tc.ticks}}}}});
+
   const tG=Object.keys(D.trend);
-  if(tG.length>0){charts.trend=new Chart(document.getElementById('chart-trend'),{type:'line',data:{datasets:tG.map((g,i)=>({label:g,data:D.trend[g].dates.map((d,j)=>({x:d,y:D.trend[g].pe[j]})),borderColor:PAL[i%PAL.length],backgroundColor:'transparent',tension:.35,pointRadius:3,borderWidth:2}))},options:{responsive:true,parsing:false,scales:{x:{type:'category',ticks:{color:tc.ticks,maxRotation:45,autoSkip:true,maxTicksLimit:15},grid:{color:tc.grid}},y:{title:{display:true,text:'Median P/E',color:tc.ticks},grid:{color:tc.grid},ticks:{color:tc.ticks}}},plugins:{legend:{labels:{color:tc.leg,font:{size:11},boxWidth:14}}}}});}else{document.getElementById('trend-msg').textContent='Trend appears after the second trading day.';}
+  if(tG.length>0){charts.trend=new Chart(document.getElementById('chart-trend'),{type:'line',data:{datasets:tG.map((g,i)=>({label:g,data:D.trend[g].dates.map((d,j)=>({x:d,y:D.trend[g].pe[j]})),borderColor:PAL[i%PAL.length],backgroundColor:'transparent',tension:.35,pointRadius:0,borderWidth:2}))},options:{responsive:true,scales:{x:{type:'category',ticks:{color:tc.ticks,maxRotation:45,autoSkip:true,maxTicksLimit:15},grid:{color:tc.grid}},y:{title:{display:true,text:'Median P/E',color:tc.ticks},grid:{color:tc.grid},ticks:{color:tc.ticks}}},plugins:{legend:{labels:{color:tc.leg,font:{size:11},boxWidth:14}}}}});}else{document.getElementById('trend-msg').textContent='Trend appears after the second trading day.';}
   const tbody=document.getElementById('tbl-body');
   D.tickers.forEach(t=>{const isVG=['VIC','VHM','VRE','VPL'].includes(t.ticker);const tr=document.createElement('tr');tr.innerHTML=`<td>${isVG?`<span style="color:var(--accent);font-weight:700">${t.ticker}</span> <span style="color:#3b82f6;font-size:.65rem">VG</span>`:`<span style="font-weight:600">${t.ticker}</span>`}</td><td>${fmtK(t.close)}</td><td>${t.pe==null?'—':`<span style="color:${peCol(t.pe)};font-weight:700">${fmt(t.pe)}</span>`}</td><td>${t.pb==null?'—':`<span style="color:var(--accent2);font-weight:700">${fmt(t.pb)}</span>`}</td><td style="color:var(--muted)">${t.sector||'—'}</td><td style="color:var(--dim);font-size:.8rem">${t.industry||'—'}</td><td style="color:var(--muted)">${t.group||'—'}</td>`;tbody.appendChild(tr);});
   $('#tbl').DataTable({pageLength:25,order:[[2,'asc']],columnDefs:[{targets:[1,2,3],type:'num'}],language:{search:'Filter:',lengthMenu:'Show _MENU_ stocks'}});
