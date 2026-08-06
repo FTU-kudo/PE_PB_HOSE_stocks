@@ -175,8 +175,11 @@ table.dataTable tbody tr:hover td{background:var(--hover)!important}
   </div>
   
   <div class="card mb8">
-    <div class="sec">⚖️ Market Valuation</div>
-    <div class="sec-sub">Select sectors to exclude from VN-Index calculation:</div>
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <div class="sec" style="margin:0">⚖️ Market Valuation</div>
+      <div id="tf-pills" style="display:flex; gap:4px; font-size:0.75rem;"></div>
+    </div>
+    <div class="sec-sub" style="margin-top:8px">Select sectors to exclude from VN-Index calculation:</div>
     <div id="sector-pills" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;"></div>
     <div style="position: relative; height: 350px; width: 100%;">
       <canvas id="chart-ex-vin"></canvas>
@@ -294,15 +297,39 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
   });
 
+  let curTf = '5Y';
   window.updateMarketExChart = function() {
-    const dates = D.trend['VN-Index'].dates;
+    let dates = D.trend['VN-Index'].dates;
+    let cutoff = '1970-01-01';
+    
+    // Use the maximum date in the dataset as the reference point
+    const maxDateStr = dates.length > 0 ? dates[dates.length - 1] : new Date().toISOString().split('T')[0];
+    const d = new Date(maxDateStr);
+    
+    if(curTf === '3M') { d.setMonth(d.getMonth()-3); cutoff = d.toISOString().split('T')[0]; }
+    else if(curTf === 'YTD') { d.setMonth(0, 1); cutoff = d.toISOString().split('T')[0]; }
+    else if(curTf === '1Y') { d.setFullYear(d.getFullYear()-1); cutoff = d.toISOString().split('T')[0]; }
+    else if(curTf === '3Y') { d.setFullYear(d.getFullYear()-3); cutoff = d.toISOString().split('T')[0]; }
+    else if(curTf === '5Y') { d.setFullYear(d.getFullYear()-5); cutoff = d.toISOString().split('T')[0]; }
+    
+    let startIndex = dates.findIndex(dt => dt >= cutoff);
+    if(startIndex === -1) startIndex = 0;
+    
+    const sliceDates = dates.slice(startIndex);
     const peData = []; const pbData = [];
-    dates.forEach((d, i) => {
+    const basePe = []; const basePb = [];
+    
+    sliceDates.forEach((dt, si) => {
+      const i = startIndex + si;
       let m_pe = D.trend['VN-Index'].mc_pe[i] || 0; let e_pe = D.trend['VN-Index'].ern_pe[i] || 0;
       let m_pb = D.trend['VN-Index'].mc_pb[i] || 0; let b_pb = D.trend['VN-Index'].bv_pb[i] || 0;
+      
+      basePe.push(D.trend['VN-Index'].wpe[i]);
+      basePb.push(D.trend['VN-Index'].wpb[i]);
+      
       selGroups.forEach(g => {
         if(D.trend[g]) {
-          const idx = D.trend[g].dates.indexOf(d);
+          const idx = D.trend[g].dates.indexOf(dt);
           if (idx >= 0) {
             m_pe -= (D.trend[g].mc_pe[idx] || 0); e_pe -= (D.trend[g].ern_pe[idx] || 0);
             m_pb -= (D.trend[g].mc_pb[idx] || 0); b_pb -= (D.trend[g].bv_pb[idx] || 0);
@@ -312,12 +339,32 @@ document.addEventListener('DOMContentLoaded',()=>{
       peData.push(e_pe > 0 ? m_pe / e_pe : null);
       pbData.push(b_pb > 0 ? m_pb / b_pb : null);
     });
+    
     if (charts.ex_vin) {
+      charts.ex_vin.data.labels = sliceDates;
+      charts.ex_vin.data.datasets[0].data = basePe;
       charts.ex_vin.data.datasets[1].data = peData;
+      charts.ex_vin.data.datasets[2].data = basePb;
       charts.ex_vin.data.datasets[3].data = pbData;
       charts.ex_vin.update();
     }
   };
+
+  const tfEl = document.getElementById('tf-pills');
+  ['5Y', '3Y', '1Y', 'YTD', '3M'].forEach(tf => {
+    const b = document.createElement('div');
+    b.className = 'pill' + (curTf === tf ? ' active' : '');
+    b.textContent = tf;
+    b.style.cursor = 'pointer';
+    b.onclick = () => {
+      curTf = tf;
+      Array.from(tfEl.children).forEach(c => c.classList.remove('active'));
+      b.classList.add('active');
+      window.updateMarketExChart();
+    };
+    tfEl.appendChild(b);
+  });
+
   window.updateMarketExChart();
 
   const tG=Object.keys(D.trend);
