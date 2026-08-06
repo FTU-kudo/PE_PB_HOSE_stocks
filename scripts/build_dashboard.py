@@ -76,12 +76,20 @@ def build_payload(tl, t5y, sl, s5y, ld):
     sectors = _records(sl_sectors[avail].sort_values("median_pe", na_position="last"))
 
     trend_groups = s5y[~s5y["group"].isin(["VN-Index", "Unknown"])]["group"].unique().tolist()
+    # We also need the VN-Index 5y trend for the baseline
+    trend_groups.insert(0, "VN-Index")
     trend = {}
     for grp in trend_groups:
-        sub = s5y[s5y["group"]==grp].sort_values("date")[["date","median_pe","median_pb"]]
+        sub = s5y[s5y["group"]==grp].sort_values("date")[["date","median_pe","median_pb","weighted_pe","weighted_pb","sum_pe_mc","sum_pe_ern","sum_pb_mc","sum_pb_bv"]]
         trend[grp] = {"dates": sub["date"].dt.strftime("%Y-%m-%d").tolist(),
                       "pe": [_safe(v) for v in sub["median_pe"]],
-                      "pb": [_safe(v) for v in sub["median_pb"]]}
+                      "pb": [_safe(v) for v in sub["median_pb"]],
+                      "wpe": [_safe(v) for v in sub["weighted_pe"]],
+                      "wpb": [_safe(v) for v in sub["weighted_pb"]],
+                      "mc_pe": [_safe(v) for v in sub["sum_pe_mc"]],
+                      "ern_pe": [_safe(v) for v in sub["sum_pe_ern"]],
+                      "mc_pb": [_safe(v) for v in sub["sum_pb_mc"]],
+                      "bv_pb": [_safe(v) for v in sub["sum_pb_bv"]]}
 
     tbl = ["ticker","close","pe","pb","sector","industry","group","shares"]
     if "shares" not in tl.columns: tl["shares"] = 0
@@ -135,6 +143,9 @@ table.dataTable tbody tr:hover td{background:var(--hover)!important}
 .dataTables_wrapper .paginate_button.current{background:#1d4ed8!important;color:#fff!important}
 .footer{text-align:center;color:var(--dim);font-size:.75rem;margin-top:48px}
 .ovx{overflow-x:auto}
+.pill{display:inline-flex;align-items:center;padding:4px 10px;background:var(--card2);border:1px solid var(--border);border-radius:999px;font-size:.8rem;color:var(--text);cursor:pointer;user-select:none;transition:all .2s}
+.pill:hover{border-color:var(--accent);color:var(--accent)}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
 </style>
 </head>
 <body>
@@ -165,12 +176,9 @@ table.dataTable tbody tr:hover td{background:var(--hover)!important}
     </div>
     <div class="card mb8">
       <div class="sec">⚖️ Market Valuation</div>
-      <div class="sec-sub">Select sectors to exclude from VN-Index calculation (Ctrl/Cmd+Click to select multiple):</div>
-      <div style="margin-bottom: 12px">
-        <select id="sector-select" multiple style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--border); background: var(--card2); color: var(--text); height: 90px; outline: none; font-size: 0.85rem;" onchange="updateMarketExChart()">
-        </select>
-      </div>
-      <div style="position: relative; height: 260px; width: 100%;">
+      <div class="sec-sub">Select sectors to exclude from VN-Index calculation:</div>
+      <div id="sector-pills" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;"></div>
+      <div style="position: relative; height: 350px; width: 100%;">
         <canvas id="chart-ex-vin"></canvas>
       </div>
     </div>
@@ -180,11 +188,18 @@ table.dataTable tbody tr:hover td{background:var(--hover)!important}
     <div class="card"><div class="sec">📊 Sector Median P/E</div><div class="sec-sub">Green &lt;12 · Blue &lt;20 · Yellow &lt;30 · Red ≥30</div><canvas id="chart-pe"></canvas></div>
     <div class="card"><div class="sec">📊 Sector Median P/B</div><div class="sec-sub">Lower = cheaper vs book value</div><canvas id="chart-pb"></canvas></div>
   </div>
+  
+  <div class="g2">
+    <div class="card"><div class="sec">📊 Sector Weighted P/E</div><div class="sec-sub">Capitalization-weighted</div><canvas id="chart-wpe"></canvas></div>
+    <div class="card"><div class="sec">📊 Sector Weighted P/B</div><div class="sec-sub">Capitalization-weighted</div><canvas id="chart-wpb"></canvas></div>
+  </div>
 
   <div class="card mb8">
     <div class="sec">📈 5-Year Sector P/E Trend</div>
     <div class="sec-sub">All sectors excluding VN-Index</div>
-    <canvas id="chart-trend" height="220"></canvas>
+    <div style="position: relative; height: 350px; width: 100%;">
+      <canvas id="chart-trend"></canvas>
+    </div>
     <p id="trend-msg" style="color:var(--dim);font-size:.75rem;margin-top:8px"></p>
   </div>
 
@@ -232,46 +247,76 @@ document.addEventListener('DOMContentLoaded',()=>{
   charts.pe=new Chart(document.getElementById('chart-pe'),{type:'bar',data:{labels:sects.map(s=>s.group),datasets:[{data:sects.map(s=>s.median_pe),backgroundColor:sects.map(s=>peCol(s.median_pe)),borderRadius:5}]},options:{...barOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` P/E: ${ctx.parsed.x.toFixed(1)}`}}}}});
   const sectsB=D.sectors.filter(s=>s.median_pb!=null);
   charts.pb=new Chart(document.getElementById('chart-pb'),{type:'bar',data:{labels:sectsB.map(s=>s.group),datasets:[{data:sectsB.map(s=>s.median_pb),backgroundColor:'#818cf8',borderRadius:5}]},options:{...barOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` P/B: ${ctx.parsed.x.toFixed(2)}`}}}}});
-  charts.ex_vin=new Chart(document.getElementById('chart-ex-vin'),{type:'bar',data:{labels:['Weighted P/E','Median P/E','Weighted P/B','Median P/B'],datasets:[{label:'VN-Index',data:[m.weighted_pe,m.median_pe,m.weighted_pb,m.median_pb],backgroundColor:'#38bdf8',borderRadius:4},{label:'VN-Index (Excl. Selected)',data:[0,0,0,0],backgroundColor:'#818cf8',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:tc.leg,font:{size:11},boxWidth:14}}},scales:{x:{grid:{display:false},ticks:{color:tc.ticks}},y:{grid:{color:tc.grid},ticks:{color:tc.ticks}}}}});
+  
+  const sectsWpe=D.sectors.filter(s=>s.weighted_pe!=null);
+  charts.wpe=new Chart(document.getElementById('chart-wpe'),{type:'bar',data:{labels:sectsWpe.map(s=>s.group),datasets:[{data:sectsWpe.map(s=>s.weighted_pe),backgroundColor:sectsWpe.map(s=>peCol(s.weighted_pe)),borderRadius:5}]},options:{...barOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` P/E: ${ctx.parsed.x.toFixed(1)}`}}}}});
+  const sectsWpb=D.sectors.filter(s=>s.weighted_pb!=null);
+  charts.wpb=new Chart(document.getElementById('chart-wpb'),{type:'bar',data:{labels:sectsWpb.map(s=>s.group),datasets:[{data:sectsWpb.map(s=>s.weighted_pb),backgroundColor:'#34d399',borderRadius:5}]},options:{...barOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` P/B: ${ctx.parsed.x.toFixed(2)}`}}}}});
 
   const groups = [...new Set(D.tickers.map(t=>t.group).filter(Boolean))].sort();
-  const sel = document.getElementById('sector-select');
+  const pillsEl = document.getElementById('sector-pills');
+  const selGroups = new Set(groups.filter(g => g === 'Vingroup Ecosystem'));
+  
   groups.forEach(g => {
-    const opt = document.createElement('option');
-    opt.value = g; opt.textContent = g;
-    if (g === 'Vingroup Ecosystem') opt.selected = true;
-    sel.appendChild(opt);
+    const lbl = document.createElement('label');
+    lbl.className = 'pill' + (selGroups.has(g) ? ' active' : '');
+    const chk = document.createElement('input');
+    chk.type = 'checkbox';
+    chk.style.display = 'none';
+    chk.checked = selGroups.has(g);
+    chk.onchange = (e) => {
+      if(e.target.checked) { selGroups.add(g); lbl.classList.add('active'); }
+      else { selGroups.delete(g); lbl.classList.remove('active'); }
+      window.updateMarketExChart();
+    };
+    lbl.appendChild(chk);
+    lbl.appendChild(document.createTextNode(g));
+    pillsEl.appendChild(lbl);
+  });
+
+  charts.ex_vin = new Chart(document.getElementById('chart-ex-vin'), {
+    type:'line',
+    data:{
+      labels:D.trend['VN-Index'].dates, 
+      datasets:[
+        {label:'VN-Index W P/E', data:D.trend['VN-Index'].wpe, yAxisID:'y', borderColor:'#38bdf8', backgroundColor:'transparent', tension:.35, pointRadius:0, borderWidth:2},
+        {label:'VN-Index W P/E (Excl)', data:[], yAxisID:'y', borderColor:'#818cf8', backgroundColor:'transparent', tension:.35, pointRadius:0, borderWidth:2},
+        {label:'VN-Index W P/B', data:D.trend['VN-Index'].wpb, yAxisID:'y2', borderColor:'#34d399', backgroundColor:'transparent', tension:.35, pointRadius:0, borderWidth:2},
+        {label:'VN-Index W P/B (Excl)', data:[], yAxisID:'y2', borderColor:'#fbbf24', backgroundColor:'transparent', tension:.35, pointRadius:0, borderWidth:2}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{labels:{color:tc.leg,font:{size:11},boxWidth:14}}},
+      scales:{
+        x:{type:'category',ticks:{color:tc.ticks,maxRotation:45,autoSkip:true,maxTicksLimit:15},grid:{color:tc.grid}},
+        y:{type:'linear',display:true,position:'left',title:{display:true,text:'P/E',color:tc.ticks},grid:{color:tc.grid},ticks:{color:tc.ticks}},
+        y2:{type:'linear',display:true,position:'right',title:{display:true,text:'P/B',color:tc.ticks},grid:{drawOnChartArea:false},ticks:{color:tc.ticks}}
+      }
+    }
   });
 
   window.updateMarketExChart = function() {
-    const excluded = Array.from(sel.selectedOptions).map(o => o.value);
-    const tl_ex = D.tickers.filter(t => !excluded.includes(t.group));
-    
-    let s_mc_pe = 0, s_er_pe = 0; const pe_arr = [];
-    let s_mc_pb = 0, s_bv_pb = 0; const pb_arr = [];
-    
-    tl_ex.forEach(t => {
-      if (t.pe != null) {
-        if (t.shares > 0) { s_mc_pe += t.close * t.shares; s_er_pe += (t.close / t.pe) * t.shares; }
-        pe_arr.push(t.pe);
-      }
-      if (t.pb != null) {
-        if (t.shares > 0) { s_mc_pb += t.close * t.shares; s_bv_pb += (t.close / t.pb) * t.shares; }
-        pb_arr.push(t.pb);
-      }
+    const dates = D.trend['VN-Index'].dates;
+    const peData = []; const pbData = [];
+    dates.forEach((d, i) => {
+      let m_pe = D.trend['VN-Index'].mc_pe[i] || 0; let e_pe = D.trend['VN-Index'].ern_pe[i] || 0;
+      let m_pb = D.trend['VN-Index'].mc_pb[i] || 0; let b_pb = D.trend['VN-Index'].bv_pb[i] || 0;
+      selGroups.forEach(g => {
+        if(D.trend[g]) {
+          const idx = D.trend[g].dates.indexOf(d);
+          if (idx >= 0) {
+            m_pe -= (D.trend[g].mc_pe[idx] || 0); e_pe -= (D.trend[g].ern_pe[idx] || 0);
+            m_pb -= (D.trend[g].mc_pb[idx] || 0); b_pb -= (D.trend[g].bv_pb[idx] || 0);
+          }
+        }
+      });
+      peData.push(e_pe > 0 ? m_pe / e_pe : null);
+      pbData.push(b_pb > 0 ? m_pb / b_pb : null);
     });
-    
-    const w_pe_ex = s_er_pe > 0 ? (s_mc_pe / s_er_pe) : null;
-    pe_arr.sort((a,b)=>a-b);
-    const m_pe_ex = pe_arr.length > 0 ? (pe_arr.length%2===0 ? (pe_arr[pe_arr.length/2-1]+pe_arr[pe_arr.length/2])/2 : pe_arr[Math.floor(pe_arr.length/2)]) : null;
-    
-    const w_pb_ex = s_bv_pb > 0 ? (s_mc_pb / s_bv_pb) : null;
-    pb_arr.sort((a,b)=>a-b);
-    const m_pb_ex = pb_arr.length > 0 ? (pb_arr.length%2===0 ? (pb_arr[pb_arr.length/2-1]+pb_arr[pb_arr.length/2])/2 : pb_arr[Math.floor(pb_arr.length/2)]) : null;
-    
     if (charts.ex_vin) {
-      charts.ex_vin.data.datasets[1].data = [w_pe_ex, m_pe_ex, w_pb_ex, m_pb_ex];
-      charts.ex_vin.data.datasets[1].label = excluded.length > 0 ? 'VN-Index (Excl. Selected)' : 'VN-Index (No Exclusions)';
+      charts.ex_vin.data.datasets[1].data = peData;
+      charts.ex_vin.data.datasets[3].data = pbData;
       charts.ex_vin.update();
     }
   };
@@ -285,7 +330,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.getElementById('trend-msg').textContent='Trend appears after the second trading day.';
   }
   const tbody=document.getElementById('tbl-body');
-  D.tickers.forEach(t=>{const isVG=['VIC','VHM','VRE','VPL'].includes(t.ticker);const tr=document.createElement('tr');tr.innerHTML=`<td>${isVG?`<span style="color:var(--accent);font-weight:700">${t.ticker}</span> <span style="color:#3b82f6;font-size:.65rem">VG</span>`:`<span style="font-weight:600">${t.ticker}</span>`}</td><td>${fmtK(t.close)}</td><td>${t.pe==null?'—':`<span style="color:${peCol(t.pe)};font-weight:700">${fmt(t.pe)}</span>`}</td><td>${t.pb==null?'—':`<span style="color:var(--accent2);font-weight:700">${fmt(t.pb)}</span>`}</td><td style="color:var(--muted)">${t.sector||'—'}</td><td style="color:var(--dim);font-size:.8rem">${t.industry||'—'}</td><td style="color:var(--muted)">${t.group||'—'}</td>`;tbody.appendChild(tr);});
+  D.tickers.forEach(t=>{const isVG=['VIC','VHM','VRE','VPL'].includes(t.ticker);const tr=document.createElement('tr');tr.innerHTML=`<td>${isVG?`<span style="color:var(--accent);font-weight:700">${t.ticker}</span> <span style="color:#3b82f6;font-size:.65rem">VG</span>`:`<span style="font-weight:600">${t.ticker}</span>`}</td><td data-sort="${t.close||0}">${fmtK(t.close)}</td><td data-sort="${t.pe==null?999999:t.pe}">${t.pe==null?'—':`<span style="color:${peCol(t.pe)};font-weight:700">${fmt(t.pe)}</span>`}</td><td data-sort="${t.pb==null?999999:t.pb}">${t.pb==null?'—':`<span style="color:var(--accent2);font-weight:700">${fmt(t.pb)}</span>`}</td><td style="color:var(--muted)">${t.sector||'—'}</td><td style="color:var(--dim);font-size:.8rem">${t.industry||'—'}</td><td style="color:var(--muted)">${t.group||'—'}</td>`;tbody.appendChild(tr);});
   $('#tbl').DataTable({pageLength:25,order:[[2,'asc']],columnDefs:[{targets:[1,2,3],type:'num'}],language:{search:'Filter:',lengthMenu:'Show _MENU_ stocks'}});
   applyChartTheme(_it);
 });

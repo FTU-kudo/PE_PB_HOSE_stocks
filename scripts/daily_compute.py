@@ -201,21 +201,26 @@ def aggregate_sectors(snapshot: pd.DataFrame) -> pd.DataFrame:
         snapshot["shares"] = np.nan
     snapshot["shares"] = pd.to_numeric(snapshot["shares"], errors="coerce").fillna(0)
 
-    def _w_pe(grp):
-        if "eps_ttm" not in grp.columns: return np.nan
-        v = grp[grp["pe"].notna() & (grp["shares"] > 0) & (grp["eps_ttm"] > 0)]
-        d = (v["eps_ttm"] * v["shares"]).sum()
-        return (v["close"] * v["shares"]).sum() / d if d > 0 else np.nan
-
-    def _w_pb(grp):
-        if "bvps" not in grp.columns: return np.nan
-        v = grp[grp["pb"].notna() & (grp["shares"] > 0) & (grp["bvps"] > 0)]
-        d = (v["bvps"] * v["shares"]).sum()
-        return (v["close"] * v["shares"]).sum() / d if d > 0 else np.nan
-
     def _row(label, grp):
         pe = grp["pe"].dropna()
         pb = grp["pb"].dropna()
+        
+        sum_pe_mc, sum_pe_ern, w_pe = np.nan, np.nan, np.nan
+        if "eps_ttm" in grp.columns:
+            v_pe = grp[grp["pe"].notna() & (grp["shares"] > 0) & (grp["eps_ttm"] > 0)]
+            sum_pe_mc = (v_pe["close"] * v_pe["shares"]).sum()
+            sum_pe_ern = (v_pe["eps_ttm"] * v_pe["shares"]).sum()
+            if len(v_pe) > 0 and sum_pe_ern > 0:
+                w_pe = sum_pe_mc / sum_pe_ern
+
+        sum_pb_mc, sum_pb_bv, w_pb = np.nan, np.nan, np.nan
+        if "bvps" in grp.columns:
+            v_pb = grp[grp["pb"].notna() & (grp["shares"] > 0) & (grp["bvps"] > 0)]
+            sum_pb_mc = (v_pb["close"] * v_pb["shares"]).sum()
+            sum_pb_bv = (v_pb["bvps"] * v_pb["shares"]).sum()
+            if len(v_pb) > 0 and sum_pb_bv > 0:
+                w_pb = sum_pb_mc / sum_pb_bv
+
         return {
             "date": grp["date"].iloc[0], "group": label,
             "count": len(grp), "valid_pe": len(pe), "valid_pb": len(pb),
@@ -223,8 +228,10 @@ def aggregate_sectors(snapshot: pd.DataFrame) -> pd.DataFrame:
             "median_pb": pb.median() if len(pb) else np.nan,
             "mean_pe":   pe.mean()   if len(pe) else np.nan,
             "mean_pb":   pb.mean()   if len(pb) else np.nan,
-            "weighted_pe": _w_pe(grp),
-            "weighted_pb": _w_pb(grp),
+            "weighted_pe": w_pe,
+            "weighted_pb": w_pb,
+            "sum_pe_mc": sum_pe_mc, "sum_pe_ern": sum_pe_ern,
+            "sum_pb_mc": sum_pb_mc, "sum_pb_bv": sum_pb_bv,
             "p25_pe": pe.quantile(.25) if len(pe) else np.nan,
             "p75_pe": pe.quantile(.75) if len(pe) else np.nan,
             "p25_pb": pb.quantile(.25) if len(pb) else np.nan,
