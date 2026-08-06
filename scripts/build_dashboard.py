@@ -42,15 +42,15 @@ def load_data():
     tick_h["date"] = pd.to_datetime(tick_h["date"])
     sect_h["date"] = pd.to_datetime(sect_h["date"])
     ld = tick_h["date"].max()
-    c30 = ld - timedelta(days=30)
+    c5y = ld - timedelta(days=365*5)
     return (tick_h[tick_h["date"] == ld].copy(),
-            tick_h[tick_h["date"] >= c30].copy(),
+            tick_h[tick_h["date"] >= c5y].copy(),
             sect_h[sect_h["date"] == ld].copy(),
-            sect_h[sect_h["date"] >= c30].copy(),
+            sect_h[sect_h["date"] >= c5y].copy(),
             ld)
 
 
-def build_payload(tl, t30, sl, s30, ld):
+def build_payload(tl, t5y, sl, s5y, ld):
     all_pe = tl["pe"].dropna(); all_pb = tl["pb"].dropna()
     vn_idx = sl[sl["group"] == "VN-Index"].iloc[-1] if not sl[sl["group"] == "VN-Index"].empty else None
     
@@ -75,10 +75,10 @@ def build_payload(tl, t30, sl, s30, ld):
     avail = [c for c in sect_cols if c in sl_sectors.columns]
     sectors = _records(sl_sectors[avail].sort_values("median_pe", na_position="last"))
 
-    trend_groups = s30[~s30["group"].isin(["VN-Index", "Unknown"])]["group"].unique().tolist()
+    trend_groups = s5y[~s5y["group"].isin(["VN-Index", "Unknown"])]["group"].unique().tolist()
     trend = {}
     for grp in trend_groups:
-        sub = s30[s30["group"]==grp].sort_values("date")[["date","median_pe","median_pb"]]
+        sub = s5y[s5y["group"]==grp].sort_values("date")[["date","median_pe","median_pb"]]
         trend[grp] = {"dates": sub["date"].dt.strftime("%Y-%m-%d").tolist(),
                       "pe": [_safe(v) for v in sub["median_pe"]],
                       "pb": [_safe(v) for v in sub["median_pb"]]}
@@ -182,7 +182,7 @@ table.dataTable tbody tr:hover td{background:var(--hover)!important}
   </div>
 
   <div class="card mb8">
-    <div class="sec">📈 30-Day Sector P/E Trend</div>
+    <div class="sec">📈 5-Year Sector P/E Trend</div>
     <div class="sec-sub">All sectors excluding VN-Index</div>
     <canvas id="chart-trend" height="220"></canvas>
     <p id="trend-msg" style="color:var(--dim);font-size:.75rem;margin-top:8px"></p>
@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const tG=Object.keys(D.trend);
   if(tG.length>0){
     const allDates = [...new Set(tG.flatMap(g => D.trend[g].dates))].sort();
-    charts.trend=new Chart(document.getElementById('chart-trend'),{type:'line',data:{labels:allDates, datasets:tG.map((g,i)=>({label:g,data:allDates.map(d=>{const idx = D.trend[g].dates.indexOf(d); return idx>=0 ? D.trend[g].pe[idx] : null;}),borderColor:PAL[i%PAL.length],backgroundColor:'transparent',tension:.35,pointRadius:0,borderWidth:2}))},options:{responsive:true,scales:{x:{type:'category',ticks:{color:tc.ticks,maxRotation:45,autoSkip:true,maxTicksLimit:15},grid:{color:tc.grid}},y:{title:{display:true,text:'Median P/E',color:tc.ticks},grid:{color:tc.grid},ticks:{color:tc.ticks}}},plugins:{legend:{labels:{color:tc.leg,font:{size:11},boxWidth:14}}}}});
+    charts.trend=new Chart(document.getElementById('chart-trend'),{type:'line',data:{labels:allDates, datasets:tG.map((g,i)=>({label:g,data:allDates.map(d=>{const idx = D.trend[g].dates.indexOf(d); return idx>=0 ? D.trend[g].pe[idx] : null;}),borderColor:PAL[i%PAL.length],backgroundColor:'transparent',tension:.35,pointRadius:0,borderWidth:2}))},options:{responsive:true,maintainAspectRatio:false,scales:{x:{type:'category',ticks:{color:tc.ticks,maxRotation:45,autoSkip:true,maxTicksLimit:15},grid:{color:tc.grid}},y:{title:{display:true,text:'Median P/E',color:tc.ticks},grid:{color:tc.grid},ticks:{color:tc.ticks}}},plugins:{legend:{labels:{color:tc.leg,font:{size:11},boxWidth:14}}}}});
   }else{
     document.getElementById('trend-msg').textContent='Trend appears after the second trading day.';
   }
@@ -296,8 +296,8 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 def build():
     Path(DOCS_DIR).mkdir(parents=True, exist_ok=True)
-    tl, t30, sl, s30, ld = load_data()
-    payload = build_payload(tl, t30, sl, s30, ld)
+    tl, t5y, sl, s5y, ld = load_data()
+    payload = build_payload(tl, t5y, sl, s5y, ld)
     with open(JSON_FILE, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2, default=str)
     print(f"JSON saved → {JSON_FILE}")

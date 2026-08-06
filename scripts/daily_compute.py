@@ -85,7 +85,7 @@ def load_fundamentals() -> pd.DataFrame:
     return df.set_index("ticker")
 
 
-def fetch_close_prices(tickers: list[str]) -> pd.Series:
+def fetch_daily_market_data(tickers: list[str]) -> pd.DataFrame:
     from vnstock import Trading
     all_rows  = []
     n_batches = (len(tickers) + PRICE_BOARD_BATCH - 1) // PRICE_BOARD_BATCH
@@ -125,17 +125,37 @@ def fetch_close_prices(tickers: list[str]) -> pd.Series:
             if c != "ticker" and pd.api.types.is_numeric_dtype(board[c]))
 
     board["close"] = pd.to_numeric(board[price_col], errors="coerce")
+    board = board.dropna(subset=["close"]).drop_duplicates(subset=["ticker"])
+
+    try:
+        vci = Trading(source="VCI").price_board(symbols_list=tickers)
+        if ('listing', 'listed_share') in vci.columns:
+            shares = vci[[('listing', 'symbol'), ('listing', 'listed_share')]].copy()
+            shares.columns = ["ticker", "shares"]
+            shares["ticker"] = shares["ticker"].str.upper()
+            shares["shares"] = pd.to_numeric(shares["shares"], errors="coerce")
+            board = board.merge(shares, on="ticker", how="left")
+            log.info(f"Fetched shares from VCI | valid: {board['shares'].notna().sum()}/{len(board)}")
+        else:
+            board["shares"] = np.nan
+    except Exception as exc:
+        log.warning(f"Failed to fetch shares from VCI: {exc}")
+        board["shares"] = np.nan
+
     log.info(f"Close price col: '{price_col}' | valid: {board['close'].notna().sum()}/{len(board)}")
-    return board.set_index("ticker")["close"].dropna()
+    return board[["ticker", "close", "shares"]]
 
 
-def compute_pe_pb(close: pd.Series, fundamentals: pd.DataFrame) -> pd.DataFrame:
-    df = close.rename("close").reset_index()
-    df.columns = ["ticker", "close"]
+def compute_pe_pb(market_data: pd.DataFrame, fundamentals: pd.DataFrame) -> pd.DataFrame:
+    df = market_data.copy()
 
     fund_cols = ["eps_ttm", "bvps", "sector", "industry", "group"]
+    
     if "shares" in fundamentals.columns:
-        fund_cols.append("shares")
+        df = df.merge(fundamentals[["shares"]].rename(columns={"shares": "fund_shares"}), on="ticker", how="left")
+        df["shares"] = df["shares"].fillna(df["fund_shares"])
+        df = df.drop(columns=["fund_shares"])
+
     fund = fundamentals[[c for c in fund_cols if c in fundamentals.columns]].copy()
     df   = df.merge(fund, on="ticker", how="left")
 
@@ -252,8 +272,8 @@ def main():
     fundamentals = load_fundamentals()
     tickers      = fundamentals.index.tolist()
     log.info(f"Universe: {len(tickers)} tickers")
-    close_prices = fetch_close_prices(tickers)
-    snapshot     = compute_pe_pb(close_prices, fundamentals)
+    market_data  = fetch_daily_market_data(tickers)
+    snapshot     = compute_pe_pb(market_data, fundamentals)
     sector_agg   = aggregate_sectors(snapshot)
     log.info("\nSector summary (top 10):\n" +
              sector_agg.nlargest(10, "count")[

@@ -1,0 +1,696 @@
+symbol,industry_code,industry_name
+AMC,10,Khai khoáng
+BKC,10,Khai khoáng
+BMC,10,Khai khoáng
+C32,10,Khai khoáng
+CLM,10,Khai khoáng
+CST,10,Khai khoáng
+DHA,10,Khai khoáng
+DHM,10,Khai khoáng
+HGM,10,Khai khoáng
+HLC,10,Khai khoáng
+HMR,10,Khai khoáng
+KSB,10,Khai khoáng
+KSV,10,Khai khoáng
+MDC,10,Khai khoáng
+MDG,10,Khai khoáng
+MIC,10,Khai khoáng
+MVB,10,Khai khoáng
+NBC,10,Khai khoáng
+NNC,10,Khai khoáng
+PVB,10,Khai khoáng
+PVC,10,Khai khoáng
+PVD,10,Khai khoáng
+PVS,10,Khai khoáng
+TD6,10,Khai khoáng
+THT,10,Khai khoáng
+TMB,10,Khai khoáng
+TNT,10,Khai khoáng
+TVD,10,Khai khoáng
+AME,24,Xây dựng
+C47,24,Xây dựng
+C69,24,Xây dựng
+CCC,24,Xây dựng
+CII,24,Xây dựng
+CMS,24,Xây dựng
+CTD,24,Xây dựng
+CTI,24,Xây dựng
+CX8,24,Xây dựng
+DC2,24,Xây dựng
+DC4,24,Xây dựng
+DIH,24,Xây dựng
+DPG,24,Xây dựng
+FCN,24,Xây dựng
+HAS,24,Xây dựng
+HHV,24,Xây dựng
+HTI,24,Xây dựng
+HTN,24,Xây dựng
+HUB,24,Xây dựng
+HUT,24,Xây dựng
+HVH,24,Xây dựng
+L10,24,Xây dựng
+L18,24,Xây dựng
+L40,24,Xây dựng
+LCD,24,Xây dựng
+LCG,24,Xây dựng
+LGC,24,Xây dựng
+LHC,24,Xây dựng
+LIG,24,Xây dựng
+LM8,24,Xây dựng
+MCO,24,Xây dựng
+MST,24,Xây dựng
+NDX,24,Xây dựng
+PC1,24,Xây dựng
+PEN,24,Xây dựng
+PHC,24,Xây dựng
+PPS,24,Xây dựng
+PTC,24,Xây dựng
+PTD,24,Xây dựng
+QTC,24,Xây dựng
+REE,24,Xây dựng
+S55,24,Xây dựng
+S99,24,Xây dựng
+SC5,24,Xây dựng
+SCG,24,Xây dựng
+SCI,24,Xây dựng
+SD5,24,Xây dựng
+SD9,24,Xây dựng
+SJE,24,Xây dựng
+SRF,24,Xây dựng
+TA9,24,Xây dựng
+THD,24,Xây dựng
+TSA,24,Xây dựng
+TTL,24,Xây dựng
+V12,24,Xây dựng
+VC1,24,Xây dựng
+VC2,24,Xây dựng
+VC6,24,Xây dựng
+VC9,24,Xây dựng
+VCC,24,Xây dựng
+VCG,24,Xây dựng
+VE1,24,Xây dựng
+VE3,24,Xây dựng
+VE4,24,Xây dựng
+VMC,24,Xây dựng
+VSI,24,Xây dựng
+CMC,1,Bán buôn
+DGW,1,Bán buôn
+FID,1,Bán buôn
+GEL,1,Bán buôn
+HHS,1,Bán buôn
+HMC,1,Bán buôn
+HTL,1,Bán buôn
+JVC,1,Bán buôn
+KDM,1,Bán buôn
+KMT,1,Bán buôn
+MCF,1,Bán buôn
+MEL,1,Bán buôn
+NO1,1,Bán buôn
+PCT,1,Bán buôn
+PET,1,Bán buôn
+PIT,1,Bán buôn
+PLX,1,Bán buôn
+PMG,1,Bán buôn
+PPT,1,Bán buôn
+PPY,1,Bán buôn
+PSC,1,Bán buôn
+PSD,1,Bán buôn
+PSE,1,Bán buôn
+PTX,1,Bán buôn
+SHN,1,Bán buôn
+SMA,1,Bán buôn
+SMC,1,Bán buôn
+SRA,1,Bán buôn
+ST8,1,Bán buôn
+TDG,1,Bán buôn
+THS,1,Bán buôn
+TLH,1,Bán buôn
+TNI,1,Bán buôn
+TSC,1,Bán buôn
+TTH,1,Bán buôn
+UNI,1,Bán buôn
+VCM,1,Bán buôn
+VFG,1,Bán buôn
+VID,1,Bán buôn
+VMD,1,Bán buôn
+VPG,1,Bán buôn
+VTV,1,Bán buôn
+VVS,1,Bán buôn
+DBD,8,Chăm sóc sức khỏe
+DBT,8,Chăm sóc sức khỏe
+DCL,8,Chăm sóc sức khỏe
+DHG,8,Chăm sóc sức khỏe
+DHT,8,Chăm sóc sức khỏe
+DMC,8,Chăm sóc sức khỏe
+DP3,8,Chăm sóc sức khỏe
+DTG,8,Chăm sóc sức khỏe
+DVM,8,Chăm sóc sức khỏe
+FIT,8,Chăm sóc sức khỏe
+IMP,8,Chăm sóc sức khỏe
+LDP,8,Chăm sóc sức khỏe
+MED,8,Chăm sóc sức khỏe
+MKV,8,Chăm sóc sức khỏe
+OPC,8,Chăm sóc sức khỏe
+PMC,8,Chăm sóc sức khỏe
+PPP,8,Chăm sóc sức khỏe
+SPM,8,Chăm sóc sức khỏe
+TNH,8,Chăm sóc sức khỏe
+TRA,8,Chăm sóc sức khỏe
+VDP,8,Chăm sóc sức khỏe
+ACG,26,SX Phụ trợ
+AMV,26,SX Phụ trợ
+BKG,26,SX Phụ trợ
+BSR,26,SX Phụ trợ
+CAP,26,SX Phụ trợ
+CET,26,SX Phụ trợ
+DHC,26,SX Phụ trợ
+DLG,26,SX Phụ trợ
+GTA,26,SX Phụ trợ
+HAP,26,SX Phụ trợ
+HHP,26,SX Phụ trợ
+INN,26,SX Phụ trợ
+ITQ,26,SX Phụ trợ
+MCP,26,SX Phụ trợ
+MZG,26,SX Phụ trợ
+NHT,26,SX Phụ trợ
+PLC,26,SX Phụ trợ
+PMS,26,SX Phụ trợ
+PTB,26,SX Phụ trợ
+SBV,26,SX Phụ trợ
+SHI,26,SX Phụ trợ
+SMT,26,SX Phụ trợ
+SSM,26,SX Phụ trợ
+SVT,26,SX Phụ trợ
+TLD,26,SX Phụ trợ
+TLG,26,SX Phụ trợ
+TMT,26,SX Phụ trợ
+ARM,23,Vận tải - kho bãi
+ASG,23,Vận tải - kho bãi
+AST,23,Vận tải - kho bãi
+CAG,23,Vận tải - kho bãi
+CCR,23,Vận tải - kho bãi
+CDN,23,Vận tải - kho bãi
+CIA,23,Vận tải - kho bãi
+CLL,23,Vận tải - kho bãi
+DL1,23,Vận tải - kho bãi
+DS3,23,Vận tải - kho bãi
+DVP,23,Vận tải - kho bãi
+DXP,23,Vận tải - kho bãi
+GIC,23,Vận tải - kho bãi
+GMD,23,Vận tải - kho bãi
+GSP,23,Vận tải - kho bãi
+HAH,23,Vận tải - kho bãi
+HCT,23,Vận tải - kho bãi
+HMH,23,Vận tải - kho bãi
+HTV,23,Vận tải - kho bãi
+HVN,23,Vận tải - kho bãi
+ILB,23,Vận tải - kho bãi
+MAC,23,Vận tải - kho bãi
+MAS,23,Vận tải - kho bãi
+MHC,23,Vận tải - kho bãi
+NAP,23,Vận tải - kho bãi
+NCT,23,Vận tải - kho bãi
+PDN,23,Vận tải - kho bãi
+PDV,23,Vận tải - kho bãi
+PGT,23,Vận tải - kho bãi
+PJC,23,Vận tải - kho bãi
+PJT,23,Vận tải - kho bãi
+PRC,23,Vận tải - kho bãi
+PTS,23,Vận tải - kho bãi
+PVP,23,Vận tải - kho bãi
+PVT,23,Vận tải - kho bãi
+QNP,23,Vận tải - kho bãi
+SCS,23,Vận tải - kho bãi
+SFI,23,Vận tải - kho bãi
+SGN,23,Vận tải - kho bãi
+SKG,23,Vận tải - kho bãi
+STG,23,Vận tải - kho bãi
+TCL,23,Vận tải - kho bãi
+TCO,23,Vận tải - kho bãi
+TCT,23,Vận tải - kho bãi
+TJC,23,Vận tải - kho bãi
+TMS,23,Vận tải - kho bãi
+TOT,23,Vận tải - kho bãi
+VGP,23,Vận tải - kho bãi
+VIP,23,Vận tải - kho bãi
+VJC,23,Vận tải - kho bãi
+VMS,23,Vận tải - kho bãi
+VNF,23,Vận tải - kho bãi
+VNL,23,Vận tải - kho bãi
+VNS,23,Vận tải - kho bãi
+VNT,23,Vận tải - kho bãi
+VOS,23,Vận tải - kho bãi
+VSA,23,Vận tải - kho bãi
+VSC,23,Vận tải - kho bãi
+VSM,23,Vận tải - kho bãi
+VTO,23,Vận tải - kho bãi
+VTP,23,Vận tải - kho bãi
+WCS,23,Vận tải - kho bãi
+AGG,3,Bất động sản
+API,3,Bất động sản
+BAX,3,Bất động sản
+BCE,3,Bất động sản
+BCM,3,Bất động sản
+CCL,3,Bất động sản
+CDC,3,Bất động sản
+CEO,3,Bất động sản
+CIG,3,Bất động sản
+CKG,3,Bất động sản
+CRE,3,Bất động sản
+CRV,3,Bất động sản
+CSC,3,Bất động sản
+D11,3,Bất động sản
+D2D,3,Bất động sản
+DIG,3,Bất động sản
+DRH,3,Bất động sản
+DTA,3,Bất động sản
+DTD,3,Bất động sản
+DXG,3,Bất động sản
+DXS,3,Bất động sản
+EVG,3,Bất động sản
+FDC,3,Bất động sản
+FIR,3,Bất động sản
+HAR,3,Bất động sản
+HDC,3,Bất động sản
+HDG,3,Bất động sản
+HLD,3,Bất động sản
+HPX,3,Bất động sản
+HQC,3,Bất động sản
+HU1,3,Bất động sản
+ICG,3,Bất động sản
+IDJ,3,Bất động sản
+IDV,3,Bất động sản
+IJC,3,Bất động sản
+ITC,3,Bất động sản
+KBC,3,Bất động sản
+KDH,3,Bất động sản
+KHG,3,Bất động sản
+KOS,3,Bất động sản
+KSF,3,Bất động sản
+L14,3,Bất động sản
+LDG,3,Bất động sản
+LGL,3,Bất động sản
+LHG,3,Bất động sản
+NBB,3,Bất động sản
+NDN,3,Bất động sản
+NHA,3,Bất động sản
+NLG,3,Bất động sản
+NRC,3,Bất động sản
+NTC,3,Bất động sản
+NTL,3,Bất động sản
+NVL,3,Bất động sản
+PDR,3,Bất động sản
+PTL,3,Bất động sản
+PV2,3,Bất động sản
+QCG,3,Bất động sản
+RCL,3,Bất động sản
+SCR,3,Bất động sản
+SDU,3,Bất động sản
+SGR,3,Bất động sản
+SJS,3,Bất động sản
+SZB,3,Bất động sản
+SZC,3,Bất động sản
+SZL,3,Bất động sản
+TAL,3,Bất động sản
+TCH,3,Bất động sản
+TDC,3,Bất động sản
+TDH,3,Bất động sản
+TIG,3,Bất động sản
+TIP,3,Bất động sản
+TIX,3,Bất động sản
+TN1,3,Bất động sản
+V21,3,Bất động sản
+VC3,3,Bất động sản
+VC7,3,Bất động sản
+VHM,3,Bất động sản
+VIC,3,Bất động sản
+VPH,3,Bất động sản
+VPI,3,Bất động sản
+VRC,3,Bất động sản
+VRE,3,Bất động sản
+VTJ,3,Bất động sản
+ASP,22,Tiện ích
+BTP,22,Tiện ích
+BTW,22,Tiện ích
+BWE,22,Tiện ích
+CHP,22,Tiện ích
+CLW,22,Tiện ích
+CNG,22,Tiện ích
+DNC,22,Tiện ích
+DRL,22,Tiện ích
+DTK,22,Tiện ích
+GAS,22,Tiện ích
+GDW,22,Tiện ích
+GEG,22,Tiện ích
+GHC,22,Tiện ích
+HID,22,Tiện ích
+HJS,22,Tiện ích
+HNA,22,Tiện ích
+IDC,22,Tiện ích
+KHP,22,Tiện ích
+NBP,22,Tiện ích
+NBW,22,Tiện ích
+NT2,22,Tiện ích
+NTH,22,Tiện ích
+PGC,22,Tiện ích
+PGD,22,Tiện ích
+PGS,22,Tiện ích
+PGV,22,Tiện ích
+PIC,22,Tiện ích
+POW,22,Tiện ích
+PPC,22,Tiện ích
+PVG,22,Tiện ích
+S4A,22,Tiện ích
+SBA,22,Tiện ích
+SEB,22,Tiện ích
+SHP,22,Tiện ích
+SIP,22,Tiện ích
+SJD,22,Tiện ích
+TBC,22,Tiện ích
+TDM,22,Tiện ích
+TDW,22,Tiện ích
+TMP,22,Tiện ích
+TTA,22,Tiện ích
+TTE,22,Tiện ích
+UIC,22,Tiện ích
+VPD,22,Tiện ích
+VSH,22,Tiện ích
+BIC,2,Bảo hiểm
+BMI,2,Bảo hiểm
+BVH,2,Bảo hiểm
+MIG,2,Bảo hiểm
+PGI,2,Bảo hiểm
+PRE,2,Bảo hiểm
+PTI,2,Bảo hiểm
+PVI,2,Bảo hiểm
+VNR,2,Bảo hiểm
+AAM,20,Chế biến Thủy sản
+ABT,20,Chế biến Thủy sản
+ACL,20,Chế biến Thủy sản
+ANV,20,Chế biến Thủy sản
+ASM,20,Chế biến Thủy sản
+CAN,20,Chế biến Thủy sản
+CMX,20,Chế biến Thủy sản
+DAT,20,Chế biến Thủy sản
+FMC,20,Chế biến Thủy sản
+IDI,20,Chế biến Thủy sản
+KHS,20,Chế biến Thủy sản
+SJ1,20,Chế biến Thủy sản
+TFC,20,Chế biến Thủy sản
+VHC,20,Chế biến Thủy sản
+INC,28,"Dịch vụ tư vấn, hỗ trợ"
+PPE,28,"Dịch vụ tư vấn, hỗ trợ"
+SDC,28,"Dịch vụ tư vấn, hỗ trợ"
+TV2,28,"Dịch vụ tư vấn, hỗ trợ"
+TV3,28,"Dịch vụ tư vấn, hỗ trợ"
+TV4,28,"Dịch vụ tư vấn, hỗ trợ"
+VNC,28,"Dịch vụ tư vấn, hỗ trợ"
+BTT,7,Bán lẻ
+CCI,7,Bán lẻ
+CMV,7,Bán lẻ
+COM,7,Bán lẻ
+CTF,7,Bán lẻ
+FRT,7,Bán lẻ
+GMA,7,Bán lẻ
+HAX,7,Bán lẻ
+HTC,7,Bán lẻ
+MWG,7,Bán lẻ
+PNC,7,Bán lẻ
+PNJ,7,Bán lẻ
+SFC,7,Bán lẻ
+SVC,7,Bán lẻ
+TMC,7,Bán lẻ
+AAN,12,Nông - Lâm - Ngư
+CTP,12,Nông - Lâm - Ngư
+HAG,12,Nông - Lâm - Ngư
+HKT,12,Nông - Lâm - Ngư
+HPA,12,Nông - Lâm - Ngư
+HSL,12,Nông - Lâm - Ngư
+NSC,12,Nông - Lâm - Ngư
+SSC,12,Nông - Lâm - Ngư
+SVN,12,Nông - Lâm - Ngư
+VIF,12,Nông - Lâm - Ngư
+BRC,17,Sản phẩm cao su
+CSM,17,Sản phẩm cao su
+DRC,17,Sản phẩm cao su
+SRC,17,Sản phẩm cao su
+DAH,25,"Dịch vụ lưu trú, ăn uống, giải trí"
+DSN,25,"Dịch vụ lưu trú, ăn uống, giải trí"
+NVT,25,"Dịch vụ lưu trú, ăn uống, giải trí"
+OCH,25,"Dịch vụ lưu trú, ăn uống, giải trí"
+SGH,25,"Dịch vụ lưu trú, ăn uống, giải trí"
+TTT,25,"Dịch vụ lưu trú, ăn uống, giải trí"
+VNG,25,"Dịch vụ lưu trú, ăn uống, giải trí"
+VPL,25,"Dịch vụ lưu trú, ăn uống, giải trí"
+IPA,29,Tài chính khác
+OGC,29,Tài chính khác
+TVC,29,Tài chính khác
+AAT,16,SX Hàng gia dụng
+ADS,16,SX Hàng gia dụng
+EVE,16,SX Hàng gia dụng
+GDT,16,SX Hàng gia dụng
+GIL,16,SX Hàng gia dụng
+HTG,16,SX Hàng gia dụng
+KMR,16,SX Hàng gia dụng
+MSH,16,SX Hàng gia dụng
+NAV,16,SX Hàng gia dụng
+RYG,16,SX Hàng gia dụng
+SAV,16,SX Hàng gia dụng
+SHA,16,SX Hàng gia dụng
+STK,16,SX Hàng gia dụng
+SVD,16,SX Hàng gia dụng
+TCM,16,SX Hàng gia dụng
+TDT,16,SX Hàng gia dụng
+TET,16,SX Hàng gia dụng
+TNG,16,SX Hàng gia dụng
+TTF,16,SX Hàng gia dụng
+TVT,16,SX Hàng gia dụng
+X20,16,SX Hàng gia dụng
+ACB,11,Ngân hàng
+BAB,11,Ngân hàng
+BID,11,Ngân hàng
+BVB,11,Ngân hàng
+CTG,11,Ngân hàng
+EIB,11,Ngân hàng
+EVF,11,Ngân hàng
+HDB,11,Ngân hàng
+KLB,11,Ngân hàng
+LPB,11,Ngân hàng
+MBB,11,Ngân hàng
+MSB,11,Ngân hàng
+NAB,11,Ngân hàng
+NVB,11,Ngân hàng
+OCB,11,Ngân hàng
+SHB,11,Ngân hàng
+SSB,11,Ngân hàng
+STB,11,Ngân hàng
+TCB,11,Ngân hàng
+TPB,11,Ngân hàng
+VAB,11,Ngân hàng
+VBB,11,Ngân hàng
+VCB,11,Ngân hàng
+VIB,11,Ngân hàng
+VPB,11,Ngân hàng
+DHP,27,Thiết bị điện
+DQC,27,Thiết bị điện
+GEE,27,Thiết bị điện
+GEX,27,Thiết bị điện
+KSD,27,Thiết bị điện
+MBG,27,Thiết bị điện
+PAC,27,Thiết bị điện
+PHN,27,Thiết bị điện
+POT,27,Thiết bị điện
+RAL,27,Thiết bị điện
+SAM,27,Thiết bị điện
+TSB,27,Thiết bị điện
+TYA,27,Thiết bị điện
+VTB,27,Thiết bị điện
+VTH,27,Thiết bị điện
+ACC,21,Vật liệu xây dựng
+BCC,21,Vật liệu xây dựng
+BTS,21,Vật liệu xây dựng
+CLH,21,Vật liệu xây dựng
+CRC,21,Vật liệu xây dựng
+CVT,21,Vật liệu xây dựng
+DTL,21,Vật liệu xây dựng
+DXV,21,Vật liệu xây dựng
+FCM,21,Vật liệu xây dựng
+GKM,21,Vật liệu xây dựng
+GMH,21,Vật liệu xây dựng
+GMX,21,Vật liệu xây dựng
+HCC,21,Vật liệu xây dựng
+HOM,21,Vật liệu xây dựng
+HPG,21,Vật liệu xây dựng
+HSG,21,Vật liệu xây dựng
+HT1,21,Vật liệu xây dựng
+KKC,21,Vật liệu xây dựng
+LBM,21,Vật liệu xây dựng
+MCC,21,Vật liệu xây dựng
+NHC,21,Vật liệu xây dựng
+NKG,21,Vật liệu xây dựng
+NSH,21,Vật liệu xây dựng
+PDB,21,Vật liệu xây dựng
+TCR,21,Vật liệu xây dựng
+TEG,21,Vật liệu xây dựng
+THG,21,Vật liệu xây dựng
+TKU,21,Vật liệu xây dựng
+TMX,21,Vật liệu xây dựng
+TTC,21,Vật liệu xây dựng
+TXM,21,Vật liệu xây dựng
+VCA,21,Vật liệu xây dựng
+VCS,21,Vật liệu xây dựng
+VGC,21,Vật liệu xây dựng
+VGS,21,Vật liệu xây dựng
+VHL,21,Vật liệu xây dựng
+VIT,21,Vật liệu xây dựng
+YBM,21,Vật liệu xây dựng
+AAA,18,SX Nhựa - Hóa chất
+ABS,18,SX Nhựa - Hóa chất
+ADP,18,SX Nhựa - Hóa chất
+ALT,18,SX Nhựa - Hóa chất
+APH,18,SX Nhựa - Hóa chất
+BBS,18,SX Nhựa - Hóa chất
+BFC,18,SX Nhựa - Hóa chất
+BMP,18,SX Nhựa - Hóa chất
+BPC,18,SX Nhựa - Hóa chất
+BXH,18,SX Nhựa - Hóa chất
+CPC,18,SX Nhựa - Hóa chất
+CSV,18,SX Nhựa - Hóa chất
+DCM,18,SX Nhựa - Hóa chất
+DGC,18,SX Nhựa - Hóa chất
+DNP,18,SX Nhựa - Hóa chất
+DPM,18,SX Nhựa - Hóa chất
+DPR,18,SX Nhựa - Hóa chất
+DTT,18,SX Nhựa - Hóa chất
+GVR,18,SX Nhựa - Hóa chất
+HCD,18,SX Nhựa - Hóa chất
+HDA,18,SX Nhựa - Hóa chất
+HII,18,SX Nhựa - Hóa chất
+HRC,18,SX Nhựa - Hóa chất
+HVT,18,SX Nhựa - Hóa chất
+LAS,18,SX Nhựa - Hóa chất
+LIX,18,SX Nhựa - Hóa chất
+NET,18,SX Nhựa - Hóa chất
+NFC,18,SX Nhựa - Hóa chất
+NTP,18,SX Nhựa - Hóa chất
+PBP,18,SX Nhựa - Hóa chất
+PCE,18,SX Nhựa - Hóa chất
+PCH,18,SX Nhựa - Hóa chất
+PGN,18,SX Nhựa - Hóa chất
+PHR,18,SX Nhựa - Hóa chất
+PLP,18,SX Nhựa - Hóa chất
+PMB,18,SX Nhựa - Hóa chất
+PMP,18,SX Nhựa - Hóa chất
+PSW,18,SX Nhựa - Hóa chất
+SDG,18,SX Nhựa - Hóa chất
+SDN,18,SX Nhựa - Hóa chất
+SFG,18,SX Nhựa - Hóa chất
+SFN,18,SX Nhựa - Hóa chất
+SPC,18,SX Nhựa - Hóa chất
+STP,18,SX Nhựa - Hóa chất
+TDP,18,SX Nhựa - Hóa chất
+TNC,18,SX Nhựa - Hóa chất
+TPC,18,SX Nhựa - Hóa chất
+TPP,18,SX Nhựa - Hóa chất
+TRC,18,SX Nhựa - Hóa chất
+VBC,18,SX Nhựa - Hóa chất
+VPS,18,SX Nhựa - Hóa chất
+VTZ,18,SX Nhựa - Hóa chất
+AGR,5,Chứng khoán
+APG,5,Chứng khoán
+APS,5,Chứng khoán
+BSI,5,Chứng khoán
+BVS,5,Chứng khoán
+CTS,5,Chứng khoán
+DSC,5,Chứng khoán
+DSE,5,Chứng khoán
+EVS,5,Chứng khoán
+FTS,5,Chứng khoán
+HBS,5,Chứng khoán
+HCM,5,Chứng khoán
+IVS,5,Chứng khoán
+MBS,5,Chứng khoán
+ORS,5,Chứng khoán
+PSI,5,Chứng khoán
+SHS,5,Chứng khoán
+SSI,5,Chứng khoán
+TCI,5,Chứng khoán
+TCX,5,Chứng khoán
+TVB,5,Chứng khoán
+TVS,5,Chứng khoán
+VCI,5,Chứng khoán
+VCK,5,Chứng khoán
+VDS,5,Chứng khoán
+VFS,5,Chứng khoán
+VIG,5,Chứng khoán
+VIX,5,Chứng khoán
+VND,5,Chứng khoán
+VPX,5,Chứng khoán
+WSS,5,Chứng khoán
+AFX,19,Thực phẩm - Đồ uống
+ANT,19,Thực phẩm - Đồ uống
+BAF,19,Thực phẩm - Đồ uống
+BCF,19,Thực phẩm - Đồ uống
+BHN,19,Thực phẩm - Đồ uống
+BNA,19,Thực phẩm - Đồ uống
+DBC,19,Thực phẩm - Đồ uống
+HAD,19,Thực phẩm - Đồ uống
+HAT,19,Thực phẩm - Đồ uống
+HHC,19,Thực phẩm - Đồ uống
+KDC,19,Thực phẩm - Đồ uống
+KTS,19,Thực phẩm - Đồ uống
+LAF,19,Thực phẩm - Đồ uống
+LSS,19,Thực phẩm - Đồ uống
+MCH,19,Thực phẩm - Đồ uống
+MCM,19,Thực phẩm - Đồ uống
+MSN,19,Thực phẩm - Đồ uống
+NAF,19,Thực phẩm - Đồ uống
+PAN,19,Thực phẩm - Đồ uống
+SAB,19,Thực phẩm - Đồ uống
+SAF,19,Thực phẩm - Đồ uống
+SBT,19,Thực phẩm - Đồ uống
+SGC,19,Thực phẩm - Đồ uống
+SLS,19,Thực phẩm - Đồ uống
+SMB,19,Thực phẩm - Đồ uống
+THB,19,Thực phẩm - Đồ uống
+VCF,19,Thực phẩm - Đồ uống
+VDL,19,Thực phẩm - Đồ uống
+VHE,19,Thực phẩm - Đồ uống
+VNM,19,Thực phẩm - Đồ uống
+ABR,6,Công nghệ và thông tin
+ADC,6,Công nghệ và thông tin
+BED,6,Công nghệ và thông tin
+CKV,6,Công nghệ và thông tin
+CMG,6,Công nghệ và thông tin
+CTR,6,Công nghệ và thông tin
+DAD,6,Công nghệ và thông tin
+DAE,6,Công nghệ và thông tin
+DST,6,Công nghệ và thông tin
+EBS,6,Công nghệ và thông tin
+ECI,6,Công nghệ và thông tin
+EID,6,Công nghệ và thông tin
+ELC,6,Công nghệ và thông tin
+FPT,6,Công nghệ và thông tin
+GLT,6,Công nghệ và thông tin
+HEV,6,Công nghệ và thông tin
+ICT,6,Công nghệ và thông tin
+ITD,6,Công nghệ và thông tin
+KST,6,Công nghệ và thông tin
+LBE,6,Công nghệ và thông tin
+ONE,6,Công nghệ và thông tin
+PIA,6,Công nghệ và thông tin
+QST,6,Công nghệ và thông tin
+SED,6,Công nghệ và thông tin
+SGD,6,Công nghệ và thông tin
+SGT,6,Công nghệ và thông tin
+SMN,6,Công nghệ và thông tin
+STC,6,Công nghệ và thông tin
+VTC,6,Công nghệ và thông tin
+CJC,15,"SX Thiết bị, máy móc"
+CTB,15,"SX Thiết bị, máy móc"
+CTT,15,"SX Thiết bị, máy móc"
+NAG,15,"SX Thiết bị, máy móc"
+NHH,15,"SX Thiết bị, máy móc"
+QHD,15,"SX Thiết bị, máy móc"
+SBG,15,"SX Thiết bị, máy móc"
+SHE,15,"SX Thiết bị, máy móc"
