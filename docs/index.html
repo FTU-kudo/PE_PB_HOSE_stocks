@@ -67,36 +67,36 @@ table.dataTable tbody tr:hover td{background:var(--hover)!important}
     <div class="card"><div class="lbl">HOSE Median P/B</div><div class="big" id="mkt-pb">—</div><div class="sub">All HOSE stocks</div></div>
   </div>
 
+  <div class="card mb8">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+      <span class="sec">🏙️ Vingroup Ecosystem</span><span class="vg-badge">Special Group</span>
+    </div>
+    <div class="gvg" id="vg-cards"></div>
+  </div>
+  
+  <div class="card mb8">
+    <div class="sec">⚖️ Market Valuation</div>
+    <div class="sec-sub">Select sectors to exclude from VN-Index calculation:</div>
+    <div id="sector-pills" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;"></div>
+    <div style="position: relative; height: 350px; width: 100%;">
+      <canvas id="chart-ex-vin"></canvas>
+    </div>
+  </div>
+
   <div class="g2">
-    <div class="card mb8">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
-        <span class="sec">🏙️ Vingroup Ecosystem</span><span class="vg-badge">Special Group</span>
-      </div>
-      <div class="gvg" id="vg-cards" style="grid-template-columns: repeat(2, 1fr);"></div>
-    </div>
-    <div class="card mb8">
-      <div class="sec">⚖️ Market Valuation</div>
-      <div class="sec-sub">Select sectors to exclude from VN-Index calculation:</div>
-      <div id="sector-pills" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;"></div>
-      <div style="position: relative; height: 350px; width: 100%;">
-        <canvas id="chart-ex-vin"></canvas>
-      </div>
-    </div>
+    <div class="card"><div class="sec">📊 Sector Weighted P/E</div><div class="sec-sub">Capitalization-weighted</div><canvas id="chart-wpe"></canvas></div>
+    <div class="card"><div class="sec">📊 Sector Weighted P/B</div><div class="sec-sub">Capitalization-weighted</div><canvas id="chart-wpb"></canvas></div>
   </div>
 
   <div class="g2">
     <div class="card"><div class="sec">📊 Sector Median P/E</div><div class="sec-sub">Green &lt;12 · Blue &lt;20 · Yellow &lt;30 · Red ≥30</div><canvas id="chart-pe"></canvas></div>
     <div class="card"><div class="sec">📊 Sector Median P/B</div><div class="sec-sub">Lower = cheaper vs book value</div><canvas id="chart-pb"></canvas></div>
   </div>
-  
-  <div class="g2">
-    <div class="card"><div class="sec">📊 Sector Weighted P/E</div><div class="sec-sub">Capitalization-weighted</div><canvas id="chart-wpe"></canvas></div>
-    <div class="card"><div class="sec">📊 Sector Weighted P/B</div><div class="sec-sub">Capitalization-weighted</div><canvas id="chart-wpb"></canvas></div>
-  </div>
 
   <div class="card mb8">
     <div class="sec">📈 5-Year Sector P/E Trend</div>
-    <div class="sec-sub">All sectors excluding VN-Index</div>
+    <div class="sec-sub">Select sectors to display:</div>
+    <div id="trend-pills" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;"></div>
     <div style="position: relative; height: 350px; width: 100%;">
       <canvas id="chart-trend"></canvas>
     </div>
@@ -143,15 +143,13 @@ document.addEventListener('DOMContentLoaded',()=>{
   D.vingroup.forEach(v=>{const d=document.createElement('div');d.className='vg-card';d.innerHTML=`<div style="color:var(--accent);font-size:1.2rem;font-weight:800">${v.ticker}</div><div style="color:var(--muted);font-size:.8rem;margin-top:5px">Close: <span style="color:var(--text);font-weight:700">${fmtK(v.close)}</span></div><div style="color:var(--muted);font-size:.8rem">P/E: <span style="color:${peCol(v.pe)};font-weight:700">${fmt(v.pe)}</span></div><div style="color:var(--muted);font-size:.8rem">P/B: <span style="color:var(--accent2);font-weight:700">${fmt(v.pb)}</span></div>`;vgEl.appendChild(d);});
   const tc=themeC(_it);
   const barOpts=()=>({indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:tc.grid},ticks:{color:tc.ticks}},y:{grid:{color:tc.grid},ticks:{color:tc.ticks,font:{size:11}}}}});
-  const sects=D.sectors.filter(s=>s.median_pe!=null);
+  const sects=D.sectors.filter(s=>s.median_pe!=null).sort((a,b)=>a.median_pe-b.median_pe);
   charts.pe=new Chart(document.getElementById('chart-pe'),{type:'bar',data:{labels:sects.map(s=>s.group),datasets:[{data:sects.map(s=>s.median_pe),backgroundColor:sects.map(s=>peCol(s.median_pe)),borderRadius:5}]},options:{...barOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` P/E: ${ctx.parsed.x.toFixed(1)}`}}}}});
-  const sectsB=D.sectors.filter(s=>s.median_pb!=null);
-  charts.pb=new Chart(document.getElementById('chart-pb'),{type:'bar',data:{labels:sectsB.map(s=>s.group),datasets:[{data:sectsB.map(s=>s.median_pb),backgroundColor:'#818cf8',borderRadius:5}]},options:{...barOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` P/B: ${ctx.parsed.x.toFixed(2)}`}}}}});
+  charts.pb=new Chart(document.getElementById('chart-pb'),{type:'bar',data:{labels:sects.map(s=>s.group),datasets:[{data:sects.map(s=>s.median_pb),backgroundColor:'#818cf8',borderRadius:5}]},options:{...barOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` P/B: ${ctx.parsed.x.toFixed(2)}`}}}}});
   
-  const sectsWpe=D.sectors.filter(s=>s.weighted_pe!=null);
+  const sectsWpe=D.sectors.filter(s=>s.weighted_pe!=null).sort((a,b)=>a.weighted_pe-b.weighted_pe);
   charts.wpe=new Chart(document.getElementById('chart-wpe'),{type:'bar',data:{labels:sectsWpe.map(s=>s.group),datasets:[{data:sectsWpe.map(s=>s.weighted_pe),backgroundColor:sectsWpe.map(s=>peCol(s.weighted_pe)),borderRadius:5}]},options:{...barOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` P/E: ${ctx.parsed.x.toFixed(1)}`}}}}});
-  const sectsWpb=D.sectors.filter(s=>s.weighted_pb!=null);
-  charts.wpb=new Chart(document.getElementById('chart-wpb'),{type:'bar',data:{labels:sectsWpb.map(s=>s.group),datasets:[{data:sectsWpb.map(s=>s.weighted_pb),backgroundColor:'#34d399',borderRadius:5}]},options:{...barOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` P/B: ${ctx.parsed.x.toFixed(2)}`}}}}});
+  charts.wpb=new Chart(document.getElementById('chart-wpb'),{type:'bar',data:{labels:sectsWpe.map(s=>s.group),datasets:[{data:sectsWpe.map(s=>s.weighted_pb),backgroundColor:'#34d399',borderRadius:5}]},options:{...barOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` P/B: ${ctx.parsed.x.toFixed(2)}`}}}}});
 
   const groups = [...new Set(D.tickers.map(t=>t.group).filter(Boolean))].sort();
   const pillsEl = document.getElementById('sector-pills');
@@ -225,13 +223,66 @@ document.addEventListener('DOMContentLoaded',()=>{
   const tG=Object.keys(D.trend);
   if(tG.length>0){
     const allDates = [...new Set(tG.flatMap(g => D.trend[g].dates))].sort();
-    charts.trend=new Chart(document.getElementById('chart-trend'),{type:'line',data:{labels:allDates, datasets:tG.map((g,i)=>({label:g,data:allDates.map(d=>{const idx = D.trend[g].dates.indexOf(d); return idx>=0 ? D.trend[g].pe[idx] : null;}),borderColor:PAL[i%PAL.length],backgroundColor:'transparent',tension:.35,pointRadius:0,borderWidth:2}))},options:{responsive:true,maintainAspectRatio:false,scales:{x:{type:'category',ticks:{color:tc.ticks,maxRotation:45,autoSkip:true,maxTicksLimit:15},grid:{color:tc.grid}},y:{title:{display:true,text:'Median P/E',color:tc.ticks},grid:{color:tc.grid},ticks:{color:tc.ticks}}},plugins:{legend:{labels:{color:tc.leg,font:{size:11},boxWidth:14}}}}});
+    const trendDS = tG.map((g,i)=>({
+      label:g,
+      data:allDates.map(d=>{const idx = D.trend[g].dates.indexOf(d); return idx>=0 ? D.trend[g].pe[idx] : null;}),
+      borderColor:PAL[i%PAL.length],
+      backgroundColor:'transparent',
+      tension:.35,
+      pointRadius:0,
+      borderWidth:2,
+      hidden: g !== 'VN-Index'
+    }));
+    charts.trend=new Chart(document.getElementById('chart-trend'),{type:'line',data:{labels:allDates, datasets:trendDS},options:{responsive:true,maintainAspectRatio:false,scales:{x:{type:'category',ticks:{color:tc.ticks,maxRotation:45,autoSkip:true,maxTicksLimit:15},grid:{color:tc.grid}},y:{title:{display:true,text:'Median P/E',color:tc.ticks},grid:{color:tc.grid},ticks:{color:tc.ticks}}},plugins:{legend:{display:false}}}});
+
+    const trendPillsEl = document.getElementById('trend-pills');
+    tG.forEach((g, i) => {
+      const lbl = document.createElement('label');
+      lbl.className = 'pill' + (g === 'VN-Index' ? ' active' : '');
+      const chk = document.createElement('input');
+      chk.type = 'checkbox'; chk.style.display = 'none'; chk.checked = g === 'VN-Index';
+      chk.onchange = (e) => {
+        const ds = charts.trend.data.datasets[i];
+        if(e.target.checked) { ds.hidden = false; lbl.classList.add('active'); }
+        else { ds.hidden = true; lbl.classList.remove('active'); }
+        charts.trend.update();
+      };
+      lbl.appendChild(chk);
+      const swatch = document.createElement('span');
+      swatch.style.display = 'inline-block'; swatch.style.width = '8px'; swatch.style.height = '8px';
+      swatch.style.borderRadius = '50%'; swatch.style.marginRight = '6px';
+      swatch.style.backgroundColor = PAL[i%PAL.length];
+      lbl.appendChild(swatch);
+      lbl.appendChild(document.createTextNode(g));
+      trendPillsEl.appendChild(lbl);
+    });
   }else{
     document.getElementById('trend-msg').textContent='Trend appears after the second trading day.';
   }
   const tbody=document.getElementById('tbl-body');
   D.tickers.forEach(t=>{const isVG=['VIC','VHM','VRE','VPL'].includes(t.ticker);const tr=document.createElement('tr');tr.innerHTML=`<td>${isVG?`<span style="color:var(--accent);font-weight:700">${t.ticker}</span> <span style="color:#3b82f6;font-size:.65rem">VG</span>`:`<span style="font-weight:600">${t.ticker}</span>`}</td><td data-sort="${t.close||0}">${fmtK(t.close)}</td><td data-sort="${t.pe==null?999999:t.pe}">${t.pe==null?'—':`<span style="color:${peCol(t.pe)};font-weight:700">${fmt(t.pe)}</span>`}</td><td data-sort="${t.pb==null?999999:t.pb}">${t.pb==null?'—':`<span style="color:var(--accent2);font-weight:700">${fmt(t.pb)}</span>`}</td><td style="color:var(--muted)">${t.sector||'—'}</td><td style="color:var(--dim);font-size:.8rem">${t.industry||'—'}</td><td style="color:var(--muted)">${t.group||'—'}</td>`;tbody.appendChild(tr);});
-  $('#tbl').DataTable({pageLength:25,order:[[2,'asc']],columnDefs:[{targets:[1,2,3],type:'num'}],language:{search:'Filter:',lengthMenu:'Show _MENU_ stocks'}});
+  $('#tbl').DataTable({
+    pageLength:25, order:[[2,'asc']], columnDefs:[{targets:[1,2,3],type:'num'}],
+    language:{search:'Filter:',lengthMenu:'Show _MENU_ stocks'},
+    initComplete: function () {
+      this.api().columns([4, 5, 6]).every(function () {
+        var column = this;
+        var select = $('<select style="display:block;margin-top:6px;width:100%;padding:4px;border-radius:4px;background:var(--card2);color:var(--text);border:1px solid var(--border);font-weight:normal;font-size:0.8rem;"><option value="">All</option></select>')
+          .appendTo($(column.header()))
+          .on('change', function () {
+            var val = $.fn.dataTable.util.escapeRegex($(this).val());
+            column.search(val ? '^' + val + '$' : '', true, false).draw();
+          });
+        column.data().unique().sort().each(function (d, j) {
+          if(d && d!=='—') {
+            var text = $('<div>').html(d).text();
+            select.append('<option value="' + text + '">' + text + '</option>')
+          }
+        });
+        $(select).on('click', function(e) { e.stopPropagation(); });
+      });
+    }
+  });
   applyChartTheme(_it);
 });
 </script>
