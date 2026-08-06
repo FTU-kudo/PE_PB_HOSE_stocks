@@ -172,8 +172,8 @@ Guest tier (20 req/min) works without a key — the scripts log a warning and co
 
 ### 4 — Enable GitHub Pages
 
-**Settings → Pages → Source: Deploy from a branch**
-Branch: `main` / Folder: `/docs` → Save
+**Settings → Pages → Source: GitHub Actions**
+*(We use a custom workflow `.github/workflows/deploy_pages.yml` with a 30-minute timeout instead of the default branch deploy).*
 
 ### 5 — First manual run (in order)
 
