@@ -197,8 +197,16 @@ table.dataTable tbody tr:hover td{background:var(--hover)!important}
   </div>
 
   <div class="card mb8">
-    <div class="sec">📈 5-Year Sector P/E Trend</div>
-    <div class="sec-sub">Select sectors to display:</div>
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <div class="sec" style="margin:0">📈 Sector P/E Trend</div>
+      <div id="trend-tf-pills" style="display:flex; gap:4px; font-size:0.75rem;"></div>
+    </div>
+    <div class="sec-sub" style="margin-top:8px">Select sectors to display:</div>
+    <div style="display:flex; gap:8px; margin-bottom:12px;">
+      <div id="btn-sel-all" class="pill" style="cursor:pointer">Chọn tất cả</div>
+      <div id="btn-desel-all" class="pill" style="cursor:pointer">Bỏ chọn tất cả</div>
+      <div id="btn-sel-vnidx" class="pill" style="cursor:pointer">Chỉ chọn VN-Index</div>
+    </div>
     <div id="trend-pills" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;"></div>
     <div style="position: relative; height: 350px; width: 100%;">
       <canvas id="chart-trend"></canvas>
@@ -245,7 +253,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const vgEl=document.getElementById('vg-cards');
   D.vingroup.forEach(v=>{const d=document.createElement('div');d.className='vg-card';d.innerHTML=`<div style="color:var(--accent);font-size:1.2rem;font-weight:800">${v.ticker}</div><div style="color:var(--muted);font-size:.8rem;margin-top:5px">Close: <span style="color:var(--text);font-weight:700">${fmtK(v.close)}</span></div><div style="color:var(--muted);font-size:.8rem">P/E: <span style="color:${peCol(v.pe)};font-weight:700">${fmt(v.pe)}</span></div><div style="color:var(--muted);font-size:.8rem">P/B: <span style="color:var(--accent2);font-weight:700">${fmt(v.pb)}</span></div>`;vgEl.appendChild(d);});
   const tc=themeC(_it);
-  const barOpts=()=>({indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:tc.grid},ticks:{color:tc.ticks}},y:{grid:{color:tc.grid},ticks:{color:tc.ticks,font:{size:11}}}}});
+  const barOpts=()=>({indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:tc.grid},ticks:{color:tc.ticks}},y:{grid:{color:tc.grid},ticks:{color:tc.ticks,font:{size:11},autoSkip:false}}}});
   const sects=D.sectors.filter(s=>s.median_pe!=null).sort((a,b)=>a.median_pe-b.median_pe);
   charts.pe=new Chart(document.getElementById('chart-pe'),{type:'bar',data:{labels:sects.map(s=>s.group),datasets:[{data:sects.map(s=>s.median_pe),backgroundColor:sects.map(s=>peCol(s.median_pe)),borderRadius:5}]},options:{...barOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` P/E: ${ctx.parsed.x.toFixed(1)}`}}}}});
   charts.pb=new Chart(document.getElementById('chart-pb'),{type:'bar',data:{labels:sects.map(s=>s.group),datasets:[{data:sects.map(s=>s.median_pb),backgroundColor:'#818cf8',borderRadius:5}]},options:{...barOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` P/B: ${ctx.parsed.x.toFixed(2)}`}}}}});
@@ -370,9 +378,11 @@ document.addEventListener('DOMContentLoaded',()=>{
   const tG=Object.keys(D.trend);
   if(tG.length>0){
     const allDates = [...new Set(tG.flatMap(g => D.trend[g].dates))].sort();
+    const fullTrendData = tG.map(g => allDates.map(d=>{const idx = D.trend[g].dates.indexOf(d); return idx>=0 ? D.trend[g].pe[idx] : null;}));
+
     const trendDS = tG.map((g,i)=>({
       label:g,
-      data:allDates.map(d=>{const idx = D.trend[g].dates.indexOf(d); return idx>=0 ? D.trend[g].pe[idx] : null;}),
+      data:fullTrendData[i].slice(),
       borderColor:PAL[i%PAL.length],
       backgroundColor:'transparent',
       tension:.35,
@@ -380,9 +390,10 @@ document.addEventListener('DOMContentLoaded',()=>{
       borderWidth:2,
       hidden: g !== 'VN-Index'
     }));
-    charts.trend=new Chart(document.getElementById('chart-trend'),{type:'line',data:{labels:allDates, datasets:trendDS},options:{responsive:true,maintainAspectRatio:false,scales:{x:{type:'category',ticks:{color:tc.ticks,maxRotation:45,autoSkip:true,maxTicksLimit:15},grid:{color:tc.grid}},y:{title:{display:true,text:'Median P/E',color:tc.ticks},grid:{color:tc.grid},ticks:{color:tc.ticks}}},plugins:{legend:{display:false}}}});
+    charts.trend=new Chart(document.getElementById('chart-trend'),{type:'line',data:{labels:allDates.slice(), datasets:trendDS},options:{responsive:true,maintainAspectRatio:false,scales:{x:{type:'category',ticks:{color:tc.ticks,maxRotation:45,autoSkip:true,maxTicksLimit:15},grid:{color:tc.grid}},y:{title:{display:true,text:'Median P/E',color:tc.ticks},grid:{color:tc.grid},ticks:{color:tc.ticks}}},plugins:{legend:{display:false}}}});
 
     const trendPillsEl = document.getElementById('trend-pills');
+    const trendCheckboxes = [];
     tG.forEach((g, i) => {
       const lbl = document.createElement('label');
       lbl.className = 'pill' + (g === 'VN-Index' ? ' active' : '');
@@ -394,6 +405,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         else { ds.hidden = true; lbl.classList.remove('active'); }
         charts.trend.update();
       };
+      trendCheckboxes.push({chk, lbl, dsIndex: i});
       lbl.appendChild(chk);
       const swatch = document.createElement('span');
       swatch.style.display = 'inline-block'; swatch.style.width = '8px'; swatch.style.height = '8px';
@@ -403,6 +415,66 @@ document.addEventListener('DOMContentLoaded',()=>{
       lbl.appendChild(document.createTextNode(g));
       trendPillsEl.appendChild(lbl);
     });
+
+    document.getElementById('btn-sel-all').onclick = () => {
+      trendCheckboxes.forEach(item => {
+        item.chk.checked = true; item.lbl.classList.add('active'); charts.trend.data.datasets[item.dsIndex].hidden = false;
+      });
+      charts.trend.update();
+    };
+    document.getElementById('btn-desel-all').onclick = () => {
+      trendCheckboxes.forEach(item => {
+        item.chk.checked = false; item.lbl.classList.remove('active'); charts.trend.data.datasets[item.dsIndex].hidden = true;
+      });
+      charts.trend.update();
+    };
+    document.getElementById('btn-sel-vnidx').onclick = () => {
+      trendCheckboxes.forEach(item => {
+        const isVN = tG[item.dsIndex] === 'VN-Index';
+        item.chk.checked = isVN;
+        if(isVN) item.lbl.classList.add('active'); else item.lbl.classList.remove('active');
+        charts.trend.data.datasets[item.dsIndex].hidden = !isVN;
+      });
+      charts.trend.update();
+    };
+
+    let trendTf = '5Y';
+    const updateTrendTimeframe = () => {
+      let cutoff = '1970-01-01';
+      const maxDateStr = allDates.length > 0 ? allDates[allDates.length - 1] : new Date().toISOString().split('T')[0];
+      const d = new Date(maxDateStr);
+      if(trendTf === '3M') { d.setMonth(d.getMonth()-3); cutoff = d.toISOString().split('T')[0]; }
+      else if(trendTf === 'YTD') { d.setMonth(0, 1); cutoff = d.toISOString().split('T')[0]; }
+      else if(trendTf === '1Y') { d.setFullYear(d.getFullYear()-1); cutoff = d.toISOString().split('T')[0]; }
+      else if(trendTf === '3Y') { d.setFullYear(d.getFullYear()-3); cutoff = d.toISOString().split('T')[0]; }
+      else if(trendTf === '5Y') { d.setFullYear(d.getFullYear()-5); cutoff = d.toISOString().split('T')[0]; }
+      
+      let startIndex = allDates.findIndex(dt => dt >= cutoff);
+      if(startIndex === -1) startIndex = 0;
+      
+      charts.trend.data.labels = allDates.slice(startIndex);
+      charts.trend.data.datasets.forEach((ds, i) => {
+        ds.data = fullTrendData[i].slice(startIndex);
+      });
+      charts.trend.update();
+    };
+
+    const trendTfEl = document.getElementById('trend-tf-pills');
+    ['5Y', '3Y', '1Y', 'YTD', '3M'].forEach(tf => {
+      const b = document.createElement('div');
+      b.className = 'pill' + (trendTf === tf ? ' active' : '');
+      b.textContent = tf;
+      b.style.cursor = 'pointer';
+      b.onclick = () => {
+        trendTf = tf;
+        Array.from(trendTfEl.children).forEach(c => c.classList.remove('active'));
+        b.classList.add('active');
+        updateTrendTimeframe();
+      };
+      trendTfEl.appendChild(b);
+    });
+    updateTrendTimeframe();
+
   }else{
     document.getElementById('trend-msg').textContent='Trend appears after the second trading day.';
   }
