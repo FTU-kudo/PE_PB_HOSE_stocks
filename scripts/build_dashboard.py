@@ -299,7 +299,14 @@ table.dataTable tbody tr:hover td{{background:var(--hover)!important}}
       <p>{ui['data_updated']} <span class="hl" id="update-time"></span> &nbsp;·&nbsp; {ui['accessed_at']} <span class="hl" id="access-time"></span></p>
     </div>
     <div style="display:flex;gap:10px;align-items:center;">
-      <div id="live-clock" style="font-family:monospace;font-size:1.1rem;font-weight:700;color:var(--accent);background:var(--card2);padding:6px 12px;border-radius:8px;border:1px solid var(--border);box-shadow:inset 0 2px 4px rgba(0,0,0,0.1);">--:--:--</div>
+      <div id="live-clock" style="display:flex;align-items:center;font-family:monospace;font-size:1.1rem;font-weight:700;color:var(--accent);background:var(--card2);padding:6px 12px;border-radius:8px;border:1px solid var(--border);box-shadow:inset 0 2px 4px rgba(0,0,0,0.1);">
+        <svg width="20" height="20" viewBox="0 0 100 100" style="margin-right:6px">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="8"/>
+          <line id="clock-h" x1="50" y1="50" x2="50" y2="28" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+          <line id="clock-m" x1="50" y1="50" x2="50" y2="16" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span id="live-clock-text">--:--:--</span>
+      </div>
       <a href="{ui['lang_link']}" class="theme-btn" style="text-decoration:none;">{ui['lang_toggle']}</a>
       <button class="theme-btn" onclick="toggleTheme()">
         <span id="theme-icon">☀️</span><span id="theme-label">{ui['light_mode']}</span>
@@ -401,10 +408,6 @@ function formatTime(date, lang) {{
     return `${{h}}:${{m}}:${{s}} ${{days[date.getDay()]}}`;
   }}
 }}
-function getClockEmoji(date) {{
-  const clocks = ['🕛', '🕐', '🕑', '🕒', '🕓', '🕔', '🕕', '🕖', '🕗', '🕘', '🕙', '🕚'];
-  return clocks[date.getHours() % 12];
-}}
 document.addEventListener('DOMContentLoaded',()=>{{
   const dk=_it==='dark';document.getElementById('theme-icon').textContent=dk?'☀️':'🌙';document.getElementById('theme-label').textContent=dk?'{ui['light_mode']}':'{ui['dark_mode']}';
   const m=D.market;
@@ -424,10 +427,14 @@ document.addEventListener('DOMContentLoaded',()=>{{
   const accessTimeEl = document.getElementById('access-time');
   accessTimeEl.textContent = formatTime(new Date(), lang);
   
-  const liveClockEl = document.getElementById('live-clock');
+  const hLine = document.getElementById('clock-h');
+  const mLine = document.getElementById('clock-m');
+  const textEl = document.getElementById('live-clock-text');
   const updateLiveClock = () => {{
     const now = new Date();
-    liveClockEl.textContent = getClockEmoji(now) + ' ' + formatTime(now, lang);
+    if(hLine) hLine.setAttribute('transform', `rotate(${{(now.getHours() % 12) * 30 + (now.getMinutes() / 60) * 30}} 50 50)`);
+    if(mLine) mLine.setAttribute('transform', `rotate(${{now.getMinutes() * 6}} 50 50)`);
+    if(textEl) textEl.textContent = formatTime(now, lang);
   }};
   updateLiveClock();
   setInterval(updateLiveClock, 1000);
