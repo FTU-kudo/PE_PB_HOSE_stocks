@@ -299,7 +299,7 @@ table.dataTable tbody tr:hover td{{background:var(--hover)!important}}
       <p>{ui['data_updated']} <span class="hl" id="update-time"></span> &nbsp;·&nbsp; {ui['accessed_at']} <span class="hl" id="access-time"></span></p>
     </div>
     <div style="display:flex;gap:10px;align-items:center;">
-      <div id="live-clock" style="font-family:monospace;font-size:1.1rem;font-weight:700;color:var(--accent);background:var(--card2);padding:6px 12px;border-radius:8px;border:1px solid var(--border);box-shadow:inset 0 2px 4px rgba(0,0,0,0.1);">--:--:--</div>
+      <div id="live-clock" style="font-family:monospace;font-size:1.1rem;font-weight:700;color:var(--accent);background:var(--card2);padding:6px 12px;border-radius:8px;border:1px solid var(--border);box-shadow:inset 0 2px 4px rgba(0,0,0,0.1);">🕒 --:--:--</div>
       <a href="{ui['lang_link']}" class="theme-btn" style="text-decoration:none;">{ui['lang_toggle']}</a>
       <button class="theme-btn" onclick="toggleTheme()">
         <span id="theme-icon">☀️</span><span id="theme-label">{ui['light_mode']}</span>
@@ -421,8 +421,8 @@ document.addEventListener('DOMContentLoaded',()=>{{
   accessTimeEl.textContent = formatTime(new Date(), lang);
   
   const liveClockEl = document.getElementById('live-clock');
-  liveClockEl.textContent = formatTime(new Date(), lang);
-  setInterval(() => {{ liveClockEl.textContent = formatTime(new Date(), lang); }}, 1000);
+  liveClockEl.textContent = '🕒 ' + formatTime(new Date(), lang);
+  setInterval(() => {{ liveClockEl.textContent = '🕒 ' + formatTime(new Date(), lang); }}, 1000);
 
   const vgEl=document.getElementById('vg-cards');
   D.vingroup.forEach(v=>{{const d=document.createElement('div');d.className='vg-card';d.innerHTML=`<div style="color:var(--accent);font-size:1.2rem;font-weight:800">${{v.ticker}}</div><div style="color:var(--muted);font-size:.8rem;margin-top:5px">{ui['close']}: <span style="color:var(--text);font-weight:700">${{fmtK(v.close)}}</span></div><div style="color:var(--muted);font-size:.8rem">P/E: <span style="color:${{peCol(v.pe)}};font-weight:700">${{fmt(v.pe)}}</span></div><div style="color:var(--muted);font-size:.8rem">P/B: <span style="color:var(--accent2);font-weight:700">${{fmt(v.pb)}}</span></div>`;vgEl.appendChild(d);}});
