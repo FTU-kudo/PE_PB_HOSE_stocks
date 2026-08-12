@@ -1,6 +1,6 @@
 """Build self-contained GitHub Pages dashboard with light/dark mode."""
 import json, sys
-from datetime import timedelta
+from datetime import timedelta, datetime, timezone
 from pathlib import Path
 
 import numpy as np
@@ -96,7 +96,9 @@ UI_STR = {
         'metric_pb': 'Median P/B',
         'dt_search': 'Filter:',
         'dt_length': 'Show _MENU_ stocks',
-        'dt_all': 'All'
+        'dt_all': 'All',
+        'data_updated': 'Data updated:',
+        'accessed_at': 'Accessed at:'
     },
     'vi': {
         'page_title': 'Định giá P/E & P/B sàn HOSE',
@@ -144,7 +146,9 @@ UI_STR = {
         'metric_pb': 'P/B (Trung vị)',
         'dt_search': 'Lọc:',
         'dt_length': 'Hiển thị _MENU_ mã',
-        'dt_all': 'Tất cả'
+        'dt_all': 'Tất cả',
+        'data_updated': 'Dữ liệu cập nhật:',
+        'accessed_at': 'Truy cập lúc:'
     }
 }
 
@@ -197,6 +201,7 @@ def build_payload(tl, t5y, sl, s5y, ld, lang):
     w_pb = _safe(vn_idx["weighted_pb"]) if vn_idx is not None else None
 
     market = {"date": ld.strftime("%Y-%m-%d"),
+              "update_time": datetime.now(timezone.utc).isoformat(),
               "median_pe": m_pe, "median_pb": m_pb,
               "weighted_pe": w_pe, "weighted_pb": w_pb,
               "total": len(tl), "valid_pe": int(all_pe.notna().sum()),
@@ -291,6 +296,7 @@ table.dataTable tbody tr:hover td{{background:var(--hover)!important}}
     <div>
       <h1>{ui['title']}</h1>
       <p>{ui['as_of']} <span class="hl" id="hdr-date"></span> &nbsp;·&nbsp; PE = Close / TTM EPS &nbsp; PB = Close / BVPS &nbsp;·&nbsp; {ui['valid_stocks']}: <span class="hl" id="mkt-npe"></span> PE / <span class="hl" id="mkt-npb"></span> PB {ui['out_of']} <span id="mkt-tot"></span></p>
+      <p>{ui['data_updated']} <span class="hl" id="update-time"></span> &nbsp;·&nbsp; {ui['accessed_at']} <span class="hl" id="access-time"></span></p>
     </div>
     <div style="display:flex;gap:10px;">
       <a href="{ui['lang_link']}" class="theme-btn" style="text-decoration:none;">{ui['lang_toggle']}</a>
@@ -382,6 +388,18 @@ const _it=localStorage.getItem('vn-pe-pb-theme')||(window.matchMedia('(prefers-c
 document.documentElement.setAttribute('data-theme',_it);
 function fmt(v,dp=2){{return v==null?'—':(+v).toFixed(dp);}}
 function fmtK(v){{return v==null?'—':(v/1000).toFixed(1)+'K';}}
+function formatTime(date, lang) {{
+  const h = String(date.getHours()).padStart(2, '0');
+  const m = String(date.getMinutes()).padStart(2, '0');
+  const s = String(date.getSeconds()).padStart(2, '0');
+  if (lang === 'vi') {{
+    const days = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'];
+    return `${{h}}:${{m}}:${{s}} ${{days[date.getDay()]}}`;
+  }} else {{
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return `${{h}}:${{m}}:${{s}} ${{days[date.getDay()]}}`;
+  }}
+}}
 document.addEventListener('DOMContentLoaded',()=>{{
   const dk=_it==='dark';document.getElementById('theme-icon').textContent=dk?'☀️':'🌙';document.getElementById('theme-label').textContent=dk?'{ui['light_mode']}':'{ui['dark_mode']}';
   const m=D.market;
@@ -393,6 +411,14 @@ document.addEventListener('DOMContentLoaded',()=>{{
   document.getElementById('mkt-npe').textContent=m.valid_pe;
   document.getElementById('mkt-npb').textContent=m.valid_pb;
   document.getElementById('mkt-tot').textContent=`${{m.total}}`;
+
+  const lang = document.documentElement.lang;
+  const updateDate = new Date(m.update_time);
+  document.getElementById('update-time').textContent = formatTime(updateDate, lang);
+  const accessTimeEl = document.getElementById('access-time');
+  accessTimeEl.textContent = formatTime(new Date(), lang);
+  setInterval(() => {{ accessTimeEl.textContent = formatTime(new Date(), lang); }}, 1000);
+
   const vgEl=document.getElementById('vg-cards');
   D.vingroup.forEach(v=>{{const d=document.createElement('div');d.className='vg-card';d.innerHTML=`<div style="color:var(--accent);font-size:1.2rem;font-weight:800">${{v.ticker}}</div><div style="color:var(--muted);font-size:.8rem;margin-top:5px">{ui['close']}: <span style="color:var(--text);font-weight:700">${{fmtK(v.close)}}</span></div><div style="color:var(--muted);font-size:.8rem">P/E: <span style="color:${{peCol(v.pe)}};font-weight:700">${{fmt(v.pe)}}</span></div><div style="color:var(--muted);font-size:.8rem">P/B: <span style="color:var(--accent2);font-weight:700">${{fmt(v.pb)}}</span></div>`;vgEl.appendChild(d);}});
   const tc=themeC(_it);
